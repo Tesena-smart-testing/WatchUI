@@ -9,7 +9,7 @@ Custom library for comparing images with use in RobotFramework. It can be used a
 # What you need
 ## Pip install
 
-[Watchmen](https://pypi.org/project/Watchmen/)
+[Watchmen](https://pypi.org/project/WatchUI/)
 1. Open CMD
 2. Start `pip install WatchUI`
 3. Import to robotframework `Library WatchUI` or `Library WatchUI/robotframework.py`
