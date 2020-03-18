@@ -2,7 +2,7 @@
 Documentation    Suite description
 Library          SeleniumLibrary
 Library          Screenshot
-Library          ../WatchUI/robotframework.py
+Library          ../WatchUI/WatchUI.py
 
 
 *** Variables ***
@@ -15,7 +15,7 @@ ${element}          id=logo
 *** Test Cases ***
 Test
     # Two images compare
-    # Screen compare
+    Screen compare
     # Making compare area
     # Area Compare
     # Areas Compare
@@ -31,7 +31,7 @@ Screen compare
     Open Browser                        ${start_url}      ${browser}
     Set window size                     800     600
     sleep                               7
-    compare screen                      ../Create rescreens/rescreen_800x600.png
+    compare screen                      ../Create rescreens/rescreen800x600.png
 
 Making compare area
     Open Browser                        ${start_url}      ${browser}
