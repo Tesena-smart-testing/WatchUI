@@ -2,7 +2,7 @@
 Documentation    Suite description
 Library          SeleniumLibrary
 Library          Screenshot
-Library          ../Watchmen/robotframework.py
+Library          ../WatchUI/robotframework.py
 
 
 *** Variables ***
@@ -15,7 +15,7 @@ ${element}          id=logo
 *** Test Cases ***
 Test
     # Two images compare
-    Screen compare
+    # Screen compare
     # Making compare area
     # Area Compare
     # Areas Compare
@@ -53,7 +53,7 @@ Areas Compare
 
 Making rescreens
     Open Browser                        ${start_url}      ${browser}
-    compare making rescreens            800  600    1280    800     1440    900
+    compare making rescreens            800  600    1280    800     1440    900  name_screen=Alza
 
 Area compare with info
     Open Browser                        ${start_url}    ${browser}

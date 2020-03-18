@@ -124,9 +124,9 @@ def compare_screen(path1, save_folder='../Save Image'):
                 robotlib.fail('Image has diff: {} %'.format(score_percen))
 
         else:
-            raise AssertionError("New screen doesnt exist anymore")
+            raise AssertionError("Path2 doesnt found")
     else:
-        raise AssertionError("You put bad path")
+        raise AssertionError('Path1 doesnt found')
     if os.path.exists(save_folder + '/testscreen.png'):
         os.remove(save_folder + '/testcreen.png')
 
@@ -153,7 +153,7 @@ def compare_making_area(x1, y1, x2, y2, save_folder='../Create area'):
     cv.imwrite(save_folder + '/img' + str(time.time()) + '.png', crop_img)
 
 
-def compare_making_rescreens(*resolution):
+def compare_making_rescreens(*resolution, save_folder="../Create rescreens", name_screen="rescreen"):
     """ Creates a screenshot on the screen
 
     Creates a screenshot on the screen, that corresponds to the specified resolution, so it is possible to create on one
@@ -164,10 +164,10 @@ def compare_making_rescreens(*resolution):
 
     Example: compare making rescreens 800 600 1280 800 1440 900 Creates 3 screens in 800x600 1280x800 and 1440x90
     """
-    if os.path.exists('../Create rescreens'):
-        print('folder exists')
+    if os.path.exists(save_folder):
+        print('Folder exists')
     else:
-        os.mkdir('../Create rescreens')
+        os.mkdir(save_folder)
     seleniumlib = BuiltIn().get_library_instance('SeleniumLibrary')
     robotlib = BuiltIn().get_library_instance('BuiltIn')
     time.sleep(2)
@@ -185,7 +185,7 @@ def compare_making_rescreens(*resolution):
             seleniumlib.set_window_size(width, height)
             time.sleep(1)
             seleniumlib.capture_page_screenshot(
-                '../Create rescreens/rescreen_' + str(width) + 'x' + str(height) + '.png')
+                save_folder + '/' + name_screen + str(width) + 'x' + str(height) + '.png')
             a += 2
             i += 1
     else:
@@ -350,12 +350,12 @@ def compare_screen_get_information(path1, save_folder="../cs_get_info", folder_c
     Example: Compare screen ../image1.png
     """
     if os.path.exists(folder_csv):
-        print('folder csv exists')
+        print('Folder' + folder_csv + 'exists')
     else:
         os.mkdir(folder_csv)
-        print('Making csv')
+        print('Making' + folder_csv)
     if os.path.exists(save_folder):
-        print('Folder save image exists')
+        print('Folder ' + save_folder + 'exists')
     else:
         os.mkdir(save_folder)
     # Making screen
@@ -433,4 +433,4 @@ def compare_screen_get_information(path1, save_folder="../cs_get_info", folder_c
             print("score" + str(score))
             robotlib.fail('Image has diff: {} %'.format(score_percen))
     else:
-        print("Bad or not exists path")
+        print("Bad or not exists path for picture or screen")
