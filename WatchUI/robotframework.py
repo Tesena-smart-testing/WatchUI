@@ -18,6 +18,8 @@ from robot.libraries.BuiltIn import BuiltIn
 import csv
 import pandas as pd
 
+SELENIUM_LIB = BuiltIn().get_library_instance("SeleniumLibrary")
+
 
 def _check_dir(save_folder: str) -> None:
     """Checks, if given folder exists, if not, then creates it.
@@ -44,11 +46,6 @@ def compare_two_image(path1, path2, save_folder="../Compare two Images"):
     Example: Compare two image ../image1.png ../Image2.png
     """
     _check_dir(save_folder)
-    # if os.path.exists(save_folder):
-    #     print("*INFO* Folder /Save Image exists")
-    # else:
-    #     os.mkdir(save_folder)
-    #     print("*INFO* Folder /Save Image crated")
     if os.path.exists(path1) and os.path.exists(path2):
         # load img
         img1 = cv.imread(path1, 1)
@@ -95,8 +92,7 @@ def compare_screen(path1, save_folder="../Save Image"):
     Example: Compare screen ../image1.png
     """
     _check_dir(save_folder)
-    seleniumlib = BuiltIn().get_library_instance("SeleniumLibrary")
-    seleniumlib.capture_page_screenshot(save_folder + "/testscreen.png")
+    SELENIUM_LIB.capture_page_screenshot(save_folder + "/testscreen.png")
     path2 = save_folder + "/testscreen.png"
     if os.path.exists(path1):
         if os.path.exists(path2):
@@ -133,7 +129,7 @@ def compare_screen(path1, save_folder="../Save Image"):
                 img_diff = cv.hconcat([img1, img2])
                 cas = str(time.time())
                 score_percen = float(score) * +100
-                seleniumlib.capture_page_screenshot(save_folder + "/img" + cas + ".png")
+                SELENIUM_LIB.capture_page_screenshot(save_folder + "/img" + cas + ".png")
                 cv.imwrite(save_folder + "/img" + cas + ".png", img_diff)
                 print("score" + str(score))
                 robotlib.fail("Image has diff: {} %".format(score_percen))
@@ -157,12 +153,7 @@ def compare_making_area(x1, y1, x2, y2, save_folder="../Create area"):
     Example: Compare making area 0 0 25 25
     """
     _check_dir(save_folder)
-    # if os.path.exists(save_folder):
-    #     print("Folder exists")
-    # else:
-    #     os.mkdir(save_folder)
-    seleniumlib = BuiltIn().get_library_instance("SeleniumLibrary")
-    seleniumlib.capture_page_screenshot(save_folder + "/testscreen.png")
+    SELENIUM_LIB.capture_page_screenshot(save_folder + "/testscreen.png")
     img = save_folder + "/testscreen.png"
     img_crop = cv.imread(img)
     crop_img = img_crop[
@@ -185,7 +176,6 @@ def compare_making_rescreens(
     Example: compare making rescreens 800 600 1280 800 1440 900 Creates 3 screens in 800x600 1280x800 and 1440x90
     """
     _check_dir(save_folder)
-    seleniumlib = BuiltIn().get_library_instance("SeleniumLibrary")
     robotlib = BuiltIn().get_library_instance("BuiltIn")
     time.sleep(2)
     leng_reso = len(resolution)
@@ -199,9 +189,9 @@ def compare_making_rescreens(
             width = int(resolution[0 + a])
             height = int(resolution[1 + a])
 
-            seleniumlib.set_window_size(width, height)
+            SELENIUM_LIB.set_window_size(width, height)
             time.sleep(1)
-            seleniumlib.capture_page_screenshot(
+            SELENIUM_LIB.capture_page_screenshot(
                 save_folder
                 + "/"
                 + name_screen
@@ -228,8 +218,7 @@ def compare_screen_area(x1, y1, x2, y2, path1, save_folder="../Save Image area")
     Example: Compare screen area 0 0 25 25 ../Crop_Image1.png Creates Crop_Image1.png from 0, 0, 25, 25
     """
     _check_dir(save_folder)
-    seleniumlib = BuiltIn().get_library_instance("SeleniumLibrary")
-    seleniumlib.capture_page_screenshot(save_folder + "/test_screen.png")
+    SELENIUM_LIB.capture_page_screenshot(save_folder + "/test_screen.png")
     path2 = save_folder + "/test_screen.png"
     if os.path.exists(path1):
         if os.path.exists(path2):
@@ -273,7 +262,7 @@ def compare_screen_area(x1, y1, x2, y2, path1, save_folder="../Save Image area")
                 # TODO: Add screen to log
                 img_diff = cv.hconcat([img1, img2])
                 cas = str(time.time())
-                seleniumlib.capture_page_screenshot(save_folder + "/img" + cas + ".png")
+                SELENIUM_LIB.capture_page_screenshot(save_folder + "/img" + cas + ".png")
                 cv.imwrite(save_folder + "/img" + cas + ".png", img_diff)
                 print("score" + str(score))
                 robotlib.fail("Image has diff: {} ".format(score))
@@ -300,8 +289,7 @@ def compare_screen_without_areas(path1, *args, save_folder="../Save Image areas"
     Creates 2 ignored parts at 0,0, 30,40 and 50, 50, 100, 100
     """
     _check_dir(save_folder)
-    seleniumlib = BuiltIn().get_library_instance("SeleniumLibrary")
-    seleniumlib.capture_page_screenshot(save_folder + "/test_screen.png")
+    SELENIUM_LIB.capture_page_screenshot(save_folder + "/test_screen.png")
     path2 = save_folder + "/test_screen.png"
     if os.path.exists(path1) and os.path.exists(path2):
         lt = len(args)
@@ -357,7 +345,7 @@ def compare_screen_without_areas(path1, *args, save_folder="../Save Image areas"
                 # TODO: Add screen to log
                 img_diff = cv.hconcat([img1, img2])
                 cas = str(time.time())
-                seleniumlib.capture_page_screenshot(save_folder + "/img" + cas + ".png")
+                SELENIUM_LIB.capture_page_screenshot(save_folder + "/img" + cas + ".png")
                 cv.imwrite(save_folder + "/img" + cas + ".png", img_diff)
                 robotlib.fail("Image has diff: {} ".format(score))
     else:
@@ -383,8 +371,7 @@ def compare_screen_get_information(
     _check_dir(save_folder)
     # Making screen
     robotlib = BuiltIn().get_library_instance("BuiltIn")
-    seleniumlib = BuiltIn().get_library_instance("SeleniumLibrary")
-    seleniumlib.capture_page_screenshot(save_folder + "/test_screen.png")
+    SELENIUM_LIB.capture_page_screenshot(save_folder + "/test_screen.png")
     path2 = save_folder + "/test_screen.png"
     if os.path.exists(path1) and os.path.exists(path2):
         # load img
@@ -429,7 +416,7 @@ def compare_screen_get_information(
             # TODO: Add screen to log
             img_diff = cv.hconcat([img1, img2])
             cas = str(time.time())
-            seleniumlib.capture_page_screenshot(save_folder + "/img{0}.png".format(cas))
+            SELENIUM_LIB.capture_page_screenshot(save_folder + "/img{0}.png".format(cas))
             cv.imwrite(save_folder + "/img{0}.png".format(cas), img_diff)
 
             # start reading coordinates and saving element from coordinate
@@ -445,7 +432,7 @@ def compare_screen_get_information(
                 for i in range(len(df)):
                     x_center = df.values[i, 1]
                     y_center = df.values[i, 2]
-                    driver = seleniumlib.driver
+                    driver = SELENIUM_LIB.driver
                     elements = driver.execute_script(
                         "return document.elementsFromPoint(arguments[0], arguments[1]);",
                         x_center,
