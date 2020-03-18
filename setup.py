@@ -9,9 +9,11 @@ try:
             packages=find_packages(),
             install_requires=[
                 "opencv-python",
+                "pandas",
                 "Pillow",
                 "numpy",
                 "scikit-image",
+                "scikit-learn",
                 "imutils",
                 "robotframework",
                 "robotframework-seleniumLibrary",
