@@ -170,8 +170,8 @@ def create_area(x1, y1, x2, y2, save_folder="../Create_area"):
     cv.imwrite(save_folder + "/Img" + str(time.time()) + ".png", crop_img)
 
 
-def compare_making_rescreens(
-    *resolution, save_folder="../Compare_making_rescreens", name_screen="rescreen"
+def create_screens(
+    *resolution, save_folder="../Create_screens", screen_name="screen"
 ):
     """ Creates a screenshot on the screen
 
@@ -203,7 +203,7 @@ def compare_making_rescreens(
             seleniumlib.capture_page_screenshot(
                 save_folder
                 + "/"
-                + name_screen
+                + screen_name
                 + str(width)
                 + "x"
                 + str(height)
@@ -215,7 +215,7 @@ def compare_making_rescreens(
         raise AssertionError("Bad numbers of resolution")
 
 
-def compare_screen_area(x1, y1, x2, y2, path1, save_folder="../Compare_screen_area"):
+def compare_screen_areas(x1, y1, x2, y2, path1, save_folder="../Compare_screen_areas"):
     """Creates a cut-out from the screen
 
     Creates a cut-out from the screen that is on the screen and compares it to a previously created
