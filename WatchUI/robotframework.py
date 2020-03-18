@@ -19,6 +19,7 @@ import csv
 import pandas as pd
 
 SELENIUM_LIB = BuiltIn().get_library_instance("SeleniumLibrary")
+ROBOT_LIB = BuiltIn().get_library_instance("BuiltIn")
 
 
 def _check_dir(save_folder: str) -> None:
@@ -74,9 +75,8 @@ def compare_two_image(path1, path2, save_folder="../Compare two Images"):
         # Show image
         print(score)
         if int(score) < 1.0:
-            robotlib = BuiltIn().get_library_instance("BuiltIn")
             cv.imwrite(save_folder + "/img" + str(time.time()) + ".png", img2)
-            robotlib.fail("*INFO* Save file with difference")
+            ROBOT_LIB.fail("*INFO* Save file with difference")
     else:
         raise AssertionError("Path doesnt exists")
 
@@ -124,15 +124,16 @@ def compare_screen(path1, save_folder="../Save Image"):
                 cv.rectangle(img2, (x, y), (x + w, y + h), (0, 0, 255), 2)
             # Show image
             if int(score) < 1.0:
-                robotlib = BuiltIn().get_library_instance("BuiltIn")
                 # TODO: Add screen to log
                 img_diff = cv.hconcat([img1, img2])
                 cas = str(time.time())
                 score_percen = float(score) * +100
-                SELENIUM_LIB.capture_page_screenshot(save_folder + "/img" + cas + ".png")
+                SELENIUM_LIB.capture_page_screenshot(
+                    save_folder + "/img" + cas + ".png"
+                )
                 cv.imwrite(save_folder + "/img" + cas + ".png", img_diff)
                 print("score" + str(score))
-                robotlib.fail("Image has diff: {} %".format(score_percen))
+                ROBOT_LIB.fail("Image has diff: {} %".format(score_percen))
 
         else:
             raise AssertionError("Path2 doesnt found")
@@ -176,11 +177,10 @@ def compare_making_rescreens(
     Example: compare making rescreens 800 600 1280 800 1440 900 Creates 3 screens in 800x600 1280x800 and 1440x90
     """
     _check_dir(save_folder)
-    robotlib = BuiltIn().get_library_instance("BuiltIn")
     time.sleep(2)
     leng_reso = len(resolution)
     if leng_reso % 2 == 0:
-        robotlib.log_to_console(resolution)
+        ROBOT_LIB.log_to_console(resolution)
 
         x = leng_reso / 2
         i = 0
@@ -258,17 +258,18 @@ def compare_screen_area(x1, y1, x2, y2, path1, save_folder="../Save Image area")
             # Show image
             print(score)
             if int(score) < 1.0:
-                robotlib = BuiltIn().get_library_instance("BuiltIn")
                 # TODO: Add screen to log
                 img_diff = cv.hconcat([img1, img2])
                 cas = str(time.time())
-                SELENIUM_LIB.capture_page_screenshot(save_folder + "/img" + cas + ".png")
+                SELENIUM_LIB.capture_page_screenshot(
+                    save_folder + "/img" + cas + ".png"
+                )
                 cv.imwrite(save_folder + "/img" + cas + ".png", img_diff)
                 print("score" + str(score))
-                robotlib.fail("Image has diff: {} ".format(score))
+                ROBOT_LIB.fail("Image has diff: {} ".format(score))
                 score_percen = float(score) * +100
                 print("score" + str(score))
-                robotlib.fail("Image has diff: {} %".format(score_percen))
+                ROBOT_LIB.fail("Image has diff: {} %".format(score_percen))
         else:
             raise AssertionError("New screen doesnt exist anymore")
     else:
@@ -296,9 +297,8 @@ def compare_screen_without_areas(path1, *args, save_folder="../Save Image areas"
         img1 = cv.imread(path1, 1)
         img2 = cv.imread(path2, 1)
         if lt % 4 == 0:
-            robotlib = BuiltIn().get_library_instance("BuiltIn")
             x = lt / 4
-            robotlib.log_to_console(x)
+            ROBOT_LIB.log_to_console(x)
             i = 0
             a = 0
             while i < x:
@@ -341,13 +341,14 @@ def compare_screen_without_areas(path1, *args, save_folder="../Save Image areas"
             # Show image
             print(score)
             if int(score) < 1.0:
-                robotlib = BuiltIn().get_library_instance("BuiltIn")
                 # TODO: Add screen to log
                 img_diff = cv.hconcat([img1, img2])
                 cas = str(time.time())
-                SELENIUM_LIB.capture_page_screenshot(save_folder + "/img" + cas + ".png")
+                SELENIUM_LIB.capture_page_screenshot(
+                    save_folder + "/img" + cas + ".png"
+                )
                 cv.imwrite(save_folder + "/img" + cas + ".png", img_diff)
-                robotlib.fail("Image has diff: {} ".format(score))
+                ROBOT_LIB.fail("Image has diff: {} ".format(score))
     else:
         raise AssertionError("Path doesnt exists")
 
@@ -370,7 +371,6 @@ def compare_screen_get_information(
     _check_dir(folder_csv)
     _check_dir(save_folder)
     # Making screen
-    robotlib = BuiltIn().get_library_instance("BuiltIn")
     SELENIUM_LIB.capture_page_screenshot(save_folder + "/test_screen.png")
     path2 = save_folder + "/test_screen.png"
     if os.path.exists(path1) and os.path.exists(path2):
@@ -416,7 +416,9 @@ def compare_screen_get_information(
             # TODO: Add screen to log
             img_diff = cv.hconcat([img1, img2])
             cas = str(time.time())
-            SELENIUM_LIB.capture_page_screenshot(save_folder + "/img{0}.png".format(cas))
+            SELENIUM_LIB.capture_page_screenshot(
+                save_folder + "/img{0}.png".format(cas)
+            )
             cv.imwrite(save_folder + "/img{0}.png".format(cas), img_diff)
 
             # start reading coordinates and saving element from coordinate
@@ -446,6 +448,6 @@ def compare_screen_get_information(
                         writer.writerow(f)
             score_percen = float(score) * +100
             print("score" + str(score))
-            robotlib.fail("Image has diff: {} %".format(score_percen))
+            ROBOT_LIB.fail("Image has diff: {} %".format(score_percen))
     else:
         print("Bad or not exists path for picture or screen")
