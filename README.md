@@ -4,7 +4,7 @@ Custom library for comparing images with use in RobotFramework. It can be used a
 
 ### What is here?
 - Test robot/test.robot - file with example how to use keyword
-- Watchmen/robotframework.py - file with keywords
+- WatchUI/robotframework.py - file with keywords
 
 # What you need
 ## Pip install
@@ -12,7 +12,8 @@ Custom library for comparing images with use in RobotFramework. It can be used a
 [WatchUI](https://pypi.org/project/WatchUI/)
 1. Open CMD
 2. Start `pip install WatchUI`
-3. Import to robotframework `Library WatchUI` or `Library WatchUI/robotframework.py`
+3. Now You can download robotframework.py from repository or import WatchUI to new python file more [here](https://stackoverflow.com/questions/32952106/creating-a-robot-framework-library-from-existing-python-package)
+4. If you download robotframework.py: You must first enter the path in Settings => `Library          path`, where path is the path to the robotframework.py file
 
 ## Manual Install
 ### Main
