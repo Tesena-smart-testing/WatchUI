@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.14.2] - 2020-03-19
+## [0.16.4] - 2020-03-19
 
 ### Changed
 - Change keyword `Compare making rescreens` on `Create sreens`
@@ -11,6 +11,8 @@ All notable changes to this project will be documented in this file.
 - Fixed keyword in test.robot
 - Some change in code
 - Add new creator  Radek Bednařík in code, thanks for help :-)
+- Fixed bugs in area keywords
+- After install with pypi u can using with full apth your watchUI in robot framework
 
 ## [0.14.1] - 2020-03-18
 
