@@ -16,10 +16,10 @@ ${element}          id=logo
 Test
     # Two images compare
     # Screen compare
-    # Making compare area
+    # Create  region
     # Area Compare
-    # Areas Compare
-    Making rescreens
+    # Comparing screen without some region
+    # Making rescreens
     # Area compare with info
 
 
@@ -31,25 +31,25 @@ Screen compare
     Open Browser                        ${start_url}      ${browser}
     Set window size                     800     600
     sleep                               7
-    compare screen                      ../Create rescreens/rescreen800x600.png
+    compare screen                      ../Create_screens/screen800x600.png
 
 Making compare area
     Open Browser                        ${start_url}      ${browser}
-    Set window size                     800     600
+    Set window size                     1280     800
     sleep                               2
     Create area                         0   0   300  400
 
 Area Compare
     Open Browser                        ${start_url}      ${browser}
-    Set window size                     800     600
+    Set window size                     1280     800
     sleep                               2
-    compare screen area                 0   0   300     400     ../img/test.png
+    compare screen areas                0   0   300     400     ../Img/test.png
 
-Areas Compare
+Comparing screen without some region
     Open Browser                        ${start_url}      ${browser}
-    Set window size                     800     600
+    Set window size                     1280     800
     sleep                               2
-    compare screen without areas        ../img/test1.png   255  224  1153  583
+    compare screen without areas        ../Img/test1.png   255  224  1153  583
 
 Making rescreens
     Open Browser                        ${start_url}      ${browser}
