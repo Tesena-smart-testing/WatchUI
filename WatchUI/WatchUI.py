@@ -8,6 +8,7 @@
 # Copyright (C) 2019-2020
 #
 # Authors: Jan "Procesor" Egermaier
+#          Radek "bednaJedna" Bednařík
 
 import cv2 as cv
 from skimage.metrics import structural_similarity
