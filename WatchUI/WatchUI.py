@@ -23,6 +23,7 @@ import pandas as pd
 seleniumlib = BuiltIn().get_library_instance("SeleniumLibrary")
 robotlib = BuiltIn().get_library_instance("BuiltIn")
 
+
 def _check_dir(save_folder: str) -> None:
     """Checks, if given folder exists, if not, then creates it.
     
@@ -169,7 +170,7 @@ def create_area(x1, y1, x2, y2, save_folder="../Create_area"):
     cv.imwrite(save_folder + '/img' + str(time.time()) + '.png', crop_img)
 
 
-def create_screens(*resolution, save_folder="../Create_screens", screen_name="screen"):
+def create_screens(*resolution, save_folder="../Compare_images", screen_name="screen"):
     """ Creates a screenshot on the screen
 
     Creates a screenshot on the screen, that corresponds to the specified resolution, so it is possible to create on one
@@ -349,9 +350,8 @@ def compare_screen_without_areas(path1, *args, save_folder="../Compare_screen_wi
 
 
 def compare_screen_get_information(
-    path1, save_folder="../Compare_screen_get_information", folder_csv="../CSV_ERROR"
+        path1, save_folder="../Compare_screen_get_information", folder_csv="../CSV_ERROR"
 ):
-
     """	Compare the already save image with the browser screen
 
     Compares the already saved image with the screen that is on the screen. If there is a difference, it saves the
@@ -415,7 +415,7 @@ def compare_screen_get_information(
             # start reading coordinates and saving element from coordinate
             df = pd.read_csv(r"" + folder_csv + "/bug_coordinates.csv")
             with open(
-                folder_csv + "/bug_co_and_name{0}.csv".format(str(time.time())), "w"
+                    folder_csv + "/bug_co_and_name{0}.csv".format(str(time.time())), "w"
             ) as csv_name:
                 writer = csv.writer(csv_name)
                 a = "web-page", "x_center", "y_center", "class", "id", "name"
