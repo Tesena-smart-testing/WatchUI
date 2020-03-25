@@ -158,7 +158,7 @@ class WatchUI:
         if os.path.exists(save_folder + "/testscreen.png"):
             os.remove(save_folder + "/testscreen.png")
 
-    def create_area(self, x1, y1, x2, y2, save_folder="../Outputs"):
+    def create_area(self, x1, y1, x2, y2, save_folder="../Outputs", screen_name="screen"):
         """  Creates a cut-out from the screen
 
         Creates a cut-out from the screen that is on screen and saves it in the folder: ../Create area
@@ -175,7 +175,7 @@ class WatchUI:
         img = save_folder + '/testscreen.png'
         img_crop = cv.imread(img)
         crop_img = img_crop[int(x1):int(y2), int(y1):int(x2)]  # Crop from {x, y, w, h } => {0, 0, 300, 400}
-        cv.imwrite(save_folder + '/img' + str(time.time()) + '.png', crop_img)
+        cv.imwrite(save_folder + '/' + screen_name + str(time.time()) + '.png', crop_img)
 
     def create_screens(self, *resolution, save_folder="../Outputs", screen_name="screen"):
         """ Creates a screenshot on the screen
