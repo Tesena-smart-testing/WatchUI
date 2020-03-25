@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.17.2] - 2020-03-25
+
+### Added
+
+- SSIM (Threshold) and outputs folder can be set in *** settings *** (Library <path> output_foder= ssim=)
+- With settings we must  change code, so now you can find class in ours code :-)
+- Keyword Create Area has screen_name now
+- Every keyword for compare has settings for lowest limit of difference. ssim=
+
+### Changed
+- Changed outputs folder from name by keyword name, just on ../Outputs
+- Repair bug in keyword Compare screen get info. Now if you set bad path, give you error
+- Change ssim from int to float
+- Others change in code
+
+
 ## [0.16.4] - 2020-03-19
 
 ### Changed
