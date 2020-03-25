@@ -175,7 +175,10 @@ class WatchUI:
         img = save_folder + '/testscreen.png'
         img_crop = cv.imread(img)
         crop_img = img_crop[int(x1):int(y2), int(y1):int(x2)]  # Crop from {x, y, w, h } => {0, 0, 300, 400}
-        cv.imwrite(save_folder + '/' + screen_name + str(time.time()) + '.png', crop_img)
+        if screen_name == "screen":
+            cv.imwrite(save_folder + '/screen' + str(time.time()) + '.png', crop_img)
+        else:
+            cv.imwrite(save_folder + '/' + screen_name + '.png', crop_img)
 
     def create_screens(self, *resolution, save_folder="../Outputs", screen_name="screen"):
         """ Creates a screenshot on the screen
