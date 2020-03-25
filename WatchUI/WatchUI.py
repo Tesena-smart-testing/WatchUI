@@ -37,6 +37,27 @@ def _check_dir(save_folder: str) -> None:
         print(f"*INFO* Folder {save_folder} crated")
 
 
+def _get_images(path1: str, path2: str) -> dict:
+    """Loads images from provided "path" argument, converts them to grayscale,
+    and returns them all in the dictionary.
+    
+    Arguments:
+        path1 {str} -- relative path to image 1
+        path2 {str} -- relative path to image 2
+    
+    Returns:
+        dict -- {"img1": img1, "img2": img2, "gray_img1": gray_img1, "gray_img2": gray_img2}
+    """
+    # load images
+    img1: object = cv.imread(path1, 1)
+    img2: object = cv.imread(path2, 1)
+    # convert to grey
+    gray_img1: object = cv.cvtColor(img1, cv.COLOR_BGR2GRAY)
+    gray_img2: object = cv.cvtColor(img2, cv.COLOR_BGR2GRAY)
+
+    return {"img1": img1, "img2": img2, "gray_img1": gray_img1, "gray_img2": gray_img2}
+
+
 def compare_images(path1, path2, save_folder="../Compare_images"):
     """Comparing images
 
@@ -49,22 +70,14 @@ def compare_images(path1, path2, save_folder="../Compare_images"):
     Example: Compare two image ../image1.png ../Image2.png
     """
     _check_dir(save_folder)
-    # if os.path.exists(save_folder):
-    #     print("*INFO* Folder /Save Image exists")
-    # else:
-    #     os.mkdir(save_folder)
-    #     print("*INFO* Folder /Save Image crated")
-    if os.path.exists(path1) and os.path.exists(path2):
-        # load Img
-        img1 = cv.imread(path1, 1)
-        img2 = cv.imread(path2, 1)
 
-        # convert to grey
-        gray_img1 = cv.cvtColor(img1, cv.COLOR_BGR2GRAY)
-        gray_img2 = cv.cvtColor(img2, cv.COLOR_BGR2GRAY)
+    if os.path.exists(path1) and os.path.exists(path2):
+        images: object = _get_images(path1, path2)
 
         # SSIM diff Img
-        (score, diff) = structural_similarity(gray_img1, gray_img2, full=True)
+        (score, diff) = structural_similarity(
+            images["gray_img1"], images["gray_img2"], full=True
+        )
         diff = (diff * 255).astype("uint8")
         print("*INFO* SSIM: {}".format(score))
 
@@ -76,13 +89,13 @@ def compare_images(path1, path2, save_folder="../Compare_images"):
         # Create frame in diff area
         for c in cnts:
             (x, y, w, h) = cv.boundingRect(c)
-            cv.rectangle(img1, (x, y), (x + w, y + h), (0, 0, 255), 2)
-            cv.rectangle(img2, (x, y), (x + w, y + h), (0, 0, 255), 2)
+            cv.rectangle(images["img1"], (x, y), (x + w, y + h), (0, 0, 255), 2)
+            cv.rectangle(images["img2"], (x, y), (x + w, y + h), (0, 0, 255), 2)
 
         # Show image
         print(score)
         if int(score) < 1.0:
-            cv.imwrite(save_folder + "/Img" + str(time.time()) + ".png", img2)
+            cv.imwrite(save_folder + "/Img" + str(time.time()) + ".png", images["img2"])
             robotlib.fail("*INFO* Save file with difference")
     else:
         raise AssertionError("Path doesnt exists")
@@ -103,16 +116,12 @@ def compare_screen(path1, save_folder="../Compare_screen"):
     path2 = save_folder + "/testscreen.png"
     if os.path.exists(path1):
         if os.path.exists(path2):
-            # load Img
-            img1 = cv.imread(path1, 1)
-            img2 = cv.imread(path2, 1)
-
-            # convert to grey
-            gray_img1 = cv.cvtColor(img1, cv.COLOR_BGR2GRAY)
-            gray_img2 = cv.cvtColor(img2, cv.COLOR_BGR2GRAY)
+            images: dict = _get_images(path1, path2)
 
             # SSIM diff Img
-            (score, diff) = structural_similarity(gray_img1, gray_img2, full=True)
+            (score, diff) = structural_similarity(
+                images["gray_img1"], images["gray_img2"], full=True
+            )
             diff = (diff * 255).astype("uint8")
 
             # Threshold diff Img
@@ -127,11 +136,11 @@ def compare_screen(path1, save_folder="../Compare_screen"):
             # Create frame in diff area
             for c in cnts:
                 (x, y, w, h) = cv.boundingRect(c)
-                cv.rectangle(img1, (x, y), (x + w, y + h), (0, 0, 255), 2)
-                cv.rectangle(img2, (x, y), (x + w, y + h), (0, 0, 255), 2)
+                cv.rectangle(images["img1"], (x, y), (x + w, y + h), (0, 0, 255), 2)
+                cv.rectangle(images["img2"], (x, y), (x + w, y + h), (0, 0, 255), 2)
             # Show image
             if int(score) < 1.0:
-                img_diff = cv.hconcat([img1, img2])
+                img_diff = cv.hconcat([images["img1"], images["img2"]])
                 cas = str(time.time())
                 score_percen = float(score) * +100
                 seleniumlib.capture_page_screenshot(save_folder + "/Img" + cas + ".png")
@@ -158,15 +167,13 @@ def create_area(x1, y1, x2, y2, save_folder="../Create_area"):
     Example: Compare making area 0 0 25 25
     """
     _check_dir(save_folder)
-    # if os.path.exists(save_folder):
-    #     print("Folder exists")
-    # else:
-    #     os.mkdir(save_folder)
     seleniumlib = BuiltIn().get_library_instance('SeleniumLibrary')
     seleniumlib.capture_page_screenshot(save_folder + '/testscreen.png')
     img = save_folder + '/testscreen.png'
     img_crop = cv.imread(img)
-    crop_img = img_crop[int(x1):int(y2), int(y1):int(x2)]  # Crop from {x, y, w, h } => {0, 0, 300, 400}
+    crop_img = img_crop[
+        int(x1) : int(y2), int(y1) : int(x2)
+    ]  # Crop from {x, y, w, h } => {0, 0, 300, 400}
     cv.imwrite(save_folder + '/img' + str(time.time()) + '.png', crop_img)
 
 
@@ -229,45 +236,47 @@ def compare_screen_areas(x1, y1, x2, y2, path1, save_folder="../Compare_screen_a
 
     if os.path.exists(path1):
         if os.path.exists(path2):
-            # load img
-            img1 = cv.imread(path1, 1)  # img from docu
-            img2 = cv.imread(path2, 1)  # img from screenshot
-
-            # convert to grey
-            gray_img1 = cv.cvtColor(img1, cv.COLOR_BGR2GRAY)
-            gray_img2 = cv.cvtColor(img2, cv.COLOR_BGR2GRAY)
+            images: dict = _get_images(path1, path2)
 
             # spliting area
-            crop_img = gray_img2[int(x1):int(y2), int(y1):int(x2)]  # Crop from {x, y, w, h } => {0, 0, 300, 400}
+            crop_img = images["gray_img2"][
+                int(x1) : int(y2), int(y1) : int(x2)
+            ]  # Crop from {x, y, w, h } => {0, 0, 300, 400}
 
             # SSIM diff img
-            (score, diff) = structural_similarity(gray_img1, crop_img, full=True)
+            (score, diff) = structural_similarity(
+                images["gray_img1"], crop_img, full=True
+            )
             diff = (diff * 255).astype('uint8')
             print('SSIM: {}'.format(score))
 
             # Threshold diff img
-            thresh = cv.threshold(diff, 0, 255, cv.THRESH_BINARY_INV | cv.THRESH_OTSU)[1]
-            cnts = cv.findContours(thresh.copy(), cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
+            thresh = cv.threshold(diff, 0, 255, cv.THRESH_BINARY_INV | cv.THRESH_OTSU)[
+                1
+            ]
+            cnts = cv.findContours(
+                thresh.copy(), cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE
+            )
             cnts = imutils.grab_contours(cnts)
 
-            crop_img_color = img2[int(x1):int(y2), int(y1):int(x2)]
+            crop_img_color = images["img2"][int(x1) : int(y2), int(y1) : int(x2)]
             # Create frame in diff area
             for c in cnts:
                 (x, y, w, h) = cv.boundingRect(c)
-                cv.rectangle(img1, (x, y), (x + w, y + h), (0, 0, 255), 2)
+                cv.rectangle(images["img1"], (x, y), (x + w, y + h), (0, 0, 255), 2)
                 cv.rectangle(crop_img_color, (x, y), (x + w, y + h), (0, 0, 255), 2)
 
             # Show image
             if int(score) < 1.0:
                 robotlib = BuiltIn().get_library_instance('BuiltIn')
-                img_diff = cv.hconcat([img1, crop_img_color])
+                img_diff = cv.hconcat([images["img1"], crop_img_color])
                 cas = str(time.time())
                 seleniumlib.capture_page_screenshot(save_folder + '/img' + cas + '.png')
                 cv.imwrite(save_folder + '/img' + cas + '.png', img_diff)
                 print("score" + str(score))
                 robotlib.fail('Image has diff: {} '.format(score))
-                score_percen = float(score) * + 100
-                print("score" + str(score))
+                score_percen = float(score) * +100
+                print('score' + str(score))
                 robotlib.fail('Image has diff: {} %'.format(score_percen))
         else:
             raise AssertionError("New screen doesnt exist anymore")
@@ -277,7 +286,9 @@ def compare_screen_areas(x1, y1, x2, y2, path1, save_folder="../Compare_screen_a
         os.remove(save_folder + '/test1.png')
 
 
-def compare_screen_without_areas(path1, *args, save_folder="../Compare_screen_without_areas"):
+def compare_screen_without_areas(
+    path1, *args, save_folder="../Compare_screen_without_areas"
+):
     """
     Compares two pictures, which have parts to be ignored
     x1 and y1 = x and y coordinates for the upper left corner of the ignored area square
@@ -350,7 +361,7 @@ def compare_screen_without_areas(path1, *args, save_folder="../Compare_screen_wi
 
 
 def compare_screen_get_information(
-        path1, save_folder="../Compare_screen_get_information", folder_csv="../CSV_ERROR"
+    path1, save_folder="../Compare_screen_get_information", folder_csv="../CSV_ERROR"
 ):
     """	Compare the already save image with the browser screen
 
@@ -368,16 +379,12 @@ def compare_screen_get_information(
     seleniumlib.capture_page_screenshot(save_folder + "/test1.png")
     path2 = save_folder + "/test1.png"
     if os.path.exists(path1) and os.path.exists(path2):
-        # load Img
-        img1 = cv.imread(path1, 1)
-        img2 = cv.imread(path2, 1)
-
-        # convert to grey
-        gray_img1 = cv.cvtColor(img1, cv.COLOR_BGR2GRAY)
-        gray_img2 = cv.cvtColor(img2, cv.COLOR_BGR2GRAY)
+        images: object = _get_images(path1, path2)
 
         # SSIM diff Img
-        (score, diff) = structural_similarity(gray_img1, gray_img2, full=True)
+        (score, diff) = structural_similarity(
+            images["gray_img1"], images["gray_img2"], full=True
+        )
         diff = (diff * 255).astype("uint8")
         print("SSIM: {}".format(score))
 
@@ -395,8 +402,8 @@ def compare_screen_get_information(
             # Create frame in diff area
             for c in cnts:
                 (x, y, w, h) = cv.boundingRect(c)
-                cv.rectangle(img1, (x, y), (x + w, y + h), (0, 0, 255), 2)
-                cv.rectangle(img2, (x, y), (x + w, y + h), (0, 0, 255), 2)
+                cv.rectangle(images["img1"], (x, y), (x + w, y + h), (0, 0, 255), 2)
+                cv.rectangle(images["img2"], (x, y), (x + w, y + h), (0, 0, 255), 2)
                 x2 = x + w
                 y2 = y + h
                 x_center = x + ((x2 - x) / 2)
@@ -407,7 +414,7 @@ def compare_screen_get_information(
         # Save image and show report
         print(score)
         if int(score) < 1.0:
-            img_diff = cv.hconcat([img1, img2])
+            img_diff = cv.hconcat([images["img1"], images["img2"]])
             cas = str(time.time())
             seleniumlib.capture_page_screenshot(save_folder + "/Img{0}.png".format(cas))
             cv.imwrite(save_folder + "/Img{0}.png".format(cas), img_diff)
@@ -415,7 +422,7 @@ def compare_screen_get_information(
             # start reading coordinates and saving element from coordinate
             df = pd.read_csv(r"" + folder_csv + "/bug_coordinates.csv")
             with open(
-                    folder_csv + "/bug_co_and_name{0}.csv".format(str(time.time())), "w"
+                folder_csv + "/bug_co_and_name{0}.csv".format(str(time.time())), "w"
             ) as csv_name:
                 writer = csv.writer(csv_name)
                 a = "web-page", "x_center", "y_center", "class", "id", "name"
