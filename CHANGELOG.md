@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 - SSIM (Threshold) and outputs folder can be set in *** settings *** (Library <path> output_foder= ssim=)
-- With settings we must  change code, so now you can find class in ours code :-)
+- With settings we must  change code, so now you can find class in ours code :-) 
 - Keyword Create Area has screen_name now
 - Every keyword for compare has settings for lowest limit of difference. ssim=
 
