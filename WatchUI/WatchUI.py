@@ -11,15 +11,16 @@
 #          Radek "bednaJedna" Bednařík
 
 
-import cv2 as cv
-from skimage.metrics import structural_similarity
-import imutils
+import csv
 import os
 import time
-from robot.libraries.BuiltIn import BuiltIn
-import csv
-import pandas as pd
 
+import cv2 as cv
+import pandas as pd
+from robot.libraries.BuiltIn import BuiltIn
+from skimage.metrics import structural_similarity
+
+import imutils
 from utils.constants import *
 
 
