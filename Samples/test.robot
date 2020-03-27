@@ -6,18 +6,18 @@ Library         ../WatchUI/WatchUI.py
 Test Teardown   Close All Browsers
 
 *** Variables ***
-${start_url}        https://www.sme.sk/
+${start_url}        https://www.tesla.com/
 ${browser}          Chrome
 @{loc}              0   0   30   40
 
 *** Test Cases ***
 Sample test
     Create screenshots
-    # Two images compare
+    Two images compare
     # NOK Screen compare
-    # Create region
+    Create region
     # NOK Area Compare
-    # Comparing screen without some region
+    Comparing screen without some region
     Area compare with info
 
 
