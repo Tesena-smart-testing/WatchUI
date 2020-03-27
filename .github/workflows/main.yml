@@ -20,11 +20,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Robot Framework -uses
-        uses: joonvena/robotframework-docker-action@v0.1
+        uses: 
+              joonvena/robotframework-docker-action@v0.1
+              pip install WatchUi
         env:
           BROWSER: chrome
           ROBOT_TESTS_DIR: ${{ github.workspace }}/Samples
-          ROBOT_REPORTS_DIR: ${{ github.workspace }}/Sample
-      - name: install dep
-        run: pip install WatchUi
+          ROBOT_REPORTS_DIR: ${{ github.workspace }}/Samples
+
       
