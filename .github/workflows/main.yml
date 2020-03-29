@@ -14,17 +14,19 @@ on:
 jobs:
   # This workflow contains a single job called "build"
  robot_test:
-    runs-on: ubuntu-latest
-    name: Run Robot Framework Tests
+    runs-on: windows-latest
+    
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Robot Framework -uses
-        uses: 
-              procesor2017/WatchUI/.github/workflows/robotframework-docker-action@v0.1
-        env:
-          BROWSER: chrome
-          ROBOT_TESTS_DIR: ${{ github.workspace }}/Samples
-          ROBOT_REPORTS_DIR: ${{ github.workspace }}/Samples
+      - name: setup-chromedriver
+        uses: nanasess/setup-chromedriver@v1.0.1
+     
+      - name: install dependecies
+        run: |
+            pip install WatchUi
+            pip install robotframework
+            pip install robotframework-seleniumlibrary
+      - name: start test
+        run: robot ./Samples/test.robot
+        
 
       
