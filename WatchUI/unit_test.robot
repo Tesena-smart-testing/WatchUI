@@ -1,0 +1,60 @@
+*** Settings ***
+Documentation    Suite description
+Library          SeleniumLibrary
+Library          Screenshot
+Library          WatchUI.py
+
+*** Variables ***
+${start_url}        https://www.alza.cz/
+${new_url}          https://www.czc.cz/
+${browser}          Chrome
+${element}          id=logo
+@{loc}              0   0   30   40
+
+*** Test Cases ***
+Test
+    # Two images compare
+    # Screen compare
+    Making compare area
+    # Area Compare
+    # Areas Compare
+    # Making rescreens
+    # Area compare with info
+
+*** Keywords ***
+Two images compare
+    compare two image                   ../img/forpres.png    ../img/forpres1.png    ../compare
+
+Screen compare
+    Open Browser                        ${start_url}      ${browser}
+    Set window size                     1280     800
+    sleep                               5
+    compare screen                      ../Create rescreens/rescreen_1280x800.png
+
+Making compare area
+    Open Browser                        ${start_url}      ${browser}
+    Set window size                     800     600
+    sleep                               2
+    compare making area                 0   0   300  400
+
+Area Compare
+    Open Browser                        ${start_url}      ${browser}
+    Set window size                     800     600
+    sleep                               2
+    compare screen area                 0   0   300     400     ../img/test.png
+
+Areas Compare
+    Open Browser                        ${start_url}      ${browser}
+    Set window size                     1280     800
+    sleep                               2
+    compare screen without areas        ../Create rescreens/rescreen_1280x800.png   303  236  1113  476
+
+Making rescreens
+    Open Browser                        ${start_url}      ${browser}
+    compare making rescreens            800  600    1280    800     1440    900
+
+Area compare with info
+    Open Browser                        ${start_url}    ${browser}
+    Set window size                     1280     800
+    sleep                               4
+    compare screen get information      ../Create rescreens/rescreen_1280x800.png
