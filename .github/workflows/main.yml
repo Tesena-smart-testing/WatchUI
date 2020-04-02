@@ -14,17 +14,22 @@ on:
 jobs:
   # This workflow contains a single job called "build"
    robot_test:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     name: Run Robot Framework Tests
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Install ChromeDriver
+        run: |
+          CHROME_VERSION=$(google-chrome --version | cut -f 3 -d ' ' | cut -d '.' -f 1) \
+            && CHROMEDRIVER_RELEASE=$(curl --location --fail --retry 3 http://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION}) \
+            && curl --silent --show-error --location --fail --retry 3 --output /tmp/chromedriver_linux64.zip "http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_RELEASE/chromedriver_linux64.zip" \
+            && cd /tmp \
+            && unzip chromedriver_linux64.zip \
+            && rm -rf chromedriver_linux64.zip \
+            && sudo mv chromedriver /usr/local/bin/chromedriver \
+            && sudo chmod +x /usr/local/bin/chromedriver \
+            && chromedriver --version
       - name: Robot Framework
-        uses: joonvena/robotframework-docker-action@v0.1
-              RUN apt-get update && apt-get install -y \
-              python-pip
-        env:
-          BROWSER: chrome
-          ROBOT_TESTS_DIR: ${{ github.workspace }}/Samples
-          ROBOT_REPORTS_DIR: ${{ github.workspace }}/Samples
-      
+        run: |
+            pip install -r requirements.txt
