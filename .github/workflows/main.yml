@@ -14,7 +14,7 @@ on:
 jobs:
   # This workflow contains a single job called "build"
    robot_test:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     name: Run Robot Framework Tests
     steps:
       - name: Checkout
