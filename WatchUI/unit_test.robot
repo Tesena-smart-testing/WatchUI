@@ -13,9 +13,9 @@ ${element}          id=logo
 
 *** Test Cases ***
 Test
-    # Two images compare
-    # Screen compare
-    Making compare area
+    Two images compare
+    Screen compare
+    # Making compare area
     # Area Compare
     # Areas Compare
     # Making rescreens
