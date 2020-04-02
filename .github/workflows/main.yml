@@ -34,4 +34,4 @@ jobs:
         run: |
             pip install robotframework
             pip install robotframework-seleniumlibrary
-            python3 -m pip install --pre --upgrade PACKAGE==0.17.2
+            python3 -m pip install --pre --upgrade WatchUI==0.17.2
