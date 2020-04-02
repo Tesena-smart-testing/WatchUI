@@ -33,19 +33,15 @@ class WatchUI:
         outputs_folder = self.outputs_folder
         if save_folder != "../Outputs":
             if os.path.exists(save_folder):
-                print(f"*INFO* Folder {save_folder} exists")
                 self.save_folder = save_folder
             else:
                 os.mkdir(save_folder)
-                print(f"*INFO* Folder {save_folder} created")
                 self.save_folder = save_folder
         else:
             if os.path.exists(outputs_folder):
-                print(f"*INFO* Folder {outputs_folder} exists")
                 self.save_folder = outputs_folder
             else:
                 os.mkdir(outputs_folder)
-                print(f"*INFO* Folder {outputs_folder} created")
                 self.save_folder = outputs_folder
 
     def _check_ssim(self, ssim):
@@ -65,7 +61,7 @@ class WatchUI:
         # SSIM diff Img
         (self.score, diff) = structural_similarity(gray_img1, gray_img2, full=True)
         diff = (diff * 255).astype("uint8")
-        print("*INFO* SSIM: {}".format(self.score))
+
 
         # Threshold diff Img
         thresh = cv.threshold(diff, 0, 255, cv.THRESH_BINARY_INV | cv.THRESH_OTSU)[1]
