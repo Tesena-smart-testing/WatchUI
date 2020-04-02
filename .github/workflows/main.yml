@@ -39,3 +39,5 @@ jobs:
             pip install numpy
             pip install scikit-image
             pip install imutils
+      - name: Start robot test
+        run: robot Samples/test.robot
