@@ -23,7 +23,7 @@ Test
 
 *** Keywords ***
 Two images compare
-    compare images                       ../Img/forpres.PNG    ../Img/forpres1.png    ../compare
+    compare images                       ./Img/forpres.PNG    ./Img/forpres1.png    ./compare
 
 Screen compare
     Open Browser                        ${start_url}      ${browser}
