@@ -32,5 +32,6 @@ jobs:
             && chromedriver --version
       - name: Robot Framework
         run: |
-            pip install -r requirements.txt
-            pip install WatchUI==0.17.2
+            pip install robotframework
+            pip install robotframework-seleniumlibrary
+            python3 -m pip install --pre --upgrade PACKAGE==0.17.2
