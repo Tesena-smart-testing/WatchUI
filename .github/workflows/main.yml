@@ -34,4 +34,8 @@ jobs:
         run: |
             pip install robotframework
             pip install robotframework-seleniumlibrary
-            python3 -m pip install --pre --upgrade WatchUI==0.17.2
+            pip install opencv-python
+            pip install Pillow
+            pip install numpy
+            pip install scikit-image
+            pip install imutils
