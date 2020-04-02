@@ -23,7 +23,7 @@ Test
 
 *** Keywords ***
 Two images compare
-    compare two image                   ../img/forpres.png    ../img/forpres1.png    ../compare
+    compare images                       ../img/forpres.png    ../img/forpres1.png    ../compare
 
 Screen compare
     Open Browser                        ${start_url}      ${browser}
@@ -35,13 +35,13 @@ Making compare area
     Open Browser                        ${start_url}      ${browser}
     Set window size                     800     600
     sleep                               2
-    compare making area                 0   0   300  400
+    create area                         0   0   300  400
 
 Area Compare
     Open Browser                        ${start_url}      ${browser}
     Set window size                     800     600
     sleep                               2
-    compare screen area                 0   0   300     400     ../img/test.png
+    compare screen areas                0   0   300     400     ../img/test.png
 
 Areas Compare
     Open Browser                        ${start_url}      ${browser}
@@ -51,7 +51,7 @@ Areas Compare
 
 Making rescreens
     Open Browser                        ${start_url}      ${browser}
-    compare making rescreens            800  600    1280    800     1440    900
+    create screens                      800  600    1280    800     1440    900
 
 Area compare with info
     Open Browser                        ${start_url}    ${browser}
