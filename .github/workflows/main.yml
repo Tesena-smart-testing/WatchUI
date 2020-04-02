@@ -33,4 +33,4 @@ jobs:
       - name: Robot Framework
         run: |
             pip install -r requirements.txt
-            pip install WatchUI
+            pip install WatchUI==0.17.2
