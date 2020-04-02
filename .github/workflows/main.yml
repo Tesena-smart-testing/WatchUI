@@ -45,4 +45,4 @@ jobs:
             pip install imutils
       - name: Test
         run: |
-            python -m robot Samples/test.robot
+            python -m robot WatchUI/unit_test.robot
