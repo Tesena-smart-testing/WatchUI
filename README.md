@@ -62,3 +62,4 @@ _Image where the differences are stored + You can see two black box in left corn
 _The red rectangles outlining missing elements on compared screens_
 
 <img src="/Img/img_inlog.png" width="850" height="300">
+
