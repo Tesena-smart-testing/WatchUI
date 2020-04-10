@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Created new unit test for starting CI
 - Added screen in robot framework log if the test is pass
+- Created Actions on github.com
 ### Changed
 - Change in code (more OOP)
 
