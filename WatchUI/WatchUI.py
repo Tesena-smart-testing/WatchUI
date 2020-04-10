@@ -438,3 +438,5 @@ class WatchUI:
                 raise AssertionError("Bad or not exists path for picture or screen")
         else:
             raise AssertionError("Bad or not exists path for picture or screen")
+
+            
