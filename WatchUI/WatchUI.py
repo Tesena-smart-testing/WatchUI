@@ -86,7 +86,6 @@ class WatchUI:
         self._check_dir(save_folder)
         self._check_ssim(ssim)
         save_folder = self.save_folder
-
         if os.path.exists(path1) and os.path.exists(path2):
             # Compare image
             self._compare_images(path1, path2)
@@ -148,7 +147,12 @@ class WatchUI:
                     self.seleniumlib.capture_page_screenshot(save_folder + "/Img" + cas + ".png")
                     cv.imwrite(save_folder + "/Img" + cas + ".png", img_diff)
                     self.robotlib.fail("Image has diff: {} %".format(score_percen))
-
+                else:
+                    img_diff = cv.hconcat([img1, img2])
+                    cas = str(time.time())
+                    self.seleniumlib.capture_page_screenshot(save_folder + "/Img" + cas + ".png")
+                    cv.imwrite(save_folder + "/Img" + cas + ".png", img_diff)
+                    self.robotlib.log_to_console("Image has diff: {} ".format(score))
             else:
                 raise AssertionError("Path2 doesnt found")
         else:
@@ -351,6 +355,12 @@ class WatchUI:
                     self.seleniumlib.capture_page_screenshot(save_folder + "/Img" + cas + ".png")
                     cv.imwrite(save_folder + "/Img" + cas + ".png", img_diff)
                     self.robotlib.fail("Image has diff: {} ".format(score))
+                else:
+                    img_diff = cv.hconcat([img1, img2])
+                    cas = str(time.time())
+                    self.seleniumlib.capture_page_screenshot(save_folder + "/Img" + cas + ".png")
+                    cv.imwrite(save_folder + "/Img" + cas + ".png", img_diff)
+                    self.robotlib.log_to_console("Image has diff: {} ".format(score))
         else:
             raise AssertionError("Path doesnt exists")
 
