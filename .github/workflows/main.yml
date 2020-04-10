@@ -53,3 +53,5 @@ jobs:
         uses: GabrielBB/xvfb-action@v1.0
         with:
           run: python3 -m robot WatchUI/unit_test.robot
+          env: 
+            working-directory: ./WatchUI
