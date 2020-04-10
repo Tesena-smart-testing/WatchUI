@@ -12,27 +12,12 @@ ${browser}              Chrome
 ${basic_reso}           800  600
 
 *** Test Cases ***
-Compare two saved images
-    [Tags]  compare_save_screen
-    Compare images basic
-    Compare images diff and full set upt
-
-Creating screens in differen resolutions
-    [Tags]  resolution
-    Create screens in 800 x 600 reso
-    Create screens in 3 resolutions
-    Create screens with full set up
-
 Compare screen basic set up
     [Tags]  compare_screen
     Create screens from tesena
     Compare image with created screen
     Compare image with created screen full set up
 
-Compare screen without some region
-    [Tags]  cs_outregion
-    Create screens from tesena
-    Comparing screen without some area
 
 *** Keywords ***
 Compare images basic
@@ -44,7 +29,7 @@ Compare images diff and full set upt
 Create screens in 800 x 600 reso
     Open Browser                        ${start_url}      ${browser}
     create screens                      800  600
-    Wait until created                  /Outputs/screen800x600.png
+    Wait until created                  ./Outputs/screen800x600.png
     Close Browser
 
 Create screens in 3 resolutions
@@ -65,7 +50,10 @@ Create screens with full set up
 Create screens from tesena
     Open Browser                        ${start_url}      ${browser}
     create screens                      800  600
-    Wait until created                  ./Outputs/screen800x600.png
+    ${log}                              ${LOG FILE}
+    log to console                      ${log}
+    log to console                      ${LOG FILE}
+    
     Close browser
 
 Compare image with created screen
