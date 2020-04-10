@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.17.8] - 2020-03-25
+## [0.17.8] - 2020-04-10
 
 ### Added
 - Created new unit test for starting CI
