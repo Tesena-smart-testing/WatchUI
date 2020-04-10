@@ -20,12 +20,14 @@ from robot.libraries.BuiltIn import BuiltIn
 import csv
 import pandas as pd
 
-seleniumlib = BuiltIn().get_library_instance("SeleniumLibrary")
-robotlib = BuiltIn().get_library_instance("BuiltIn")
-
 
 class WatchUI:
-    def __init__(self, outputs_folder="../Outputs", ssim_basic=1.0):
+    seleniumlib = BuiltIn().get_library_instance("SeleniumLibrary")
+    robotlib = BuiltIn().get_library_instance("BuiltIn")
+    save_folder_path = "../Outputs"
+    starts_ssim = 1.0
+
+    def __init__(self, outputs_folder="../Outputs", ssim_basic=starts_ssim):
         self.outputs_folder = outputs_folder
         self.ssim_basic = float(ssim_basic)
 
@@ -70,7 +72,7 @@ class WatchUI:
         self.img1 = img1
         self.img2 = img2
 
-    def compare_images(self, path1, path2, save_folder="../Outputs", ssim=1.0):
+    def compare_images(self, path1, path2, save_folder=save_folder_path, ssim=starts_ssim):
         """Comparing images
 
         It compares two images from the two paths and, if there are differences, saves the image with the errors highlighted
@@ -101,14 +103,14 @@ class WatchUI:
             # Show image
 
             if float(score) < self.ssim:
-                robotlib.log_to_console(self.ssim)
-                robotlib.log_to_console(score)
+                self.robotlib.log_to_console(self.ssim)
+                self.robotlib.log_to_console(score)
                 cv.imwrite(save_folder + "/Img" + str(time.time()) + ".png", img2)
-                robotlib.fail("*INFO* Save file with difference")
+                self.robotlib.fail("*INFO* Save file with difference")
         else:
             raise AssertionError("Path doesnt exists")
 
-    def compare_screen(self, path1, save_folder="../Outputs", ssim=1.0):
+    def compare_screen(self, path1, save_folder=save_folder_path, ssim=starts_ssim):
         """	Compare the already save image with the browser screen
 
         Compares the already saved image with the screen that is on the screen. If there is a difference, it saves the
@@ -121,7 +123,7 @@ class WatchUI:
         self._check_dir(save_folder)
         self._check_ssim(float(ssim))
         save_folder = self.save_folder
-        seleniumlib.capture_page_screenshot(save_folder + "/testscreen.png")
+        self.seleniumlib.capture_page_screenshot(save_folder + "/testscreen.png")
         path2 = save_folder + "/testscreen.png"
         if os.path.exists(path1):
             if os.path.exists(path2):
@@ -137,15 +139,15 @@ class WatchUI:
                     cv.rectangle(img2, (x, y), (x + w, y + h), (0, 0, 255), 2)
                 # Show image
 
-                robotlib.log_to_console(self.ssim)
+                self.robotlib.log_to_console(self.ssim)
                 if float(score) < self.ssim:
-                    robotlib.log_to_console(self.ssim)
+                    self.robotlib.log_to_console(self.ssim)
                     img_diff = cv.hconcat([img1, img2])
                     cas = str(time.time())
                     score_percen = float(score) * 100
-                    seleniumlib.capture_page_screenshot(save_folder + "/Img" + cas + ".png")
+                    self.seleniumlib.capture_page_screenshot(save_folder + "/Img" + cas + ".png")
                     cv.imwrite(save_folder + "/Img" + cas + ".png", img_diff)
-                    robotlib.fail("Image has diff: {} %".format(score_percen))
+                    self.robotlib.fail("Image has diff: {} %".format(score_percen))
 
             else:
                 raise AssertionError("Path2 doesnt found")
@@ -154,7 +156,7 @@ class WatchUI:
         if os.path.exists(save_folder + "/testscreen.png"):
             os.remove(save_folder + "/testscreen.png")
 
-    def create_area(self, x1, y1, x2, y2, save_folder="../Outputs", screen_name="screen"):
+    def create_area(self, x1, y1, x2, y2, save_folder=save_folder_path, screen_name="screen"):
         """  Creates a cut-out from the screen
 
         Creates a cut-out from the screen that is on screen and saves it in the folder: ../Create area
@@ -167,7 +169,7 @@ class WatchUI:
         self._check_dir(save_folder)
         save_folder = self.save_folder
 
-        seleniumlib.capture_page_screenshot(save_folder + '/testscreen.png')
+        self.seleniumlib.capture_page_screenshot(save_folder + '/testscreen.png')
         img = save_folder + '/testscreen.png'
         img_crop = cv.imread(img)
         crop_img = img_crop[int(x1):int(y2), int(y1):int(x2)]  # Crop from {x, y, w, h } => {0, 0, 300, 400}
@@ -176,7 +178,7 @@ class WatchUI:
         else:
             cv.imwrite(save_folder + '/' + screen_name + '.png', crop_img)
 
-    def create_screens(self, *resolution, save_folder="../Outputs", screen_name="screen"):
+    def create_screens(self, *resolution, save_folder=save_folder_path, screen_name="screen"):
         """ Creates a screenshot on the screen
 
         Creates a screenshot on the screen, that corresponds to the specified resolution, so it is possible to create on one
@@ -192,7 +194,7 @@ class WatchUI:
 
         leng_reso = len(resolution)
         if leng_reso % 2 == 0:
-            robotlib.log_to_console(resolution)
+            self.robotlib.log_to_console(resolution)
 
             x = leng_reso / 2
             i = 0
@@ -201,9 +203,9 @@ class WatchUI:
                 width = int(resolution[0 + a])
                 height = int(resolution[1 + a])
 
-                seleniumlib.set_window_size(width, height)
+                self.seleniumlib.set_window_size(width, height)
                 time.sleep(1)
-                seleniumlib.capture_page_screenshot(
+                self.seleniumlib.capture_page_screenshot(
                     save_folder
                     + "/"
                     + screen_name
@@ -217,7 +219,7 @@ class WatchUI:
         else:
             raise AssertionError("Bad numbers of resolution")
 
-    def compare_screen_areas(self, x1, y1, x2, y2, path1, save_folder="../Outputs", ssim=1.0):
+    def compare_screen_areas(self, x1, y1, x2, y2, path1, save_folder=save_folder_path, ssim=starts_ssim):
         """Creates a cut-out from the screen
 
         Creates a cut-out from the screen that is on the screen and compares it to a previously created
@@ -231,7 +233,7 @@ class WatchUI:
         self._check_dir(save_folder)
         self._check_ssim(ssim)
         save_folder = self.save_folder
-        seleniumlib.capture_page_screenshot(save_folder + '/test1.png')
+        self.seleniumlib.capture_page_screenshot(save_folder + '/test1.png')
         path2 = save_folder + '/test1.png'
 
         if os.path.exists(path1):
@@ -265,14 +267,14 @@ class WatchUI:
 
                 # Show image
                 if float(score) < self.ssim:
-                    robotlib = BuiltIn().get_library_instance('BuiltIn')
+                    self.robotlib = BuiltIn().get_library_instance('BuiltIn')
                     img_diff = cv.hconcat([img1, crop_img_color])
                     cas = str(time.time())
-                    seleniumlib.capture_page_screenshot(save_folder + '/img' + cas + '.png')
+                    self.seleniumlib.capture_page_screenshot(save_folder + '/img' + cas + '.png')
                     cv.imwrite(save_folder + '/img' + cas + '.png', img_diff)
-                    robotlib.fail('Image has diff: {} '.format(score))
+                    self.robotlib.fail('Image has diff: {} '.format(score))
                     score_percen = float(score) * + 100
-                    robotlib.fail('Image has diff: {} %'.format(score_percen))
+                    self.robotlib.fail('Image has diff: {} %'.format(score_percen))
             else:
                 raise AssertionError("New screen doesnt exist anymore")
         else:
@@ -280,7 +282,7 @@ class WatchUI:
         if os.path.exists(save_folder + '/test1.png'):
             os.remove(save_folder + '/test1.png')
 
-    def compare_screen_without_areas(self, path1, *args, save_folder="../Outputs", ssim=1.0):
+    def compare_screen_without_areas(self, path1, *args, save_folder=save_folder_path, ssim=starts_ssim):
         """
         Compares two pictures, which have parts to be ignored
         x1 and y1 = x and y coordinates for the upper left corner of the ignored area square
@@ -295,7 +297,7 @@ class WatchUI:
         self._check_ssim(ssim)
         save_folder = self.save_folder
 
-        seleniumlib.capture_page_screenshot(save_folder + "/test1.png")
+        self.seleniumlib.capture_page_screenshot(save_folder + "/test1.png")
         path2 = save_folder + "/test1.png"
         if os.path.exists(path1) and os.path.exists(path2):
             lt = len(args)
@@ -303,7 +305,7 @@ class WatchUI:
             img2 = cv.imread(path2, 1)
             if lt % 4 == 0:
                 x = lt / 4
-                robotlib.log_to_console(x)
+                self.robotlib.log_to_console(x)
                 i = 0
                 a = 0
                 while i < x:
@@ -346,14 +348,14 @@ class WatchUI:
                 if float(score) < self.ssim:
                     img_diff = cv.hconcat([img1, img2])
                     cas = str(time.time())
-                    seleniumlib.capture_page_screenshot(save_folder + "/Img" + cas + ".png")
+                    self.seleniumlib.capture_page_screenshot(save_folder + "/Img" + cas + ".png")
                     cv.imwrite(save_folder + "/Img" + cas + ".png", img_diff)
-                    robotlib.fail("Image has diff: {} ".format(score))
+                    self.robotlib.fail("Image has diff: {} ".format(score))
         else:
             raise AssertionError("Path doesnt exists")
 
-    def compare_screen_get_information(self, path1, save_folder="../Outputs",
-                                       folder_csv="../CSV_ERROR", ssim=1.0):
+    def compare_screen_get_information(self, path1, save_folder=save_folder_path,
+                                       folder_csv="../CSV_ERROR", ssim=starts_ssim):
         """	Compare the already save image with the browser screen
 
         Compares the already saved image with the screen that is on the screen. If there is a difference, it saves the
@@ -369,7 +371,7 @@ class WatchUI:
         self._check_ssim(ssim)
         save_folder = self.save_folder
         # Making screen
-        seleniumlib.capture_page_screenshot(save_folder + "/test1.png")
+        self.seleniumlib.capture_page_screenshot(save_folder + "/test1.png")
         path2 = save_folder + "/test1.png"
         if os.path.exists(path1):
             if os.path.exists(path2):
@@ -401,7 +403,7 @@ class WatchUI:
                 if float(score) < self.ssim:
                     img_diff = cv.hconcat([img1, img2])
                     cas = str(time.time())
-                    seleniumlib.capture_page_screenshot(save_folder + "/Img{0}.png".format(cas))
+                    self.seleniumlib.capture_page_screenshot(save_folder + "/Img{0}.png".format(cas))
                     cv.imwrite(save_folder + "/Img{0}.png".format(cas), img_diff)
 
                     # start reading coordinates and saving element from coordinate
@@ -417,7 +419,7 @@ class WatchUI:
                         for i in range(len(df)):
                             x_center = df.values[i, 1]
                             y_center = df.values[i, 2]
-                            driver = seleniumlib.driver
+                            driver = self.seleniumlib.driver
                             elements = driver.execute_script(
                                 "return document.elementsFromPoint(arguments[0], arguments[1]);",
                                 x_center,
@@ -431,7 +433,7 @@ class WatchUI:
                                 writer.writerow(f)
 
                     score_percen = float(score) * 100
-                    robotlib.fail("Image has diff: {} %".format(score_percen))
+                    self.robotlib.fail("Image has diff: {} %".format(score_percen))
             else:
                 raise AssertionError("Bad or not exists path for picture or screen")
         else:
