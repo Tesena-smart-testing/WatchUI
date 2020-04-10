@@ -50,8 +50,6 @@ Create screens with full set up
 Create screens from tesena
     Open Browser                        ${start_url}      ${browser}
     create screens                      800  600
-    ${log}                              ${LOG FILE}
-    log to console                      ${log}
     log to console                      ${LOG FILE}
     
     Close browser
