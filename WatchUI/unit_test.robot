@@ -12,14 +12,6 @@ ${element}          id=logo
 @{loc}              0   0   30   40
 
 *** Test Cases ***
-Test
-    Two images compare
-    Screen compare
-    # Making compare area
-    # Area Compare
-    # Areas Compare
-    # Making rescreens
-    # Area compare with info
 
 *** Keywords ***
 Two images compare
