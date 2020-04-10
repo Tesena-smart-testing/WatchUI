@@ -40,10 +40,10 @@ Try
 
 *** Keywords ***
 Compare images basic
-    compare images   ../Img/forpres.png     ../Img/forpres.png
+    compare images   ./Img/forpres.png     ./Img/forpres.png
 
 Compare images diff and full set upt
-    compare images   ../Img/forpres.png     ../Img/forpres1.png  save_folder=../Tesena  ssim= 0.5
+    compare images   ./Img/forpres.png     ./Img/forpres1.png  save_folder=./Tesena  ssim= 0.5
 
 Create screens in 800 x 600 reso
     Open Browser                        ${start_url}      ${browser}
