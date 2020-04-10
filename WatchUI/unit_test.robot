@@ -44,21 +44,21 @@ Compare images diff and full set upt
 Create screens in 800 x 600 reso
     Open Browser                        ${start_url}      ${browser}
     create screens                      800  600
-    Wait until created                  ./Outputs/screen800x600.png
+    Wait until created                  /Outputs/screen800x600.png
     Close Browser
 
 Create screens in 3 resolutions
     Open Browser                        ${start_url}      ${browser}
     create screens                      800  600    1280    800     1440    900
-    Wait until created                  ./Outputs/screen800x600.png
-    Wait until created                  ./Outputs/screen1280x800.png
-    Wait until created                  ./Outputs/screen1440x900.png
+    Wait until created                  Outputs/screen800x600.png
+    Wait until created                  Outputs/screen1280x800.png
+    Wait until created                  Outputs/screen1440x900.png
     Close Browser
 
 Create screens with full set up
     Open Browser                        ${start_url}      ${browser}
     create screens                      800  600    1280    800     save_folder=./newscreen    screen_name=resolution_is_
-    Wait until created                  ./newscreen/resolution_is_800x600.png
+    Wait until created                  root/newscreen/resolution_is_800x600.png
     Wait until created                  ./newscreen/resolution_is_1280x800.png
     Close Browser
 
