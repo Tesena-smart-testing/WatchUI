@@ -15,7 +15,7 @@ ${basic_reso}           800  600
 Compare two saved images
     [Tags]  compare_save_screen
     Compare images basic
-    Compare images diff and full set upt
+
 
 Creating screens in differen resolutions
     [Tags]  resolution
@@ -36,7 +36,7 @@ Compare screen without some region
 
 *** Keywords ***
 Compare images basic
-    compare images   ./Img/forpres.png     ./Img/forpres.png
+    compare images   ../Img/forpres.png     ../Img/forpres.png
 
 Compare images diff and full set upt
     compare images   ../Img/forpres.png     ./Img/forpres1.png  save_folder=./Tesena  ssim= 0.5
