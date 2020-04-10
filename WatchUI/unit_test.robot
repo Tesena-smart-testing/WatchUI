@@ -15,7 +15,7 @@ ${basic_reso}           800  600
 Compare two saved images
     [Tags]  compare_save_screen
     Compare images basic
-
+    Compare images diff and full set upt
 
 Creating screens in differen resolutions
     [Tags]  resolution
@@ -39,7 +39,7 @@ Compare images basic
     compare images   ./Img/forpres.png     ./Img/forpres.png
 
 Compare images diff and full set upt
-    compare images   ../Img/forpres.png     ./Img/forpres1.png  save_folder=./Tesena  ssim= 0.5
+    compare images   ./Img/forpres.png     ./Img/forpres1.png  save_folder=./Tesena  ssim= 0.5
 
 Create screens in 800 x 600 reso
     Open Browser                        ${start_url}      ${browser}
