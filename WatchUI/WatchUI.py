@@ -154,9 +154,9 @@ class WatchUI:
                     cv.imwrite(save_folder + "/Img" + cas + ".png", img_diff)
                     self.robotlib.log_to_console("Image has diff: {} ".format(score))
             else:
-                raise AssertionError("Path2 doesnt found")
+                raise AssertionError("Path2 doesnt found:" + path2)
         else:
-            raise AssertionError("Path1 doesnt found")
+            raise AssertionError("Path1 doesnt found" + path1)
         if os.path.exists(save_folder + "/testscreen.png"):
             os.remove(save_folder + "/testscreen.png")
 
@@ -198,7 +198,6 @@ class WatchUI:
 
         leng_reso = len(resolution)
         if leng_reso % 2 == 0:
-            self.robotlib.log_to_console(resolution)
 
             x = leng_reso / 2
             i = 0
