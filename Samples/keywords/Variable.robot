@@ -4,6 +4,7 @@ ${URL}                      https://www.tesena.com/contact-us/
 ${BROWSER}                  Chrome
 ${SF_OOUTPUTS}              ./Outputs
 ${SSIM1.0}                  1.0
+${SSIM0.95}                 0.95
 ${SSIM0.5}                  0.5
 @{reso}                     800  600
 
