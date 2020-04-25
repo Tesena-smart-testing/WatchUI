@@ -25,9 +25,8 @@ Creating screens in differen resolutions
 
 Compare screen basic set up
     [Tags]  compare_screen
-    Create screens from tesena
     Compare image with created screen
-    Compare image with created screen full set up
+
 
 Compare screen without some region
     [Tags]  cs_outregion
@@ -74,7 +73,8 @@ Create screens from tesena
 
 Compare image with created screen
     Open Browser                        ${start_url}      ${browser}
-    Set window size                     800  600    save_folder=../Outputs
+    create screens                      800  600    save_folder=../Outputs
+    Wait until created                  ../Outputs/screen800x600.png
     compare screen                     ../Outputs/screen800x600.png
     Close Browser
 
