@@ -2,7 +2,7 @@
 Documentation                   Suite description
 Library                         SeleniumLibrary
 Library                         Screenshot
-Library                         ./WatchUI/WatchUI.py
+Library                         ../WatchUI/WatchUI.py
 Library                         OperatingSystem
 Resource                        keywords/CS.robot
 Resource                        keywords/CS_2SavedImage.robot
