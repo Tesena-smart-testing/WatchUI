@@ -69,12 +69,9 @@ Create screens from tesena
     Open Browser                        ${start_url}      ${browser}
     create screens                      800  600    save_folder=../Outputs
     Wait until created                  ../Outputs/screen800x600.png
-    Close browser
 
 Compare image with created screen
-    Open Browser                        ${start_url}      ${browser}
-    create screens                      800  600    save_folder=../Outputs
-    Wait until created                  ../Outputs/screen800x600.png
+    Create screens from tesena
     compare screen                     ../Outputs/screen800x600.png
     Close Browser
 
