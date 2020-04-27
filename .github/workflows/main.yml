@@ -53,3 +53,4 @@ jobs:
         uses: GabrielBB/xvfb-action@v1.0
         with:
           run: python3 -m robot Samples/unit_test.robot
+

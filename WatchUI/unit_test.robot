@@ -33,9 +33,6 @@ Compare screen without some region
     Create screens from tesena
     Comparing screen without some area
 
-Try
-    [Tags]  try
-    try get log file
 
 *** Keywords ***
 Compare images basic
@@ -72,6 +69,7 @@ Create screens from tesena
 
 Compare image with created screen
     Create screens from tesena
+
     compare screen                     ../Outputs/screen800x600.png
     Close Browser
 
