@@ -1,16 +1,3 @@
-# -*- coding: utf-8 -*-
-#
-# This tool helps you compare images in robot framework
-# It works with openCV + Python > 3.5
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY;
-#
-# Copyright (C) 2019-2020
-#
-# Authors: Jan "Procesor" Egermaier
-#          Radek "bednaJedna" Bednařík
-
-
 import cv2 as cv
 from skimage.metrics import structural_similarity
 import imutils
@@ -22,12 +9,59 @@ import pandas as pd
 
 
 class WatchUI:
+    """WatchUI - Custom library for comparing images with use in Robot Framework.
+
+    = Table of Contents =
+
+    - `Usage`
+    - `Importing`
+    - `Examples`
+    - `Keywords`
+
+    = Usage =
+
+    This library allows for automated visual testing of web frontends.
+    Currently, this library is not officialy supported, so best way is to 
+    clone the repository and copy the WatchUI.py library file into your project and then 
+    import it - see Importing section.
+
+    However, you can also install it via command *pip install WatchUI* and then import it.
+
+    *IMPORTANT*: When using keywords of this library, please remember, that screenshots have to have same resolution!
+
+    = Examples =
+    Import library
+    | `Library` | <path_to_library file> | outputs_folder= | ssim_basic= |
+
+    Compare Images
+    | Compare Images | path1 | path2 | save_folder= | ssim= |
+
+    """
+
     seleniumlib = BuiltIn().get_library_instance("SeleniumLibrary")
     robotlib = BuiltIn().get_library_instance("BuiltIn")
     save_folder_path = "../Outputs"
     starts_ssim = 1.0
 
     def __init__(self, outputs_folder="../Outputs", ssim_basic=starts_ssim):
+        """Library can be imported either with default output folder and set lowest limit of difference between images (ssim), or
+        you can provide your own values.
+
+        Keyword Arguments:
+
+            outputs_folder {str} -- path, where you want to save images with highlighted differences (default: {"../Outputs"})
+
+            ssim_basic {float} -- threshold value in the interval (0, 1>. Tests are passed, if ssim value returned by keyword test functions is bigger than this (default: {starts_ssim})
+            
+
+        Examples:
+
+        | =Setting= | =Value= | =Value= | =Value= | =Comment= |
+        | Library   | WatchUI.py |      |  | # Uses default values of keyword arguments |
+        | Library   | WatchUI.py | outputs_folder=<path_to_folder> | | # changes folder to different one |
+        | Library   | WatchUI.py | outputs_folder=<path_to_folder> | ssim_basic=<float> | # changes output folder and ssim threshold |
+
+        """
         self.outputs_folder = outputs_folder
         self.ssim_basic = float(ssim_basic)
 
@@ -477,4 +511,3 @@ class WatchUI:
                 raise AssertionError("Bad or not exists path for picture or screen")
         else:
             raise AssertionError("Bad or not exists path for picture or screen")
-
