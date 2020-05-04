@@ -3,7 +3,9 @@ Documentation    Suite description
 Library          SeleniumLibrary
 Library          OperatingSystem
 Library          Screenshot
-Library          WatchUI.py
+Library          ../WatchUI/WatchUI.py
+
+Suite Teardown    Close All Browsers
 
 *** Variables ***
 ${start_url}            https://www.tesena.com/contact-us/
