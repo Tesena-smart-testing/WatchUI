@@ -64,7 +64,6 @@ class WatchUI:
         (self.score, diff) = structural_similarity(gray_img1, gray_img2, full=True)
         diff = (diff * 255).astype("uint8")
 
-
         # Threshold diff Img
         thresh = cv.threshold(diff, 0, 255, cv.THRESH_BINARY_INV | cv.THRESH_OTSU)[1]
         cnts = cv.findContours(thresh.copy(), cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
@@ -72,7 +71,9 @@ class WatchUI:
         self.img1 = img1
         self.img2 = img2
 
-    def compare_images(self, path1, path2, save_folder=save_folder_path, ssim=starts_ssim):
+    def compare_images(
+        self, path1, path2, save_folder=save_folder_path, ssim=starts_ssim
+    ):
         """Comparing images
 
         It compares two images from the two paths and, if there are differences, saves the image with the errors highlighted
@@ -90,21 +91,19 @@ class WatchUI:
             # Compare image
             self._compare_images(path1, path2)
             score = self.score
-            img1 = self.img1
-            img2 = self.img2
 
             # Create frame in diff area
             for c in self.cnts:
                 (x, y, w, h) = cv.boundingRect(c)
-                cv.rectangle(img1, (x, y), (x + w, y + h), (0, 0, 255), 2)
-                cv.rectangle(img2, (x, y), (x + w, y + h), (0, 0, 255), 2)
+                cv.rectangle(self.img1, (x, y), (x + w, y + h), (0, 0, 255), 2)
+                cv.rectangle(self.img2, (x, y), (x + w, y + h), (0, 0, 255), 2)
 
             # Show image
 
             if float(score) < self.ssim:
                 self.robotlib.log_to_console(self.ssim)
                 self.robotlib.log_to_console(score)
-                cv.imwrite(save_folder + "/Img" + str(time.time()) + ".png", img2)
+                cv.imwrite(save_folder + "/Img" + str(time.time()) + ".png", self.img2)
                 self.robotlib.fail("*INFO* Save file with difference")
         else:
             raise AssertionError("Path doesnt exists")
@@ -129,28 +128,31 @@ class WatchUI:
                 # Compare image
                 self._compare_images(path1, path2)
                 score = self.score
-                img1 = self.img1
-                img2 = self.img2
+
                 # Create frame in diff area
                 for c in self.cnts:
                     (x, y, w, h) = cv.boundingRect(c)
-                    cv.rectangle(img1, (x, y), (x + w, y + h), (0, 0, 255), 2)
-                    cv.rectangle(img2, (x, y), (x + w, y + h), (0, 0, 255), 2)
+                    cv.rectangle(self.img1, (x, y), (x + w, y + h), (0, 0, 255), 2)
+                    cv.rectangle(self.img2, (x, y), (x + w, y + h), (0, 0, 255), 2)
                 # Show image
 
                 self.robotlib.log_to_console(self.ssim)
                 if float(score) < self.ssim:
                     self.robotlib.log_to_console(self.ssim)
-                    img_diff = cv.hconcat([img1, img2])
+                    img_diff = cv.hconcat([self.img1, self.img2])
                     cas = str(time.time())
                     score_percen = float(score) * 100
-                    self.seleniumlib.capture_page_screenshot(save_folder + "/Img" + cas + ".png")
+                    self.seleniumlib.capture_page_screenshot(
+                        save_folder + "/Img" + cas + ".png"
+                    )
                     cv.imwrite(save_folder + "/Img" + cas + ".png", img_diff)
                     self.robotlib.fail("Image has diff: {} %".format(score_percen))
                 else:
-                    img_diff = cv.hconcat([img1, img2])
+                    img_diff = cv.hconcat([self.img1, self.img2])
                     cas = str(time.time())
-                    self.seleniumlib.capture_page_screenshot(save_folder + "/Img" + cas + ".png")
+                    self.seleniumlib.capture_page_screenshot(
+                        save_folder + "/Img" + cas + ".png"
+                    )
                     cv.imwrite(save_folder + "/Img" + cas + ".png", img_diff)
                     self.robotlib.log_to_console("Image has diff: {} ".format(score))
             else:
@@ -160,7 +162,9 @@ class WatchUI:
         if os.path.exists(save_folder + "/testscreen.png"):
             os.remove(save_folder + "/testscreen.png")
 
-    def create_area(self, x1, y1, x2, y2, save_folder=save_folder_path, screen_name="screen"):
+    def create_area(
+        self, x1, y1, x2, y2, save_folder=save_folder_path, screen_name="screen"
+    ):
         """  Creates a cut-out from the screen
 
         Creates a cut-out from the screen that is on screen and saves it in the folder: ../Create area
@@ -176,13 +180,17 @@ class WatchUI:
         self.seleniumlib.capture_page_screenshot(save_folder + '/testscreen.png')
         img = save_folder + '/testscreen.png'
         img_crop = cv.imread(img)
-        crop_img = img_crop[int(x1):int(y2), int(y1):int(x2)]  # Crop from {x, y, w, h } => {0, 0, 300, 400}
+        crop_img = img_crop[
+            int(x1) : int(y2), int(y1) : int(x2)
+        ]  # Crop from {x, y, w, h } => {0, 0, 300, 400}
         if screen_name == "screen":
             cv.imwrite(save_folder + '/screen' + str(time.time()) + '.png', crop_img)
         else:
             cv.imwrite(save_folder + '/' + screen_name + '.png', crop_img)
 
-    def create_screens(self, *resolution, save_folder=save_folder_path, screen_name="screen"):
+    def create_screens(
+        self, *resolution, save_folder=save_folder_path, screen_name="screen"
+    ):
         """ Creates a screenshot on the screen
 
         Creates a screenshot on the screen, that corresponds to the specified resolution, so it is possible to create on one
@@ -222,7 +230,9 @@ class WatchUI:
         else:
             raise AssertionError("Bad numbers of resolution")
 
-    def compare_screen_areas(self, x1, y1, x2, y2, path1, save_folder=save_folder_path, ssim=starts_ssim):
+    def compare_screen_areas(
+        self, x1, y1, x2, y2, path1, save_folder=save_folder_path, ssim=starts_ssim
+    ):
         """Creates a cut-out from the screen
 
         Creates a cut-out from the screen that is on the screen and compares it to a previously created
@@ -250,18 +260,24 @@ class WatchUI:
                 gray_img2 = cv.cvtColor(img2, cv.COLOR_BGR2GRAY)
 
                 # spliting area
-                crop_img = gray_img2[int(x1):int(y2), int(y1):int(x2)]  # Crop from {x, y, w, h } => {0, 0, 300, 400}
+                crop_img = gray_img2[
+                    int(x1) : int(y2), int(y1) : int(x2)
+                ]  # Crop from {x, y, w, h } => {0, 0, 300, 400}
 
                 # SSIM diff img
                 (score, diff) = structural_similarity(gray_img1, crop_img, full=True)
                 diff = (diff * 255).astype('uint8')
 
                 # Threshold diff img
-                thresh = cv.threshold(diff, 0, 255, cv.THRESH_BINARY_INV | cv.THRESH_OTSU)[1]
-                cnts = cv.findContours(thresh.copy(), cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
+                thresh = cv.threshold(
+                    diff, 0, 255, cv.THRESH_BINARY_INV | cv.THRESH_OTSU
+                )[1]
+                cnts = cv.findContours(
+                    thresh.copy(), cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE
+                )
                 cnts = imutils.grab_contours(cnts)
 
-                crop_img_color = img2[int(x1):int(y2), int(y1):int(x2)]
+                crop_img_color = img2[int(x1) : int(y2), int(y1) : int(x2)]
                 # Create frame in diff area
                 for c in cnts:
                     (x, y, w, h) = cv.boundingRect(c)
@@ -273,10 +289,12 @@ class WatchUI:
                     self.robotlib = BuiltIn().get_library_instance('BuiltIn')
                     img_diff = cv.hconcat([img1, crop_img_color])
                     cas = str(time.time())
-                    self.seleniumlib.capture_page_screenshot(save_folder + '/img' + cas + '.png')
+                    self.seleniumlib.capture_page_screenshot(
+                        save_folder + '/img' + cas + '.png'
+                    )
                     cv.imwrite(save_folder + '/img' + cas + '.png', img_diff)
                     self.robotlib.fail('Image has diff: {} '.format(score))
-                    score_percen = float(score) * + 100
+                    score_percen = float(score) * +100
                     self.robotlib.fail('Image has diff: {} %'.format(score_percen))
             else:
                 raise AssertionError("New screen doesnt exist anymore")
@@ -285,7 +303,9 @@ class WatchUI:
         if os.path.exists(save_folder + '/test1.png'):
             os.remove(save_folder + '/test1.png')
 
-    def compare_screen_without_areas(self, path1, *args, save_folder=save_folder_path, ssim=starts_ssim):
+    def compare_screen_without_areas(
+        self, path1, *args, save_folder=save_folder_path, ssim=starts_ssim
+    ):
         """
         Compares two pictures, which have parts to be ignored
         x1 and y1 = x and y coordinates for the upper left corner of the ignored area square
@@ -333,9 +353,9 @@ class WatchUI:
                 diff = (diff * 255).astype("uint8")
 
                 # Threshold diff Img
-                thresh = cv.threshold(diff, 0, 255, cv.THRESH_BINARY_INV | cv.THRESH_OTSU)[
-                    1
-                ]
+                thresh = cv.threshold(
+                    diff, 0, 255, cv.THRESH_BINARY_INV | cv.THRESH_OTSU
+                )[1]
                 cnts = cv.findContours(
                     thresh.copy(), cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE
                 )
@@ -351,20 +371,29 @@ class WatchUI:
                 if float(score) < self.ssim:
                     img_diff = cv.hconcat([img1, img2])
                     cas = str(time.time())
-                    self.seleniumlib.capture_page_screenshot(save_folder + "/Img" + cas + ".png")
+                    self.seleniumlib.capture_page_screenshot(
+                        save_folder + "/Img" + cas + ".png"
+                    )
                     cv.imwrite(save_folder + "/Img" + cas + ".png", img_diff)
                     self.robotlib.fail("Image has diff: {} ".format(score))
                 else:
                     img_diff = cv.hconcat([img1, img2])
                     cas = str(time.time())
-                    self.seleniumlib.capture_page_screenshot(save_folder + "/Img" + cas + ".png")
+                    self.seleniumlib.capture_page_screenshot(
+                        save_folder + "/Img" + cas + ".png"
+                    )
                     cv.imwrite(save_folder + "/Img" + cas + ".png", img_diff)
                     self.robotlib.log_to_console("Image has diff: {} ".format(score))
         else:
             raise AssertionError("Path doesnt exists")
 
-    def compare_screen_get_information(self, path1, save_folder=save_folder_path,
-                                       folder_csv="../CSV_ERROR", ssim=starts_ssim):
+    def compare_screen_get_information(
+        self,
+        path1,
+        save_folder=save_folder_path,
+        folder_csv="../CSV_ERROR",
+        ssim=starts_ssim,
+    ):
         """	Compare the already save image with the browser screen
 
         Compares the already saved image with the screen that is on the screen. If there is a difference, it saves the
@@ -387,8 +416,6 @@ class WatchUI:
                 # load Img
                 self._compare_images(path1, path2)
                 score = self.score
-                img1 = self.img1
-                img2 = self.img2
 
                 # write coordinate
                 with open(folder_csv + "/bug_coordinates.csv", "w") as csvfile:
@@ -399,8 +426,8 @@ class WatchUI:
                     # Create frame in diff area
                     for c in self.cnts:
                         (x, y, w, h) = cv.boundingRect(c)
-                        cv.rectangle(img1, (x, y), (x + w, y + h), (0, 0, 255), 2)
-                        cv.rectangle(img2, (x, y), (x + w, y + h), (0, 0, 255), 2)
+                        cv.rectangle(self.img1, (x, y), (x + w, y + h), (0, 0, 255), 2)
+                        cv.rectangle(self.img2, (x, y), (x + w, y + h), (0, 0, 255), 2)
                         x2 = x + w
                         y2 = y + h
                         x_center = x + ((x2 - x) / 2)
@@ -410,15 +437,18 @@ class WatchUI:
 
                 # Save image and show report
                 if float(score) < self.ssim:
-                    img_diff = cv.hconcat([img1, img2])
+                    img_diff = cv.hconcat([self.img1, self.img2])
                     cas = str(time.time())
-                    self.seleniumlib.capture_page_screenshot(save_folder + "/Img{0}.png".format(cas))
+                    self.seleniumlib.capture_page_screenshot(
+                        save_folder + "/Img{0}.png".format(cas)
+                    )
                     cv.imwrite(save_folder + "/Img{0}.png".format(cas), img_diff)
 
                     # start reading coordinates and saving element from coordinate
                     df = pd.read_csv(r"" + folder_csv + "/bug_coordinates.csv")
                     with open(
-                            folder_csv + "/bug_co_and_name{0}.csv".format(str(time.time())), "w"
+                        folder_csv + "/bug_co_and_name{0}.csv".format(str(time.time())),
+                        "w",
                     ) as csv_name:
                         writer = csv.writer(csv_name)
                         a = "web-page", "x_center", "y_center", "class", "id", "name"
@@ -448,4 +478,3 @@ class WatchUI:
         else:
             raise AssertionError("Bad or not exists path for picture or screen")
 
-            
