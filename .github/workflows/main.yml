@@ -6,14 +6,14 @@ name: Push / pull CI
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-   robot_test:
+  robot_test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -40,17 +40,16 @@ jobs:
         run: DISPLAY=:0
       - name: Robot Framework
         run: |
-            python -m pip install --upgrade pip
-            pip install robotframework
-            pip install robotframework-seleniumlibrary
-            pip install pandas
-            pip install numpy
-            pip install Pillow            
-            pip install imutils
-            pip install scikit-image
-            pip install opencv-python
+          python -m pip install --upgrade pip
+          pip install robotframework
+          pip install robotframework-seleniumlibrary
+          pip install pandas
+          pip install numpy
+          pip install Pillow            
+          pip install imutils
+          pip install scikit-image
+          pip install opencv-python
       - name: Run headless test
         uses: GabrielBB/xvfb-action@v1.0
         with:
-          run: python3 -m robot Samples/unit_test.robot
-
+          run: python3 -m robot unittests/unit_test.robot
