@@ -71,6 +71,13 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           pip install robotframework
+          pip install robotframework-seleniumlibrary
+          pip install pandas
+          pip install numpy
+          pip install Pillow            
+          pip install imutils
+          pip install scikit-image
+          pip install opencv-python
       - name: Create documentation
         run: |
           python3 -m robot.libdoc -f html ./WatchUI/WatchUI.py docs/WatchUI.html
