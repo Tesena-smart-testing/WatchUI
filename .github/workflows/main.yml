@@ -85,9 +85,8 @@ jobs:
           python3 -m robot.libdoc -f html ./WatchUI/WatchUI.py docs/WatchUI.html
       - name: Commit created docs files
         run: |
-        git config --local user.name  ${{ github.actor }}
-        git add ./docs
-        git commit -m "docs update"
+          git config --local user.name ${{ github.actor }}
+          git commit -m "docs update" -a
       - name: Push changes  
         uses: ad-m/github-push-action@tasks-May # test, if ok, then should be pushed to master
         with:
