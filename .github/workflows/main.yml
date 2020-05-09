@@ -56,7 +56,7 @@ jobs:
   
   # Builds documentation via robot.libdoc module into ./docs folder
   build_documentation:
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: [3.6]
