@@ -62,6 +62,8 @@ jobs:
       matrix:
         python-version: [3.6]
     name: Build Documentation
+    env: 
+      triggering_branch: ${{ github.ref }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python ${{ matrix.python-version }}
@@ -88,9 +90,7 @@ jobs:
           git config --local user.name ${{ github.actor }}
           git commit -m "docs update" -a
       - name: Push changes
-        env: 
-          triggering_branch: ${{ github.ref }}
-        uses: ad-m/github-push-action@env.triggering_branch
+        uses: ad-m/github-push-action@job.build_documentation.env.triggering_branch
         with:
           github_token: ${{ github.token }}
           force: true
