@@ -79,6 +79,7 @@ jobs:
           pip install imutils
           pip install scikit-image
           pip install opencv-python
+      # not finished, see: https://github.com/jpadfield/simple-site/blob/master/.github/workflows/build.yml
       - name: Create documentation
         run: |
           python3 -m robot.libdoc -f html ./WatchUI/WatchUI.py docs/WatchUI.html
