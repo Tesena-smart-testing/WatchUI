@@ -3,7 +3,7 @@ from skimage.metrics import structural_similarity
 import imutils
 import os
 import time
-from robot.libraries.BuiltIn import BuiltIn
+from robot.libraries.BuiltIn import BuiltIn, RobotNotRunningError
 import csv
 import pandas as pd
 
@@ -38,8 +38,6 @@ class WatchUI:
 
     """
 
-    seleniumlib = BuiltIn().get_library_instance("SeleniumLibrary")
-    robotlib = BuiltIn().get_library_instance("BuiltIn")
     save_folder_path = "../Outputs"
     starts_ssim = 1.0
 
@@ -64,6 +62,14 @@ class WatchUI:
         """
         self.outputs_folder = outputs_folder
         self.ssim_basic = float(ssim_basic)
+        # when libdoc builds documentation, this would lead to exception, since robot cannot access execution context,
+        # since nothing really executes
+        try:
+            self.seleniumlib = BuiltIn().get_library_instance("SeleniumLibrary")
+            self.robotlib = BuiltIn().get_library_instance("BuiltIn")
+        except RobotNotRunningError as e:
+            print(f"If you are trying to build documentation, than this exception is just nuisance, skipping...\n{str(e)}")
+            pass
 
     def _check_dir(self, save_folder):
         outputs_folder = self.outputs_folder

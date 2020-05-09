@@ -24,6 +24,7 @@ try:
                 "scikit-learn",
                 "imutils",
                 "robotframework",
+                "selenium",
                 "robotframework-seleniumLibrary",
             ],
             classifiers=[
