@@ -53,3 +53,24 @@ jobs:
         uses: GabrielBB/xvfb-action@v1.0
         with:
           run: python3 -m robot tests/unit_test.robot
+  
+  # Builds documentation via robot.libdoc module into ./docs folder
+  build_documentation:
+    runs_on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.6]
+    name: Build Documentation
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install RobotFramework
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install robotframework
+      - name: Create documentation
+        run: |
+          python3 -m robot.libdoc -f html ./WatchUI/WatchUI.py docs/WatchUI.html
