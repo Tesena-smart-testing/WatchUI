@@ -88,7 +88,7 @@ jobs:
           git config --local user.name ${{ github.actor }}
           git commit -m "docs update" -a
       - name: Push changes
-        uses: ad-m/github-push-action@branch
+        uses: ad-m/github-push-action
         with:
           github_token: ${{ github.token }}
           force: true
