@@ -85,12 +85,8 @@ jobs:
       - name: Create documentation
         run: |
           python3 -m robot.libdoc -f html ./WatchUI/WatchUI.py docs/index.html
-      - name: Commit created docs files
-        run: |
-          git config --local user.name ${{ github.actor }}
-          git commit -m "docs update" -a
       - name: Push changes
-#         if: steps.git-check.outputs.modified == 'true'
+        if: steps.git-check.outputs.modified == 'true'
         run: |
           git config --global user.name 'radekBednarik'
           git config --global user.email 'radek.bednarik@tesena.com'
