@@ -85,6 +85,9 @@ jobs:
       - name: Create documentation
         run: |
           python3 -m robot.libdoc -f html ./WatchUI/WatchUI.py docs/index.html
+      - name: Check for modified files
+        id: git-check
+        run: echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)
       - name: Push changes
         if: steps.git-check.outputs.modified == 'true'
         run: |
@@ -93,7 +96,3 @@ jobs:
           git remote set-url origin https://x-access-token:${{ secrets.TOKEN_DOC_PUSH }}@github.com/${{ github.repository }}
           git commit -am "Automated changes"
           git push
-#         uses: ad-m/github-push-action@master
-#         with:
-#           github_token: ${{ secrets.TOKEN_DOC_PUSH }}
-#           force: true
