@@ -90,6 +90,5 @@ jobs:
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ github.token }}
+          github_token: ${{ secrets.TOKEN_DOC_PUSH }}
           force: true
-          branch: ${{ github.ref }}
