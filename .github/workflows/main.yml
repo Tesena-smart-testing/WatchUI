@@ -1,18 +1,13 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Push / pull CI
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
-  push:
-    branches: [master]
   pull_request:
     branches: [master]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   robot_test:
     runs-on: ubuntu-latest
     strategy:
@@ -81,8 +76,7 @@ jobs:
           pip install imutils
           pip install scikit-image
           pip install opencv-python
-      # see: https://github.com/jpadfield/simple-site/blob/master/.github/workflows/build.yml
-      # OR
+
       # https://peterevans.dev/posts/github-actions-how-to-automate-code-formatting-in-pull-requests/
       - name: Create documentation
         run: |
@@ -96,5 +90,5 @@ jobs:
           git config --global user.name 'radekBednarik'
           git config --global user.email 'radek.bednarik@tesena.com'
           git remote set-url origin https://x-access-token:${{ secrets.TOKEN_DOC_PUSH }}@github.com/${{ github.repository }}
-          git commit -am "Automated changes"
+          git commit -am "Documentation build"
           git push
