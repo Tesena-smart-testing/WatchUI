@@ -4,7 +4,7 @@ Documentation    Keywords for creating Creating region
 *** Keywords ***
 Create screens in 800 x 600 reso
     create screens                      800  600    save_folder=${SF_OOUTPUTS}
-    Wait until created                  ./Outputs/screen800x600.png
+    Wait until created                  ${screen800x600}
 
 Create screens in 3 resolutions
     create screens                      800  600  1280  800  1440  900      save_folder=${SF_OOUTPUTS}

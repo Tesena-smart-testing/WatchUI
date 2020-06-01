@@ -29,12 +29,16 @@ TC02 - Creating screens in differen resolutions
 TC03 - Compare screen
     [Tags]  compare_screen  tc03
     Compare image with created screen
+    Compare image without full set up
     Compare image full set up
-    Compare diff image
+    Compare image without ssim set up
+    Compare diff image ssim 0.5
+    Compare diff image ssim 1.0
 
 TC04 - Compare screen without some region
     [Tags]  cs_outregion
     Comparing screen without some area
+
 
 *** Keywords ***
 Start web-browser
