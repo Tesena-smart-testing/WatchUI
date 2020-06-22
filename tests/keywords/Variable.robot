@@ -7,6 +7,8 @@ ${SSIM1.0}                  1.0
 ${SSIM0.95}                 0.95
 ${SSIM0.5}                  0.5
 @{reso}                     800  600
+${screen800x600}            ./Outputs/screen.png
+${FALSE}                    False
 
 # ---------------------------------------- Compare 2 saved image ------------------------------------------------------
 ${1IMAGE}                   ./Img/forpres.png
