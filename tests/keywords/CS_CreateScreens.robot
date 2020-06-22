@@ -16,3 +16,8 @@ Create screens with full set up
     create screens                      800  600    1280    800     save_folder=${SF_NEWSCREEN}    screen_name=${CS_SCREENNAME}
     Wait until created                  ${SF_NEWSCREEN}/${CS_SCREENNAME}800x600.png
     Wait until created                  ${SF_NEWSCREEN}/${CS_SCREENNAME}1280x800.png
+
+Create screens with full set up: Format JPG
+    create screens                      800  600    1280    800     save_folder=${SF_NEWSCREEN}    screen_name=${CS_SCREENNAME}     image_format=jpg
+    Wait until created                  ${SF_NEWSCREEN}/${CS_SCREENNAME}800x600.jpg
+    Wait until created                  ${SF_NEWSCREEN}/${CS_SCREENNAME}1280x800.jpg

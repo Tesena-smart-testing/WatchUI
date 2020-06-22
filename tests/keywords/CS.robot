@@ -34,3 +34,10 @@ Compare image without full set up
     Create screen from actual webpage
     ${false}=                          Run Keyword And Return Status       compare screen  asdf
     Should be true                      '''${FALSE}''' == '''${false}'''
+
+Compare diff image image format JPG
+    Create screen from actual webpage
+    Go to                               ${CS_NEWURL}
+    ${false}=                           Run Keyword And Return Status       compare screen       ${screen800x600}      save_folder=${CS_SFOUTPUTS}  ssim=${SSIM1.0}  image_format=jpg
+    Should be true                      '''${FALSE}''' == '''${false}'''
+    Go to                               ${URL}
