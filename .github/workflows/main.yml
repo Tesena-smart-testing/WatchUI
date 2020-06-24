@@ -96,3 +96,4 @@ jobs:
           git remote set-url origin https://x-access-token:${{ secrets.TOKEN_DOC }}@github.com/${{ github.repository }}
           git commit -am "Documentation build"
           git push
+
