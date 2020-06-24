@@ -87,8 +87,8 @@ jobs:
       - name: Push changes
         if: steps.git-check.outputs.modified == 'true'
         run: |
-          git config --global user.name 'radekBednarik'
-          git config --global user.email 'radek.bednarik@tesena.com'
-          git remote set-url origin https://x-access-token:${{ secrets.TOKEN_DOC_PUSH }}@github.com/${{ github.repository }}
+          git config --global user.name 'janegermaier'
+          git config --global user.email ' jan.egermaier@tesena.com'
+          git remote set-url origin https://x-access-token:${{ secrets.TOKEN_DOC }}@github.com/${{ github.repository }}
           git commit -am "Documentation build"
           git push
