@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: 
       -master
-  push:
-    branches:
-      - master
       
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -96,4 +93,3 @@ jobs:
           git remote set-url origin https://x-access-token:${{ secrets.TOKEN_DOC }}@github.com/${{ github.repository }}
           git commit -am "Documentation build"
           git push
-
