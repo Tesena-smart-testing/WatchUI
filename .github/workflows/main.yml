@@ -88,8 +88,8 @@ jobs:
         run: |
           git config --global user.name 'janegermaier'
           git config --global user.email 'jan.egermaier@tesena.com'
-          git remote set-url origin https://$TOKEN@github.com/${{ github.repository }}
+          git add --all
           git commit -am "Documentation build"
-          git push
+          git push origin https://$TOKEN@github.com/Tesena-smart-testing/WatchUI
         env:
           TOKEN: ${{ secrets.TOKEN_DOC}}
