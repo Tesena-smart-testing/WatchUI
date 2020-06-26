@@ -40,7 +40,7 @@ Custom library for comparing images with use in Robot Framework.
 
 ## Description Keyword
 
-Library documentation can be found [HERE](https://tesena-smart-testing.github.io/WatchUI/).
+Library documentation can be found [HERE](https://procesor.github.io/WatchUI/docs/index.html).
 
 ## Sample results
 
