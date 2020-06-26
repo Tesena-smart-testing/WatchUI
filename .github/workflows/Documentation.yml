@@ -1,0 +1,52 @@
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+
+name: Creating new documentation
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+# This workflows will upload a Python Package using Twine when a release is created
+# For more information see: https://help.github.com/en/actions/language-and-framework-guides/using-python-with-github-actions#publishing-to-package-registries
+
+jobs:
+  # Builds documentation via robot.libdoc module into ./docs folder
+  build_documentation:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.6]
+    name: Build Documentation
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install RobotFramework
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install robotframework
+          pip install robotframework-seleniumlibrary
+          pip install pandas
+          pip install numpy
+          pip install Pillow            
+          pip install imutils
+          pip install scikit-image
+          pip install opencv-python
+      # https://peterevans.dev/posts/github-actions-how-to-automate-code-formatting-in-pull-requests/
+      - name: Create documentation
+        run: |
+          python3 -m robot.libdoc -f html ./WatchUI/WatchUI.py docs/index.html
+      - name: Push Documentation
+        run: |
+          git config --global user.name 'procesor2017'
+          git config --global user.email 'jfortik@gmail.com'
+          git remote set-url origin https://x-access-token:${{ secrets.TOKEN_DOC}}@github.com/${{ github.repository }}
+          git commit -am "Documentation build"
+          git push
