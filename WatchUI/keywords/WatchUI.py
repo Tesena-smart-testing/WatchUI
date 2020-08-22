@@ -1,7 +1,7 @@
 import csv
 import os
 import time
-
+from SeleniumLibrary.base import keyword
 import cv2 as cv
 import pandas as pd
 from robot.libraries.BuiltIn import BuiltIn, RobotNotRunningError
@@ -33,14 +33,14 @@ class WatchUI:
 
     = Examples =
     Import library
-    | `Library` | <path_to_library file> | outputs_folder= | ssim_basic= |
+    | `Library` | <path_to_library file> | outputs_folder= | ssim_basic= | starts_format_image= |
 
     Compare Images
-    | Compare Images | path1 | path2 | save_folder= | ssim= |
+    | Compare Images | path1 | path2 | save_folder= | ssim= | starts_format_image= |
 
     """
 
-    save_folder_path = "../Outputs"
+    save_folder_path = "../../Outputs"
     starts_ssim = 1.0
     starts_format_image = "png"
 
@@ -151,7 +151,7 @@ class WatchUI:
         thresh = cv.threshold(diff, 0, 255, cv.THRESH_BINARY_INV | cv.THRESH_OTSU)[1]
         cnts = cv.findContours(thresh.copy(), cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
         self.cnts = imutils.grab_contours(cnts)
-
+    @keyword
     def compare_images(
             self, path1, path2, save_folder=save_folder_path, ssim=starts_ssim, image_format=starts_format_image
     ):
@@ -201,6 +201,7 @@ class WatchUI:
         else:
             raise AssertionError("Path doesnt exists")
 
+    @keyword
     def compare_screen(self, path1, save_folder=save_folder_path, ssim=starts_ssim, image_format=starts_format_image):
         """	Compare the already save image with the browser screen
 
@@ -257,6 +258,7 @@ class WatchUI:
         if os.path.exists(save_folder + "/testscreen.png"):
             os.remove(save_folder + "/testscreen.png")
 
+    @keyword
     def create_area(
             self, x1, y1, x2, y2, save_folder=save_folder_path, screen_name="screen", image_format=starts_format_image
     ):

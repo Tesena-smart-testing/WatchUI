@@ -2,7 +2,7 @@
 Documentation   Suite description
 Library         SeleniumLibrary
 Library         Screenshot
-Library         ../WatchUI/WatchUI.py
+Library         WatchUi
 Test Teardown   Close All Browsers
 
 *** Variables ***

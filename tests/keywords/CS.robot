@@ -1,6 +1,7 @@
 *** Settings ***
 Documentation    Keywords for comparing image in pc and screen in browser.
 
+
 *** Keywords ***
 Create screen from actual webpage
     create screens                      @{reso}    save_folder=${CS_SFOUTPUTS}
