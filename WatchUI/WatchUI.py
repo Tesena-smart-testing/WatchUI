@@ -40,7 +40,7 @@ class WatchUI:
 
     """
 
-    save_folder_path = "../../Outputs"
+    save_folder_path = "../Outputs"
     starts_ssim = 1.0
     starts_format_image = "png"
 

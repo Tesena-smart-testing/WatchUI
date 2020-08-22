@@ -1,3 +1,1 @@
-from .keywords.WatchUI import WatchUI
-
-__all__ = ["WatchUI"]
+from .WatchUI import *
