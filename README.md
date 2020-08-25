@@ -38,6 +38,9 @@ Custom library for comparing images with use in Robot Framework.
 - Enter the path in Settings => `Library path`, where path is the path to the WatchUI.py file
 - Now you can start using keywords listed below. Keep in mind that you need to have all dependencies installed.
 
+### How to install teseract
+https://digi.bib.uni-mannheim.de/tesseract/
+
 ## Description Keyword
 
 Library documentation can be found [HERE](https://procesor.github.io/WatchUI/docs/index.html).
