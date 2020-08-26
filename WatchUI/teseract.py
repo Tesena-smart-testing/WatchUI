@@ -1,5 +1,13 @@
 import cv2
 import pytesseract
+from pdf2image import convert_from_path, convert_from_bytes
+import tempfile
+
+
+def pdf_to_image(pathToFolder = '', outFolder = '/'):
+    with tempfile.TemporaryFile() as path:
+        convert_from_path(pathToFolder, output_folder=outFolder)
+    return True
 
 
 def show_text_in_img(path):
@@ -28,8 +36,7 @@ def show_text_in_img(path):
     cv2.waitKey(0)
 
 
-
-def full_image_to_string(path, oem=3, psm=3):
+def full_image_to_string(path, oem=3, psm=3, language='eng'):
     '''
     PSM = Page Segmentation Mode
         - 0 = Orientation and script detection (OSD) only.
@@ -57,10 +64,10 @@ def full_image_to_string(path, oem=3, psm=3):
     old_img = cv2.imread(path)
     pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
     custom_oem_psm_config = r'--oem ' + oem + ' --psm ' + psm
-    print(pytesseract.image_to_string(old_img, config=custom_oem_psm_config))
+    print(pytesseract.image_to_string(old_img, config=custom_oem_psm_config, lang=language))
 
 
-def image_area_to_string(path, x1, y1, x2, y2, oem='3', psm='3', language='eng+ces'):
+def image_area_to_string(path, x1, y1, x2, y2, oem='3', psm='3', language='eng'):
     '''
     PSM = Page Segmentation Mode
         - 0 = Orientation and script detection (OSD) only.
