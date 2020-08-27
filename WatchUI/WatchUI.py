@@ -4,8 +4,11 @@ import time
 from SeleniumLibrary.base import keyword
 import cv2 as cv
 import pandas as pd
+from pdf2image import convert_from_path
 from robot.libraries.BuiltIn import BuiltIn, RobotNotRunningError
 from skimage.metrics import structural_similarity
+import tempfile
+import pdf2image
 
 import imutils
 
@@ -151,7 +154,7 @@ class WatchUI:
         thresh = cv.threshold(diff, 0, 255, cv.THRESH_BINARY_INV | cv.THRESH_OTSU)[1]
         cnts = cv.findContours(thresh.copy(), cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
         self.cnts = imutils.grab_contours(cnts)
-    @keyword
+
     def compare_images(
             self, path1, path2, save_folder=save_folder_path, ssim=starts_ssim, image_format=starts_format_image
     ):
@@ -201,7 +204,6 @@ class WatchUI:
         else:
             raise AssertionError("Path doesnt exists")
 
-    @keyword
     def compare_screen(self, path1, save_folder=save_folder_path, ssim=starts_ssim, image_format=starts_format_image):
         """	Compare the already save image with the browser screen
 
@@ -258,7 +260,6 @@ class WatchUI:
         if os.path.exists(save_folder + "/testscreen.png"):
             os.remove(save_folder + "/testscreen.png")
 
-    @keyword
     def create_area(
             self, x1, y1, x2, y2, save_folder=save_folder_path, screen_name="screen", image_format=starts_format_image
     ):
@@ -607,4 +608,69 @@ class WatchUI:
         else:
             raise AssertionError("Bad or not exists path for picture or screen")
 
+    def image_area_on_text(path, *coordinates, oem='3', psm='3', language='eng',
+                           tesseract_cmd=r'C:\Program Files\Tesseract-OCR\tesseract.exe'):
+        string_list = []
+        old_img = cv2.imread(path)
+        len_coordinates = len(coordinates)
+        if len_coordinates % 4 == 0:
+            if len_coordinates / 4 == 1:
+                crop_img = old_img[int(coordinates[1]): int(coordinates[3]), int(coordinates[0]): int(coordinates[2])]
+                pytesseract.pytesseract.tesseract_cmd = tesseract_cmd
+                custom_oem_psm_config = r'--oem ' + oem + ' --psm ' + psm
+                text = pytesseract.image_to_string(crop_img, config=custom_oem_psm_config, lang=language)
+                return text
+            else:
+                num_coordinates = len_coordinates / 4
+                a = 0
+                i = 0
+                while i < num_coordinates:
+                    x1 = coordinates[0 + a]
+                    y1 = coordinates[1 + a]
+                    x2 = coordinates[2 + a]
+                    y2 = coordinates[3 + a]
+                    crop_img = old_img[int(y1): int(y2), int(x1): int(x2)]
+                    pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+                    custom_oem_psm_config = r'--oem ' + oem + ' --psm ' + psm
+                    text = pytesseract.image_to_string(crop_img, config=custom_oem_psm_config, lang=language)
+                    string_list.append(text)
+                    i += 1
+                    a += 4
+            return string_list
+        else:
+            print('špatně zadané souřadnice')
 
+    def pdf_to_image(self, path1, save_folder=save_folder_path, first_page=None, last_page=None):
+        self._check_dir(save_folder)
+        save_folder = self.save_folder
+        if os.path.exists(path1):
+            with tempfile.TemporaryFile():
+                convert_from_path(path1, output_folder=save_folder, first_page=first_page, last_page=last_page)
+            return True
+        else:
+            raise AssertionError("Path" + path1 + "doesnt exists")
+
+    def rotate_image(self, path, screen_name="rotate_screen",
+                     save_folder=save_folder_path,
+                     rotate=0,
+                     image_format=starts_format_image
+                     ):
+        self._check_dir(save_folder)
+        save_folder = self.save_folder
+        self._check_image_format(image_format)
+        if os.path.exists(path):
+            img = cv.imread(path)
+            if int(rotate) == 0:
+                rotate_image = cv.rotate(img, cv.ROTATE_90_CLOCKWISE)
+                cv.imwrite(save_folder + '/' + screen_name + self.format, rotate_image)
+            elif int(rotate) == 1:
+                rotate_image = cv.rotate(img, cv.ROTATE_90_COUNTERCLOCKWISE)
+                cv.imwrite(save_folder + '/' + screen_name + self.format, rotate_image)
+            elif int(rotate) == 2:
+                rotate_image = cv.rotate(img, cv.ROTATE_180)
+                cv.imwrite(save_folder + '/' + screen_name + self.format, rotate_image)
+            else:
+                raise AssertionError("You try to setup volume:" + str(rotate) +
+                                     " which never exists. Please read documentations a try 0,1 or 2.")
+        else:
+            raise AssertionError("Path" + path + "doesnt exists")
