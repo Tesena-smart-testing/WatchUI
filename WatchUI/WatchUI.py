@@ -9,6 +9,7 @@ from robot.libraries.BuiltIn import BuiltIn, RobotNotRunningError
 from skimage.metrics import structural_similarity
 import tempfile
 import pdf2image
+import pytesseract
 
 import imutils
 
@@ -611,7 +612,7 @@ class WatchUI:
     def image_area_on_text(path, *coordinates, oem='3', psm='3', language='eng',
                            tesseract_cmd=r'C:\Program Files\Tesseract-OCR\tesseract.exe'):
         string_list = []
-        old_img = cv2.imread(path)
+        old_img = cv.imread(path)
         len_coordinates = len(coordinates)
         if len_coordinates % 4 == 0:
             if len_coordinates / 4 == 1:
