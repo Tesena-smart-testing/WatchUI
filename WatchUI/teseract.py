@@ -3,14 +3,27 @@ import pytesseract
 from pdf2image import convert_from_path, convert_from_bytes
 import tempfile
 
-
+# Otestovat
 def pdf_to_image(pathToFolder = '', outFolder = '/'):
-    with tempfile.TemporaryFile() as path:
+    with tempfile.TemporaryFile():
         convert_from_path(pathToFolder, output_folder=outFolder)
     return True
 
 
-def show_text_in_img(path):
+def rotate_image(path, rotate=0):
+    if int(rotate) == 0:
+        img = cv2.imread(path)
+        rotate_image = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
+    elif int(rotate) == 1:
+        img = cv2.imread(path)
+        rotate_image = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
+    else:
+        print('Zadal jsi špatnou rotate value zadej mezi 0 1 ')
+    cv2.imwrite('rotimg', rotate_image)
+
+
+
+def show_text_in_img(path, show = 'N'):
     '''
     Show img with box around text :-)
 
@@ -32,8 +45,11 @@ def show_text_in_img(path):
         img = cv2.rectangle(img, (int(b[1]), h - int(b[2])), (int(b[3]), h - int(b[4])), (0, 255, 0), 2)
 
     # show annotated image and wait for keypress
-    cv2.imshow('img', img)
-    cv2.waitKey(0)
+    if show == 'N':
+        cv2.imwrite('textIMG', img)
+    else:
+        cv2.imshow('img', img)
+        cv2.waitKey(0)
 
 
 def full_image_to_string(path, oem=3, psm=3, language='eng'):
