@@ -1,14 +1,16 @@
 import cv2
 import pytesseract
 from pdf2image import convert_from_path, convert_from_bytes
+from pdf2image.exceptions import (
+    PDFInfoNotInstalledError,
+    PDFPageCountError,
+    PDFSyntaxError
+)
 import tempfile
 
 
 # Otestovat
-def pdf_to_image(path_to_folder='', out_folder='/', first_page=None, last_page=None):
-    with tempfile.TemporaryFile():
-        convert_from_path(path_to_folder, output_folder=out_folder, first_page=first_page, last_page=last_page)
-    return True
+
 
 
 def rotate_image(path, rotate=0):
@@ -92,10 +94,11 @@ def image_area_on_text(path, *coordinates, oem='3', psm='3', language='eng',tess
     if len_coordinates % 4 == 0:
         if len_coordinates / 4 == 1:
             crop_img = old_img[int(coordinates[1]): int(coordinates[3]), int(coordinates[0]): int(coordinates[2])]
+            cv2.imwrite('crop_img.png', crop_img)
             pytesseract.pytesseract.tesseract_cmd = tesseract_cmd
             custom_oem_psm_config = r'--oem ' + oem + ' --psm ' + psm
             text = pytesseract.image_to_string(crop_img, config=custom_oem_psm_config, lang=language)
-            return text
+            print(text)
         else:
             num_coordinates = len_coordinates / 4
             a = 0
@@ -116,11 +119,18 @@ def image_area_on_text(path, *coordinates, oem='3', psm='3', language='eng',tess
     else:
         print('špatně zadané souřadnice')
 
+def pdf_to_image(path_to_folder, out_folder='../Img', first_page=1, last_page=1, poppler_path=r"C:\bin\poppler\bin"):
+    with tempfile.TemporaryFile():
+        convert_from_path(path_to_folder, output_folder=out_folder, poppler_path=poppler_path, first_page=first_page, last_page=last_page)
+    return True
+
+
+
 
 # show_text_in_img()
 
 
 # full_image_to_string(r'C:\Users\honzik\PycharmProjects\WatchUI\Img\forpres.png')
 
-
-image_area_on_text(r'C:\development\scripty\WatchUI\Img\forpres.png', 166, 133, 315, 175, 0, 0, 100, 100)
+pdf_to_image(path_to_folder=r'C:\development\scripty\WatchUI\Img\pdf.pdf')
+# image_area_on_text(r'C:\development\scripty\WatchUI\WatchUI\canny_scale.png', 2569, 3179, 3236, 3230, psm='3', oem='3')

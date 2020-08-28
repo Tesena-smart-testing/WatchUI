@@ -1,16 +1,14 @@
 import csv
 import os
 import time
-from SeleniumLibrary.base import keyword
 import cv2 as cv
 import pandas as pd
 from pdf2image import convert_from_path
 from robot.libraries.BuiltIn import BuiltIn, RobotNotRunningError
 from skimage.metrics import structural_similarity
 import tempfile
-import pdf2image
 import pytesseract
-
+import fitz
 import imutils
 
 
@@ -343,7 +341,8 @@ class WatchUI:
             raise AssertionError("Bad numbers of resolution")
 
     def compare_screen_areas(
-            self, x1, y1, x2, y2, path1, save_folder=save_folder_path, ssim=starts_ssim, image_format=starts_format_image
+            self, x1, y1, x2, y2, path1, save_folder=save_folder_path, ssim=starts_ssim,
+            image_format=starts_format_image
     ):
         """Creates a cut-out from the screen
 
@@ -609,45 +608,86 @@ class WatchUI:
         else:
             raise AssertionError("Bad or not exists path for picture or screen")
 
-    def image_area_on_text(path, *coordinates, oem='3', psm='3', language='eng',
+    def image_to_string(self, path, oem=3, psm=3, language='eng',
+                        tesseract_cmd=r'C:\Program Files\Tesseract-OCR\tesseract.exe'):
+        '''
+        PSM = Page Segmentation Mode
+            - 0 = Orientation and script detection (OSD) only.
+            - 1 = Automatic page segmentation with OSD.
+            - 2 = Automatic page segmentation, but no OSD, or OCR. (not implemented)
+            - 3 = Fully automatic page segmentation, but no OSD. (Default)
+            - 4 = Assume a single column of text of variable sizes.
+            - 5 = Assume a single uniform block of vertically aligned text.
+            - 6 = Assume a single uniform block of text. (Default)
+            - 7 = Treat the image as a single text line.
+            - 8 = Treat the image as a single word.
+            - 9 = Treat the image as a single word in a circle.
+            - 10 = Treat the image as a single character.
+            - 11 = Sparse text. Find as much text as possible in no particular order.
+            - 12 = Sparse text with OSD.
+            - 13 = Raw line. Treat the image as a single text line,
+                 bypassing hacks that are Tesseract-specific.
+
+        OEM = Engine Mode
+            - 0 = Original Tesseract only.
+            - 1 = Neural nets LSTM only.
+            - 2 = Tesseract + LSTM.
+            - 3 = Default, based on what is available (Default)
+        '''
+        if os.path.exists(path):
+            old_img = cv.imread(path)
+            pytesseract.pytesseract.tesseract_cmd = tesseract_cmd
+            custom_oem_psm_config = r'--oem ' + oem + ' --psm ' + psm
+            text = pytesseract.image_to_string(old_img, config=custom_oem_psm_config, lang=language)
+            return text
+        else:
+            raise AssertionError("Path" + path + "doesnt exists")
+
+    def image_area_on_text(self, path, *coordinates, oem='3', psm='3', language='eng',
                            tesseract_cmd=r'C:\Program Files\Tesseract-OCR\tesseract.exe'):
         string_list = []
         old_img = cv.imread(path)
         len_coordinates = len(coordinates)
-        if len_coordinates % 4 == 0:
-            if len_coordinates / 4 == 1:
-                crop_img = old_img[int(coordinates[1]): int(coordinates[3]), int(coordinates[0]): int(coordinates[2])]
-                pytesseract.pytesseract.tesseract_cmd = tesseract_cmd
-                custom_oem_psm_config = r'--oem ' + oem + ' --psm ' + psm
-                text = pytesseract.image_to_string(crop_img, config=custom_oem_psm_config, lang=language)
-                return text
-            else:
-                num_coordinates = len_coordinates / 4
-                a = 0
-                i = 0
-                while i < num_coordinates:
-                    x1 = coordinates[0 + a]
-                    y1 = coordinates[1 + a]
-                    x2 = coordinates[2 + a]
-                    y2 = coordinates[3 + a]
-                    crop_img = old_img[int(y1): int(y2), int(x1): int(x2)]
-                    pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+        if os.path.exists(path):
+            if len_coordinates % 4 == 0:
+                if len_coordinates / 4 == 1:
+                    crop_img = old_img[int(coordinates[1]): int(coordinates[3]),
+                               int(coordinates[0]): int(coordinates[2])]
+                    pytesseract.pytesseract.tesseract_cmd = tesseract_cmd
                     custom_oem_psm_config = r'--oem ' + oem + ' --psm ' + psm
                     text = pytesseract.image_to_string(crop_img, config=custom_oem_psm_config, lang=language)
-                    string_list.append(text)
-                    i += 1
-                    a += 4
-            return string_list
+                    return text
+                else:
+                    num_coordinates = len_coordinates / 4
+                    a = 0
+                    i = 0
+                    while i < num_coordinates:
+                        x1 = coordinates[0 + a]
+                        y1 = coordinates[1 + a]
+                        x2 = coordinates[2 + a]
+                        y2 = coordinates[3 + a]
+                        crop_img = old_img[int(y1): int(y2), int(x1): int(x2)]
+                        pytesseract.pytesseract.tesseract_cmd = tesseract_cmd
+                        custom_oem_psm_config = r'--oem ' + oem + ' --psm ' + psm
+                        text = pytesseract.image_to_string(crop_img, config=custom_oem_psm_config, lang=language)
+                        string_list.append(text)
+                        i += 1
+                        a += 4
+                    return string_list
+            else:
+                raise AssertionError("you entered the wrong number of coordinates. you always have to enter four")
         else:
-            print('špatně zadané souřadnice')
+            raise AssertionError("Path" + path + "doesnt exists")
 
-    def pdf_to_image(self, path1, save_folder=save_folder_path, first_page=None, last_page=None):
+    def pdf_to_image(self, path1, save_folder=save_folder_path, name = "img", number_page = "0"):
         self._check_dir(save_folder)
         save_folder = self.save_folder
         if os.path.exists(path1):
-            with tempfile.TemporaryFile():
-                convert_from_path(path1, output_folder=save_folder, first_page=first_page, last_page=last_page)
-            return True
+            doc = fitz.open(path1)
+            page = doc.loadPage(int(number_page))  # number of page
+            pix = page.getPixmap()
+            output = save_folder + name + ".png"
+            pix.writePNG(output)
         else:
             raise AssertionError("Path" + path1 + "doesnt exists")
 
