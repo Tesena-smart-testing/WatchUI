@@ -656,6 +656,7 @@ class WatchUI:
                     pytesseract.pytesseract.tesseract_cmd = tesseract_cmd
                     custom_oem_psm_config = r'--oem ' + oem + ' --psm ' + psm
                     text = pytesseract.image_to_string(crop_img, config=custom_oem_psm_config, lang=language)
+                    text = os.linesep.join([s for s in text.splitlines() if s]) # delete blank line space
                     return text
                 else:
                     num_coordinates = len_coordinates / 4

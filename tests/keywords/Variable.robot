@@ -26,3 +26,10 @@ ${CS_NEWURL}                https://www.tesena.com/career/
 # ---------------------------------------- Comparing screen without Area ------------------------------------------------------------
 ${CSWA_NEWURL}             https://www.czc.cz/
 @{CSWA_BLACKSQUARE}        0  168  800  600
+
+# ---------------------------------------- Text testing ------------------------------------------------------------
+${TT_path_to_pdf}          ../Img/dummy.pdf
+${TT_name_img}              pdfInPng
+${TT_path_to_img}          ../Outputs/${TT_name_img}.png
+@{TT_text_area_coo}        0    0   179     83
+${TT_Should_be_text}        Dummy PDF file
