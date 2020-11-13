@@ -3,10 +3,8 @@ import os
 import time
 import cv2 as cv
 import pandas as pd
-from pdf2image import convert_from_path
 from robot.libraries.BuiltIn import BuiltIn, RobotNotRunningError
 from skimage.metrics import structural_similarity
-import tempfile
 import pytesseract
 import fitz
 import imutils
@@ -716,3 +714,46 @@ class WatchUI:
                                      " which never exists. Please read documentations a try 0,1 or 2.")
         else:
             raise AssertionError("Path" + path + "doesnt exists")
+
+    def return_all_text_from_pdf(self, path):
+        if os.path.exists(path):
+            doc = fitz.open(path)
+            for page in doc:
+                text = page.getText()
+            return text
+        else:
+            raise AssertionError("Can't found file")
+
+    def return_text_from_area(self, path, page_number, x1, y1, x2, y2):
+        """
+        w = WatchUI()
+        w.return_text_from_area('D:\Projects\Tesena\watchUI\Img\dummy.pdf', 0, 50, 60, 190, 88)
+        """
+        if os.path.exists(path):
+            doc = fitz.open(path)
+            page = doc[page_number]
+            words_list = page.getTextWords()
+            text = ""
+            for xy in words_list:
+                if float(xy[0]) > float(x1) and float(xy[1]) > float(y1) and float(xy[2]) < float(x2) and float(xy[3]) < float(y2):
+                    text += xy[4] + " "
+                return text
+        else:
+            raise AssertionError("Can't found file")
+
+    def should_exist_this_text(self, path, page_number, text):
+        """
+        w = WatchUI()
+        w.should_exist_this_text('D:\Projects\Tesena\watchUI\Img\dummy.pdf', 0, "d")
+        """
+        if os.path.exists(path):
+            doc = fitz.open(path)
+            page = doc[page_number]
+            text_instances = page.searchFor(text)
+            if len(text_instances) > 0:
+                return True
+            else:
+                return False
+        else:
+            raise AssertionError("Can't found file")
+

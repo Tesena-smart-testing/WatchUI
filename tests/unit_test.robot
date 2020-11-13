@@ -55,7 +55,6 @@ TC06 - Tesseract
     [Tags]  tc06    TT
     [Setup]
     Convert PDF to IMG
-    From IMG to string
     [Teardown]
 
 *** Keywords ***
