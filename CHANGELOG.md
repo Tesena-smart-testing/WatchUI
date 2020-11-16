@@ -2,7 +2,29 @@
 
 All notable changes to this project will be documented in this file.
 
-## [???] - 2020-05-04
+
+## [1.0.6] - 2020-11-16
+
+### Added
+
+- New keyword for works with PDF and tesseract
+- New unit test
+- add __init__.py for installation
+
+### Changed
+
+- New installation. Now you just put your code `Library  WatchUI` and you can work :-)
+- Repair some bugs in code (Doesnt delete test img, hard instalation, bad assertion in create area keywords etc.)
+- Repair bugs in documentation
+
+
+## [1.0.5] - 2020-08-22
+
+### Added
+
+- New keywords rotate image
+
+## [1.0.0] - 2020-05-04
 
 ### Added
 

@@ -3,7 +3,7 @@ Documentation                   Suite description
 Library                         SeleniumLibrary
 Library                         Screenshot
 Library                         OperatingSystem
-Library                         ../WatchUI/WatchUI.py
+Library                         WatchUI
 Library                         OperatingSystem
 Resource                        keywords/CS.robot
 Resource                        keywords/CS_2SavedImage.robot
@@ -54,7 +54,8 @@ TC05 - Create Area
 TC06 - Tesseract
     [Tags]  tc06    TT
     [Setup]
-    Convert PDF to IMG
+    Check text in area
+    Check text exists
     [Teardown]
 
 *** Keywords ***

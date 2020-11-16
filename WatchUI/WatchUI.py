@@ -10,6 +10,16 @@ import fitz
 import imutils
 
 
+def return_all_text_from_pdf(path):
+    if os.path.exists(path):
+        doc = fitz.open(path)
+        for page in doc:
+            text = page.getText()
+        return text
+    else:
+        raise AssertionError("Can't found file")
+
+
 class WatchUI:
     """WatchUI - Custom library for comparing images with use in Robot Framework.
 
@@ -43,8 +53,9 @@ class WatchUI:
     save_folder_path = "../Outputs"
     starts_ssim = 1.0
     starts_format_image = "png"
+    path_to_tesseract_folder = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
-    def __init__(self, outputs_folder=save_folder_path, ssim_basic=starts_ssim, format_image=starts_format_image):
+    def __init__(self, outputs_folder=save_folder_path, ssim_basic=starts_ssim, format_image=starts_format_image, tesseract_path=path_to_tesseract_folder):
         """Library can be imported either with default output folder and set lowest limit of difference between images (ssim), or
         you can provide your own values.
 
@@ -67,6 +78,8 @@ class WatchUI:
         self.outputs_folder = outputs_folder
         self.ssim_basic = float(ssim_basic)
         self.image_format = str(format_image)
+        self.tesseract_path = str(tesseract_path)
+
         # when libdoc builds documentation, this would lead to exception, since robot cannot access execution context,
         # since nothing really executes
         try:
@@ -151,6 +164,21 @@ class WatchUI:
         thresh = cv.threshold(diff, 0, 255, cv.THRESH_BINARY_INV | cv.THRESH_OTSU)[1]
         cnts = cv.findContours(thresh.copy(), cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
         self.cnts = imutils.grab_contours(cnts)
+
+    def _check_tess_path(self, path_to_tess):
+        """
+        Checks, if given <path> is same as default, is not return new path
+
+        Arguments:
+            path {str} -- path to <save_folder>
+        """
+        if path_to_tess == r'C:\Program Files\Tesseract-OCR\tesseract.exe':
+            self.tess_way = self.tesseract_path
+        else:
+            self.tess_way = path_to_tess
+
+
+
 
     def compare_images(
             self, path1, path2, save_folder=save_folder_path, ssim=starts_ssim, image_format=starts_format_image
@@ -606,35 +634,23 @@ class WatchUI:
         else:
             raise AssertionError("Bad or not exists path for picture or screen")
 
-    def image_to_string(self, path, oem=3, psm=3, language='eng',
-                        tesseract_cmd=r'C:\Program Files\Tesseract-OCR\tesseract.exe'):
-        '''
-        PSM = Page Segmentation Mode
-            - 0 = Orientation and script detection (OSD) only.
-            - 1 = Automatic page segmentation with OSD.
-            - 2 = Automatic page segmentation, but no OSD, or OCR. (not implemented)
-            - 3 = Fully automatic page segmentation, but no OSD. (Default)
-            - 4 = Assume a single column of text of variable sizes.
-            - 5 = Assume a single uniform block of vertically aligned text.
-            - 6 = Assume a single uniform block of text. (Default)
-            - 7 = Treat the image as a single text line.
-            - 8 = Treat the image as a single word.
-            - 9 = Treat the image as a single word in a circle.
-            - 10 = Treat the image as a single character.
-            - 11 = Sparse text. Find as much text as possible in no particular order.
-            - 12 = Sparse text with OSD.
-            - 13 = Raw line. Treat the image as a single text line,
-                 bypassing hacks that are Tesseract-specific.
+# ------------------------------------------ Tesseract / PDF ----------------------------------------------------------#
 
-        OEM = Engine Mode
-            - 0 = Original Tesseract only.
-            - 1 = Neural nets LSTM only.
-            - 2 = Tesseract + LSTM.
-            - 3 = Default, based on what is available (Default)
-        '''
+    def image_to_string(self, path, oem=3, psm=3, language='eng',
+                        path_to_tesseract=path_to_tesseract_folder):
+        """
+        Keyword for reading text from image. For proper functionality you must install tesseract-ocr.
+
+        path = path to the image, which we wanna read
+        oem = Engine Mode (Settings from tesseract)
+        PSM = Page Segmentation Mode (Settings from tesseract)
+        language = The Language we wanna read file
+        path_to_tesseract = Path to root folder with tesseract.exe
+        """
         if os.path.exists(path):
+            self._check_tess_path(path_to_tesseract)
             old_img = cv.imread(path)
-            pytesseract.pytesseract.tesseract_cmd = tesseract_cmd
+            pytesseract.pytesseract.tesseract_cmd = self.tess_way
             custom_oem_psm_config = r'--oem ' + oem + ' --psm ' + psm
             text = pytesseract.image_to_string(old_img, config=custom_oem_psm_config, lang=language)
             return text
@@ -642,16 +658,29 @@ class WatchUI:
             raise AssertionError("Path" + path + "doesnt exists")
 
     def image_area_on_text(self, path, *coordinates, oem='3', psm='3', language='eng',
-                           tesseract_cmd=r'C:\Program Files\Tesseract-OCR\tesseract.exe'):
+                           path_to_tesseract=path_to_tesseract_folder):
+        """
+        Keyword for reading text from image. For proper functionality you must install tesseract-ocr.
+
+        path = path to the image, which we wanna read
+        *coordinates = coordinates where text is located. Must be 4 (x1, y1, x2, y2)
+        oem = Engine Mode (Settings from tesseract)
+        PSM = Page Segmentation Mode (Settings from tesseract)
+        language = The Language we wanna read file
+        path_to_tesseract = Path to root folder with tesseract.exe
+
+        """
+        self._check_tess_path(path_to_tesseract)
         string_list = []
         old_img = cv.imread(path)
         len_coordinates = len(coordinates)
         if os.path.exists(path):
+
             if len_coordinates % 4 == 0:
                 if len_coordinates / 4 == 1:
                     crop_img = old_img[int(coordinates[1]): int(coordinates[3]),
                                int(coordinates[0]): int(coordinates[2])]
-                    pytesseract.pytesseract.tesseract_cmd = tesseract_cmd
+                    pytesseract.pytesseract.tesseract_cmd = self.tess_way
                     custom_oem_psm_config = r'--oem ' + oem + ' --psm ' + psm
                     text = pytesseract.image_to_string(crop_img, config=custom_oem_psm_config, lang=language)
                     text = os.linesep.join([s for s in text.splitlines() if s]) # delete blank line space
@@ -666,7 +695,7 @@ class WatchUI:
                         x2 = coordinates[2 + a]
                         y2 = coordinates[3 + a]
                         crop_img = old_img[int(y1): int(y2), int(x1): int(x2)]
-                        pytesseract.pytesseract.tesseract_cmd = tesseract_cmd
+                        pytesseract.pytesseract.tesseract_cmd = self.tess_way
                         custom_oem_psm_config = r'--oem ' + oem + ' --psm ' + psm
                         text = pytesseract.image_to_string(crop_img, config=custom_oem_psm_config, lang=language)
                         string_list.append(text)
@@ -678,7 +707,15 @@ class WatchUI:
         else:
             raise AssertionError("Path" + path + "doesnt exists")
 
-    def pdf_to_image(self, path1, save_folder=save_folder_path, name = "img", number_page = "0"):
+    def pdf_to_image(self, path1, save_folder=save_folder_path, name="img", number_page="0"):
+        """
+        Change PDF to Image.
+
+        path = Path to the pdf, which we wanna change to image.
+        name = Name of the image, we going to creating.
+        number_page = PDF page number, which we change into image.
+
+        """
         self._check_dir(save_folder)
         save_folder = self.save_folder
         if os.path.exists(path1):
@@ -695,6 +732,14 @@ class WatchUI:
                      rotate=0,
                      image_format=starts_format_image
                      ):
+        """
+
+        path = Path to the image, which we wanna rotate.
+        rotate = How we want to rotate the image. 0 = 90degrees Clockwise, 1 = 90degrees Counter clockwise,
+        2= 180degrees
+        number_page = PDF page number, which we change into image.
+
+        """
         self._check_dir(save_folder)
         save_folder = self.save_folder
         self._check_image_format(image_format)
@@ -715,36 +760,40 @@ class WatchUI:
         else:
             raise AssertionError("Path" + path + "doesnt exists")
 
-    def return_all_text_from_pdf(self, path):
-        if os.path.exists(path):
-            doc = fitz.open(path)
-            for page in doc:
-                text = page.getText()
-            return text
-        else:
-            raise AssertionError("Can't found file")
-
-    def return_text_from_area(self, path, page_number, x1, y1, x2, y2):
+    @staticmethod
+    def return_text_from_area(path, page_number: int, x1, y1, x2, y2):
         """
-        w = WatchUI()
-        w.return_text_from_area('D:\Projects\Tesena\watchUI\Img\dummy.pdf', 0, 50, 60, 190, 88)
+        Return text from area. It doesnt use tesseract, so its can be used on normally pdf or without installed tesseract
+        path = Path to pdf
+        page_number = PDF page number where we wanna search for text
+        x1, y1, x2, y2 = coordinates where text is
         """
         if os.path.exists(path):
             doc = fitz.open(path)
             page = doc[page_number]
             words_list = page.getTextWords()
             text = ""
+            xy_numbers = 1
             for xy in words_list:
-                if float(xy[0]) > float(x1) and float(xy[1]) > float(y1) and float(xy[2]) < float(x2) and float(xy[3]) < float(y2):
-                    text += xy[4] + " "
-                return text
+                if float(xy[0]) > float(x1) and float(xy[1]) > float(y1) and float(xy[2]) < float(x2) and \
+                        float(xy[3]) < float(y2):
+                    if xy_numbers == len(words_list):
+                        text += xy[4]
+                    else:
+                        text += xy[4] + " "
+                xy_numbers += 1
+            return text
         else:
             raise AssertionError("Can't found file")
 
-    def should_exist_this_text(self, path, page_number, text):
+    @staticmethod
+    def should_exist_this_text(path, page_number: int, text):
         """
-        w = WatchUI()
-        w.should_exist_this_text('D:\Projects\Tesena\watchUI\Img\dummy.pdf', 0, "d")
+        Returns True if <text> is found in page
+        path = Path to pdf
+        page_number = PDF page number where we wanna check text
+        text = Text which we search
+
         """
         if os.path.exists(path):
             doc = fitz.open(path)
@@ -756,4 +805,3 @@ class WatchUI:
                 return False
         else:
             raise AssertionError("Can't found file")
-
