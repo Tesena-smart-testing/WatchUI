@@ -2,11 +2,10 @@
 layout: home
 title: Home
 tagline: |
-  Free Bootstrap theme for your project documentation
+  Documentation for robot-framework library WatchUI
   
-  Designed with *&nbsp;*{: .fa .fa-heart} for developers
+  Designed with *&nbsp;*{: .fa .fa-heart} for testers
   
-  Ready to use in *&nbsp;*{: .fa .fa-github} Github Pages
 heading: Getting started is easy!
 navigation:
   - /start
@@ -16,13 +15,10 @@ navigation:
 ---
 
 Welcome to WatchUI - docs.
-This landing page is an example of how you can use a card view to present segments of your documentation.
-You can customise the icon fonts based on your needs.
-
 <div class="cta-container">
 
 [*&nbsp;*{: .fa .fa-cloud-download} Download Now][PRETTYDOCS]{: .btn .btn-primary .btn-cta}
-[*&nbsp;*{: .fa .fa-github} Use in GitHub Pages][GHPAGES]{: .btn .btn-green .btn-primary .btn-cta}
+[*&nbsp;*{: .fa .fa-github} Find us on GitHub][https://github.com/procesor2017/WatchUI/]{: .btn .btn-green .btn-primary .btn-cta}
 
 </div>
 
