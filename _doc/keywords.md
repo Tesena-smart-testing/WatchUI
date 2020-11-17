@@ -8,5 +8,8 @@ icon:
 color: green
 sections:
   - /keywords/compare_images
+  - /keywords/compare_screen
+  - /keywords/create_area
+  - /keywords/create_screens
 ---
  If you wanna use "normally" documentation from libdoc (look like robot framework documentation), you can go to [here](/WatchUI/rf_documentation/)
