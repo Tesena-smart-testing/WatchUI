@@ -18,7 +18,10 @@ pip install WatchUI
 
 and to the Robot framework put just:
 
-``` Library  WatchUI```
+```robotframework
+*** Settings ***
+Library         WatchUI.py
+```
 
 #### From github
 For Installing WatchUI needs [python >= 3.5](https://www.python.org/), [pip](https://pip.pypa.io/en/stable/installing/) and [git](https://git-scm.com/)
@@ -35,7 +38,11 @@ pip install -r requirements.txt
 
 and to the Robot framework put just:
 
-``` Library  <path to folder where is WatchUI.py>/WatchUI.py```
+```robotframework
+*** Settings ***
+Library  <path to folder where is WatchUI.py>/WatchUI.pys
+```
+
 
 ### Install Tesseract
 #### Windows
