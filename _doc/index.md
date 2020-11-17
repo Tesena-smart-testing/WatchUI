@@ -12,6 +12,7 @@ navigation:
   - /news
   - /keywords
   - /License
+  - /rf_docum
 ---
 
 Welcome to WatchUI - docs. Here, you can find complete info about our WatchUI library.
