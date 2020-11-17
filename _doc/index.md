@@ -18,7 +18,7 @@ Welcome to WatchUI - docs.
 <div class="cta-container">
 
 [*&nbsp;*{: .fa .fa-cloud-download} Download Now][PRETTYDOCS]{: .btn .btn-primary .btn-cta}
-[*&nbsp;*{: .fa .fa-github} Find us on GitHub][https://github.com/procesor2017/WatchUI/]{: .btn .btn-green .btn-primary .btn-cta}
+[*&nbsp;*{: .fa .fa-github} Find us on GitHub][WatchUI]{: .btn .btn-green .btn-primary .btn-cta}
 
 </div>
 
