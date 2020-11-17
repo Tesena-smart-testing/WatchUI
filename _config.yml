@@ -1,1 +1,74 @@
-theme: jekyll-theme-cayman
+#
+# Site settings
+#
+remote_theme: LeakyAbstractions/pretty-docs
+url: https://procesor2017.github.io/
+baseurl: /WatchUI
+title: &site_title Pretty Docs
+description: &site_description Free Bootstrap theme for your project documentation
+branding:
+  icon:
+    name: icon_documents_alt
+  highlight: Pretty
+  bold: Docs
+markdown: kramdown
+kramdown:
+  auto_ids: true
+  entity_output: as_char
+  toc_levels: 1..6
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  input: GFM
+  hard_wrap: false
+  footnote_nr: 1
+  parse_block_html: true
+
+
+#
+# Owner
+#
+owner:
+  name: Guillermo Calvo
+  twitter: &site_owner_twitter gcalvo
+  copyright:
+    notice: Lorem Ipsum
+    author: "[Guillermo Calvo](https://guillermo.in/)"
+
+
+#
+# Social
+#
+share:
+    repo: https://github.com/procesor2017/WatchUI/
+    position: right
+    color: red
+
+
+# Google Analytics
+google_analytics: UA-61670496-5
+
+
+#
+# Collections
+#
+collections:
+  doc:
+    output: true
+    permalink: /:path.html
+
+
+#
+# Default values
+#
+defaults:
+  -
+    scope:
+      path: ""
+      type: doc
+    values:
+      layout: doc
+  -
+    scope:
+      path: ""
+      type: pages
+    values:
+      layout: doc
