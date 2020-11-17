@@ -1,10 +1,31 @@
 ---
 title: Compare images
+sections:
+  - Describe
+  - Arguments
+  - Example
 ---
+{: #Describe}
+It compares two images from the two paths and, if there are differences, saves the image with the errors highlighted
+in the folder which you choose. Default folder is ../Outputs
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec imperdiet turpis. Curabitur aliquet pulvinar ultrices.
-Etiam at posuere leo. Proin ultrices ex et dapibus feugiat [link example](#) aenean purus leo, faucibus at elit vel, aliquet scelerisque dui.
-Etiam quis elit euismod, imperdiet augue sit amet, imperdiet odio. Aenean sem erat, hendrerit  eu gravida id, dignissim ut ante.
-Nam consequat porttitor libero euismod congue.
+{: #Arguments}
 
-[*&nbsp;*{: .fa .fa-download} Download PrettyDocs](http://themes.3rdwavemedia.com){: .btn .btn-green}
+<div class="table-responsive">
+
+{: .table .table-striped}
+| Arguments | Documentation
+|-
+| path1 | path to the first image to be compared
+| path2 | path to the second image to be compared
+| save_folder | path, where you want to save images with highlighted differences (default: "../Outputs")
+| ssim | threshold value in the interval (0, 1>. Tests are passed, if ssim value returned by keyword test functions is bigger than this (default: 1.0)
+| image_format | Format for saving picture/screenshot (png, jpg etc.). Default is png
+</div>
+
+{: #Example}
+
+```
+Compare images SSIM 0.5: JPG Format
+    compare images   ${PATH1}       ${PATH2}  save_folder=${SAVE_FOLDER}  ssim=${SSIM}  image_format=jpg
+```
