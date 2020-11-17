@@ -5,15 +5,15 @@ sections:
   - Arguments
   - Example
 ---
-{: #Describe}
+###### Describe
 It compares two images from the two paths and, if there are differences, saves the image with the errors highlighted
 in the folder which you choose. Default folder is ../Outputs
 
-{: #Arguments}
+###### Arguments
 
 <div class="table-responsive">
 
-{: .table .table-striped}
+{: .table}
 | Arguments | Documentation
 |-
 | path1 | path to the first image to be compared
@@ -23,9 +23,8 @@ in the folder which you choose. Default folder is ../Outputs
 | image_format | Format for saving picture/screenshot (png, jpg etc.). Default is png
 </div>
 
-{: #Example}
+###### Example
 
 ```
-Compare images SSIM 0.5: JPG Format
-    compare images   ${PATH1}       ${PATH2}  save_folder=${SAVE_FOLDER}  ssim=${SSIM}  image_format=jpg
+compare images   ${PATH1}       ${PATH2}  save_folder=${SAVE_FOLDER}  ssim=${SSIM}  image_format=jpg
 ```
