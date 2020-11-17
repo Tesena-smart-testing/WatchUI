@@ -17,7 +17,7 @@ navigation:
 Welcome to WatchUI - docs.
 <div class="cta-container">
 
-[*&nbsp;*{: .fa .fa-house-user} Tesena][TESENA]{: .btn .btn-primary .btn-cta}
+[*&nbsp;*{: .fa .fa-house} Tesena][TESENA]{: .btn .btn-primary .btn-cta}
 [*&nbsp;*{: .fa .fa-github} Find us on GitHub][GHPAGES]{: .btn .btn-green .btn-primary .btn-cta}
 
 
