@@ -9,4 +9,4 @@ color: green
 sections:
   - /keywords/compare_images
 ---
- lablasldapr ouwpfh íuhefisadbfiwbft
+ If you wanna use "normally" documentation from libdoc (look like robot framework documentation), you can go to [here]()
