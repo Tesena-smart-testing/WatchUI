@@ -20,7 +20,7 @@ in the folder which you choose. Default folder is ../Outputs
 | path2 | path to the second image to be compared
 | save_folder | path, where you want to save images with highlighted differences (default: "../Outputs")
 | ssim | threshold value in the interval (0, 1>. Tests are passed, if ssim value returned by keyword test functions is bigger than this (default: 1.0)
-| image_format | Format for saving picture/screenshot (png, jpg etc.). Default is png
+| image_format      | Format for saving picture/screenshot (png, jpg etc.). Default is png
 
 </div>
 
