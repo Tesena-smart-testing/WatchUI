@@ -9,4 +9,4 @@ color: green
 sections:
   - /keywords/compare_images
 ---
- If you wanna use "normally" documentation from libdoc (look like robot framework documentation), you can go to [here](/WatchUI/rf_docum/)
+ If you wanna use "normally" documentation from libdoc (look like robot framework documentation), you can go to [here](/WatchUI/rf_documentation/)

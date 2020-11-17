@@ -17,6 +17,7 @@ pip install WatchUI
 ```
 
 and to the Robot framework put just:
+
 ``` Library  WatchUI```
 
 #### From github
@@ -33,17 +34,19 @@ pip install -r requirements.txt
 ```
 
 and to the Robot framework put just:
+
 ``` Library  <path to folder where is WatchUI.py>/WatchUI.py```
 
 ### Install Tesseract
 #### Windows
 {: .list}
-- Download the latest released version of the Windows installer for Tesseract
+- Download the latest released version of the Windows installer for Tesseract. Last version you can find [here](https://digi.bib.uni-mannheim.de/tesseract/)
 - Run the executable file to install. It will install to C:\Program Files (x86)\Tesseract OCR
 - Make sure your TESSDATA_PREFIX environment variable is set correctly:
     - Go to Control Panel -> System -> Advanced System Settings -> Advanced tab -> Environment Variables... button
     - In System variables window scroll down to TESSDATA_PREFIX. If it's not right, select and click Edit
     
+
 #### Debian / Ubuntu
 ```shell
 apt-get install tesseract-ocr
