@@ -1,6 +1,6 @@
 ---
 title: What's New
-short_title: All notable changes to this project will be documented in this file.
+short_title: News
 excerpt: All notable changes to this project will be documented in this file.
 icon:
   name: fa fa-newspaper-o

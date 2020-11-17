@@ -12,10 +12,10 @@ navigation:
   - /start
   - /news
   - /keywords
-  - /License.md
+  - /License
 ---
 
-Welcome to prettyDocs.
+Welcome to WatchUI - docs.
 This landing page is an example of how you can use a card view to present segments of your documentation.
 You can customise the icon fonts based on your needs.
 

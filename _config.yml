@@ -4,8 +4,8 @@
 remote_theme: LeakyAbstractions/pretty-docs
 url: https://procesor2017.github.io/
 baseurl: /WatchUI
-title: &site_title Pretty Docs
-description: &site_description Free Bootstrap theme for your project documentation
+title: &site_title WatchUI
+description: &site_description Documentation for WatchUI
 branding:
   icon:
     name: icon_documents_alt
@@ -27,11 +27,10 @@ kramdown:
 # Owner
 #
 owner:
-  name: Guillermo Calvo
-  twitter: &site_owner_twitter gcalvo
+  name: Jan Egermaier
   copyright:
-    notice: Lorem Ipsum
-    author: "[Guillermo Calvo](https://guillermo.in/)"
+    notice: WatchUI
+    author: "[Procesor](https://github.com/procesor2017)"
 
 
 #
