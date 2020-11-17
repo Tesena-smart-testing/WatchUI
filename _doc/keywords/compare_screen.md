@@ -1,9 +1,6 @@
 ---
 title: Compare screen
-sections:
-  - Describe
-  - Arguments
-  - Example
+
 ---
 ##### Describe
 Compares the already saved image with the screen that is on the screen. If there is a difference, it saves the

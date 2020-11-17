@@ -1,9 +1,6 @@
 ---
 title: Create area
-sections:
-  - Describe
-  - Arguments
-  - Example
+
 ---
 ##### Describe
 Creates a cut-out from the screen that is on screen and saves it in the folder: ../Outputs

@@ -1,9 +1,6 @@
 ---
 title: Compare images
-sections:
-  - Describe
-  - Arguments
-  - Example
+
 ---
 ##### Describe
 It compares two images from the two paths and, if there are differences, saves the image with the errors highlighted

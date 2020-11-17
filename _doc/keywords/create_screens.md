@@ -1,9 +1,6 @@
 ---
 title: Create Screens
-sections:
-  - Describe
-  - Arguments
-  - Example
+
 ---
 ##### Describe
 Creates a screenshot on the screen.
