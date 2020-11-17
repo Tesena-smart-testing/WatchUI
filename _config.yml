@@ -9,7 +9,7 @@ description: &site_description Documentation for WatchUI
 branding:
   icon:
     name: icon_documents_alt
-  highlight: Pretty
+  highlight: WatchUI
   bold: Docs
 markdown: kramdown
 kramdown:
