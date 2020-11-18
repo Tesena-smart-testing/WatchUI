@@ -7,4 +7,5 @@ icon:
 color: green
 sections:
   - /changelog/news
+  - /changelog/todo
 ---
