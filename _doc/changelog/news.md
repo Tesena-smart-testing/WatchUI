@@ -1,14 +1,14 @@
 ---
 title: News
 sections:
-    - 1.0.7 2020-11-18
-    - alb
-    - 1.0.5
-    - ver. 1.0.0
-    - 0.17.8 ver.
-    - 1
-    - 0.16.4 - 2020-03-19
-    - 0.14.1 - 2020-03-18
+    - version 1.0.7
+    - version 1.0.6
+    - version 1.0.5
+    - version 1.0.0
+    - version 0.17.8
+    - version 0.17.2
+    - version 0.16.4
+    - version 0.14.1
 ---
 
 
@@ -17,7 +17,9 @@ sections:
 All notable changes to this project will be documented in this file.
 
 
-### 1.0.7 2020-11-18
+### version 1.0.7
+
+date: 2020-11-18
 
 #### Added
 
@@ -29,7 +31,9 @@ All notable changes to this project will be documented in this file.
 - Repair comments in code
 - 
 
-### alb
+### version 1.0.6
+ 
+date: 2020-09-11
 
 #### Added
 
@@ -44,13 +48,17 @@ All notable changes to this project will be documented in this file.
 - Repair bugs in documentation
 
 
-### 1.0.5
+### version 1.0.5
+
+date:2020-08-22
 
 #### Added
 
 - New keywords rotate image
 
-### ver. 1.0.0
+### version 1.0.0
+
+date: 2020-05-04
 
 #### Added
 
@@ -66,7 +74,9 @@ All notable changes to this project will be documented in this file.
 - minor refactoring of WatchUI.py to remove redundant variable assignments
 - modified unittests github pipeline to reflect unittests move
 
-### 0.17.8 ver.
+### version 0.17.8
+
+date: 2020-04-10
 
 #### Added
 
@@ -78,7 +88,9 @@ All notable changes to this project will be documented in this file.
 
 - Change in code (more OOP)
 
-### 1
+### version 0.17.2
+
+date: 2020-03-25
 
 #### Added
 
@@ -94,7 +106,9 @@ All notable changes to this project will be documented in this file.
 - Change ssim from int to float
 - Others change in code
 
-### 0.16.4 - 2020-03-19
+### version 0.16.4 
+
+date: 2020-03-19
 
 #### Changed
 
@@ -107,7 +121,9 @@ All notable changes to this project will be documented in this file.
 - Fixed bugs in area keywords
 - After install with pypi u can using with full apth your watchUI in robot framework
 
-### 0.14.1 - 2020-03-18
+### version 0.14.1
+
+date: 2020-03-18
 
 #### Added
 
