@@ -1,51 +1,35 @@
 # WatchUI
 
+## [Documentation](https://procesor2017.github.io/WatchUI/) | [Tesena](https://pypi.org/project/WatchUI/) | [Pypi](https://pypi.org/project/WatchUI/)
+
+
 ### Basic Info
 
 Custom library for comparing images with use in Robot Framework.
 
-### What is here?
+### Folder structure
 
-- Test samples/test.robot - file with examples how to use keywords
-- WatchUI/WatchUI.py - file with keywords
+```
+Testing-api
+└── .github/workflows           # Folder with CI for github actions
+└── Img                         # Folder with test data
+└── test                        # Folder with example how to write rf test.
+│    └── keywords               # Keywords and variables
+│    └── unit_test.robot        # File with TC
+└── WatchUI                     # Folder with WatchUI library
+│    └── WatchUI.py             # File with custom library
+└── README.MD                   # Here you are :-)
+└── setup.py                    # File for easy setup use with pip install .
+```
 
-# What you need
+### Install
+You can find detail in [Documentation](https://procesor2017.github.io/WatchUI/) but basically use pip:
+```
+pip install WatchUI
+```
 
-## Pip install
 
-[WatchUI](https://pypi.org/project/WatchUI/)
-
-1. Open CMD
-2. Start `pip install WatchUI`
-3. Now you can download WatchUI.py from repository or import WatchUI to new python file more [here](https://stackoverflow.com/questions/32952106/creating-a-robot-framework-library-from-existing-python-package)
-4. If you download WatchUI.py: You must first enter the path in Settings => `Library path`, where path is the path to the WatchUI.py file
-
-## Manual Install
-
-### Main
-
-- [Python](https://www.python.org/)
-- [RobotFramework](https://robotframework.org/)
-- [OpenCV](https://opencv.org/) `pip install opencv-python` or `pip3 install opencv-python`
-- [Pillow](https://python-pillow.org/) `pip install Pillow`
-- [Numpy](https://numpy.org/) `pip install numpy`
-- [Scikit](https://scikit-image.org/) `pip install scikit-image`
-- [Imutils](https://github.com/jrosebr1/imutils) `pip install imutils`
-
-### How to install in RF
-
-- Download git file (Mainly ./Python/WatchUI.py)
-- Enter the path in Settings => `Library path`, where path is the path to the WatchUI.py file
-- Now you can start using keywords listed below. Keep in mind that you need to have all dependencies installed.
-
-### How to install teseract
-https://digi.bib.uni-mannheim.de/tesseract/
-
-## Description Keyword
-
-Library documentation can be found [HERE](https://procesor.github.io/WatchUI/docs/index.html).
-
-## Sample results
+### Sample results
 
 _Image where the differences are stored + You can see two black box in left corner. These black box are ignored during comparison._
 
