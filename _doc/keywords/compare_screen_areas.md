@@ -22,7 +22,15 @@ Creates a cutout from the screen that matches the coordinates and then compares 
 </div>
 
 ##### Example
+
+###### Basic code:
 ```robotframework
 *** Keywords ***
-Compare screen areas                ${x1}   ${y1}   ${x2}  ${y2}     ${PATH1}
+Compare screen areas                ${x1}   ${y1}   ${x2}  ${y2}  ${PATH1} 
+```
+
+###### Full set up:
+```robotframework
+*** Keywords ***
+Compare screen areas                ${x1}   ${y1}   ${x2}  ${y2}  ${PATH1}  save_folder=${SAVE_FOLDER}  ssim=${SSIM}  image_format=jpg
 ```

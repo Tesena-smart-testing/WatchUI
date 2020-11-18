@@ -21,15 +21,24 @@ Creates a cut-out from the screen that is on screen and saves it in the folder: 
 </div>
 
 ##### Example
+
+###### Basic code:
 You can create area imagine as:
 ```robotframework
 *** Keywords ***
-Create area  ${x1}   ${y1}   ${x2}  ${y2}  save_folder=Outputs
+Create area  ${x1}   ${y1}   ${x2}  ${y2}
 ```
 
 Its same as:
 ```robotframework
 *** Keywords ***
-Create area  0   0   300  200  save_folder=Outputs
+Create area  0   0   300  200
 ```
 This code creates cutout from coordinates (0,0,300,200)
+
+###### Full set up code:
+
+```robotframework
+*** Keywords ***
+Create area  ${x1}   ${y1}   ${x2}  ${y2}  save_folder=${SAVE_FOLDER}  ssim=${SSIM}  image_format=jpg
+```

@@ -21,6 +21,14 @@ highlighted image to the: ../Outputs
 </div>
 
 ##### Example
+
+###### Basic code:
+```robotframework
+*** Keywords ***
+compare screen  ${PATH1} 
+```
+
+###### Full set up:
 ```robotframework
 *** Keywords ***
 compare screen  ${PATH1}  save_folder=${SAVE_FOLDER}  ssim=${SSIM}  image_format=jpg

@@ -37,7 +37,16 @@ page, name will be screen screen_name_width_height.png
 </div>
 
 ##### Example
+
+###### Basic code:
 ```robotframework
 *** Keywords ***
-Create screens  800  600  1280  800  1440  900  save_folder=Outputs  screen_name=screen
+Create screens  ${x1}   ${y1}
+```
+
+###### Full set up code:
+
+```robotframework
+*** Keywords ***
+Create screens  ${x1}   ${y1}   ${x2}  ${y2}  ${x3}  ${y3}  save_folder=${SAVE_FOLDER}  ssim=${SSIM}  image_format=jpg
 ```

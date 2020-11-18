@@ -23,13 +23,14 @@ One or more parts can be discarded from the comparison.
 </div>
 
 ##### Example
-Basic code is:
+
+###### Basic code is:
 ```robotframework
 *** Keywords ***
 compare images   ${PATH1}   ${x1}   ${y1}   ${x2}  ${y2}
 ```
 
-For more discarded area:
+###### For more discarded area:
 ```robotframework
 *** Keywords ***
 compare images   ${PATH1}   ${x1}   ${y1}   ${x2}  ${y2}  ${x1}   ${y1}   ${x2}  ${y2}  ${x1}   ${y1}   ${x2}  ${y2}
