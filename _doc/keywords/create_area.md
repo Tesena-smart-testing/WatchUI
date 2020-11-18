@@ -32,4 +32,4 @@ Its same as:
 *** Keywords ***
 Create area  0   0   300  200  save_folder=Outputs
 ```
-Thise code creates cutout from coordinates (0,0,300,200)
+This code creates cutout from coordinates (0,0,300,200)

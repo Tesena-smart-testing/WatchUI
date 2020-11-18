@@ -2,7 +2,7 @@
 layout: home
 title: Home
 tagline: |
-  Documentation for robot-framework library WatchUI
+  Visual testing library for Robot Framework 
   
   Designed with *&nbsp;*{: .fa .fa-heart} for testers
   
