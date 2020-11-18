@@ -9,4 +9,5 @@ color: green
 sections:
   - /start/installation
   - /start/basics
+  - /start/settings_tesseract
 ---
