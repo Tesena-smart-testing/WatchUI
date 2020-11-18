@@ -1,7 +1,7 @@
 ---
 title: News
 sections:
-    - version 1.0.7
+    - 1.0.7
     - version 1.0.6
     - version 1.0.5
     - version 1.0.0
