@@ -8,7 +8,7 @@ title: News
 All notable changes to this project will be documented in this file.
 
 
-### version 1.0.7
+### 1.0.7
 
 date: 2020-11-18
 
@@ -22,7 +22,7 @@ date: 2020-11-18
 - Repair comments in code
 - 
 
-### version 1.0.6
+### 1.0.6
  
 date: 2020-09-11
 
@@ -39,7 +39,7 @@ date: 2020-09-11
 - Repair bugs in documentation
 
 
-### version 1.0.5
+### 1.0.5
 
 date:2020-08-22
 
@@ -47,7 +47,7 @@ date:2020-08-22
 
 - New keywords rotate image
 
-### version 1.0.0
+### 1.0.0
 
 date: 2020-05-04
 
@@ -65,7 +65,7 @@ date: 2020-05-04
 - minor refactoring of WatchUI.py to remove redundant variable assignments
 - modified unittests github pipeline to reflect unittests move
 
-### version 0.17.8
+### 0.17.8
 
 date: 2020-04-10
 
@@ -79,7 +79,7 @@ date: 2020-04-10
 
 - Change in code (more OOP)
 
-### version 0.17.2
+### 0.17.2
 
 date: 2020-03-25
 
@@ -97,7 +97,7 @@ date: 2020-03-25
 - Change ssim from int to float
 - Others change in code
 
-### version 0.16.4 
+### 0.16.4 
 
 date: 2020-03-19
 
@@ -112,7 +112,7 @@ date: 2020-03-19
 - Fixed bugs in area keywords
 - After install with pypi u can using with full apth your watchUI in robot framework
 
-### version 0.14.1
+### 0.14.1
 
 date: 2020-03-18
 
