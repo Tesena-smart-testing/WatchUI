@@ -3,10 +3,10 @@ title: News
 sections:
     - 1.0.7 2020-11-18
     - alb
-    - 1.0.5 - 2020-08-22
-    - 1.0.0 - 2020-05-04
-    - 0.17.8 - 2020-04-10
-    - 0.17.2 - 2020-03-25
+    - 1.0.5
+    - ver. 1.0.0
+    - 0.17.8 ver.
+    - 1
     - 0.16.4 - 2020-03-19
     - 0.14.1 - 2020-03-18
 ---
@@ -44,13 +44,13 @@ All notable changes to this project will be documented in this file.
 - Repair bugs in documentation
 
 
-### 1.0.5 - 2020-08-22
+### 1.0.5
 
 #### Added
 
 - New keywords rotate image
 
-### 1.0.0 - 2020-05-04
+### ver. 1.0.0
 
 #### Added
 
@@ -66,7 +66,7 @@ All notable changes to this project will be documented in this file.
 - minor refactoring of WatchUI.py to remove redundant variable assignments
 - modified unittests github pipeline to reflect unittests move
 
-### 0.17.8 - 2020-04-10
+### 0.17.8 ver.
 
 #### Added
 
@@ -78,7 +78,7 @@ All notable changes to this project will be documented in this file.
 
 - Change in code (more OOP)
 
-### 0.17.2 - 2020-03-25
+### 1
 
 #### Added
 
