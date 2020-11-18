@@ -1,5 +1,5 @@
 ---
-title: Installation
+title: Settings Tesseract
 sections:
   - PSM
   - OEM

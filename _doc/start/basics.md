@@ -131,6 +131,7 @@ ${TT_Should_be_text}        Dummy PDF file
 Now we can finally create keywords.
 1. From pdf to image
 2. Extract data from image to variables and then compare values.
+
 ```robotframework
 *** Keywords ***
 Convert PDF to IMG
