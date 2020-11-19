@@ -1,1 +1,68 @@
-theme: jekyll-theme-hacker
+#
+# Site settings
+#
+remote_theme: LeakyAbstractions/pretty-docs
+url: https://procesor2017.github.io/
+baseurl: /WatchUI
+title: &site_title WatchUI
+description: &site_description Documentation for WatchUI
+branding:
+  icon:
+    name: icon_documents_alt
+  highlight: WatchUI
+  bold: Docs
+markdown: kramdown
+kramdown:
+  auto_ids: true
+  entity_output: as_char
+  toc_levels: 1..6
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  input: GFM
+  hard_wrap: false
+  footnote_nr: 1
+  parse_block_html: true
+
+
+#
+# Owner
+#
+owner:
+  name: Jan Egermaier
+  copyright:
+    notice: WatchUI
+    author: "[Procesor](https://github.com/procesor2017)"
+
+
+#
+# Social
+#
+share:
+    repo: https://github.com/procesor2017/WatchUI/
+    position: right
+    color: red
+
+#
+# Collections
+#
+collections:
+  doc:
+    output: true
+    permalink: /:path.html
+
+
+#
+# Default values
+#
+defaults:
+  -
+    scope:
+      path: ""
+      type: doc
+    values:
+      layout: doc
+  -
+    scope:
+      path: ""
+      type: pages
+    values:
+      layout: doc
