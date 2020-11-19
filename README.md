@@ -5,7 +5,9 @@
 
 ### Basic Info
 
+
 Custom library for comparing images with use in Robot Framework.
+
 
 ### Folder structure
 
