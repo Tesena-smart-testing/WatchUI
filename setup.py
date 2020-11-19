@@ -6,7 +6,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="WatchUI",
-    version="1.0.0",
+    version="1.0.6",
     author="Jan Egermaier",
     author_email="jan.egermaier@tesena.com",
     description="RobotFramework library package for automated visual testing.",
@@ -25,6 +25,8 @@ setup(
         "robotframework",
         "selenium",
         "robotframework-seleniumLibrary",
+        "PyMuPDF",
+        "pytesseract"
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
