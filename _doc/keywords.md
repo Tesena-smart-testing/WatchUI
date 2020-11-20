@@ -7,6 +7,7 @@ icon:
   name: fa-key
 color: green
 sections:
+  - /keywords/import
   - /keywords/compare_images
   - /keywords/compare_screen
   - /keywords/create_area

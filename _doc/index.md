@@ -11,7 +11,7 @@ navigation:
   - /start
   - /changelog
   - /keywords
-  - license
+  - /license
 ---
 
 Welcome to WatchUI - docs. Here, you can find complete info about our WatchUI library.
