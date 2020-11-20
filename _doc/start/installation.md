@@ -20,7 +20,7 @@ and to the Robot framework put just:
 
 ```robotframework
 *** Settings ***
-Library         WatchUI.py
+Library         WatchUI
 ```
 
 #### From github
@@ -40,7 +40,7 @@ and to the Robot framework put just:
 
 ```robotframework
 *** Settings ***
-Library  <path to folder where is WatchUI.py>/WatchUI.pys
+Library  <path to folder where is WatchUI.py>/WatchUI.py
 ```
 
 
