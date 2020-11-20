@@ -1,9 +1,6 @@
 ---
 title: License
-excerpt: Read the full details of how this project is licensed
-icon:
-  name: fa fa-gavel
-color: blue
+date: 2020-11-20
 sections:
   - Basic
   - License for openCV keywords
