@@ -5,7 +5,7 @@ title: Authors
 
 # WatchUI
 
- 
+ <div class="author-profile text-center">
 [![](./img/procesor.jpg)](https://github.com/procesor2017){: .center-block}
   
  </div>
