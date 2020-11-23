@@ -1,6 +1,6 @@
 # WatchUI
 
-## [Documentation](https://procesor2017.github.io/WatchUI/) | [Tesena](https://pypi.org/project/WatchUI/) | [Pypi](https://pypi.org/project/WatchUI/)
+## [Documentation](https://tesena-smart-testing.github.io/WatchUI/) | [Tesena](https://www.tesena.com/) | [Pypi](https://pypi.org/project/WatchUI/)
 
 
 ### Basic Info
