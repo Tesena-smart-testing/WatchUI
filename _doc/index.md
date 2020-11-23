@@ -12,6 +12,7 @@ navigation:
   - /changelog
   - /keywords
   - /legal
+  - /credits
 ---
 
 Welcome to WatchUI - docs. There, you can find complete info about our WatchUI library.
