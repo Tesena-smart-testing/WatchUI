@@ -14,7 +14,7 @@ title: Authors
 {: .speech-title}
 ### Jan "Procesor" Egermaier
  
-Main author, source code, documentation and GitHub actions (Pull-CI).
+Developer, DevOps
 
  </div>
  <div class="author-profile text-center">
@@ -27,7 +27,7 @@ Main author, source code, documentation and GitHub actions (Pull-CI).
 {: .speech-title}
 ### Radek "BednaJedna" Bendařík
  
-Source code, review code and GitHub actions (Pypi-deploying).
+Developer
 
  </div>
  <div class="author-profile text-center">
@@ -38,7 +38,7 @@ Source code, review code and GitHub actions (Pypi-deploying).
  <div class="speech-bubble">
 
 {: .speech-title}
-### What he did
+### Marcel Veselka
  
 Founder
 
