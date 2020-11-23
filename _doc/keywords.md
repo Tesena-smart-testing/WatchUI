@@ -7,6 +7,7 @@ icon:
   name: fa-key
 color: red
 sections:
+  - /keywords/keyword_breakdown
   - /keywords/import
   - /keywords/compare_images
   - /keywords/compare_screen
@@ -22,4 +23,4 @@ sections:
   - /keywords/return_text_from_area
   - /keywords/should_exists_this_text
 ---
- If you wanna use "normally" documentation from libdoc (look like robot framework documentation), you can go to [here](/WatchUI/rf_documentation/)
+ If you wanna use "normally" documentation from libdoc (look like robot framework documentation), you can go to [here](/WatchUI/rf_documentation/).

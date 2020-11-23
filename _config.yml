@@ -2,7 +2,7 @@
 # Site settings
 #
 remote_theme: LeakyAbstractions/pretty-docs
-url: https://procesor2017.github.io/
+url: https://github.com/Tesena-smart-testing/WatchUI
 baseurl: /WatchUI
 title: &site_title WatchUI
 description: &site_description Documentation for WatchUI
@@ -37,7 +37,7 @@ owner:
 # Social
 #
 share:
-    repo: https://github.com/procesor2017/WatchUI/
+    repo: https://github.com/Tesena-smart-testing/WatchUI
     position: right
     color: red
 
