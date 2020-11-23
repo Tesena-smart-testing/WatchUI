@@ -2,7 +2,6 @@
 title: Keyword Breakdown
 
 ---
-##### Describe
 Breakdown of keywords according to the libraries keywords use.
 
 #### OpenCV
@@ -29,7 +28,7 @@ Keywords for visual testing pdf (Or any image where we wanna test text).
 - image area on text
 ```
 
-#### Tesseract
+#### PyMUPDF
 
 Keyword for testing pdf (Doesnt use tesseract)
 
