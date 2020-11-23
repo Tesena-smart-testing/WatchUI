@@ -1,12 +1,13 @@
 ---
 title: Keywords
 excerpt: Keywords info
-date: 2020-11-17
+date: 2020-11-20
 icon:
   type: fa
   name: fa-key
-color: green
+color: red
 sections:
+  - /keywords/import
   - /keywords/compare_images
   - /keywords/compare_screen
   - /keywords/create_area

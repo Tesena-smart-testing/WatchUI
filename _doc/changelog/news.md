@@ -20,7 +20,7 @@ date: 2020-11-18
 
 #### Changed
 - Repair comments in code
-- 
+- Repair some mistakes in documentation
 
 ### 1.0.6
  

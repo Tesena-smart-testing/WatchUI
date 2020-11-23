@@ -61,7 +61,7 @@ Ours final file looks like:
 Documentation   Suite description
 Library         SeleniumLibrary
 Library         Screenshot
-Library         WatchUI.py
+Library         WatchUI
 Test Teardown   Close All Browsers
 
 *** Variables ***
@@ -102,7 +102,7 @@ We start with settings:
 ```robotframework
 *** Settings ***
 Documentation   Suite description
-Library         WatchUI.py
+Library         WatchUI
 ```
 
 After settings we must set up ours variables as
@@ -148,7 +148,7 @@ Final code is:
 ```robotframework
 *** Settings ***
 Documentation   Suite description
-Library         WatchUI.py
+Library         WatchUI
 
 
 *** Variables ***

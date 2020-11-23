@@ -11,9 +11,11 @@ navigation:
   - /start
   - /changelog
   - /keywords
+  - /legal
 ---
 
 Welcome to WatchUI - docs. Here, you can find complete info about our WatchUI library.
+If you wanna use "normally" documentation from libdoc (look like robot framework documentation), you can go to [here](/WatchUI/rf_documentation/)
 <div class="cta-container">
 
 [*&nbsp;*{: .fa .fa-home} Tesena][TESENA]{: .btn .btn-primary .btn-cta}
