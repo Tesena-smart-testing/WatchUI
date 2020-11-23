@@ -60,12 +60,6 @@ TC06 - Tesseract
 
 *** Keywords ***
 Start web-browser
-#    ${options}=         Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
-#    Call Method         ${options}  add_argument  --no-sandbox
-#    Create WebDriver    Chrome      chrome_options=${options}
-#    Go to               ${URL}
-
-
      Open Browser                ${URL}      ${BROWSER}
 Close web-browser
     Close Browser
