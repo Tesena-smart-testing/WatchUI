@@ -60,9 +60,9 @@ class WatchUI:
         Examples:
 
         | =Setting= | =Value= | =Value= | =Value= | =Comment= |
-        | Library   | WatchUI.py |      |  | # Uses default values of keyword arguments |
-        | Library   | WatchUI.py | outputs_folder=<path_to_folder> | | # changes folder to different one |
-        | Library   | WatchUI.py | outputs_folder=<path_to_folder> | ssim_basic=<float> | # changes output folder and ssim threshold |
+        | Library   | WatchUI |      |  | # Uses default values of keyword arguments |
+        | Library   | WatchUI | outputs_folder=<path_to_folder> | | # changes folder to different one |
+        | Library   | WatchUI | outputs_folder=<path_to_folder> | ssim_basic=<float> | # changes output folder and ssim threshold |
 
         """
         self.outputs_folder = outputs_folder
