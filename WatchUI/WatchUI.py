@@ -10,16 +10,6 @@ import fitz
 import imutils
 
 
-def return_all_text_from_pdf(path):
-    if os.path.exists(path):
-        doc = fitz.open(path)
-        for page in doc:
-            text = page.getText()
-        return text
-    else:
-        raise AssertionError("Can't found file")
-
-
 class WatchUI:
     """WatchUI - Custom library for comparing images with use in Robot Framework.
 
@@ -70,9 +60,9 @@ class WatchUI:
         Examples:
 
         | =Setting= | =Value= | =Value= | =Value= | =Comment= |
-        | Library   | WatchUI.py |      |  | # Uses default values of keyword arguments |
-        | Library   | WatchUI.py | outputs_folder=<path_to_folder> | | # changes folder to different one |
-        | Library   | WatchUI.py | outputs_folder=<path_to_folder> | ssim_basic=<float> | # changes output folder and ssim threshold |
+        | Library   | WatchUI |      |  | # Uses default values of keyword arguments |
+        | Library   | WatchUI | outputs_folder=<path_to_folder> | | # changes folder to different one |
+        | Library   | WatchUI | outputs_folder=<path_to_folder> | ssim_basic=<float> | # changes output folder and ssim threshold |
 
         """
         self.outputs_folder = outputs_folder
@@ -177,8 +167,7 @@ class WatchUI:
         else:
             self.tess_way = path_to_tess
 
-
-
+# ======================================== Keywords ========================================================
 
     def compare_images(
             self, path1, path2, save_folder=save_folder_path, ssim=starts_ssim, image_format=starts_format_image
@@ -227,13 +216,13 @@ class WatchUI:
                     "Image has diff: {} ".format(self.score)
                 )
         else:
-            raise AssertionError("Path doesnt exists")
+            raise AssertionError("The path to the image does not exist")
 
     def compare_screen(self, path1, save_folder=save_folder_path, ssim=starts_ssim, image_format=starts_format_image):
         """	Compare the already save image with the browser screen
 
         Compares the already saved image with the screen that is on the screen. If there is a difference, it saves the
-        highlighted image to the: ../Save Image
+        highlighted image to the: ../Outputs
 
         path1 = path to the image to be compared to screen
 
@@ -279,9 +268,9 @@ class WatchUI:
                         "Image has diff: {} ".format(self.score)
                     )
             else:
-                raise AssertionError("Path2 doesnt found:" + path2)
+                raise AssertionError("The path2 to the image does not exist. Try a other path, than:" + path2)
         else:
-            raise AssertionError("Path1 doesnt found" + path1)
+            raise AssertionError("The path1 to the image does not exist. Try a other path, than:" + path1)
         if os.path.exists(save_folder + "/testscreen.png"):
             os.remove(save_folder + "/testscreen.png")
 
@@ -290,9 +279,9 @@ class WatchUI:
     ):
         """  Creates a cut-out from the screen
 
-        Creates a cut-out from the screen that is on screen and saves it in the folder: ../Create area
+        Creates a cut-out from the screen that is on screen and saves it in the folder: ../Outputs
 
-        x1 a y1 = x and y coordinates for the upper left corner of the square
+        x1 and y1 = x and y coordinates for the upper left corner of the square
         x2 and y2 = x and y coordinates for the bottom right corner of the square
 
         Example: Compare making area 0 0 25 25
@@ -317,13 +306,13 @@ class WatchUI:
     ):
         """ Creates a screenshot on the screen
 
-        Creates a screenshot on the screen, that corresponds to the specified resolution, so it is possible to create on one
-        page an infinite number of screens with different resolutions.
-        Screens are stored in the folder: ../Create rescreens
+        Creates a screenshot on the screen, that corresponds to the specified resolution, so it is possible to create on
+        one page an infinite number of screens with different resolutions.
+        Screens are stored in the folder: ../Outputs
 
         *resolutin = The specified resolution in width and height format, you can enter as many as needed
 
-        Warning: When you create one screen, name will be screen.png, but when you create more than one screen from same 4
+        Warning: When you create one screen, name will be screen.png, but when you create more than one screen from same
         page, name will be screen screen_name_width_height.png
 
         Example: compare making rescreens 800 600 1280 800 1440 900 Creates 3 screens in 800x600 1280x800 and 1440x90
@@ -364,7 +353,7 @@ class WatchUI:
                     a += 2
                     i += 1
         else:
-            raise AssertionError("Bad numbers of resolution")
+            raise AssertionError("Incorrect number of resolutions")
 
     def compare_screen_areas(
             self, x1, y1, x2, y2, path1, save_folder=save_folder_path, ssim=starts_ssim,
@@ -449,7 +438,7 @@ class WatchUI:
             else:
                 raise AssertionError("New screen doesnt exist anymore")
         else:
-            raise AssertionError("You put bad path")
+            raise AssertionError("The path1 to the image does not exist. Try a other path, than:" + path1)
         if os.path.exists(save_folder + '/test1.png'):
             os.remove(save_folder + '/test1.png')
 
@@ -540,7 +529,7 @@ class WatchUI:
                         "Image has diff: {} ".format(self.score)
                     )
         else:
-            raise AssertionError("Path doesnt exists")
+            raise AssertionError("The path to the image does not exist")
 
     def compare_screen_get_information(
             self,
@@ -553,8 +542,8 @@ class WatchUI:
         """	Compare the already save image with the browser screen
 
         Compares the already saved image with the screen that is on the screen. If there is a difference, it saves the
-        highlighted image to the: ../Save Image and making csv file with coordinates and elements which exist on this
-        coordinates
+        highlighted image to the: ../Outputs and making csv file with coordinates and elements which exist on this
+        coordinates. Default folder for csv is ../CSV_ERROR
 
         path1 = path to the image to be compared to screen
 
@@ -763,7 +752,8 @@ class WatchUI:
     @staticmethod
     def return_text_from_area(path, page_number: int, x1, y1, x2, y2):
         """
-        Return text from area. It doesnt use tesseract, so its can be used on normally pdf or without installed tesseract
+        Return text from area. It doesnt use tesseract, so its can be used on normally pdf or without installed
+        tesseract
         path = Path to pdf
         page_number = PDF page number where we wanna search for text
         x1, y1, x2, y2 = coordinates where text is

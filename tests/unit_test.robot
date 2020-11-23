@@ -60,6 +60,6 @@ TC06 - Tesseract
 
 *** Keywords ***
 Start web-browser
-    Open Browser                ${URL}      ${BROWSER}
+     Open Browser                ${URL}      ${BROWSER}
 Close web-browser
     Close Browser

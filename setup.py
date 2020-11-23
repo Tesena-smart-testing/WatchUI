@@ -6,7 +6,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="WatchUI",
-    version="1.0.6",
+    version="1.0.7",
     author="Jan Egermaier",
     author_email="jan.egermaier@tesena.com",
     description="RobotFramework library package for automated visual testing.",
