@@ -24,11 +24,11 @@ Library can be imported either with default output folder and set lowest limit o
 ###### Basic code:
 ```robotframework
 *** Settings ***
-Library         WatchUI.py
+Library         WatchUI
 ```
 
 ###### Full set up:
 ```robotframework
 *** Keywords ***
-Library 	WatchUI.py 	outputs_folder=${OUTPUT_FOLDER} 	ssim_basic=${SSIM}  format_image=${PNG}  tesseract_path=${TESSERACT_PATH}
+Library 	WatchUI 	outputs_folder=${OUTPUT_FOLDER} 	ssim_basic=${SSIM}  format_image=${PNG}  tesseract_path=${TESSERACT_PATH}
 ```
