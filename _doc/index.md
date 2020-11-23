@@ -14,7 +14,7 @@ navigation:
   - /legal
 ---
 
-Welcome to WatchUI - docs. Here, you can find complete info about our WatchUI library.
+Welcome to WatchUI - docs. There, you can find complete info about our WatchUI library.
 If you wanna use "normally" documentation from libdoc (look like robot framework documentation), you can go to [here](/WatchUI/rf_documentation/)
 <div class="cta-container">
 
@@ -25,4 +25,4 @@ If you wanna use "normally" documentation from libdoc (look like robot framework
 </div>
 
 [TESENA]: https://www.tesena.com/
-[GHPAGES]: https://github.com/procesor2017/WatchUI
+[GHPAGES]: https://github.com/Tesena-smart-testing/WatchUI

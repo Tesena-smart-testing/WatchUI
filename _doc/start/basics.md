@@ -2,7 +2,7 @@
 title: Basic Guide
 sections:
   - Basic usage WatchUI in test
-  - Basic usage Tesseract+WatchUI in test
+  - Basic usage Tesseract and WatchUI in test
 ---
 
 ### Basic usage WatchUI in test
@@ -82,7 +82,7 @@ Screen compare
 
 Now just starts robot and thats all :-)
 
-### Basic usage Tesseract + WatchUI in test
+### Basic usage Tesseract and WatchUI in test
 We need test pdf file and sometimes it happens that search in text doesnt work. We dont talk about why this happens sometimes (You can try google python pdf data mining). Or we need check that image which we create in system has right value.
 
 For this problems I create two keywords:

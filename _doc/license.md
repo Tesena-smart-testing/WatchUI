@@ -12,6 +12,8 @@ Basically, the WatchUI library is open source as stated in the MIT License. You 
 
 Because I use the openCV tool to check for errors in the image, PyMuPDF and tesseract, it is necessary to realize that they also have licenses that also allow free distribution of the software, but with some modifications.
 
+The keyword distribution can be found [here](/keywords/keyword_breakdown)
+
 ### License for openCV keywords
 OpenCV is library for recognize image. The library is cross-platform and free for use under the open-source [Apache 2 License](https://www.apache.org/licenses/LICENSE-2.0).
 
