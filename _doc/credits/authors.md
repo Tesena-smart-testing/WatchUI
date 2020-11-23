@@ -5,11 +5,8 @@ title: Authors
 
 # WatchUI
 
-WatchUI is Visual testing library for Robot Framework. We made it with love for other testers.
-	
- <div class="author-profile text-center">
  
-[![](./img/procesor.png)](https://github.com/procesor2017){: .center-block}
+[![](./img/procesor.jpg)](https://github.com/procesor2017){: .center-block}
   
  </div>
  <div class="speech-bubble">
@@ -22,7 +19,7 @@ Main author, source code, documentation and GitHub actions (Pull-CI).
  </div>
  <div class="author-profile text-center">
  
-[![](./img/radek.png)](https://github.com/radekBednarik){: .center-block}
+[![](./img/radek.jpg)](https://github.com/radekBednarik){: .center-block}
   
  </div>
  <div class="speech-bubble">
@@ -35,7 +32,7 @@ Source code, review code and GitHub actions (Pypi-deploying).
  </div>
  <div class="author-profile text-center">
  
-[![](./img/marcel.png)](https://github.com/marcel-veselka){: .center-block}
+[![](./img/marcel.jpg)](https://github.com/marcel-veselka){: .center-block}
   
  </div>
  <div class="speech-bubble">
@@ -47,4 +44,3 @@ Founder
 
  </div>
 
-</div>
