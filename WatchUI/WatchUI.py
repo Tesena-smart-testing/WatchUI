@@ -625,7 +625,7 @@ class WatchUI:
 
 # ------------------------------------------ Tesseract / PDF ----------------------------------------------------------#
 
-    def image_to_string(self, path, oem=3, psm=3, language='eng',
+    def image_to_string(self, path, oem='3', psm='3', language='eng',
                         path_to_tesseract=path_to_tesseract_folder):
         """
         Keyword for reading text from image. For proper functionality you must install tesseract-ocr.
@@ -696,7 +696,7 @@ class WatchUI:
         else:
             raise AssertionError("Path" + path + "doesnt exists")
 
-    def pdf_to_image(self, path1, save_folder=save_folder_path, name="img", number_page="0"):
+    def pdf_to_image(self, path1, save_folder=save_folder_path, name="img", number_page="-1"):
         """
         Change PDF to Image.
 
@@ -705,14 +705,24 @@ class WatchUI:
         number_page = PDF page number, which we change into image.
 
         """
+
         self._check_dir(save_folder)
         save_folder = self.save_folder
+
         if os.path.exists(path1):
             doc = fitz.open(path1)
-            page = doc.loadPage(int(number_page))  # number of page
-            pix = page.getPixmap()
-            output = save_folder + name + ".png"
-            pix.writePNG(output)
+            if number_page == "-1":
+                page_count=doc.pageCount
+                for x in range(0,page_count):
+                    page = doc.loadPage(x)  # load all pages one by one
+                    pix = page.getPixmap()
+                    output = save_folder + "/" + name + "_" + str(x) + ".png"
+                    pix.writePNG(output)
+            else:
+                page = doc.loadPage(int(number_page))  # number of page
+                pix = page.getPixmap()
+                output = save_folder + "/" + name + ".png"
+                pix.writePNG(output)
         else:
             raise AssertionError("Path" + path1 + "doesnt exists")
 
