@@ -713,16 +713,15 @@ class WatchUI:
             doc = fitz.open(path1)
             if number_page == "-1":
                 page_count=doc.pageCount
-                print(page_count)
                 for x in range(0,page_count):
                     page = doc.loadPage(x)  # load all pages one by one
                     pix = page.getPixmap()
-                    output = save_folder + name + "_" + str(x) + ".png"
+                    output = save_folder + "/" + name + "_" + str(x) + ".png"
                     pix.writePNG(output)
             else:
                 page = doc.loadPage(int(number_page))  # number of page
                 pix = page.getPixmap()
-                output = save_folder + name + ".png"
+                output = save_folder + "/" + name + ".png"
                 pix.writePNG(output)
         else:
             raise AssertionError("Path" + path1 + "doesnt exists")
