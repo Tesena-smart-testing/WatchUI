@@ -625,7 +625,7 @@ class WatchUI:
 
 # ------------------------------------------ Tesseract / PDF ----------------------------------------------------------#
 
-    def image_to_string(self, path, oem=3, psm=3, language='eng',
+    def image_to_string(self, path, oem='3', psm='3', language='eng',
                         path_to_tesseract=path_to_tesseract_folder):
         """
         Keyword for reading text from image. For proper functionality you must install tesseract-ocr.
