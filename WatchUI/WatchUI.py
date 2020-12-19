@@ -2,13 +2,16 @@
 import csv
 import os
 import time
+
 import cv2 as cv
-import pandas as pd
-from robot.libraries.BuiltIn import BuiltIn, RobotNotRunningError
-from skimage.metrics import structural_similarity
-import pytesseract
 import fitz
 import imutils
+import pandas as pd
+import pytesseract
+from robot.libraries.BuiltIn import BuiltIn, RobotNotRunningError
+from skimage.metrics import structural_similarity
+
+from WatchUI.libs import BrowserOperator
 
 
 class WatchUI:
@@ -48,6 +51,7 @@ class WatchUI:
 
     def __init__(
         self,
+        type_: str,
         outputs_folder=save_folder_path,
         ssim_basic=starts_ssim,
         format_image=starts_format_image,
@@ -55,6 +59,10 @@ class WatchUI:
     ):
         """Library can be imported either with default output folder and set lowest limit of difference between images (ssim), or
         you can provide your own values.
+
+        Arguments:
+            type_ {str} -- type of browser automation library to use.
+            Currently supporting "selenium" or "playwright".
 
         Keyword Arguments:
 
@@ -67,11 +75,12 @@ class WatchUI:
         Examples:
 
         | =Setting= | =Value= | =Value= | =Value= | =Comment= |
-        | Library   | WatchUI |      |  | # Uses default values of keyword arguments |
+        | Library   | WatchUI | selenium |  | # Uses default values of keyword arguments with selenium browser automation |
         | Library   | WatchUI | outputs_folder=<path_to_folder> | | # changes folder to different one |
         | Library   | WatchUI | outputs_folder=<path_to_folder> | ssim_basic=<float> | # changes output folder and ssim threshold |
 
         """
+        self.type_ = type_
         self.outputs_folder = outputs_folder
         self.ssim_basic = float(ssim_basic)
         self.image_format = str(format_image)
@@ -80,7 +89,7 @@ class WatchUI:
         # when libdoc builds documentation, this would lead to exception, since robot cannot access execution context,
         # since nothing really executes
         try:
-            self.seleniumlib = BuiltIn().get_library_instance("SeleniumLibrary")
+            self.browser = BrowserOperator("selenium", BuiltIn)
             self.robotlib = BuiltIn().get_library_instance("BuiltIn")
         except RobotNotRunningError as e:
             print(
@@ -221,7 +230,7 @@ class WatchUI:
             else:
                 img_diff = cv.hconcat([self.img1, self.img2])
                 time_ = str(time.time())
-                self.seleniumlib.capture_page_screenshot(
+                self.browser.instance.capture_page_screenshot(
                     save_folder + "/Img" + time_ + self.format
                 )
                 cv.imwrite(save_folder + "/Img" + time_ + self.format, img_diff)
@@ -249,7 +258,7 @@ class WatchUI:
         self._check_ssim(float(ssim))
         self._check_image_format(image_format)
         save_folder = self.save_folder
-        self.seleniumlib.capture_page_screenshot(save_folder + "/testscreen.png")
+        self.browser.instance.capture_page_screenshot(save_folder + "/testscreen.png")
         path2 = save_folder + "/testscreen.png"
         if os.path.exists(path1):
             if os.path.exists(path2):
@@ -269,7 +278,7 @@ class WatchUI:
                     img_diff = cv.hconcat([self.img1, self.img2])
                     time_ = str(time.time())
                     score_percen = float(self.score) * 100
-                    self.seleniumlib.capture_page_screenshot(
+                    self.browser.instance.capture_page_screenshot(
                         save_folder + "/Img" + time_ + self.format
                     )
                     cv.imwrite(save_folder + "/Img" + time_ + self.format, img_diff)
@@ -277,7 +286,7 @@ class WatchUI:
                 else:
                     img_diff = cv.hconcat([self.img1, self.img2])
                     time_ = str(time.time())
-                    self.seleniumlib.capture_page_screenshot(
+                    self.browser.instance.capture_page_screenshot(
                         save_folder + "/Img" + time_ + self.format
                     )
                     cv.imwrite(save_folder + "/Img" + time_ + self.format, img_diff)
@@ -319,7 +328,7 @@ class WatchUI:
         save_folder = self.save_folder
         self._check_image_format(image_format)
 
-        self.seleniumlib.capture_page_screenshot(save_folder + '/testscreen.png')
+        self.browser.instance.capture_page_screenshot(save_folder + '/testscreen.png')
         img = save_folder + '/testscreen.png'
         img_crop = cv.imread(img)
         crop_img = img_crop[
@@ -359,9 +368,11 @@ class WatchUI:
         leng_reso = len(resolution)
         if leng_reso % 2 == 0:
             if (leng_reso / 2) == 1:
-                self.seleniumlib.set_window_size(int(resolution[0]), int(resolution[1]))
+                self.browser.instance.set_window_size(
+                    int(resolution[0]), int(resolution[1])
+                )
                 time.sleep(1)
-                self.seleniumlib.capture_page_screenshot(
+                self.browser.instance.capture_page_screenshot(
                     save_folder + "/" + screen_name + self.format
                 )
             else:
@@ -371,9 +382,9 @@ class WatchUI:
                 while i < x:
                     width = int(resolution[0 + a])
                     height = int(resolution[1 + a])
-                    self.seleniumlib.set_window_size(width, height)
+                    self.browser.instance.set_window_size(width, height)
                     time.sleep(1)
-                    self.seleniumlib.capture_page_screenshot(
+                    self.browser.instance.capture_page_screenshot(
                         save_folder
                         + "/"
                         + screen_name
@@ -412,7 +423,7 @@ class WatchUI:
         self._check_ssim(ssim)
         self._check_image_format(image_format)
         save_folder = self.save_folder
-        self.seleniumlib.capture_page_screenshot(save_folder + '/test1.png')
+        self.browser.instance.capture_page_screenshot(save_folder + '/test1.png')
         path2 = save_folder + '/test1.png'
 
         if os.path.exists(path1):
@@ -457,7 +468,7 @@ class WatchUI:
                     self.robotlib = BuiltIn().get_library_instance('BuiltIn')
                     img_diff = cv.hconcat([img1, crop_img_color])
                     time_ = str(time.time())
-                    self.seleniumlib.capture_page_screenshot(
+                    self.browser.instance.capture_page_screenshot(
                         save_folder + '/img' + time_ + '.png'
                     )
                     cv.imwrite(save_folder + '/img' + time_ + self.format, img_diff)
@@ -467,7 +478,7 @@ class WatchUI:
                 else:
                     img_diff = cv.hconcat([self.img1, self.img2])
                     time_ = str(time.time())
-                    self.seleniumlib.capture_page_screenshot(
+                    self.browser.instance.capture_page_screenshot(
                         save_folder + "/Img" + time_ + self.format
                     )
                     cv.imwrite(save_folder + "/Img" + time_ + self.format, img_diff)
@@ -506,7 +517,7 @@ class WatchUI:
         self._check_image_format(image_format)
         save_folder = self.save_folder
 
-        self.seleniumlib.capture_page_screenshot(save_folder + "/test1.png")
+        self.browser.instance.capture_page_screenshot(save_folder + "/test1.png")
         path2 = save_folder + "/test1.png"
         if os.path.exists(path1) and os.path.exists(path2):
             lt = len(args)
@@ -559,7 +570,7 @@ class WatchUI:
                 if float(self.score) < self.ssim:
                     img_diff = cv.hconcat([img1, img2])
                     time_ = str(time.time())
-                    self.seleniumlib.capture_page_screenshot(
+                    self.browser.instance.capture_page_screenshot(
                         save_folder + "/Img" + time_ + self.format
                     )
                     cv.imwrite(save_folder + "/Img" + time_ + self.format, img_diff)
@@ -567,7 +578,7 @@ class WatchUI:
                 else:
                     img_diff = cv.hconcat([img1, img2])
                     time_ = str(time.time())
-                    self.seleniumlib.capture_page_screenshot(
+                    self.browser.instance.capture_page_screenshot(
                         save_folder + "/Img" + time_ + self.format
                     )
                     cv.imwrite(save_folder + "/Img" + time_ + self.format, img_diff)
@@ -601,7 +612,7 @@ class WatchUI:
         self._check_image_format(image_format)
         save_folder = self.save_folder
         # Making screen
-        self.seleniumlib.capture_page_screenshot(save_folder + "/test1.png")
+        self.browser.instance.capture_page_screenshot(save_folder + "/test1.png")
         path2 = save_folder + "/test1.png"
         if os.path.exists(path1):
             if os.path.exists(path2):
@@ -630,7 +641,7 @@ class WatchUI:
                 if float(self.score) < self.ssim:
                     img_diff = cv.hconcat([self.img1, self.img2])
                     time_ = str(time.time())
-                    self.seleniumlib.capture_page_screenshot(
+                    self.browser.instance.capture_page_screenshot(
                         save_folder + "/Img{0}.{1}".format(time_, self.format)
                     )
                     cv.imwrite(
@@ -651,9 +662,7 @@ class WatchUI:
                         for i in range(len(df)):
                             x_center = df.values[i, 1]
                             y_center = df.values[i, 2]
-                            driver = self.seleniumlib.driver
-                            elements = driver.execute_script(
-                                "return document.elementsFromPoint(arguments[0], arguments[1]);",
+                            elements = self.browser.instance.execute_script(
                                 x_center,
                                 y_center,
                             )

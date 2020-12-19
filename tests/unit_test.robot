@@ -3,7 +3,7 @@ Documentation                   Suite description
 Library                         SeleniumLibrary
 Library                         Screenshot
 Library                         OperatingSystem
-Library                         WatchUI
+Library                         WatchUI    selenium
 Library                         OperatingSystem
 Resource                        keywords/CS.robot
 Resource                        keywords/CS_2SavedImage.robot
