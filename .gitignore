@@ -3,3 +3,5 @@ build
 Outputs
 WatchUI.egg-info
 Docker
+Pipfile.*
+dist
