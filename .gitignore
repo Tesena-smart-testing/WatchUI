@@ -3,5 +3,6 @@ build
 Outputs
 WatchUI.egg-info
 Docker
-Pipfile.*
+Pipfile
 dist
+.vscode/*

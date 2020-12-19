@@ -1,12 +1,11 @@
 from setuptools import setup, find_packages
-from sys import platform
 
 with open("README.md", "r") as f:
     long_description = f.read()
 
 setup(
     name="WatchUI",
-    version="1.0.9",
+    version="2.0.0",
     author="Jan Egermaier",
     author_email="jan.egermaier@tesena.com",
     description="RobotFramework library package for automated visual testing.",
