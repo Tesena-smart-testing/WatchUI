@@ -89,7 +89,7 @@ class WatchUI:
         # when libdoc builds documentation, this would lead to exception, since robot cannot access execution context,
         # since nothing really executes
         try:
-            self.browser = BrowserOperator("selenium", BuiltIn)
+            self.browser = BrowserOperator(self.type_, BuiltIn)
             self.robotlib = BuiltIn().get_library_instance("BuiltIn")
         except RobotNotRunningError as e:
             print(

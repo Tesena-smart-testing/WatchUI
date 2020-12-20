@@ -6,3 +6,9 @@ Docker
 Pipfile
 dist
 .vscode/*
+newscreen/*
+log.html
+output.xml
+report.html
+browser
+playwright-log.txt

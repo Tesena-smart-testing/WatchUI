@@ -34,7 +34,7 @@ class PlaywrightBrowser:
         self.browser = rf_built_in().get_library_instance("Browser")
 
     def capture_page_screenshot(self, filepath: str) -> None:
-        self.browser.take_screenshot(filename=filepath, fullpage=False)
+        self.browser.take_screenshot(filename=filepath, fullPage=False)
 
     def set_window_size(self, width: int, height: int) -> None:
         self.browser.set_viewport_size(width, height)
