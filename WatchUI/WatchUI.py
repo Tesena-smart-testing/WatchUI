@@ -51,7 +51,7 @@ class WatchUI:
 
     def __init__(
         self,
-        type_: str,
+        type_: str = "selenium",
         outputs_folder=save_folder_path,
         ssim_basic=starts_ssim,
         format_image=starts_format_image,
@@ -60,11 +60,8 @@ class WatchUI:
         """Library can be imported either with default output folder and set lowest limit of difference between images (ssim), or
         you can provide your own values.
 
-        Arguments:
-            type_ {str} -- type of browser automation library to use.
-            Currently supporting "selenium" or "playwright".
-
         Keyword Arguments:
+            type_ {str} - type of browser automation lib to use. Supported: "selenium", "playwright". (default: "playwright")
 
             outputs_folder {str} -- path, where you want to save images with highlighted differences (default: "../Outputs")
 
@@ -89,7 +86,7 @@ class WatchUI:
         # when libdoc builds documentation, this would lead to exception, since robot cannot access execution context,
         # since nothing really executes
         try:
-            self.browser = BrowserOperator(self.type_, BuiltIn)
+            self.browser = BrowserOperator(BuiltIn, self.type_)
             self.robotlib = BuiltIn().get_library_instance("BuiltIn")
         except RobotNotRunningError as e:
             print(

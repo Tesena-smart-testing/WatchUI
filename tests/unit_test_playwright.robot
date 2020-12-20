@@ -3,7 +3,7 @@ Documentation                   Suite description
 Library                         Browser
 Library                         Screenshot
 Library                         OperatingSystem
-Library                         WatchUI    playwright
+Library                         WatchUI    pup
 Library                         OperatingSystem
 Resource                        keywords/CS.robot
 Resource                        keywords/CS_2SavedImage.robot

@@ -2,15 +2,21 @@
 """
 
 from typing import Callable, Iterable
+import sys
 
 
 class BrowserOperator:
-    def __init__(self, type_: str, rf_built_in: Callable) -> None:
+    def __init__(self, rf_built_in: Callable, type_: str) -> None:
         if type_ == "selenium":
             self.instance = SeleniumBrowser(rf_built_in)
 
-        if type_ == "playwright":
+        elif type_ == "playwright":
             self.instance = PlaywrightBrowser(rf_built_in)
+
+        else:
+            rf_built_in().fatal_error(
+                f"Browser automation library '{type_}' is not supported. Choose either 'selenium' or 'playwright'."
+            )
 
 
 class SeleniumBrowser:
