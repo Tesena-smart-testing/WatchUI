@@ -12,3 +12,4 @@ output.xml
 report.html
 browser
 playwright-log.txt
+debug.log

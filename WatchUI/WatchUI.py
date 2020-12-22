@@ -255,8 +255,10 @@ class WatchUI:
         self._check_ssim(float(ssim))
         self._check_image_format(image_format)
         save_folder = self.save_folder
-        self.browser.instance.capture_page_screenshot(save_folder + "/testscreen.png")
-        path2 = save_folder + "/testscreen.png"
+        self.browser.instance.capture_page_screenshot(
+            save_folder + "/testscreen.png.png"
+        )
+        path2 = save_folder + "/testscreen.png.png"
         if os.path.exists(path1):
             if os.path.exists(path2):
                 # Compare image
