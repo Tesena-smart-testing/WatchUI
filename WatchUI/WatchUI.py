@@ -2,6 +2,7 @@
 import csv
 import os
 import time
+from os.path import join
 
 import cv2 as cv
 import fitz
@@ -114,7 +115,7 @@ class WatchUI:
             if os.path.exists(self.outputs_folder):
                 self.save_folder = self.outputs_folder
             else:
-                os.mkdir(self.outputs_folder)
+                os.makedirs(self.outputs_folder, exist_ok=True)
                 self.save_folder = self.outputs_folder
 
     def _check_ssim(self, ssim):
@@ -256,9 +257,9 @@ class WatchUI:
         self._check_image_format(image_format)
         save_folder = self.save_folder
         self.browser.instance.capture_page_screenshot(
-            save_folder + "/testscreen.png.png"
+            join(save_folder, f"testscreen{self.format}")
         )
-        path2 = save_folder + "/testscreen.png.png"
+        path2 = join(save_folder, f"testscreen{self.format}")
         if os.path.exists(path1):
             if os.path.exists(path2):
                 # Compare image
@@ -301,8 +302,8 @@ class WatchUI:
             raise AssertionError(
                 "The path1 to the image does not exist. Try a other path, than:" + path1
             )
-        if os.path.exists(save_folder + "/testscreen.png"):
-            os.remove(save_folder + "/testscreen.png")
+        if os.path.exists(join(save_folder, f"testscreen{self.format}")):
+            os.remove(join(save_folder, f"testscreen{self.format}"))
 
     def create_area(
         self,
@@ -327,8 +328,10 @@ class WatchUI:
         save_folder = self.save_folder
         self._check_image_format(image_format)
 
-        self.browser.instance.capture_page_screenshot(save_folder + '/testscreen.png')
-        img = save_folder + '/testscreen.png'
+        self.browser.instance.capture_page_screenshot(
+            join(save_folder, f"testscreen{self.format}")
+        )
+        img = join(save_folder, f"testscreen{self.format}")
         img_crop = cv.imread(img)
         crop_img = img_crop[
             int(x1) : int(y2), int(y1) : int(x2)
@@ -384,14 +387,20 @@ class WatchUI:
                     self.browser.instance.set_window_size(width, height)
                     time.sleep(1)
                     self.browser.instance.capture_page_screenshot(
-                        save_folder
-                        + "/"
-                        + screen_name
-                        + str(width)
-                        + "x"
-                        + str(height)
-                        + self.format
+                        join(
+                            save_folder,
+                            f"{screen_name}{str(width)}x{str(height)}{self.format}",
+                        )
                     )
+                    # self.browser.instance.capture_page_screenshot(
+                    #     save_folder
+                    #     + "/"
+                    #     + screen_name
+                    #     + str(width)
+                    #     + "x"
+                    #     + str(height)
+                    #     + self.format
+                    # )
                     a += 2
                     i += 1
         else:
@@ -422,8 +431,10 @@ class WatchUI:
         self._check_ssim(ssim)
         self._check_image_format(image_format)
         save_folder = self.save_folder
-        self.browser.instance.capture_page_screenshot(save_folder + '/test1.png')
-        path2 = save_folder + '/test1.png'
+        self.browser.instance.capture_page_screenshot(
+            save_folder + '/test1' + self.format
+        )
+        path2 = save_folder + '/test1' + self.format
 
         if os.path.exists(path1):
             if os.path.exists(path2):
@@ -468,7 +479,7 @@ class WatchUI:
                     img_diff = cv.hconcat([img1, crop_img_color])
                     time_ = str(time.time())
                     self.browser.instance.capture_page_screenshot(
-                        save_folder + '/img' + time_ + '.png'
+                        save_folder + '/img' + time_ + self.format
                     )
                     cv.imwrite(save_folder + '/img' + time_ + self.format, img_diff)
                     self.robotlib.fail('Image has diff: {} '.format(self.score))
@@ -490,8 +501,8 @@ class WatchUI:
             raise AssertionError(
                 "The path1 to the image does not exist. Try a other path, than:" + path1
             )
-        if os.path.exists(save_folder + '/test1.png'):
-            os.remove(save_folder + '/test1.png')
+        if os.path.exists(save_folder + '/test1' + self.format):
+            os.remove(save_folder + '/test1' + self.format)
 
     def compare_screen_without_areas(
         self,
@@ -516,8 +527,8 @@ class WatchUI:
         self._check_image_format(image_format)
         save_folder = self.save_folder
 
-        self.browser.instance.capture_page_screenshot(save_folder + "/test1.png")
-        path2 = save_folder + "/test1.png"
+        self.browser.instance.capture_page_screenshot(save_folder + "/test1")
+        path2 = save_folder + "/test1" + self.format
         if os.path.exists(path1) and os.path.exists(path2):
             lt = len(args)
             img1 = cv.imread(path1, 1)
@@ -611,8 +622,10 @@ class WatchUI:
         self._check_image_format(image_format)
         save_folder = self.save_folder
         # Making screen
-        self.browser.instance.capture_page_screenshot(save_folder + "/test1.png")
-        path2 = save_folder + "/test1.png"
+        self.browser.instance.capture_page_screenshot(
+            save_folder + "/test1" + self.format
+        )
+        path2 = save_folder + "/test1" + self.format
         if os.path.exists(path1):
             if os.path.exists(path2):
                 # load Img

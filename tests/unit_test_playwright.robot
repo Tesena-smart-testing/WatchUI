@@ -3,7 +3,7 @@ Documentation                   Suite description
 Library                         Browser
 Library                         Screenshot
 Library                         OperatingSystem
-Library                         WatchUI    playwright
+Library                         WatchUI.WatchUIPlaywright
 Library                         OperatingSystem
 Resource                        keywords/CS.robot
 Resource                        keywords/CS_2SavedImage.robot
@@ -33,20 +33,21 @@ TC02 - Creating screens in differen resolutions
     Create screens with full set up
     Create screens with full set up: Format JPG
 
-# TC03 - Compare screen
-#     [Tags]  compare_screen  tc03    VT
-#     Compare image with created screen
-#     Compare image without full set up
-#     Compare image full set up
-#     Compare image without ssim set up
-#     Compare diff image ssim 0.5
-#     Compare diff image ssim 1.0
-#     Compare diff image image format JPG
+TC03 - Compare screen
+    [Tags]  compare_screen  tc03    VT
+    Compare image with created screen
+    Compare image without full set up
+    Compare image full set up
+    Compare image without ssim set up
+    Compare diff image ssim 0.5
+    Compare diff image ssim 1.0
+    Compare diff image image format JPG
 
 TC04 - Compare screen without some region
     [Tags]  cs_outregion    VT
     Comparing screen without some area: PNG Format
-    Comparing screen without some area: JPG Format
+    # on playwright, only .png is possible via browser library
+    # Comparing screen without some area: JPG Format
 
 TC05 - Create Area
     [Tags]  create_area  tc05   VT

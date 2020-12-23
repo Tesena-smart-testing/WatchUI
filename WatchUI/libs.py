@@ -2,6 +2,9 @@
 """Browser automation libraries' classes.
 """
 
+from os.path import isfile, join, normpath
+from pathlib import Path
+from shutil import move
 from typing import Callable, Iterable
 
 
@@ -51,7 +54,7 @@ class SeleniumBrowser:
         Args:
             filepath (str): filepath to save the screenshot to.
         """
-        self.browser.capture_page_screenshot(filepath)
+        self.browser.capture_page_screenshot(normpath(join(filepath)))
 
     def set_window_size(self, width: int, height: int) -> None:
         """Sets the size of the browser window.
@@ -94,9 +97,14 @@ class PlaywrightBrowser:
         Args:
             filepath (str): filepath to save the screenshot to.
         """
-        # since robotframework-browser keyword automatically adds .png
-        # we have to cut it
-        self.browser.take_screenshot(filename=filepath, fullPage=False)
+        # since `robotframework-browser` has ${OUTPUTDIR}/hardcoded browser/screenshot
+        # path to save screenshots and we cannot access internal path attribute to change it
+        # when accessing instance of the browser library, then we have to save it and then
+        # move the file where we want it
+        wrong_filepath: str = self.browser.take_screenshot(
+            filename=normpath(join(filepath)), fullPage=False
+        )
+        move(wrong_filepath, normpath(join(filepath)))
 
     def set_window_size(self, width: int, height: int) -> None:
         """Sets the size of the browser window.
