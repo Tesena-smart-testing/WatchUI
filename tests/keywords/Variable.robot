@@ -2,12 +2,12 @@
 # ---------------------------------------- Basic set up ----------------------------------------------------------------
 ${URL}                      https://www.tesena.com/contact-us/
 ${BROWSER}                  Chrome
-${SF_OOUTPUTS}              ./Outputs
+${SF_OOUTPUTS}              ../Outputs
 ${SSIM1.0}                  1.0
 ${SSIM0.95}                 0.95
 ${SSIM0.5}                  0.5
 @{reso}                     800  600
-${screen800x600}            ./Outputs/screen.png
+${screen800x600}            ../Outputs/screen.png
 ${FALSE}                    False
 
 # ---------------------------------------- Compare 2 saved image ------------------------------------------------------
@@ -16,7 +16,7 @@ ${2IMAGE}                   ../Img/forpres1.png
 ${CS2_SFTESENA}             ../Tesena
 
 # ---------------------------------------- Creating screens ------------------------------------------------------------
-${SF_NEWSCREEN}             ./newscreen
+${SF_NEWSCREEN}             ../newscreen
 ${CS_SCREENNAME}            resolution_is_
 
 # ---------------------------------------- Comparing screen ------------------------------------------------------------

@@ -6,11 +6,11 @@ with open("README.md", "r") as f:
 
 setup(
     name="WatchUI",
-    version="1.0.9",
+    version="1.0.10",
     author="Jan Egermaier",
     author_email="jan.egermaier@tesena.com",
     description="RobotFramework library package for automated visual testing.",
-    long_description=long_description,
+    long_description=long_description.encode("UTF-8"),
     long_description_content_type="text/markdown",
     url="https://github.com/Tesena-smart-testing/WatchUI",
     packages=find_packages(),
@@ -33,5 +33,5 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires="3.8>=",
+    python_requires="<3.9",
 )
