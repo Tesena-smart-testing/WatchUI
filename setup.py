@@ -10,7 +10,7 @@ setup(
     author="Jan Egermaier",
     author_email="jan.egermaier@tesena.com",
     description="RobotFramework library package for automated visual testing.",
-    long_description=long_description.encode("UTF-8"),
+    long_description=open("README.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
     url="https://github.com/Tesena-smart-testing/WatchUI",
     packages=find_packages(),
