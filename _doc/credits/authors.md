@@ -25,7 +25,7 @@ Developer, DevOps
  <div class="speech-bubble">
 
 {: .speech-title}
-### Radek "BednaJedna" Bendařík
+### Radek "BednaJedna" Bednařík
  
 Developer
 
