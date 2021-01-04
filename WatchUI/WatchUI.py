@@ -696,7 +696,7 @@ class WatchUI:
         else:
             raise AssertionError("Path" + path + "doesnt exists")
 
-    def pdf_to_image(self, path1, save_folder=save_folder_path, name="img", number_page="-1"):
+    def pdf_to_image(self, path1, save_folder=save_folder_path, name="img", number_page="-1", zoom="3"):
         """
         Change PDF to Image.
 
@@ -709,22 +709,24 @@ class WatchUI:
         self._check_dir(save_folder)
         save_folder = self.save_folder
 
+        zoom = int(zoom)
+        mat = fitz.Matrix(zoom, zoom)
         if os.path.exists(path1):
             doc = fitz.open(path1)
             if number_page == "-1":
-                page_count=doc.pageCount
-                for x in range(0,page_count):
+                page_count = doc.pageCount
+                for x in range(0, page_count):
                     page = doc.loadPage(x)  # load all pages one by one
-                    pix = page.getPixmap()
+                    pix = page.getPixmap(matrix=mat)
                     output = save_folder + "/" + name + "_" + str(x) + ".png"
                     pix.writePNG(output)
             else:
                 page = doc.loadPage(int(number_page))  # number of page
-                pix = page.getPixmap()
+                pix = page.getPixmap(matrix=mat)
                 output = save_folder + "/" + name + ".png"
                 pix.writePNG(output)
         else:
-            raise AssertionError("Path" + path1 + "doesnt exists")
+            raise AssertionError("Path" + path1 + "  doesnt exists")
 
     def rotate_image(self, path, screen_name="rotate_screen",
                      save_folder=save_folder_path,
