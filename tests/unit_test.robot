@@ -51,11 +51,15 @@ TC05 - Create Area
     Create area 200 x 500: basic
     Create area 200 x 500: full set up
 
-TC06 - Tesseract
+TC06 - Text testing
     [Tags]  tc06    TT
     [Setup]
-    Check text in area
-    Check text exists
+    # Create IMG
+    # Find diff in PDF
+    # Create and compare vysvetlivky
+    # Check words:   ${CONTROLL_TEXT}     @{TEXT_COO}
+    Read text from image
+
     [Teardown]
 
 *** Keywords ***
