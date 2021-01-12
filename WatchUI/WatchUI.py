@@ -220,6 +220,7 @@ class WatchUI:
                 )
                 img_url=save_folder + "/Img" + time_ + self.format
                 self.robotlib.log(message="<img src="+ str(img_url) + ">", html=True)
+
         else:
             raise AssertionError("The path to the image does not exist")
 
