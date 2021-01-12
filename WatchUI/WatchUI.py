@@ -201,10 +201,13 @@ class WatchUI:
             if float(self.score) < self.ssim:
                 self.robotlib.log_to_console(self.ssim)
                 self.robotlib.log_to_console(self.score)
+                time_ = str(time.time())
                 cv.imwrite(
-                    self.save_folder + "/Img" + str(time.time()) + self.format, self.img2
+                    self.save_folder + "/Img" + time_ + self.format, self.img2
                 )
-                self.robotlib.fail("*INFO* Save file with difference")
+                img_url =self.save_folder + "/Img" + time_ + self.format
+                self.robotlib.log(message="<img src=" + str(img_url) + ">", html=True)
+                self.robotlib.fail("*INFO* Save file with difference1")
             else:
                 img_diff = cv.hconcat([self.img1, self.img2])
                 time_ = str(time.time())
@@ -215,6 +218,8 @@ class WatchUI:
                 self.robotlib.log_to_console(
                     "Image has diff: {} ".format(self.score)
                 )
+                img_url=save_folder + "/Img" + time_ + self.format
+                self.robotlib.log(message="<img src="+ str(img_url) + ">", html=True)
         else:
             raise AssertionError("The path to the image does not exist")
 

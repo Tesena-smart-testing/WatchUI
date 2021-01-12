@@ -24,7 +24,7 @@ ${CS_SFOUTPUTS}                 ../Outputs
 ${CS_NEWURL}                    https://www.tesena.com/career/
 
 # ---------------------------------------- Comparing screen without Area ------------------------------------------------------------
-${CSWA_NEWURL}                  https://www.czc.cz/
+${CSWA_NEWURL}                  https://www.alza.cz/
 @{CSWA_BLACKSQUARE}             0  168  800  600
 
 # ---------------------------------------- Text testing ------------------------------------------------------------
@@ -37,10 +37,10 @@ ${TT_Should_be_text}            Dummy PDF file
 ${OK_PDF}                       ../Img/ok.pdf
 ${NOK_PDF}                      ../Img/nok.pdf
 
-${NAME_OK_PDF}                  Ok_0
-${PATH_TO_OK_IMG}               ../Outputs/${NAME_OK_PDF}.png
-${NAME_NOK_PDF}                 nok_0
-${PATH_TO_NOK_IMG}              ../Outputs/${NAME_NOK_PDF}.png
+${NAME_OK_PDF}                  Ok
+${PATH_TO_OK_IMG}               ../Outputs/${NAME_OK_PDF}_0.png
+${NAME_NOK_PDF}                 nok
+${PATH_TO_NOK_IMG}              ../Outputs/${NAME_NOK_PDF}_0.png
 
 @{TEXT_COO}                     0  240  290   393  318  # First is number page, after x1,y1,x2,y2
 ${CONTROLL_TEXT}                P Ř I Z N Á N Í
