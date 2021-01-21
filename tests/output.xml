@@ -1,68 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 3.2.2 (Python 3.8.6 on win32)" generated="20210112 15:55:20.984" rpa="false">
+<robot generator="Robot 3.2.2 (Python 3.8.6 on win32)" generated="20210121 18:52:47.867" rpa="false">
 <suite id="s1" name="Unit Test" source="D:\Projects\Tesena\watchUI\tests\unit_test.robot">
-<test id="s1-t1" name="TC04 - Compare screen without some region">
-<kw name="Start web-browser" type="setup">
-<kw name="Open Browser" library="SeleniumLibrary">
-<doc>Opens a new browser instance to the optional ``url``.</doc>
-<arguments>
-<arg>${URL}</arg>
-<arg>${BROWSER}</arg>
-</arguments>
-<msg timestamp="20210112 15:55:21.740" level="INFO">Opening browser 'Chrome' to base url 'https://www.tesena.com/contact-us/'.</msg>
-<status status="PASS" starttime="20210112 15:55:21.740" endtime="20210112 15:55:25.779"></status>
-</kw>
-<status status="PASS" starttime="20210112 15:55:21.739" endtime="20210112 15:55:25.779"></status>
-</kw>
-<kw name="Comparing screen without some area: PNG Format" library="CS_region">
-<kw name="Go To" library="SeleniumLibrary">
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<arguments>
-<arg>${CSWA_NEWURL}</arg>
-</arguments>
-<msg timestamp="20210112 15:55:25.780" level="INFO">Opening url 'https://www.alza.cz/'</msg>
-<status status="PASS" starttime="20210112 15:55:25.780" endtime="20210112 15:55:28.052"></status>
-</kw>
-<kw name="Create Screens" library="WatchUI">
-<doc>Creates a screenshot on the screen</doc>
-<arguments>
-<arg>800</arg>
-<arg>600</arg>
-<arg>save_folder=${SF_OOUTPUTS}</arg>
-</arguments>
-<msg timestamp="20210112 15:55:31.590" level="INFO" html="yes">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="../Outputs/screen.png"&gt;&lt;img src="../Outputs/screen.png" width="800px"&gt;&lt;/a&gt;</msg>
-<status status="PASS" starttime="20210112 15:55:28.052" endtime="20210112 15:55:31.590"></status>
-</kw>
-<kw name="Compare Screen Without Areas" library="WatchUI">
-<doc>Compares two pictures, which have parts to be ignored
-x1 and y1 = x and y coordinates for the upper left corner of the ignored area square
-x2 and y2 = x and y coordinates for the lower right corner of the square of the ignored part</doc>
-<arguments>
-<arg>${screen800x600}</arg>
-<arg>@{CSWA_BLACKSQUARE}</arg>
-<arg>ssim=${SSIM0.95}</arg>
-</arguments>
-<msg timestamp="20210112 15:55:31.962" level="INFO" html="yes">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="../Outputs/test1.png"&gt;&lt;img src="../Outputs/test1.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg timestamp="20210112 15:55:32.387" level="INFO" html="yes">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="../Outputs/Img1610463332.0649655.png"&gt;&lt;img src="../Outputs/Img1610463332.0649655.png" width="800px"&gt;&lt;/a&gt;</msg>
-<status status="PASS" starttime="20210112 15:55:31.591" endtime="20210112 15:55:32.395"></status>
-</kw>
-<status status="PASS" starttime="20210112 15:55:25.780" endtime="20210112 15:55:32.395"></status>
-</kw>
-<kw name="Close web-browser" type="teardown">
-<kw name="Close Browser" library="SeleniumLibrary">
-<doc>Closes the current browser.</doc>
-<status status="PASS" starttime="20210112 15:55:32.396" endtime="20210112 15:55:34.532"></status>
-</kw>
-<status status="PASS" starttime="20210112 15:55:32.395" endtime="20210112 15:55:34.532"></status>
-</kw>
-<tags>
-<tag>cs_outregion</tag>
-<tag>demo</tag>
-<tag>VT</tag>
-</tags>
-<status status="PASS" starttime="20210112 15:55:21.739" endtime="20210112 15:55:34.533" critical="yes"></status>
-</test>
-<test id="s1-t2" name="TC06 - PDF and Tesseract">
+<test id="s1-t1" name="TC06 - PDF and Tesseract">
 <kw name="Create IMG" library="Text_testing">
 <kw name="Convert OK PDF to IMG" library="Text_testing">
 <kw name="Pdf To Image" library="WatchUI">
@@ -71,9 +10,9 @@ x2 and y2 = x and y coordinates for the lower right corner of the square of the 
 <arg>${OK_PDF}</arg>
 <arg>name=${NAME_OK_PDF}</arg>
 </arguments>
-<status status="PASS" starttime="20210112 15:55:34.536" endtime="20210112 15:55:35.634"></status>
+<status status="PASS" starttime="20210121 18:52:49.355" endtime="20210121 18:52:50.490"></status>
 </kw>
-<status status="PASS" starttime="20210112 15:55:34.535" endtime="20210112 15:55:35.635"></status>
+<status status="PASS" starttime="20210121 18:52:49.354" endtime="20210121 18:52:50.490"></status>
 </kw>
 <kw name="Convert NOK PDF to IMG" library="Text_testing">
 <kw name="Pdf To Image" library="WatchUI">
@@ -82,11 +21,11 @@ x2 and y2 = x and y coordinates for the lower right corner of the square of the 
 <arg>${NOK_PDF}</arg>
 <arg>name=${NAME_NOK_PDF}</arg>
 </arguments>
-<status status="PASS" starttime="20210112 15:55:35.635" endtime="20210112 15:55:36.724"></status>
+<status status="PASS" starttime="20210121 18:52:50.490" endtime="20210121 18:52:51.641"></status>
 </kw>
-<status status="PASS" starttime="20210112 15:55:35.635" endtime="20210112 15:55:36.724"></status>
+<status status="PASS" starttime="20210121 18:52:50.490" endtime="20210121 18:52:51.641"></status>
 </kw>
-<status status="PASS" starttime="20210112 15:55:34.535" endtime="20210112 15:55:36.724"></status>
+<status status="PASS" starttime="20210121 18:52:49.354" endtime="20210121 18:52:51.642"></status>
 </kw>
 <kw name="Create and compare vysvetlivky" library="Text_testing">
 <kw name="Create Area from Vysvetlivky" library="Text_testing">
@@ -97,7 +36,7 @@ x2 and y2 = x and y coordinates for the lower right corner of the square of the 
 <arg>name=${NAME_VYSVĚTLIVKY_OK_PDF}</arg>
 <arg>number_page=7</arg>
 </arguments>
-<status status="PASS" starttime="20210112 15:55:36.725" endtime="20210112 15:55:36.871"></status>
+<status status="PASS" starttime="20210121 18:52:51.643" endtime="20210121 18:52:51.796"></status>
 </kw>
 <kw name="Create Area From Image" library="WatchUI">
 <doc>Creates a cut-out from the screen
@@ -110,7 +49,7 @@ Example: Compare making area 0 0 25 25</doc>
 <arg>${PATH_TO_VOK_IMG}</arg>
 <arg>screen_name=${AREA_VYSVĚTLIVKY_OK_PDF}</arg>
 </arguments>
-<status status="PASS" starttime="20210112 15:55:36.871" endtime="20210112 15:55:36.923"></status>
+<status status="PASS" starttime="20210121 18:52:51.796" endtime="20210121 18:52:51.857"></status>
 </kw>
 <kw name="Pdf To Image" library="WatchUI">
 <doc>Change PDF to Image.</doc>
@@ -119,7 +58,7 @@ Example: Compare making area 0 0 25 25</doc>
 <arg>name=${NAME_VYSVĚTLIVKY_NOK_PDF}</arg>
 <arg>number_page=7</arg>
 </arguments>
-<status status="PASS" starttime="20210112 15:55:36.923" endtime="20210112 15:55:37.070"></status>
+<status status="PASS" starttime="20210121 18:52:51.857" endtime="20210121 18:52:52.007"></status>
 </kw>
 <kw name="Create Area From Image" library="WatchUI">
 <doc>Creates a cut-out from the screen
@@ -132,9 +71,9 @@ Example: Compare making area 0 0 25 25</doc>
 <arg>${PATH_TO_VNOK_IMG}</arg>
 <arg>screen_name=${AREA_VYSVĚTLIVKY_NOK_PDF}</arg>
 </arguments>
-<status status="PASS" starttime="20210112 15:55:37.070" endtime="20210112 15:55:37.123"></status>
+<status status="PASS" starttime="20210121 18:52:52.007" endtime="20210121 18:52:52.061"></status>
 </kw>
-<status status="PASS" starttime="20210112 15:55:36.725" endtime="20210112 15:55:37.123"></status>
+<status status="PASS" starttime="20210121 18:52:51.642" endtime="20210121 18:52:52.061"></status>
 </kw>
 <kw name="Check Vysvetlivky" library="Text_testing">
 <kw name="Compare Images" library="WatchUI">
@@ -143,13 +82,13 @@ Example: Compare making area 0 0 25 25</doc>
 <arg>${PATH_TO_VOK_AREA}</arg>
 <arg>${PATH_TO_VNOK_AREA}</arg>
 </arguments>
-<msg timestamp="20210112 15:55:37.264" level="INFO">Cannot capture screenshot because no browser is open.</msg>
-<msg timestamp="20210112 15:55:37.298" level="INFO" html="yes">&lt;img src=../Outputs/Img1610463337.2644365.png&gt;</msg>
-<status status="PASS" starttime="20210112 15:55:37.123" endtime="20210112 15:55:37.299"></status>
+<msg timestamp="20210121 18:52:52.223" level="INFO">Cannot capture screenshot because no browser is open.</msg>
+<msg timestamp="20210121 18:52:52.257" level="INFO" html="yes">&lt;img src=../Outputs/Img1611251572.222583.png&gt;</msg>
+<status status="PASS" starttime="20210121 18:52:52.062" endtime="20210121 18:52:52.258"></status>
 </kw>
-<status status="PASS" starttime="20210112 15:55:37.123" endtime="20210112 15:55:37.299"></status>
+<status status="PASS" starttime="20210121 18:52:52.061" endtime="20210121 18:52:52.258"></status>
 </kw>
-<status status="PASS" starttime="20210112 15:55:36.725" endtime="20210112 15:55:37.299"></status>
+<status status="PASS" starttime="20210121 18:52:51.642" endtime="20210121 18:52:52.258"></status>
 </kw>
 <kw name="Check words:" library="Text_testing">
 <arguments>
@@ -169,17 +108,17 @@ x1, y1, x2, y2 = coordinates where text is</doc>
 <assign>
 <var>${Text_from_pdf}</var>
 </assign>
-<msg timestamp="20210112 15:55:37.311" level="INFO">${Text_from_pdf} = P Ř I Z N Á N Í </msg>
-<status status="PASS" starttime="20210112 15:55:37.300" endtime="20210112 15:55:37.311"></status>
+<msg timestamp="20210121 18:52:52.271" level="INFO">${Text_from_pdf} = P Ř I Z N Á N Í </msg>
+<status status="PASS" starttime="20210121 18:52:52.259" endtime="20210121 18:52:52.271"></status>
 </kw>
 <kw name="Should Be True" library="BuiltIn">
 <doc>Fails if the given condition is not true.</doc>
 <arguments>
 <arg>'''${Text_from_pdf}''' == '''${WHAT_WE_SEARCH} '''</arg>
 </arguments>
-<status status="PASS" starttime="20210112 15:55:37.311" endtime="20210112 15:55:37.311"></status>
+<status status="PASS" starttime="20210121 18:52:52.271" endtime="20210121 18:52:52.271"></status>
 </kw>
-<status status="PASS" starttime="20210112 15:55:37.299" endtime="20210112 15:55:37.311"></status>
+<status status="PASS" starttime="20210121 18:52:52.258" endtime="20210121 18:52:52.272"></status>
 </kw>
 <kw name="Read text from image" library="Text_testing">
 <kw name="Image Area On Text" library="WatchUI">
@@ -192,17 +131,17 @@ x1, y1, x2, y2 = coordinates where text is</doc>
 <assign>
 <var>${Text_from_area}</var>
 </assign>
-<msg timestamp="20210112 15:55:37.786" level="INFO">${Text_from_area} = PŘIZNÁNÍ</msg>
-<status status="PASS" starttime="20210112 15:55:37.312" endtime="20210112 15:55:37.786"></status>
+<msg timestamp="20210121 18:52:53.118" level="INFO">${Text_from_area} = PŘIZNÁNÍ</msg>
+<status status="PASS" starttime="20210121 18:52:52.272" endtime="20210121 18:52:53.118"></status>
 </kw>
 <kw name="Should Be True" library="BuiltIn">
 <doc>Fails if the given condition is not true.</doc>
 <arguments>
 <arg>'''${Text_from_area}''' == '''${CONTROLL_TEXT_FOR_TESS}'''</arg>
 </arguments>
-<status status="PASS" starttime="20210112 15:55:37.786" endtime="20210112 15:55:37.787"></status>
+<status status="PASS" starttime="20210121 18:52:53.118" endtime="20210121 18:52:53.118"></status>
 </kw>
-<status status="PASS" starttime="20210112 15:55:37.312" endtime="20210112 15:55:37.787"></status>
+<status status="PASS" starttime="20210121 18:52:52.272" endtime="20210121 18:52:53.119"></status>
 </kw>
 <kw name="Find diff in PDF" library="Text_testing">
 <kw name="Compare Images" library="WatchUI">
@@ -211,36 +150,34 @@ x1, y1, x2, y2 = coordinates where text is</doc>
 <arg>${PATH_TO_OK_IMG}</arg>
 <arg>${PATH_TO_NOK_IMG}</arg>
 </arguments>
-<msg timestamp="20210112 15:55:38.770" level="INFO" html="yes">&lt;img src=../Outputs/Img1610463338.7234035.png&gt;</msg>
-<msg timestamp="20210112 15:55:38.772" level="FAIL">*INFO* Save file with difference1</msg>
-<status status="FAIL" starttime="20210112 15:55:37.788" endtime="20210112 15:55:38.772"></status>
+<msg timestamp="20210121 18:52:54.085" level="INFO" html="yes">&lt;img src=../Outputs/Img1611251574.0366216.png&gt;</msg>
+<msg timestamp="20210121 18:52:54.088" level="FAIL">*INFO* Save file with difference1</msg>
+<status status="FAIL" starttime="20210121 18:52:53.119" endtime="20210121 18:52:54.088"></status>
 </kw>
-<status status="FAIL" starttime="20210112 15:55:37.787" endtime="20210112 15:55:38.772"></status>
+<status status="FAIL" starttime="20210121 18:52:53.119" endtime="20210121 18:52:54.089"></status>
 </kw>
 <tags>
 <tag>demo</tag>
 <tag>tc06</tag>
 <tag>TT</tag>
 </tags>
-<status status="FAIL" starttime="20210112 15:55:34.535" endtime="20210112 15:55:38.773" critical="yes">*INFO* Save file with difference1</status>
+<status status="FAIL" starttime="20210121 18:52:49.354" endtime="20210121 18:52:54.090" critical="yes">*INFO* Save file with difference1</status>
 </test>
 <doc>Suite description</doc>
-<status status="FAIL" starttime="20210112 15:55:20.986" endtime="20210112 15:55:38.775"></status>
+<status status="FAIL" starttime="20210121 18:52:47.869" endtime="20210121 18:52:54.091"></status>
 </suite>
 <statistics>
 <total>
-<stat pass="1" fail="1">Critical Tests</stat>
-<stat pass="1" fail="1">All Tests</stat>
+<stat pass="0" fail="1">Critical Tests</stat>
+<stat pass="0" fail="1">All Tests</stat>
 </total>
 <tag>
-<stat pass="1" fail="0">cs_outregion</stat>
-<stat pass="1" fail="1">demo</stat>
+<stat pass="0" fail="1">demo</stat>
 <stat pass="0" fail="1">tc06</stat>
 <stat pass="0" fail="1">TT</stat>
-<stat pass="1" fail="0">VT</stat>
 </tag>
 <suite>
-<stat pass="1" fail="1" id="s1" name="Unit Test">Unit Test</stat>
+<stat pass="0" fail="1" id="s1" name="Unit Test">Unit Test</stat>
 </suite>
 </statistics>
 <errors>
