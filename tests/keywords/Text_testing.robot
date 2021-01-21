@@ -16,3 +16,42 @@ Check text in area
 Check text exists
     ${Text_from_pdf}    Should exist this text  ${TT_path_to_pdf}   0   Dummy
     Should be true      ${Text_from_pdf} == True
+
+# ----------------------------------------- New test --------------------------------------- #
+Create IMG
+    Convert OK PDF to IMG
+    Convert NOK PDF to IMG
+
+Create and compare vysvetlivky
+    Create Area from Vysvetlivky
+    Check Vysvetlivky
+
+Convert OK PDF to IMG
+    pdf to image            ${OK_PDF}               name=${NAME_OK_PDF}
+
+Convert NOK PDF to IMG
+    pdf to image            ${NOK_PDF}              name=${NAME_NOK_PDF}
+
+Find diff in PDF
+    Compare Images          ${PATH_TO_OK_IMG}       ${PATH_TO_NOK_IMG}
+
+Check words:
+    [Arguments]             ${WHAT_WE_SEARCH}       @{COO}
+    ${Text_from_pdf}        Return text from area   ${NOK_PDF}              @{COO}
+    should be true                                  '''${Text_from_pdf}''' == '''${WHAT_WE_SEARCH} '''
+
+Create Area from Vysvetlivky
+    pdf to image            ${OK_PDF}               name=${NAME_VYSVĚTLIVKY_OK_PDF}    number_page=7
+    create area from image  @{COO_VYSVĚTLIVEK}      ${PATH_TO_VOK_IMG}      screen_name=${AREA_VYSVĚTLIVKY_OK_PDF}
+    pdf to image            ${NOK_PDF}              name=${NAME_VYSVĚTLIVKY_NOK_PDF}    number_page=7
+    create area from image  @{COO_VYSVĚTLIVEK}      ${PATH_TO_VNOK_IMG}     screen_name=${AREA_VYSVĚTLIVKY_NOK_PDF}
+
+Check Vysvetlivky
+    Compare Images          ${PATH_TO_VOK_AREA}     ${PATH_TO_VNOK_AREA}
+
+Read text from image
+    ${Text_from_area}       Image area on text      ${PATH_TO_NOK_IMG}      @{TEXT_COO_FOR_TESS}  language=ces
+    should be true                                  '''${Text_from_area}''' == '''${CONTROLL_TEXT_FOR_TESS}'''
+
+
+

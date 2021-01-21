@@ -42,20 +42,22 @@ TC03 - Compare screen
     Compare diff image image format JPG
 
 TC04 - Compare screen without some region
-    [Tags]  cs_outregion    VT
+    [Tags]  cs_outregion    VT  demo
     Comparing screen without some area: PNG Format
-    Comparing screen without some area: JPG Format
 
 TC05 - Create Area
     [Tags]  create_area  tc05   VT
     Create area 200 x 500: basic
     Create area 200 x 500: full set up
 
-TC06 - Tesseract
-    [Tags]  tc06    TT
+TC06 - PDF and Tesseract
+    [Tags]  tc06    TT  demo
     [Setup]
-    Check text in area
-    Check text exists
+    Create IMG
+    Create and compare vysvetlivky
+    Check words:                    ${CONTROLL_TEXT}     @{TEXT_COO}
+    Read text from image
+    Find diff in PDF
     [Teardown]
 
 *** Keywords ***

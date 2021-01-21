@@ -201,10 +201,13 @@ class WatchUI:
             if float(self.score) < self.ssim:
                 self.robotlib.log_to_console(self.ssim)
                 self.robotlib.log_to_console(self.score)
+                time_ = str(time.time())
                 cv.imwrite(
-                    self.save_folder + "/Img" + str(time.time()) + self.format, self.img2
+                    self.save_folder + "/Img" + time_ + self.format, self.img2
                 )
-                self.robotlib.fail("*INFO* Save file with difference")
+                img_url =self.save_folder + "/Img" + time_ + self.format
+                self.robotlib.log(message="<img src=" + str(img_url) + ">", html=True)
+                self.robotlib.fail("*INFO* Save file with difference1")
             else:
                 img_diff = cv.hconcat([self.img1, self.img2])
                 time_ = str(time.time())
@@ -215,6 +218,9 @@ class WatchUI:
                 self.robotlib.log_to_console(
                     "Image has diff: {} ".format(self.score)
                 )
+                img_url=save_folder + "/Img" + time_ + self.format
+                self.robotlib.log(message="<img src="+ str(img_url) + ">", html=True)
+
         else:
             raise AssertionError("The path to the image does not exist")
 
@@ -293,9 +299,7 @@ class WatchUI:
         self.seleniumlib.capture_page_screenshot(save_folder + '/testscreen.png')
         img = save_folder + '/testscreen.png'
         img_crop = cv.imread(img)
-        crop_img = img_crop[
-                   int(x1): int(y2), int(y1): int(x2)
-                   ]  # Crop from {x, y, w, h } => {0, 0, 300, 400}
+        crop_img = img_crop[int(y1): int(y1) + int(y2), int(x1): int(x1) + int(x2)]
         if screen_name == "screen":
             cv.imwrite(save_folder + '/screen' + str(time.time()) + self.format, crop_img)
         else:
@@ -805,5 +809,29 @@ class WatchUI:
                 return True
             else:
                 return False
+        else:
+            raise AssertionError("Can't found file")
+
+    def create_area_from_image(
+            self, x1, y1, x2, y2, path1, save_folder=save_folder_path, screen_name="screen", image_format=starts_format_image
+    ):
+        """  Creates a cut-out from the image
+        Creates a cut-out from the screen that is on screen and saves it in the folder: ../Outputs
+        x1 and y1 = x and y coordinates for the upper left corner of the square
+        x2 and y2 = x and y coordinates for the bottom right corner of the square
+        Example: Compare making area 0 0 25 25
+        """
+        self._check_dir(save_folder)
+        save_folder = self.save_folder
+        self._check_image_format(image_format)
+
+        if os.path.exists(path1):
+            img = path1
+            img_crop = cv.imread(img)
+            crop_img = img_crop[int(y1): int(y1) + int(y2), int(x1): int(x1) + int(x2)]
+            if screen_name == "screen":
+                cv.imwrite(save_folder + '/screen' + str(time.time()) + self.format, crop_img)
+            else:
+                cv.imwrite(save_folder + '/' + screen_name + self.format, crop_img)
         else:
             raise AssertionError("Can't found file")
