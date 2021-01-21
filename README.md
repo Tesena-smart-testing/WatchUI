@@ -36,8 +36,8 @@ For more details see our [Documentation](https://tesena-smart-testing.github.io/
 
 _Comparison of two screens where the differences are showed by red rectangles. In this example we ignored the dynamic boxes during comparison. These boxes were overlaid by black rectangles (the right on the pictures) ._
 
-<img src="/Img/logscreen.png" width="850" height="300">
+<img src="https://raw.githubusercontent.com/Tesena-smart-testing/WatchUI/master/Img/logscreen.png" width="850" height="300">
 
 _The red rectangles outlining missing elements on compared screens. In this case pictures are completely different due to bot protection feature during retesting._
 
-<img src="/Img/img_inlog.png" width="850" height="300">
+<img src="https://raw.githubusercontent.com/Tesena-smart-testing/WatchUI/master/Img/img_inlog.png" width="850" height="300">
