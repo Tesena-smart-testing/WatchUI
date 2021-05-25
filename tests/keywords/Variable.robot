@@ -34,8 +34,8 @@ ${TT_path_to_img}               ../Outputs/${TT_name_img}.png
 @{TT_text_area_coo}             0    0   179     83
 ${TT_Should_be_text}            Dummy PDF file
 #------------------------------------------ New PDF file --------------------------------------------------------------
-${OK_PDF}                       ../Img/ok.pdf
-${NOK_PDF}                      ../Img/nok.pdf
+${OK_PDF}                       Img/ok.pdf
+${NOK_PDF}                      Img/nok.pdf
 
 ${NAME_OK_PDF}                  Ok
 ${PATH_TO_OK_IMG}               ../Outputs/${NAME_OK_PDF}_0.png
