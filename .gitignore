@@ -1,4 +1,9 @@
 .idea
+.vscode
+
+.venv
+__pycache__/
+
 build
 Outputs
 WatchUI.egg-info
