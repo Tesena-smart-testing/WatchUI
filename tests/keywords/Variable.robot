@@ -11,8 +11,8 @@ ${screen800x600}                ../Outputs/screen.png
 ${FALSE}                        False
 
 # ---------------------------------------- Compare 2 saved image ------------------------------------------------------
-${1IMAGE}                       ../Img/forpres.png
-${2IMAGE}                       ../Img/forpres1.png
+${1IMAGE}                       Img/forpres.png
+${2IMAGE}                       Img/forpres1.png
 ${CS2_SFTESENA}                 ../Tesena
 
 # ---------------------------------------- Creating screens ------------------------------------------------------------
