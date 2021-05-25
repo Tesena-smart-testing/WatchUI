@@ -242,7 +242,8 @@ class WatchUI:
                                   str(img_url) + ">", html=True)
 
         else:
-            raise AssertionError("The path to the image does not exist")
+            raise AssertionError(
+                "The path ["+path1+"] or ["+path2+"] to the image does not exist.")
 
     def compare_screen(self, path1: str, save_folder: str = save_folder_path, ssim: float = starts_ssim, image_format: str = starts_format_image):
         """	Compare the already saved image with the browser screen.
@@ -577,7 +578,8 @@ class WatchUI:
                         "Image has diff: {} ".format(self.score)
                     )
         else:
-            raise AssertionError("The path to the image does not exist.")
+            raise AssertionError(
+                "The path ["+path1+"] or ["+path2+"] to the image does not exist.")
 
     def compare_screen_get_information(
             self,
@@ -679,8 +681,8 @@ class WatchUI:
 
 # ------------------------------------------ Tesseract / PDF ----------------------------------------------------------#
 
-    def image_to_string(self, path:str, oem:int='3', psm='3', language:str='eng',
-                        path_to_tesseract:str=path_to_tesseract_folder):
+    def image_to_string(self, path: str, oem: int = '3', psm='3', language: str = 'eng',
+                        path_to_tesseract: str = path_to_tesseract_folder):
         """
         Read text from image. For proper functionality  tesseract-ocr must be installed.
 
@@ -701,8 +703,8 @@ class WatchUI:
         else:
             raise AssertionError("Path " + path + " does not exists")
 
-    def image_area_on_text(self, path:str, *coordinates:int, oem='3', psm='3', language:str='eng',
-                           path_to_tesseract:str=path_to_tesseract_folder):
+    def image_area_on_text(self, path: str, *coordinates: int, oem='3', psm='3', language: str = 'eng',
+                           path_to_tesseract: str = path_to_tesseract_folder):
         """
         Read text from image. 
         Note: This keyword requires tesseract-ocr to be installed.
