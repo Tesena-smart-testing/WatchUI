@@ -31,7 +31,12 @@ jobs:
             && sudo mv chromedriver /usr/local/bin/chromedriver \
             && sudo chmod +x /usr/local/bin/chromedriver \
             && chromedriver --version
-      - name: display
+      - name: Install Tesseract
+        run: |
+          sudo apt install tesseract-ocr-ces
+          && tesseract --version
+          && tesseract --list-langs
+      - name: Set display
         run: DISPLAY=:0
       - name: Robot Framework
         run: |
@@ -50,4 +55,3 @@ jobs:
         uses: GabrielBB/xvfb-action@v1.0
         with:
           run: python3 -m robot tests/unit_test.robot
-

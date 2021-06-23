@@ -55,7 +55,7 @@ TC06 - PDF and Tesseract
     [Setup]
     Create IMG
     Create and compare vysvetlivky
-    Check words:                    ${CONTROLL_TEXT}     @{TEXT_COO}
+    Check words                     ${CONTROLL_TEXT}     @{TEXT_COO}
     Read text from image
     Find diff in PDF
     [Teardown]
@@ -63,5 +63,6 @@ TC06 - PDF and Tesseract
 *** Keywords ***
 Start web-browser
     Open Browser                ${URL}      ${BROWSER}
+
 Close web-browser
     Close Browser

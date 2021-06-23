@@ -59,9 +59,9 @@ class WatchUI:
     save_folder_path = "./Outputs"
     starts_ssim = 1.0
     starts_format_image = "png"
-    path_to_tesseract_folder = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+    default_tesseract_path = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
-    def __init__(self, outputs_folder: str = save_folder_path, ssim_basic: float = starts_ssim, format_image: str = starts_format_image, tesseract_path: str = path_to_tesseract_folder):
+    def __init__(self, outputs_folder: str = save_folder_path, ssim_basic: float = starts_ssim, format_image: str = starts_format_image, tesseract_path: str = default_tesseract_path):
         """Library can be imported either with default output folder and set lowest limit of difference between images (``ssim``), or
         you can provide your own values.
 
@@ -85,6 +85,8 @@ class WatchUI:
         self.ssim_basic = float(ssim_basic)
         self.image_format = str(format_image)
         self.tesseract_path = str(tesseract_path)
+        self._check_tess_path(self.tesseract_path)
+        pytesseract.pytesseract.tesseract_cmd = self.tess_way
 
         # when libdoc builds documentation, this would lead to exception, since robot cannot access execution context,
         # since nothing really executes
@@ -181,7 +183,7 @@ class WatchUI:
         Arguments:
             ``path`` path to <save_folder>
         """
-        if path_to_tess == r'C:\Program Files\Tesseract-OCR\tesseract.exe':
+        if path_to_tess == self.default_tesseract_path:
             self.tess_way = self.tesseract_path
         else:
             self.tess_way = path_to_tess
@@ -674,7 +676,7 @@ class WatchUI:
 # ------------------------------------------ Tesseract / PDF ----------------------------------------------------------#
 
     def image_to_string(self, path: str, oem: int = '3', psm='3', language: str = 'eng',
-                        path_to_tesseract: str = path_to_tesseract_folder):
+                        path_to_tesseract: str = default_tesseract_path):
         """
         Read text from image. For proper functionality  tesseract-ocr must be installed.
 
@@ -685,9 +687,7 @@ class WatchUI:
         ``path_to_tesseract`` = Path to root folder with tesseract.exe
         """
         if os.path.exists(path):
-            self._check_tess_path(path_to_tesseract)
             old_img = cv.imread(path)
-            pytesseract.pytesseract.tesseract_cmd = self.tess_way
             custom_oem_psm_config = r'--oem ' + oem + ' --psm ' + psm
             text = pytesseract.image_to_string(
                 old_img, config=custom_oem_psm_config, lang=language)
@@ -695,8 +695,7 @@ class WatchUI:
         else:
             raise AssertionError("Path " + path + " does not exists")
 
-    def image_area_on_text(self, path: str, *coordinates: int, oem='3', psm='3', language: str = 'eng',
-                           path_to_tesseract: str = path_to_tesseract_folder):
+    def image_area_on_text(self, path: str, *coordinates: int, oem='3', psm='3', language: str = 'eng'):
         """
         Read text from image. 
         Note: This keyword requires tesseract-ocr to be installed.
@@ -706,10 +705,8 @@ class WatchUI:
         ``oem`` = Engine Mode (Settings from tesseract)
         ``psm`` = Page Segmentation Mode (Settings from tesseract)
         ``language`` = Language of text on bitmap which to be transformed to text file
-        ``path_to_tesseract`` = Path to root folder with tesseract.exe
 
         """
-        self._check_tess_path(path_to_tesseract)
         string_list = []
         old_img = cv.imread(path)
         len_coordinates = len(coordinates)
@@ -719,7 +716,6 @@ class WatchUI:
                 if len_coordinates / 4 == 1:
                     crop_img = old_img[int(coordinates[1]): int(coordinates[3]),
                                        int(coordinates[0]): int(coordinates[2])]
-                    pytesseract.pytesseract.tesseract_cmd = self.tess_way
                     custom_oem_psm_config = r'--oem ' + oem + ' --psm ' + psm
                     text = pytesseract.image_to_string(
                         crop_img, config=custom_oem_psm_config, lang=language)
@@ -736,7 +732,6 @@ class WatchUI:
                         x2 = coordinates[2 + a]
                         y2 = coordinates[3 + a]
                         crop_img = old_img[int(y1): int(y2), int(x1): int(x2)]
-                        pytesseract.pytesseract.tesseract_cmd = self.tess_way
                         custom_oem_psm_config = r'--oem ' + oem + ' --psm ' + psm
                         text = pytesseract.image_to_string(
                             crop_img, config=custom_oem_psm_config, lang=language)
