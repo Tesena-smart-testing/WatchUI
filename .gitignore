@@ -9,6 +9,8 @@ Outputs
 WatchUI.egg-info
 Docker
 
-tests/log.html
-tests/output.xml
-tests/report.html
+log.html
+output.xml
+report.html
+
+chromedriver.exe
