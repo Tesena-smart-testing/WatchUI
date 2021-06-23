@@ -59,7 +59,7 @@ class WatchUI:
     save_folder_path = "./Outputs"
     starts_ssim = 1.0
     starts_format_image = "png"
-    default_tesseract_path = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+    default_tesseract_path = ''
 
     def __init__(self, outputs_folder: str = save_folder_path, ssim_basic: float = starts_ssim, format_image: str = starts_format_image, tesseract_path: str = default_tesseract_path):
         """Library can be imported either with default output folder and set lowest limit of difference between images (``ssim``), or
@@ -672,8 +672,7 @@ class WatchUI:
 
 # ------------------------------------------ Tesseract / PDF ----------------------------------------------------------#
 
-    def image_to_string(self, path: str, oem: int = '3', psm='3', language: str = 'eng',
-                        path_to_tesseract: str = default_tesseract_path):
+    def image_to_string(self, path: str, oem: int = '3', psm='3', language: str = 'eng'):
         """
         Read text from image. For proper functionality  tesseract-ocr must be installed.
 
