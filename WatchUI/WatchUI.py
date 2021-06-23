@@ -85,8 +85,7 @@ class WatchUI:
         self.ssim_basic = float(ssim_basic)
         self.image_format = str(format_image)
         self.tesseract_path = str(tesseract_path)
-        self._check_tess_path(self.tesseract_path)
-        pytesseract.pytesseract.tesseract_cmd = self.tess_way
+        self._set_tesseract_path(self.tesseract_path)
 
         # when libdoc builds documentation, this would lead to exception, since robot cannot access execution context,
         # since nothing really executes
@@ -176,17 +175,15 @@ class WatchUI:
             thresh.copy(), cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
         self.cnts = imutils.grab_contours(cnts)
 
-    def _check_tess_path(self, path_to_tess: str):
+    def _set_tesseract_path(self, path_to_tesseract: str):
         """
         Checks, if given ``path_to_tess`` is same as default, is not return new path.
 
         Arguments:
             ``path`` path to <save_folder>
         """
-        if path_to_tess == self.default_tesseract_path:
-            self.tess_way = self.tesseract_path
-        else:
-            self.tess_way = path_to_tess
+        if (path_to_tesseract):
+            pytesseract.pytesseract.tesseract_cmd = path_to_tesseract
 
 # ======================================== Keywords ========================================================
 
