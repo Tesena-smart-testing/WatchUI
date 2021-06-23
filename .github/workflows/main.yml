@@ -34,8 +34,8 @@ jobs:
       - name: Install Tesseract
         run: |
           sudo apt install tesseract-ocr-ces
-            && tesseract --version
-            && tesseract --list-langs
+          tesseract --version
+          tesseract --list-langs
       - name: Set display
         run: DISPLAY=:0
       - name: Robot Framework
