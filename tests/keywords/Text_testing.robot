@@ -38,7 +38,7 @@ Find diff in PDF
     ${status}=  Run Keyword And Return Status       Compare Images          ${PATH_TO_OK_IMG}       ${PATH_TO_NOK_IMG}
     Should Be True  '${status}'=='False'
 
-Check words:
+Check words
     [Arguments]             ${WHAT_WE_SEARCH}       @{COO}
     ${Text_from_pdf}        Return text from area   ${NOK_PDF}              @{COO}
     should be true                                  '''${Text_from_pdf}''' == '''${WHAT_WE_SEARCH} '''

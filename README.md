@@ -52,7 +52,8 @@ _The red rectangles outlining missing elements on compared screens. In this case
 4. Install all required packages `pip install -r requirements.txt`
 5. Download [chromedriver](https://sites.google.com/a/chromium.org/chromedriver/home)
 6. Install [tesseract] (https://tesena-smart-testing.github.io/WatchUI/start.html#install-tesseract)
-   _Note: In order to get test case within `unit_test.robot` working you have install also Czech language_
+   _Note: In order to get test case within `unit_test.robot` working you have install also Czech language otherwise last test will be failing._
+   _Note2: Windows developer need to set up PATH in order to get all test passing OR set importing variabl `default_tesseract_path` with path where tesseract is installed._
 7. Run tests `python -m robot tests/unit_test.robot` or just `robot tests/unit_test.robot`
 
-_Note: If tesseract is not installed you can still use many features of WatchUI. Currently WatchUI need tesseract only if you need to use keywords: `Image to string`, `Image area on text` and `Return text from area`_
+_Note: If tesseract is not installed you can still use many features of WatchUI. Currently WatchUI need tesseract only if you need to use keywords: `Image to string`, `Image area on text` and `Return text from area`._
