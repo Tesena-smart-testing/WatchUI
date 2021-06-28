@@ -3,7 +3,7 @@ Documentation                   Suite description
 Library                         SeleniumLibrary
 Library                         Screenshot
 Library                         OperatingSystem
-Library                         WatchUI
+Library                         ../WatchUI/WatchUI.py
 Library                         OperatingSystem
 Resource                        keywords/CS.robot
 Resource                        keywords/CS_2SavedImage.robot
@@ -62,6 +62,6 @@ TC06 - PDF and Tesseract
 
 *** Keywords ***
 Start web-browser
-     Open Browser                ${URL}      ${BROWSER}
+    Open Browser                ${URL}      ${BROWSER}
 Close web-browser
     Close Browser

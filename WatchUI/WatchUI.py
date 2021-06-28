@@ -56,7 +56,7 @@ class WatchUI:
     ROBOT_LIBRARY_VERSION = __version__
     ROBOT_LIBRARY_SCOPE = 'GLOBAL'
 
-    save_folder_path = "../Outputs"
+    save_folder_path = "./Outputs"
     starts_ssim = 1.0
     starts_format_image = "png"
     path_to_tesseract_folder = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
@@ -216,8 +216,8 @@ class WatchUI:
             # Show image
 
             if float(self.score) < self.ssim:
-                self.robotlib.log_to_console(self.ssim)
-                self.robotlib.log_to_console(self.score)
+                self.robotlib.log(self.ssim)
+                self.robotlib.log(self.score)
                 time_ = str(time.time())
                 cv.imwrite(
                     self.save_folder + "/Img" + time_ + self.format, self.img2
@@ -234,9 +234,7 @@ class WatchUI:
                 )
                 cv.imwrite(save_folder + "/Img" +
                            time_ + self.format, img_diff)
-                self.robotlib.log_to_console(
-                    "Image has diff: {} ".format(self.score)
-                )
+                self.robotlib.log("Image has diff: {} ".format(self.score))
                 img_url = save_folder + "/Img" + time_ + self.format
                 self.robotlib.log(message="<img src=" +
                                   str(img_url) + ">", html=True)
@@ -277,9 +275,9 @@ class WatchUI:
                                  (x + w, y + h), (0, 0, 255), 2)
                 # Show image
 
-                self.robotlib.log_to_console(self.ssim)
+                self.robotlib.log(self.ssim)
                 if float(self.score) < self.ssim:
-                    self.robotlib.log_to_console(self.ssim)
+                    self.robotlib.log(self.ssim)
                     img_diff = cv.hconcat([self.img1, self.img2])
                     time_ = str(time.time())
                     score_percen = float(self.score) * 100
@@ -298,9 +296,7 @@ class WatchUI:
                     )
                     cv.imwrite(save_folder + "/Img" +
                                time_ + self.format, img_diff)
-                    self.robotlib.log_to_console(
-                        "Image has diff: {} ".format(self.score)
-                    )
+                    self.robotlib.log("Image has diff: {} ".format(self.score))
             else:
                 raise AssertionError(
                     "The path2 to the image does not exist. Try a other path, than:" + path2)
@@ -477,9 +473,7 @@ class WatchUI:
                     )
                     cv.imwrite(save_folder + "/Img" +
                                time_ + self.format, img_diff)
-                    self.robotlib.log_to_console(
-                        "Image has diff: {} ".format(self.score)
-                    )
+                    self.robotlib.log("Image has diff: {} ".format(self.score))
             else:
                 raise AssertionError("New screen does not exist anymore.")
         else:
@@ -514,7 +508,7 @@ class WatchUI:
             img2 = cv.imread(path2, 1)
             if lt % 4 == 0:
                 x = lt / 4
-                self.robotlib.log_to_console(x)
+                self.robotlib.log(x)
                 i = 0
                 a = 0
                 while i < x:
@@ -574,9 +568,7 @@ class WatchUI:
                     )
                     cv.imwrite(save_folder + "/Img" +
                                time_ + self.format, img_diff)
-                    self.robotlib.log_to_console(
-                        "Image has diff: {} ".format(self.score)
-                    )
+                    self.robotlib.log("Image has diff: {} ".format(self.score))
         else:
             raise AssertionError(
                 "The path ["+path1+"] or ["+path2+"] to the image does not exist.")

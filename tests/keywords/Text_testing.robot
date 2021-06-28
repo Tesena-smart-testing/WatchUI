@@ -33,7 +33,10 @@ Convert NOK PDF to IMG
     pdf to image            ${NOK_PDF}              name=${NAME_NOK_PDF}
 
 Find diff in PDF
-    Compare Images          ${PATH_TO_OK_IMG}       ${PATH_TO_NOK_IMG}
+    [Documentation]     Test to check that keyword will fail when pictures are different.
+    ...     Status of test modified even the kw failed as we are testing it catch difference.
+    ${status}=  Run Keyword And Return Status       Compare Images          ${PATH_TO_OK_IMG}       ${PATH_TO_NOK_IMG}
+    Should Be True  '${status}'=='False'
 
 Check words:
     [Arguments]             ${WHAT_WE_SEARCH}       @{COO}

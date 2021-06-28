@@ -41,3 +41,18 @@ _Comparison of two screens where the differences are showed by red rectangles. I
 _The red rectangles outlining missing elements on compared screens. In this case pictures are completely different due to bot protection feature during retesting._
 
 <img src="https://raw.githubusercontent.com/Tesena-smart-testing/WatchUI/master/Img/img_inlog.png" width="850" height="300">
+
+### Development
+
+1. Clone this repository
+2. Create `.venv` `python -m venv .venv`
+3. Activate `.venv`
+   - [VS Code](https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment): _Ctrl+Shift+P_, select option _Python: Select Interpreter_
+   - [PyCharm](https://www.jetbrains.com/help/pycharm/configuring-python-interpreter.html#interpreter): _Ctrl+Alt+S_, select _Project <project name>_ | _Python Interpreter_.
+4. Install all required packages `pip install -r requirements.txt`
+5. Download [chromedriver](https://sites.google.com/a/chromium.org/chromedriver/home)
+6. Install [tesseract] (https://tesena-smart-testing.github.io/WatchUI/start.html#install-tesseract)
+   _Note: In order to get test case within `unit_test.robot` working you have install also Czech language_
+7. Run tests `python -m robot tests/unit_test.robot` or just `robot tests/unit_test.robot`
+
+_Note: If tesseract is not installed you can still use many features of WatchUI. Currently WatchUI need tesseract only if you need to use keywords: `Image to string`, `Image area on text` and `Return text from area`_
