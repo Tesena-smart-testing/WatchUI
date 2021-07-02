@@ -26,7 +26,7 @@ setup(
         "selenium",
         "robotframework-seleniumLibrary",
         "PyMuPDF",
-        "pytesseract"
+        "pytesseract",
     ],
     classifiers=[
         "Programming Language :: Python :: 3",

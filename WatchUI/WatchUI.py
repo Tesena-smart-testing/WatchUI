@@ -35,11 +35,11 @@ class WatchUI:
     | *** Settings ***
     | Library         WatchUI
     | Library         SeleniumLibrary
-    | 
+    |
     | *** Variables ***
     | ${URL}        https://www.tesla.com/
     | ${BROWSER}    chrome
-    | 
+    |
     | *** Test Cases ***
     | Sample test
     |    Compare screen with image
@@ -54,14 +54,20 @@ class WatchUI:
     """
 
     ROBOT_LIBRARY_VERSION = __version__
-    ROBOT_LIBRARY_SCOPE = 'GLOBAL'
+    ROBOT_LIBRARY_SCOPE = "GLOBAL"
 
     save_folder_path = "./Outputs"
     starts_ssim = 1.0
     starts_format_image = "png"
-    default_tesseract_path = ''
+    default_tesseract_path = ""
 
-    def __init__(self, outputs_folder: str = save_folder_path, ssim_basic: float = starts_ssim, format_image: str = starts_format_image, tesseract_path: str = default_tesseract_path):
+    def __init__(
+        self,
+        outputs_folder: str = save_folder_path,
+        ssim_basic: float = starts_ssim,
+        format_image: str = starts_format_image,
+        tesseract_path: str = default_tesseract_path,
+    ):
         """Library can be imported either with default output folder and set lowest limit of difference between images (``ssim``), or
         you can provide your own values.
 
@@ -144,10 +150,10 @@ class WatchUI:
         Returns:
             ``self.format`` {float} Format for setup image type.
         """
-        if str(format) == 'png':
-            self.format = '.' + self.image_format
+        if str(format) == "png":
+            self.format = "." + self.image_format
         else:
-            self.format = '.' + format
+            self.format = "." + format
 
     def _compare_images(self, path1: str, path2: str):
         """Compares two images.
@@ -164,15 +170,12 @@ class WatchUI:
         gray_img2 = cv.cvtColor(self.img2, cv.COLOR_BGR2GRAY)
 
         # SSIM diff Img
-        (self.score, diff) = structural_similarity(
-            gray_img1, gray_img2, full=True)
+        (self.score, diff) = structural_similarity(gray_img1, gray_img2, full=True)
         diff = (diff * 255).astype("uint8")
 
         # Threshold diff Img
-        thresh = cv.threshold(
-            diff, 0, 255, cv.THRESH_BINARY_INV | cv.THRESH_OTSU)[1]
-        cnts = cv.findContours(
-            thresh.copy(), cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
+        thresh = cv.threshold(diff, 0, 255, cv.THRESH_BINARY_INV | cv.THRESH_OTSU)[1]
+        cnts = cv.findContours(thresh.copy(), cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
         self.cnts = imutils.grab_contours(cnts)
 
     def _set_tesseract_path(self, path_to_tesseract: str):
@@ -182,13 +185,19 @@ class WatchUI:
         Arguments:
             ``path`` path to <save_folder>
         """
-        if (path_to_tesseract):
+        if path_to_tesseract:
             pytesseract.pytesseract.tesseract_cmd = path_to_tesseract
 
-# ======================================== Keywords ========================================================
+    # ======================================== Keywords ========================================================
 
     def compare_images(
-            self, path1: str, path2: str, save_folder: str = save_folder_path, ssim: float = starts_ssim, image_format: str = starts_format_image):
+        self,
+        path1: str,
+        path2: str,
+        save_folder: str = save_folder_path,
+        ssim: float = starts_ssim,
+        image_format: str = starts_format_image,
+    ):
         """Compare two images. If there are differences, saves the image with the errors highlighted in the folder: save_folder_path
 
         ``path1`` = path to the first image to be compared
@@ -218,12 +227,9 @@ class WatchUI:
                 self.robotlib.log(self.ssim)
                 self.robotlib.log(self.score)
                 time_ = str(time.time())
-                cv.imwrite(
-                    self.save_folder + "/Img" + time_ + self.format, self.img2
-                )
+                cv.imwrite(self.save_folder + "/Img" + time_ + self.format, self.img2)
                 img_url = self.save_folder + "/Img" + time_ + self.format
-                self.robotlib.log(message="<img src=" +
-                                  str(img_url) + ">", html=True)
+                self.robotlib.log(message="<img src=" + str(img_url) + ">", html=True)
                 self.robotlib.fail("*INFO* Save file with difference1")
             else:
                 img_diff = cv.hconcat([self.img1, self.img2])
@@ -231,34 +237,42 @@ class WatchUI:
                 self.seleniumlib.capture_page_screenshot(
                     save_folder + "/Img" + time_ + self.format
                 )
-                cv.imwrite(save_folder + "/Img" +
-                           time_ + self.format, img_diff)
+                cv.imwrite(save_folder + "/Img" + time_ + self.format, img_diff)
                 self.robotlib.log("Image has diff: {} ".format(self.score))
                 img_url = save_folder + "/Img" + time_ + self.format
-                self.robotlib.log(message="<img src=" +
-                                  str(img_url) + ">", html=True)
+                self.robotlib.log(message="<img src=" + str(img_url) + ">", html=True)
 
         else:
             raise AssertionError(
-                "The path ["+path1+"] or ["+path2+"] to the image does not exist.")
+                "The path ["
+                + path1
+                + "] or ["
+                + path2
+                + "] to the image does not exist."
+            )
 
-    def compare_screen(self, path1: str, save_folder: str = save_folder_path, ssim: float = starts_ssim, image_format: str = starts_format_image):
-        """	Compare the already saved image with the browser screen.
+    def compare_screen(
+        self,
+        path1: str,
+        save_folder: str = save_folder_path,
+        ssim: float = starts_ssim,
+        image_format: str = starts_format_image,
+    ):
+        """Compare the already saved image with the browser screen.
 
         Compares the already saved image with the screen / browser that is open. If there is a difference, it saves the
         highlighted image to the: save_folder_path
 
         ``path1`` = Path to the image to be compared to screen
 
-        Example: 
+        Example:
         | Compare Screen | ../image1.png
         """
         self._check_dir(save_folder)
         self._check_ssim(float(ssim))
         self._check_image_format(image_format)
         save_folder = self.save_folder
-        self.seleniumlib.capture_page_screenshot(
-            save_folder + "/testscreen.png")
+        self.seleniumlib.capture_page_screenshot(save_folder + "/testscreen.png")
         path2 = save_folder + "/testscreen.png"
         if os.path.exists(path1):
             if os.path.exists(path2):
@@ -268,10 +282,8 @@ class WatchUI:
                 # Create frame in diff area
                 for c in self.cnts:
                     (x, y, w, h) = cv.boundingRect(c)
-                    cv.rectangle(self.img1, (x, y),
-                                 (x + w, y + h), (0, 0, 255), 2)
-                    cv.rectangle(self.img2, (x, y),
-                                 (x + w, y + h), (0, 0, 255), 2)
+                    cv.rectangle(self.img1, (x, y), (x + w, y + h), (0, 0, 255), 2)
+                    cv.rectangle(self.img2, (x, y), (x + w, y + h), (0, 0, 255), 2)
                 # Show image
 
                 self.robotlib.log(self.ssim)
@@ -283,30 +295,37 @@ class WatchUI:
                     self.seleniumlib.capture_page_screenshot(
                         save_folder + "/Img" + time_ + self.format
                     )
-                    cv.imwrite(save_folder + "/Img" +
-                               time_ + self.format, img_diff)
-                    self.robotlib.fail(
-                        "Image has diff: {} %".format(score_percen))
+                    cv.imwrite(save_folder + "/Img" + time_ + self.format, img_diff)
+                    self.robotlib.fail("Image has diff: {} %".format(score_percen))
                 else:
                     img_diff = cv.hconcat([self.img1, self.img2])
                     time_ = str(time.time())
                     self.seleniumlib.capture_page_screenshot(
                         save_folder + "/Img" + time_ + self.format
                     )
-                    cv.imwrite(save_folder + "/Img" +
-                               time_ + self.format, img_diff)
+                    cv.imwrite(save_folder + "/Img" + time_ + self.format, img_diff)
                     self.robotlib.log("Image has diff: {} ".format(self.score))
             else:
                 raise AssertionError(
-                    "The path2 to the image does not exist. Try a other path, than:" + path2)
+                    "The path2 to the image does not exist. Try a other path, than:"
+                    + path2
+                )
         else:
             raise AssertionError(
-                "The path1 to the image does not exist. Try a other path, than:" + path1)
+                "The path1 to the image does not exist. Try a other path, than:" + path1
+            )
         if os.path.exists(save_folder + "/testscreen.png"):
             os.remove(save_folder + "/testscreen.png")
 
     def create_area(
-            self, x1: int, y1: int, x2: int, y2: int, save_folder: str = save_folder_path, screen_name: str = "screen", image_format: str = starts_format_image
+        self,
+        x1: int,
+        y1: int,
+        x2: int,
+        y2: int,
+        save_folder: str = save_folder_path,
+        screen_name: str = "screen",
+        image_format: str = starts_format_image,
     ):
         """Creates a cut-out from the screen
 
@@ -315,29 +334,32 @@ class WatchUI:
         ``x1`` and ``y1`` = x and y coordinates for the upper left corner of the square
         ``x2`` and ``y2`` = x and y coordinates for the bottom right corner of the square
 
-        Example: 
+        Example:
         | Create Area | 0 | 0 | 25 | 25 |
         """
         self._check_dir(save_folder)
         save_folder = self.save_folder
         self._check_image_format(image_format)
 
-        self.seleniumlib.capture_page_screenshot(
-            save_folder + '/testscreen.png')
-        img = save_folder + '/testscreen.png'
+        self.seleniumlib.capture_page_screenshot(save_folder + "/testscreen.png")
+        img = save_folder + "/testscreen.png"
         img_crop = cv.imread(img)
-        crop_img = img_crop[int(y1): int(y1) + int(y2),
-                            int(x1): int(x1) + int(x2)]
+        crop_img = img_crop[int(y1) : int(y1) + int(y2), int(x1) : int(x1) + int(x2)]
         if screen_name == "screen":
-            cv.imwrite(save_folder + '/screen' +
-                       str(time.time()) + self.format, crop_img)
+            cv.imwrite(
+                save_folder + "/screen" + str(time.time()) + self.format, crop_img
+            )
         else:
-            cv.imwrite(save_folder + '/' + screen_name + self.format, crop_img)
+            cv.imwrite(save_folder + "/" + screen_name + self.format, crop_img)
 
     def create_screens(
-            self, *resolution: int, save_folder: str = save_folder_path, screen_name: str = "screen", image_format: str = starts_format_image
+        self,
+        *resolution: int,
+        save_folder: str = save_folder_path,
+        screen_name: str = "screen",
+        image_format: str = starts_format_image,
     ):
-        """ Creates a screenshots on the screen
+        """Creates a screenshots on the screen
 
         Creates a screenshots on the screen, that corresponds to the specified resolution. It is also possible to create on
         one page an infinite number of screens with different resolutions.
@@ -348,8 +370,8 @@ class WatchUI:
         Warning: When you create one screen, name will be screen.png, but when you create more than one screen from same
         page, name will be screen screen_name_width_height.png
 
-        Example to create 3 screens in 800x600 1280x800 and 1440x90 
-        | Create Screens | 800 | 600 | 1280 | 800 | 1440 | 900 |  
+        Example to create 3 screens in 800x600 1280x800 and 1440x90
+        | Create Screens | 800 | 600 | 1280 | 800 | 1440 | 900 |
         """
         self._check_dir(save_folder)
         save_folder = self.save_folder
@@ -358,14 +380,10 @@ class WatchUI:
         leng_reso = len(resolution)
         if leng_reso % 2 == 0:
             if (leng_reso / 2) == 1:
-                self.seleniumlib.set_window_size(
-                    int(resolution[0]), int(resolution[1]))
+                self.seleniumlib.set_window_size(int(resolution[0]), int(resolution[1]))
                 time.sleep(1)
                 self.seleniumlib.capture_page_screenshot(
-                    save_folder
-                    + "/"
-                    + screen_name
-                    + self.format
+                    save_folder + "/" + screen_name + self.format
                 )
             else:
                 x = leng_reso / 2
@@ -389,11 +407,20 @@ class WatchUI:
                     i += 1
         else:
             raise AssertionError(
-                "Incorrect number of resolutions. It is expected even number of resolution parameters [width x height] but is seems to be odd:" + leng_reso)
+                "Incorrect number of resolutions. It is expected even number of resolution parameters [width x height] but is seems to be odd:"
+                + leng_reso
+            )
 
     def compare_screen_areas(
-            self, x1: int, y1: int, x2: int, y2: int, path1: str, save_folder: str = save_folder_path, ssim: float = starts_ssim,
-            image_format=starts_format_image
+        self,
+        x1: int,
+        y1: int,
+        x2: int,
+        y2: int,
+        path1: str,
+        save_folder: str = save_folder_path,
+        ssim: float = starts_ssim,
+        image_format=starts_format_image,
     ):
         """Creates a cut-out from the screen that is on the screen and compares it to a previously created
 
@@ -408,8 +435,8 @@ class WatchUI:
         self._check_ssim(ssim)
         self._check_image_format(image_format)
         save_folder = self.save_folder
-        self.seleniumlib.capture_page_screenshot(save_folder + '/test1.png')
-        path2 = save_folder + '/test1.png'
+        self.seleniumlib.capture_page_screenshot(save_folder + "/test1.png")
+        path2 = save_folder + "/test1.png"
 
         if os.path.exists(path1):
             if os.path.exists(path2):
@@ -423,14 +450,14 @@ class WatchUI:
 
                 # spliting area
                 crop_img = gray_img2[
-                    int(x1): int(y2), int(y1): int(x2)
+                    int(x1) : int(y2), int(y1) : int(x2)
                 ]  # Crop from {x, y, w, h } => {0, 0, 300, 400}
 
                 # SSIM diff img
                 (self.score, diff) = structural_similarity(
                     gray_img1, crop_img, full=True
                 )
-                diff = (diff * 255).astype('uint8')
+                diff = (diff * 255).astype("uint8")
 
                 # Threshold diff img
                 thresh = cv.threshold(
@@ -441,48 +468,49 @@ class WatchUI:
                 )
                 cnts = imutils.grab_contours(cnts)
 
-                crop_img_color = img2[int(x1): int(y2), int(y1): int(x2)]
+                crop_img_color = img2[int(x1) : int(y2), int(y1) : int(x2)]
                 # Create frame in diff area
                 for c in cnts:
                     (x, y, w, h) = cv.boundingRect(c)
                     cv.rectangle(img1, (x, y), (x + w, y + h), (0, 0, 255), 2)
-                    cv.rectangle(crop_img_color, (x, y),
-                                 (x + w, y + h), (0, 0, 255), 2)
+                    cv.rectangle(crop_img_color, (x, y), (x + w, y + h), (0, 0, 255), 2)
 
                 # Show image
                 if float(self.score) < self.ssim:
-                    self.robotlib = BuiltIn().get_library_instance('BuiltIn')
+                    self.robotlib = BuiltIn().get_library_instance("BuiltIn")
                     img_diff = cv.hconcat([img1, crop_img_color])
                     time_ = str(time.time())
                     self.seleniumlib.capture_page_screenshot(
-                        save_folder + '/img' + time_ + '.png'
+                        save_folder + "/img" + time_ + ".png"
                     )
-                    cv.imwrite(save_folder + '/img' +
-                               time_ + self.format, img_diff)
-                    self.robotlib.fail(
-                        'Image has diff: {} '.format(self.score))
+                    cv.imwrite(save_folder + "/img" + time_ + self.format, img_diff)
+                    self.robotlib.fail("Image has diff: {} ".format(self.score))
                     score_percen = float(self.score) * +100
-                    self.robotlib.fail(
-                        'Image has diff: {} %'.format(score_percen))
+                    self.robotlib.fail("Image has diff: {} %".format(score_percen))
                 else:
                     img_diff = cv.hconcat([self.img1, self.img2])
                     time_ = str(time.time())
                     self.seleniumlib.capture_page_screenshot(
                         save_folder + "/Img" + time_ + self.format
                     )
-                    cv.imwrite(save_folder + "/Img" +
-                               time_ + self.format, img_diff)
+                    cv.imwrite(save_folder + "/Img" + time_ + self.format, img_diff)
                     self.robotlib.log("Image has diff: {} ".format(self.score))
             else:
                 raise AssertionError("New screen does not exist anymore.")
         else:
             raise AssertionError(
-                "The path1 to the image does not exist. Try a other path, than:" + path1)
-        if os.path.exists(save_folder + '/test1.png'):
-            os.remove(save_folder + '/test1.png')
+                "The path1 to the image does not exist. Try a other path, than:" + path1
+            )
+        if os.path.exists(save_folder + "/test1.png"):
+            os.remove(save_folder + "/test1.png")
 
     def compare_screen_without_areas(
-            self, path1, *args, save_folder=save_folder_path, ssim=starts_ssim, image_format=starts_format_image
+        self,
+        path1,
+        *args,
+        save_folder=save_folder_path,
+        ssim=starts_ssim,
+        image_format=starts_format_image,
     ):
         """
         Compares picture with actual open browser window, with areas to be ignored.
@@ -555,38 +583,40 @@ class WatchUI:
                     self.seleniumlib.capture_page_screenshot(
                         save_folder + "/Img" + time_ + self.format
                     )
-                    cv.imwrite(save_folder + "/Img" +
-                               time_ + self.format, img_diff)
-                    self.robotlib.fail(
-                        "Image has diff: {} ".format(self.score))
+                    cv.imwrite(save_folder + "/Img" + time_ + self.format, img_diff)
+                    self.robotlib.fail("Image has diff: {} ".format(self.score))
                 else:
                     img_diff = cv.hconcat([img1, img2])
                     time_ = str(time.time())
                     self.seleniumlib.capture_page_screenshot(
                         save_folder + "/Img" + time_ + self.format
                     )
-                    cv.imwrite(save_folder + "/Img" +
-                               time_ + self.format, img_diff)
+                    cv.imwrite(save_folder + "/Img" + time_ + self.format, img_diff)
                     self.robotlib.log("Image has diff: {} ".format(self.score))
         else:
             raise AssertionError(
-                "The path ["+path1+"] or ["+path2+"] to the image does not exist.")
+                "The path ["
+                + path1
+                + "] or ["
+                + path2
+                + "] to the image does not exist."
+            )
 
     def compare_screen_get_information(
-            self,
-            path1,
-            save_folder=save_folder_path,
-            folder_csv="../CSV_ERROR",
-            ssim=starts_ssim,
-            image_format=starts_format_image
+        self,
+        path1,
+        save_folder=save_folder_path,
+        folder_csv="../CSV_ERROR",
+        ssim=starts_ssim,
+        image_format=starts_format_image,
     ):
-        """	Compares the already saved image with the screen that is on the screen. If there is a difference, it saves the
+        """Compares the already saved image with the screen that is on the screen. If there is a difference, it saves the
         highlighted image to the: ``save_folder`` and creates csv file with coordinates and elements which exist on this
         coordinates.
 
         ``path1`` = path to the image to be compared to screen
 
-        Example: 
+        Example:
         | Compare screen | ../image1.png |
         """
         self._check_dir(save_folder)
@@ -611,10 +641,8 @@ class WatchUI:
                     # Create frame in diff area
                     for c in self.cnts:
                         (x, y, w, h) = cv.boundingRect(c)
-                        cv.rectangle(self.img1, (x, y),
-                                     (x + w, y + h), (0, 0, 255), 2)
-                        cv.rectangle(self.img2, (x, y),
-                                     (x + w, y + h), (0, 0, 255), 2)
+                        cv.rectangle(self.img1, (x, y), (x + w, y + h), (0, 0, 255), 2)
+                        cv.rectangle(self.img2, (x, y), (x + w, y + h), (0, 0, 255), 2)
                         x2 = x + w
                         y2 = y + h
                         x_center = x + ((x2 - x) / 2)
@@ -630,14 +658,14 @@ class WatchUI:
                         save_folder + "/Img{0}.{1}".format(time_, self.format)
                     )
                     cv.imwrite(
-                        save_folder + "/Img{0}.{1}".format(time_, self.format), img_diff)
+                        save_folder + "/Img{0}.{1}".format(time_, self.format), img_diff
+                    )
 
                     # start reading coordinates and saving element from coordinate
                     df = pd.read_csv(r"" + folder_csv + "/bug_coordinates.csv")
                     with open(
-                            folder_csv +
-                        "/bug_co_and_name{0}.csv".format(str(time.time())),
-                            "w",
+                        folder_csv + "/bug_co_and_name{0}.csv".format(str(time.time())),
+                        "w",
                     ) as csv_name:
                         writer = csv.writer(csv_name)
                         a = "web-page", "x_center", "y_center", "class", "id", "name"
@@ -661,18 +689,17 @@ class WatchUI:
                                 writer.writerow(f)
 
                     score_percen = float(self.score) * 100
-                    self.robotlib.fail(
-                        "Image has diff: {} %".format(score_percen))
+                    self.robotlib.fail("Image has diff: {} %".format(score_percen))
             else:
-                raise AssertionError(
-                    "Bad or not exists path for picture or screen.")
+                raise AssertionError("Bad or not exists path for picture or screen.")
         else:
-            raise AssertionError(
-                "Bad or not existing path for picture or screen.")
+            raise AssertionError("Bad or not existing path for picture or screen.")
 
-# ------------------------------------------ Tesseract / PDF ----------------------------------------------------------#
+    # ------------------------------------------ Tesseract / PDF ----------------------------------------------------------#
 
-    def image_to_string(self, path: str, oem: int = '3', psm='3', language: str = 'eng'):
+    def image_to_string(
+        self, path: str, oem: int = "3", psm="3", language: str = "eng"
+    ):
         """
         Read text from image. For proper functionality  tesseract-ocr must be installed.
 
@@ -684,16 +711,19 @@ class WatchUI:
         """
         if os.path.exists(path):
             old_img = cv.imread(path)
-            custom_oem_psm_config = r'--oem ' + oem + ' --psm ' + psm
+            custom_oem_psm_config = r"--oem " + oem + " --psm " + psm
             text = pytesseract.image_to_string(
-                old_img, config=custom_oem_psm_config, lang=language)
+                old_img, config=custom_oem_psm_config, lang=language
+            )
             return text
         else:
             raise AssertionError("Path " + path + " does not exists")
 
-    def image_area_on_text(self, path: str, *coordinates: int, oem='3', psm='3', language: str = 'eng'):
+    def image_area_on_text(
+        self, path: str, *coordinates: int, oem="3", psm="3", language: str = "eng"
+    ):
         """
-        Read text from image. 
+        Read text from image.
         Note: This keyword requires tesseract-ocr to be installed.
 
         ``path`` = Path to the image to be transformed into text
@@ -710,11 +740,14 @@ class WatchUI:
 
             if len_coordinates % 4 == 0:
                 if len_coordinates / 4 == 1:
-                    crop_img = old_img[int(coordinates[1]): int(coordinates[3]),
-                                       int(coordinates[0]): int(coordinates[2])]
-                    custom_oem_psm_config = r'--oem ' + oem + ' --psm ' + psm
+                    crop_img = old_img[
+                        int(coordinates[1]) : int(coordinates[3]),
+                        int(coordinates[0]) : int(coordinates[2]),
+                    ]
+                    custom_oem_psm_config = r"--oem " + oem + " --psm " + psm
                     text = pytesseract.image_to_string(
-                        crop_img, config=custom_oem_psm_config, lang=language)
+                        crop_img, config=custom_oem_psm_config, lang=language
+                    )
                     # delete blank line space
                     text = os.linesep.join([s for s in text.splitlines() if s])
                     return text
@@ -727,22 +760,32 @@ class WatchUI:
                         y1 = coordinates[1 + a]
                         x2 = coordinates[2 + a]
                         y2 = coordinates[3 + a]
-                        crop_img = old_img[int(y1): int(y2), int(x1): int(x2)]
-                        custom_oem_psm_config = r'--oem ' + oem + ' --psm ' + psm
+                        crop_img = old_img[int(y1) : int(y2), int(x1) : int(x2)]
+                        custom_oem_psm_config = r"--oem " + oem + " --psm " + psm
                         text = pytesseract.image_to_string(
-                            crop_img, config=custom_oem_psm_config, lang=language)
+                            crop_img, config=custom_oem_psm_config, lang=language
+                        )
                         string_list.append(text)
                         i += 1
                         a += 4
                     return string_list
             else:
                 raise AssertionError(
-                    "Number of coordinates for image areas to be processed is expected to be dividable by four but it seem to be not. " +
-                    "Actual number of provided coordinates is " + len_coordinates)
+                    "Number of coordinates for image areas to be processed is expected to be dividable by four but it seem to be not. "
+                    + "Actual number of provided coordinates is "
+                    + len_coordinates
+                )
         else:
             raise AssertionError("Path " + path + " does not exists.")
 
-    def pdf_to_image(self, path1: str, save_folder: str = save_folder_path, name: str = "img", number_page: int = "-1", zoom: int = "3"):
+    def pdf_to_image(
+        self,
+        path1: str,
+        save_folder: str = save_folder_path,
+        name: str = "img",
+        number_page: int = "-1",
+        zoom: int = "3",
+    ):
         """Convert PDF to image.
 
         ``path`` = Path to the PDF file, which will be converted to image.
@@ -773,11 +816,14 @@ class WatchUI:
         else:
             raise AssertionError("Path " + path1 + " doesn't exists")
 
-    def rotate_image(self, path: str, screen_name: str = "rotate_screen",
-                     save_folder=save_folder_path,
-                     rotate=0,
-                     image_format=starts_format_image
-                     ):
+    def rotate_image(
+        self,
+        path: str,
+        screen_name: str = "rotate_screen",
+        save_folder=save_folder_path,
+        rotate=0,
+        image_format=starts_format_image,
+    ):
         """Rotate image.
 
         ``path`` = Path to the image to be rotated.
@@ -792,26 +838,28 @@ class WatchUI:
             img = cv.imread(path)
             if int(rotate) == 0:
                 rotate_image = cv.rotate(img, cv.ROTATE_90_CLOCKWISE)
-                cv.imwrite(save_folder + '/' + screen_name +
-                           self.format, rotate_image)
+                cv.imwrite(save_folder + "/" + screen_name + self.format, rotate_image)
             elif int(rotate) == 1:
                 rotate_image = cv.rotate(img, cv.ROTATE_90_COUNTERCLOCKWISE)
-                cv.imwrite(save_folder + '/' + screen_name +
-                           self.format, rotate_image)
+                cv.imwrite(save_folder + "/" + screen_name + self.format, rotate_image)
             elif int(rotate) == 2:
                 rotate_image = cv.rotate(img, cv.ROTATE_180)
-                cv.imwrite(save_folder + '/' + screen_name +
-                           self.format, rotate_image)
+                cv.imwrite(save_folder + "/" + screen_name + self.format, rotate_image)
             else:
-                raise AssertionError("You are trying to set rotation angle to: " + str(rotate) +
-                                     " which is not allowed value. Allowed values are 0, 1 or 2. Please see documentations for more details.")
+                raise AssertionError(
+                    "You are trying to set rotation angle to: "
+                    + str(rotate)
+                    + " which is not allowed value. Allowed values are 0, 1 or 2. Please see documentations for more details."
+                )
         else:
             raise AssertionError("Path" + path + "does not exists.")
 
     @staticmethod
-    def return_text_from_area(path: str, page_number: int, x1: float, y1: float, x2: float, y2: float):
+    def return_text_from_area(
+        path: str, page_number: int, x1: float, y1: float, x2: float, y2: float
+    ):
         """
-        Return text from area. 
+        Return text from area.
         It does not use tesseract, so it can be used on for standart PDF reading or without installed tesseract.
 
         ``path`` = Path to PDF to be processed
@@ -825,8 +873,12 @@ class WatchUI:
             text = ""
             xy_numbers = 1
             for xy in words_list:
-                if float(xy[0]) > float(x1) and float(xy[1]) > float(y1) and float(xy[2]) < float(x2) and \
-                        float(xy[3]) < float(y2):
+                if (
+                    float(xy[0]) > float(x1)
+                    and float(xy[1]) > float(y1)
+                    and float(xy[2]) < float(x2)
+                    and float(xy[3]) < float(y2)
+                ):
                     if xy_numbers == len(words_list):
                         text += xy[4]
                     else:
@@ -857,15 +909,23 @@ class WatchUI:
             raise AssertionError("Cannot find file: " + path)
 
     def create_area_from_image(
-            self, x1, y1, x2, y2, path1, save_folder=save_folder_path, screen_name="screen", image_format=starts_format_image
+        self,
+        x1,
+        y1,
+        x2,
+        y2,
+        path1,
+        save_folder=save_folder_path,
+        screen_name="screen",
+        image_format=starts_format_image,
     ):
-        """  Creates a cut-out from the image.
+        """Creates a cut-out from the image.
         Creates a cut-out from the screen that is on screen and saves it in the folder: ../Outputs
 
         ``x1`` and ``y1`` = x and y coordinates for the upper left corner of the square
         ``x2`` and ``y2`` = x and y coordinates for the bottom right corner of the square
 
-        Example: 
+        Example:
         | Compare Area From Image | 0 | 0 | 25 | 25 |
         """
         self._check_dir(save_folder)
@@ -875,13 +935,14 @@ class WatchUI:
         if os.path.exists(path1):
             img = path1
             img_crop = cv.imread(img)
-            crop_img = img_crop[int(y1): int(
-                y1) + int(y2), int(x1): int(x1) + int(x2)]
+            crop_img = img_crop[
+                int(y1) : int(y1) + int(y2), int(x1) : int(x1) + int(x2)
+            ]
             if screen_name == "screen":
-                cv.imwrite(save_folder + '/screen' +
-                           str(time.time()) + self.format, crop_img)
+                cv.imwrite(
+                    save_folder + "/screen" + str(time.time()) + self.format, crop_img
+                )
             else:
-                cv.imwrite(save_folder + '/' + screen_name +
-                           self.format, crop_img)
+                cv.imwrite(save_folder + "/" + screen_name + self.format, crop_img)
         else:
             raise AssertionError("Cannot find file: " + path1)
