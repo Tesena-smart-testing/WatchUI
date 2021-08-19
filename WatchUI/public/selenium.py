@@ -4,40 +4,33 @@ as simple as possible and compatible.
 '''
 from typing import Literal
 
-from private.image import Image
-from private.pdf import Pdf
-from private.tesseract import Tesseract
-
 from robot.libraries.BuiltIn import BuiltIn
+from WatchUI.private.image import Image
+from WatchUI.private.pdf import Pdf
+from WatchUI.private.tesseract import Tesseract
 
 
-class Selenium:
+class Selenium(Image, Pdf, Tesseract):
     def __init__(
         self,
         ssim_basic: float,
         format_image: Literal["png", "jpg"],
         tesseract_path: str,
         outputs_folder: str,
+        path_to_image_1: str,
+        path_to_image_2: str,
+        path_to_image_3: str,
     ) -> None:
+        super().__init__(
+            ssim_basic=ssim_basic,
+            format_image=format_image,
+            tesseract_path=tesseract_path,
+            outputs_folder=outputs_folder,
+            path_to_image_1=path_to_image_1,
+            path_to_image_2=path_to_image_2,
+            path_to_image_3=path_to_image_3,
+        )
         self.browser = BuiltIn().get_library_instance("SeleniumLibrary")
-        self.image = Image(
-            ssim_basic=ssim_basic,
-            format_image=format_image,
-            tesseract_path=tesseract_path,
-            outputs_folder=outputs_folder,
-        )
-        self.pdf = Pdf(
-            ssim_basic=ssim_basic,
-            format_image=format_image,
-            tesseract_path=tesseract_path,
-            outputs_folder=outputs_folder,
-        )
-        self.tesseract = Tesseract(
-            ssim_basic=ssim_basic,
-            format_image=format_image,
-            tesseract_path=tesseract_path,
-            outputs_folder=outputs_folder,
-        )
 
     def compare_screen(self):
         pass
