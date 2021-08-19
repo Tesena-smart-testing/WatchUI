@@ -43,7 +43,7 @@ class WatchUI:
                 self.path_to_image_3,
             )
 
-        elif rf_library == "playwright":
+        if rf_library == "playwright":
             return Playwright(
                 self.ssim_basic,
                 self.format_image,
@@ -53,9 +53,8 @@ class WatchUI:
                 self.path_to_image_2,
                 self.path_to_image_3,
             )
-        
-        else:
-            raise RuntimeError("'selenium' or 'playwright' libraries are supported.")
+
+        raise RuntimeError("'selenium' or 'playwright' libraries are supported.")
 
     @keyword
     def compare_screen(self):
