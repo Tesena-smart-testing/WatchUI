@@ -7,7 +7,7 @@ from WatchUI.interfaces.interface import Interface
 from WatchUI.modules.reporting import Reporting
 
 
-class Tesseract(Interface):
+class Tesseract(Interface, Reporting):
     def __init__(
         self,
         ssim_basic: float,
@@ -26,7 +26,6 @@ class Tesseract(Interface):
         self.oem: Any = oem
         self.psm: Any = psm
         self.language: Any = language
-        self.reporting = Reporting()
 
     def image_to_string(self):
         pass

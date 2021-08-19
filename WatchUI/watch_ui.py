@@ -2,10 +2,11 @@
 '''
 
 from typing import Literal
+
+from robot.api.deco import keyword, library
+
 from WatchUI.public.playwright import Playwright
 from WatchUI.public.selenium import Selenium
-
-from robot.api.deco import library, keyword
 
 
 @library(scope="module")

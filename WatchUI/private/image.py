@@ -4,9 +4,10 @@
 from typing import Literal
 
 from WatchUI.interfaces.interface import Interface
+from WatchUI.modules.reporting import Reporting
 
 
-class Image(Interface):
+class Image(Interface, Reporting):
     def __init__(
         self,
         ssim_basic: float,
