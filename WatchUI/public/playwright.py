@@ -1,7 +1,4 @@
 '''Class representing Playwright object, used to perform tasks supported by WatchUI.
-Class is inheriting from MarketSquare-Browser robotframework library to keep the implementation
-as simple as possible and compatible. MarketSquare-Browser is also probably most used playwright
-library for RF
 '''
 
 from robot.libraries.BuiltIn import BuiltIn
