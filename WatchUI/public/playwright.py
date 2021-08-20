@@ -3,9 +3,9 @@ Class is inheriting from MarketSquare-Browser robotframework library to keep the
 as simple as possible and compatible. MarketSquare-Browser is also probably most used playwright
 library for RF
 '''
-from typing import Literal
 
 from robot.libraries.BuiltIn import BuiltIn
+from WatchUI.common.types import CustomPath, ImageFormat
 from WatchUI.private.image import Image
 from WatchUI.private.pdf import Pdf
 from WatchUI.private.tesseract import Tesseract
@@ -15,12 +15,12 @@ class Playwright(Image, Pdf, Tesseract):
     def __init__(
         self,
         ssim_basic: float,
-        format_image: Literal["png", "jpg"],
-        tesseract_path: str,
-        outputs_folder: str,
-        path_to_image_1: str,
-        path_to_image_2: str,
-        path_to_image_3: str,
+        format_image: ImageFormat,
+        tesseract_path: CustomPath,
+        outputs_folder: CustomPath,
+        path_to_image_1: CustomPath,
+        path_to_image_2: CustomPath,
+        path_to_image_3: CustomPath,
     ) -> None:
         super().__init__(
             ssim_basic=ssim_basic,

@@ -1,26 +1,25 @@
 '''Class representing RobotFramework WatchUI library.
 '''
 
-from typing import Literal
-
 from robot.api.deco import keyword, library
 
+from WatchUI.common.types import CustomPath, ImageFormat, RFLibraries
 from WatchUI.public.playwright import Playwright
 from WatchUI.public.selenium import Selenium
 
 
-@library(scope="module")
+@library(scope="suite")
 class WatchUI:
     def __init__(
         self,
-        rf_library: Literal["selenium", "playwright"],
+        rf_library: RFLibraries,
         ssim_basic: float,
-        format_image: Literal["png", "jpg"],
-        tesseract_path: str,
-        outputs_folder: str,
-        path_to_image_1: str,
-        path_to_image_2: str,
-        path_to_image_3: str,
+        format_image: ImageFormat,
+        tesseract_path: CustomPath,
+        outputs_folder: CustomPath,
+        path_to_image_1: CustomPath,
+        path_to_image_2: CustomPath,
+        path_to_image_3: CustomPath,
     ) -> None:
 
         self.ssim_basic = ssim_basic
@@ -32,7 +31,7 @@ class WatchUI:
         self.path_to_image_3 = path_to_image_3
         self.rf_library = self._instantiate(rf_library)
 
-    def _instantiate(self, rf_library: Literal["selenium", "playwright"]):
+    def _instantiate(self, rf_library: RFLibraries):
         if rf_library == "selenium":
             return Selenium(
                 self.ssim_basic,
