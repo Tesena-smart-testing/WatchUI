@@ -2,7 +2,10 @@
 
 ## [Documentation](https://tesena-smart-testing.github.io/WatchUI/) | [Tesena](https://www.tesena.com/) | [Pypi](https://pypi.org/project/WatchUI/)
 
+## V2 DEV NOTES:
 
+- if possible, use [poetry](https://python-poetry.org/) to install dependecies. it will also install all dev dependencies used for linting, type checking and formatting.
+- if you are using VSCode, all dev tooling should work out of the box, once you open your virtual environment created by poetry. Settings are in the `.vscode/settings.json` file.
 ### Basic Info
 
 
