@@ -1,6 +1,4 @@
 '''Class representing Selenium object, used to perform tasks supported by WatchUI.
-Class is inheriting from SeleniumLibrary to keep the implementation
-as simple as possible and compatible.
 '''
 
 from robot.libraries.BuiltIn import BuiltIn
