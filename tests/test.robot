@@ -1,14 +1,14 @@
 *** Settings ***
-Documentation   Suite description
-Library         SeleniumLibrary
-Library         Screenshot
-Library         ../WatchUI/WatchUI.py
-Test Teardown   Close All Browsers
+Documentation                               Suite description
+Library                                     SeleniumLibrary
+Library                                     Screenshot
+Library                                     ../WatchUI/WatchUI.py
+Test Teardown                               Close All Browsers
 
 *** Variables ***
-${start_url}        https://www.tesla.com/
-${browser}          Chrome
-@{loc}              0   0   30   40
+${start_url}                        https://www.tesla.com/
+${browser}                          Chrome
+@{loc}                              0   0   30   40
 
 *** Test Cases ***
 Sample test
@@ -20,28 +20,27 @@ Sample test
     Comparing screen without some region
     Area compare with info
 
-
 *** Keywords ***
 Two images compare
-    Compare images                      ./Outputs/screen800x600.png    ./Outputs/screen800x600.png    ./Outputs
+    Compare images   ./Outputs/screen800x600.png    ./Outputs/screen800x600.png    ./Outputs
 
 Screen compare
-    Open Browser                        ${start_url}      ${browser}
-    Set window size                     800     600
-    Sleep                               7
-    Compare screen                      ./Outputs/screen800x600.png  save_folder=Outputs
+    Open Browser      ${start_url}      ${browser}
+    Set window size   800     600
+    Sleep             7
+    Compare screen    ./Outputs/screen800x600.png  save_folder=Outputs
 
 Create region
-    Open Browser                        ${start_url}      ${browser}
-    Set window size                     1280     800
-    Sleep                               2
-    Create area                         0   0   300  200  save_folder=Outputs
+    Open Browser      ${start_url}      ${browser}
+    Set window size   1280     800
+    Sleep             2
+    Create area       0   0   300  200  save_folder=Outputs
 
 Area Compare
-    Open Browser                        ${start_url}      ${browser}
-    Set window size                     1280     800
-    Sleep                               2
-    Compare screen areas                0   0   1179     704     Outputs/screen800x600.png  save_folder=Outputs
+    Open Browser           ${start_url}      ${browser}
+    Set window size        1280     800
+    Sleep                  2
+    Compare screen areas   0   0   1179     704     Outputs/screen800x600.png  save_folder=Outputs
 
 Comparing screen without some region
     Open Browser                        ${start_url}      ${browser}
