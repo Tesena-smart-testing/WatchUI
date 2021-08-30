@@ -1,5 +1,6 @@
 '''Control interface for private classes.
 '''
+import os
 
 from WatchUI.common.types import CustomPath, ImageFormat
 
@@ -17,11 +18,33 @@ class Interface:
         self.tesseract_path: CustomPath = tesseract_path
         self.outputs_folder: CustomPath = outputs_folder
 
-    def _check_dir(self):
-        pass
+    def _check_dir(self, save_folder):
+        """Checks, if given <save_folder> exists, if not, creates it.
 
-    def _check_ssim(self):
-        pass
+        Arguments:
+            save_folder {str} -- path to <save_folder>
+        """
+        if save_folder != self.save_folder_path:
+            if os.path.exists(save_folder):
+                self.save_folder = save_folder
+            else:
+                os.mkdir(save_folder)
+                self.save_folder = save_folder
+        else:
+            if os.path.exists(self.outputs_folder):
+                self.save_folder = self.outputs_folder
+            else:
+                os.mkdir(self.outputs_folder)
+                self.save_folder = self.outputs_folder
 
-    def _check_image_format(self):
-        pass
+    def _check_ssim(self, ssim):
+        if ssim == 1.0:
+            self.ssim = float(self.ssim_basic)
+        else:
+            self.ssim = float(ssim)
+
+    def _check_image_format(self, format):
+        if str(format) == 'png':
+            self.format = '.' + self.image_format
+        else:
+            self.format = '.' + format

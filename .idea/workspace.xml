@@ -1,48 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7be33701-a925-40f2-b706-4196109fe771" name="Default Changelist" comment="Merge branch 'watchUI-v2' of https://github.com/Tesena-smart-testing/WatchUI into Tesena-smart-testing-watchUI-v2&#10;&#10;# Conflicts:&#10;#&#9;WatchUI/WatchUI.py&#10;#&#9;WatchUI/__init__.py&#10;#&#9;WatchUI/_deprecated/WatchUI.py&#10;#&#9;WatchUI/keywords/_visual.py&#10;#&#9;tests/test.robot">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/code-formatter.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/WatchUI.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WatchUI/common/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WatchUI/common/types.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WatchUI/interfaces/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WatchUI/interfaces/interface.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WatchUI/modules/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WatchUI/modules/reporting.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WatchUI/private/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WatchUI/private/image.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WatchUI/private/pdf.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WatchUI/private/tesseract.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WatchUI/public/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WatchUI/public/playwright.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WatchUI/public/selenium.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WatchUI/watch_ui.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/keywords/Text_testing.robot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/Documentation.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/main.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Img/forpres.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Img/forpres1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Img/img_inlog.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Img/logscreen.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Img/test.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Img/test1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WatchUI/WatchUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/WatchUI/WatchUI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WatchUI/keywords/_visual.py" beforeDir="false" afterPath="$PROJECT_DIR$/WatchUI/_deprecated/WatchUI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/keywords/Variable.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/keywords/Variable.robot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test.robot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit_test.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit_test.robot" afterDir="false" />
+    <list default="true" id="bb6e76a2-7fd2-4eec-8d61-4936ffd97504" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WatchUI/interfaces/interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/WatchUI/interfaces/interface.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WatchUI/private/image.py" beforeDir="false" afterPath="$PROJECT_DIR$/WatchUI/private/image.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WatchUI/watch_ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/WatchUI/watchUI.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +33,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="7be33701-a925-40f2-b706-4196109fe771" name="Default Changelist" comment="" />
+      <changelist id="bb6e76a2-7fd2-4eec-8d61-4936ffd97504" name="Default Changelist" comment="" />
       <created>1630053425582</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -88,6 +51,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
