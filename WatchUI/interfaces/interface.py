@@ -24,7 +24,7 @@ class Interface:
         Arguments:
             save_folder {str} -- path to <save_folder>
         """
-        if save_folder != self.save_folder_path:
+        if save_folder != self.save_folder_path and save_folder != "":
             if os.path.exists(save_folder):
                 self.save_folder = save_folder
             else:
@@ -38,13 +38,13 @@ class Interface:
                 self.save_folder = self.outputs_folder
 
     def _check_ssim(self, ssim):
-        if ssim == 1.0:
+        if ssim == 1.0 or ssim == "":
             self.ssim = float(self.ssim_basic)
         else:
             self.ssim = float(ssim)
 
     def _check_image_format(self, format):
-        if str(format) == 'png':
+        if str(format) == 'png' or str(format):
             self.format = '.' + self.image_format
         else:
             self.format = '.' + format

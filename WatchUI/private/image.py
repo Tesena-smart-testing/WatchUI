@@ -24,6 +24,10 @@ class Image(Interface, Reporting):
         super().__init__(ssim_basic, format_image, tesseract_path, outputs_folder)
         self.path_to_image_1: CustomPath = path_to_image_1
         self.path_to_image_2: CustomPath = path_to_image_2
+        self.cnts = None
+        self.img1 = None
+        self.img2 = None
+        self.score = None
 
     def compare_images(self, path1, path2):
         self.img1 = cv.imread(path1, 1)
@@ -87,8 +91,25 @@ class Image(Interface, Reporting):
         else:
             raise AssertionError("Path" + path + "doesnt exists")
 
-    def create_area_from_image(self):
-        pass
 
-    def create_image_with_err(self):
-        pass
+    def create_image_with_err(self, save_folder, ssim, image_format):
+        self._check_dir(save_folder)
+        self._check_ssim(ssim)
+        self._check_image_format(image_format)
+
+        for c in self.cnts:
+            (x, y, w, h) = cv.boundingRect(c)
+            cv.rectangle(self.img1, (x, y), (x + w, y + h), (0, 0, 255), 2)
+            cv.rectangle(self.img2, (x, y), (x + w, y + h), (0, 0, 255), 2)
+
+        # Create image
+        if float(self.score) < self.ssim:
+            cv.imwrite(
+                self.save_folder + "/Img" + str(time.time()) + self.format, self.img2
+            )
+            # TODO log
+        else:
+            # TODO log
+            img_diff = cv.hconcat([self.img1, self.img2])
+            time_ = str(time.time())
+            cv.imwrite(save_folder + "/Img" + time_ + self.format, img_diff)
