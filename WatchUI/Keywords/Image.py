@@ -4,11 +4,14 @@ import cv2 as cv
 from skimage.metrics import structural_similarity
 import imutils
 
+
 class Image(Basics):
-    def __init__(self, outputs_folder, ssim_basic, format_image, tesseract_path):
-        super().__init__(outputs_folder, ssim_basic, format_image, tesseract_path)
+    save_folder_path = "../Outputs"
+    starts_ssim = 1.0
+    starts_format_image = "png"
+
     def compare_images(
-            self, path1, path2, save_folder, ssim, image_format
+            self, path1, path2, save_folder=save_folder_path, ssim=starts_ssim, image_format=starts_format_image
     ):
         """Comparing images
 
@@ -20,51 +23,51 @@ class Image(Basics):
 
         Example: Compare two image ../image1.png ../Image2.png
         """
-        self.check_dir(save_folder)
-        self.check_ssim(ssim)
-        self.check_image_format(image_format)
+        save_folder = self.check_dir(save_folder)
+        ssim = self.check_ssim(ssim)
+        img_format = self.check_image_format(image_format)
         self.check_image_exists(path1)
         self.check_image_exists(path2)
 
         # Compare image
-        self.img1 = cv.imread(path1, 1)
-        self.img2 = cv.imread(path2, 1)
+        img1 = cv.imread(path1, 1)
+        img2 = cv.imread(path2, 1)
 
         # convert to grey
-        gray_img1 = cv.cvtColor(self.img1, cv.COLOR_BGR2GRAY)
-        gray_img2 = cv.cvtColor(self.img2, cv.COLOR_BGR2GRAY)
+        gray_img1 = cv.cvtColor(img1, cv.COLOR_BGR2GRAY)
+        gray_img2 = cv.cvtColor(img2, cv.COLOR_BGR2GRAY)
 
         # SSIM diff Img
-        (self.score, diff) = structural_similarity(gray_img1, gray_img2, full=True)
+        (score, diff) = structural_similarity(gray_img1, gray_img2, full=True)
         diff = (diff * 255).astype("uint8")
 
         # Threshold diff Img
         thresh = cv.threshold(diff, 0, 255, cv.THRESH_BINARY_INV | cv.THRESH_OTSU)[1]
         cnts = cv.findContours(thresh.copy(), cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
-        self.cnts = imutils.grab_contours(cnts)
+        cnts = imutils.grab_contours(cnts)
 
         # Create frame in diff area
-        for c in self.cnts:
+        for c in cnts:
             (x, y, w, h) = cv.boundingRect(c)
-            cv.rectangle(self.img1, (x, y), (x + w, y + h), (0, 0, 255), 2)
-            cv.rectangle(self.img2, (x, y), (x + w, y + h), (0, 0, 255), 2)
+            cv.rectangle(img1, (x, y), (x + w, y + h), (0, 0, 255), 2)
+            cv.rectangle(img2, (x, y), (x + w, y + h), (0, 0, 255), 2)
 
+
+        print(save_folder)
         # Show image
-
-        if float(self.score) < self.ssim:
-            self.robotlib.log_to_console(self.ssim)
-            self.robotlib.log_to_console(self.score)
+        if float(score) < ssim:
             cv.imwrite(
-                self.save_folder + "/Img" + str(time.time()) + self.format, self.img2
+                save_folder + "/Img" + str(time.time()) + img_format, img2
             )
-            self.robotlib.fail("*INFO* Save file with difference")
         else:
-            img_diff = cv.hconcat([self.img1, self.img2])
+            img_diff = cv.hconcat([img1, img2])
             time_ = str(time.time())
-            self.seleniumlib.capture_page_screenshot(
-                save_folder + "/Img" + time_ + self.format
+            print(save_folder + "/Img")
+
+            cv.imwrite(save_folder + "/Img" + time_ + img_format, img_diff)
+            print(
+                "Image has diff: {} ".format(score)
             )
-            cv.imwrite(save_folder + "/Img" + time_ + self.format, img_diff)
-            self.robotlib.log_to_console(
-                "Image has diff: {} ".format(self.score)
-            )
+
+img = Image()
+img.compare_images("C:\Projects\Python\WatchUI\Img\img.png", "C:\Projects\Python\WatchUI\Img\img.png")
