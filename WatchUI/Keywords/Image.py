@@ -13,16 +13,6 @@ class Image(Basics):
     def compare_images(
             self, path1, path2, save_folder=save_folder_path, ssim=starts_ssim, image_format=starts_format_image
     ):
-        """Comparing images
-
-        It compares two images from the two paths and, if there are differences, saves the image with the errors highlighted
-        in the folder: ../Save Image
-
-        path1 = path to the first image to be compared
-        path2 = path to the second image to be compared
-
-        Example: Compare two image ../image1.png ../Image2.png
-        """
         save_folder = self.check_dir(save_folder)
         ssim = self.check_ssim(ssim)
         img_format = self.check_image_format(image_format)
@@ -52,22 +42,11 @@ class Image(Basics):
             cv.rectangle(img1, (x, y), (x + w, y + h), (0, 0, 255), 2)
             cv.rectangle(img2, (x, y), (x + w, y + h), (0, 0, 255), 2)
 
-
-        print(save_folder)
+        time_ = str(time.time())
         # Show image
         if float(score) < ssim:
-            cv.imwrite(
-                save_folder + "/Img" + str(time.time()) + img_format, img2
-            )
+            cv.imwrite(save_folder + "/Img" + time_ + img_format, img2)
         else:
             img_diff = cv.hconcat([img1, img2])
-            time_ = str(time.time())
-            print(save_folder + "/Img")
-
             cv.imwrite(save_folder + "/Img" + time_ + img_format, img_diff)
-            print(
-                "Image has diff: {} ".format(score)
-            )
-
-img = Image()
-img.compare_images("C:\Projects\Python\WatchUI\Img\img.png", "C:\Projects\Python\WatchUI\Img\img.png")
+            print("Image has diff: {} ".format(score))

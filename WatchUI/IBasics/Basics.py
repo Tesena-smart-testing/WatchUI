@@ -7,7 +7,6 @@ class Basics:
     path_to_tesseract_folder = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
     def check_dir(self, save_folder):
-        print(self.save_folder_path)
         if save_folder != self.save_folder_path:
             os.mkdir(save_folder)
         return self.save_folder_path
