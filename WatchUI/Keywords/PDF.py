@@ -3,7 +3,7 @@ import fitz
 
 
 class Pdf(Basics):
-    def create_pdf_to_image(self, path, save_folder, name, number_page):
+    def create_pdf_to_image(self, path: str, save_folder: str, name: str, number_page: str):
         save_folder = self.check_dir(save_folder)
         self.check_image_exists(path)
 

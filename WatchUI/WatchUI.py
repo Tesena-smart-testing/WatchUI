@@ -1,3 +1,5 @@
+from robot.libraries.BuiltIn import BuiltIn
+
 from WatchUI.Keywords.Image import Image
 from WatchUI.Keywords.PDF import Pdf
 from WatchUI.Keywords.Tesseract import Tesseract
@@ -20,19 +22,19 @@ class WatchUI(Image, Pdf, Tesseract):
         self.create_compare_images(path1, path2, save_folder, ssim, image_format)
 
     def compare_screen_without_areas(self, path1, path2, *args, save_folder=save_folder_path, ssim=starts_ssim, image_format=starts_format_image):
-        self.create_compare_screen_without_areas(path1, path2, *args, save_folder, ssim, image_format)
+        self.create_compare_screen_without_areas(path1, path2, *args, save_folder=save_folder, ssim=ssim, image_format=image_format)
 
-    def crop_image(self, path, x1, x2, y1, y2, save_folder=save_folder_path, image_format=starts_format_image):
-        self.create_crop_image(path, x1, x2, y1, y2, save_folder, image_format)
+    def crop_image(self, path, x1, y1, x2, y2, save_folder=save_folder_path, image_format=starts_format_image):
+        self.create_crop_image(path, x1, y1, x2, y2, save_folder, image_format)
 
-    def rotate_image(self, path, screen_name="rotate_screen",
+    def rotate_image(self, path, screen_name="img",
                      save_folder=save_folder_path,
-                     rotate=0,
+                     rotate="0",
                      image_format=starts_format_image):
-        self.create_crop_image(path, screen_name, save_folder, rotate, image_format)
+        self.create_rotate_image(path, screen_name=screen_name, save_folder=save_folder, rotate=rotate, image_format=image_format)
 
     def pdf_to_image(self, path, save_folder=save_folder_path, screen_name="pdf_screen", number_page="-1"):
-        self.create_pdf_to_image(path, save_folder, screen_name, number_page)
+        self.create_pdf_to_image(path, save_folder=save_folder, name=screen_name, number_page=number_page)
 
     def return_text_from_area(self, path, page_number: int, x1, y1, x2, y2):
         self.create_return_text_from_area(path, page_number, x1, y1, x2, y2)

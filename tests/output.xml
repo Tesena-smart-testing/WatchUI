@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 4.1.1 (Python 3.9.7 on win32)" generated="20210916 12:14:14.450" rpa="false" schemaversion="2">
+<robot generator="Robot 4.1.1 (Python 3.9.7 on win32)" generated="20210916 15:34:50.920" rpa="false" schemaversion="2">
 <suite id="s1" name="Test" source="C:\Projects\Python\WatchUI\tests\test.robot">
 <test id="s1-t1" name="Test title">
-<kw name="Check Image">
-<kw name="Compare Image" library="WatchUI">
-<arg>../Tesena/img.jpg</arg>
-<arg>../Tesena/img.jpg</arg>
-<status status="PASS" starttime="20210916 12:14:15.171" endtime="20210916 12:14:15.935"/>
+<kw name="Check if text exists">
+<kw name="Should Exist This Text" library="WatchUI">
+<arg>../Tesena/ok.pdf</arg>
+<arg>0</arg>
+<arg>Důvody</arg>
+<status status="PASS" starttime="20210916 15:34:51.622" endtime="20210916 15:34:51.644"/>
 </kw>
-<status status="PASS" starttime="20210916 12:14:15.171" endtime="20210916 12:14:15.935"/>
+<status status="PASS" starttime="20210916 15:34:51.622" endtime="20210916 15:34:51.644"/>
 </kw>
 <tag>DEBUG</tag>
-<status status="PASS" starttime="20210916 12:14:15.169" endtime="20210916 12:14:15.937"/>
+<status status="PASS" starttime="20210916 15:34:51.621" endtime="20210916 15:34:51.646"/>
 </test>
 <doc>Suite description</doc>
-<status status="PASS" starttime="20210916 12:14:14.452" endtime="20210916 12:14:15.938"/>
+<status status="PASS" starttime="20210916 15:34:50.922" endtime="20210916 15:34:51.646"/>
 </suite>
 <statistics>
 <total>

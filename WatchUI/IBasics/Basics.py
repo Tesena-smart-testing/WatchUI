@@ -10,6 +10,9 @@ class Basics:
     def check_dir(self, save_folder):
         if save_folder != self.save_folder_path:
             os.mkdir(save_folder)
+        else:
+            if not os.path.exists(save_folder):
+                os.mkdir(save_folder)
         return self.save_folder_path
 
     def check_image_exists(self, path):
