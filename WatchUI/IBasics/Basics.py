@@ -1,5 +1,6 @@
 import os
 
+
 class Basics:
     save_folder_path = "../Outputs"
     ssim_basic = 1.5

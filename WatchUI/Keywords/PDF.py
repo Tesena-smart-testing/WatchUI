@@ -1,6 +1,6 @@
 from WatchUI.IBasics.Basics import Basics
 import fitz
-import imutils
+
 
 class Pdf(Basics):
     def create_pdf_to_image(self, path, save_folder, name, number_page):

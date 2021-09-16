@@ -6,7 +6,7 @@ import imutils
 
 
 class Image(Basics):
-    def compare_images(self, path1, path2, save_folder, ssim, image_format):
+    def create_compare_images(self, path1, path2, save_folder, ssim, image_format):
         save_folder = self.check_dir(save_folder)
         ssim = self.check_ssim(ssim)
         img_format = self.check_image_format(image_format)

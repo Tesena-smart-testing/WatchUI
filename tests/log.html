@@ -5,7 +5,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="-1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta content="Robot Framework 4.0.3 (Python 3.8.5 on win32)" name="Generator">
+<meta content="Robot Framework 4.1.1 (Python 3.9.7 on win32)" name="Generator">
 <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKcAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAqAAAAAAAAAAAAAAAAAAAALIAAAD/AAAA4AAAANwAAADcAAAA3AAAANwAAADcAAAA3AAAANwAAADcAAAA4AAAAP8AAACxAAAAAAAAAKYAAAD/AAAAuwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC/AAAA/wAAAKkAAAD6AAAAzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN8AAAD/AAAA+gAAAMMAAAAAAAAAAgAAAGsAAABrAAAAawAAAGsAAABrAAAAawAAAGsAAABrAAAADAAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAAIsAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAANEAAAAAAAAA2gAAAP8AAAD6AAAAwwAAAAAAAAAAAAAAMgAAADIAAAAyAAAAMgAAADIAAAAyAAAAMgAAADIAAAAFAAAAAAAAANoAAAD/AAAA+gAAAMMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAADwAAAB8AAAAAAAAAGAAAABcAAAAAAAAAH8AAABKAAAAAAAAAAAAAAAAAAAA2gAAAP8AAAD6AAAAwwAAAAAAAADCAAAA/wAAACkAAADqAAAA4QAAAAAAAAD7AAAA/wAAALAAAAAGAAAAAAAAANoAAAD/AAAA+gAAAMMAAAAAAAAAIwAAAP4AAAD/AAAA/wAAAGAAAAAAAAAAAAAAAMkAAAD/AAAAigAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAAAAAAAAIAAAAcAAAABkAAAAAAAAAAAAAAAAAAAAAAAAAEgAAAAAAAAAAAAAA2gAAAP8AAAD7AAAAywAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN4AAAD/AAAAqwAAAP8AAACvAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALIAAAD/AAAAsgAAAAAAAAC5AAAA/wAAAMoAAADAAAAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAwAAAAMkAAAD/AAAAvAAAAAAAAAAAAAAAAAAAAKwAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAArQAAAAAAAAAAwAMAAIABAAAf+AAAP/wAAD/8AAAgBAAAP/wAAD/8AAA//AAAJIwAADHEAAA//AAAP/wAAB/4AACAAQAAwAMAAA==">
 <style media="all" type="text/css">
 /* Generic and misc styles */
@@ -588,10 +588,10 @@ function drawCallback(element, childElement, childrenNames) {
     }
 }
 function expandSuite(suite) {
-    if (suite.status == "PASS")
-        expandElement(suite);
-    else
+    if (suite.status == "FAIL")
         expandFailed(suite);
+    else
+        expandElement(suite);
 }
 function expandElement(item, retryCount) {
     retryCount = typeof retryCount !== 'undefined' ? retryCount : 3;
@@ -1388,7 +1388,10 @@ window.testdata = function () {
     function createBodyItem(parent, element, strings, index) {
         if (element[0] == MESSAGE_TYPE)
             return createMessage(element, strings);
-        return createKeyword(parent, element, strings, index);
+        var messages = util.filter(parent.children(), function (child) {
+            return child.type == 'message';
+        })
+        return createKeyword(parent, element, strings, index - messages.length);
     }
     function createKeyword(parent, element, strings, index) {
         var kw = model.Keyword({
@@ -1796,31 +1799,31 @@ function stopPropagation(event) {
 window.output = {};
 </script>
 <script type="text/javascript">
-window.output["suite"] = [1,2,3,4,[],[0,0,10482],[],[[5,0,0,[6,7,8],[0,3634,6846,9],[[0,10,11,0,0,0,0,0,[1,3636,3783],[[0,12,11,0,0,0,0,0,[1,3637,1999],[[0,13,14,0,15,16,0,0,[1,3638,1997],[]]]],[0,17,11,0,0,0,0,0,[1,5636,1783],[[0,13,14,0,15,18,0,0,[1,5636,1782],[]]]]]],[0,19,11,0,0,0,0,0,[1,7420,1018],[[0,20,11,0,0,0,0,0,[1,7420,661],[[0,13,14,0,15,21,0,0,[1,7421,246],[]],[0,22,14,0,23,24,0,0,[1,7667,95],[]],[0,13,14,0,15,25,0,0,[1,7762,238],[]],[0,22,14,0,23,26,0,0,[1,8000,81],[]]]],[0,27,11,0,0,0,0,0,[1,8081,357],[[0,28,14,0,29,30,0,0,[1,8081,356],[[8,8374,2,31],[8,8437,2,32]]]]]]],[0,33,11,0,34,35,0,0,[1,8438,21],[[0,36,14,0,37,38,39,0,[1,8439,19],[[8,8458,2,40]]],[0,41,42,0,43,44,0,0,[1,8458,1],[]]]],[0,45,11,0,46,0,0,0,[1,8460,444],[[0,47,14,0,48,49,50,0,[1,8460,443],[[8,8903,2,51]]],[0,41,42,0,43,52,0,0,[1,8903,1],[]]]],[0,53,11,0,0,0,0,0,[0,8905,1575],[[0,28,14,0,29,54,0,0,[0,8905,1574],[[8,10475,2,55],[8,10479,5,9]]]]]]]],[],[1,0,1,0]];
+window.output["suite"] = [1,2,3,4,[],[1,0,1486],[],[[5,0,0,[6],[1,717,768],[[0,7,0,0,0,0,0,0,[1,719,764],[[0,8,9,0,0,10,0,0,[1,719,764],[]]]]]]],[],[1,1,0,0]];
 </script>
 <script type="text/javascript">
 window.output["strings"] = [];
 </script>
 <script type="text/javascript">
-window.output["strings"] = window.output["strings"].concat(["*","*Unit Test","*C:\\development\\scripty\\WatchUI\\tests\\unit_test.robot","*unit_test.robot","*<p>Suite description\x3c/p>","*TC06 - PDF and Tesseract","*demo","*tc06","*TT","**INFO* Save file with difference1","*Create IMG","*Text_testing","*Convert OK PDF to IMG","*Pdf To Image","*WatchUI","*<p>Convert PDF to image.\x3c/p>","*${OK_PDF}, name=${NAME_OK_PDF}","*Convert NOK PDF to IMG","*${NOK_PDF}, name=${NAME_NOK_PDF}","*Create and compare vysvetlivky","*Create Area from Vysvetlivky","*${OK_PDF}, name=${NAME_VYSVĚTLIVKY_OK_PDF}, number_page=7","*Create Area From Image","*<p>Creates a cut-out from the image. Creates a cut-out from the screen that is on screen and saves it in the folder: ../Outputs\x3c/p>","*@{COO_VYSVĚTLIVEK}, ${PATH_TO_VOK_IMG}, screen_name=${AREA_VYSVĚTLIVKY_OK_PDF}","*${NOK_PDF}, name=${NAME_VYSVĚTLIVKY_NOK_PDF}, number_page=7","*@{COO_VYSVĚTLIVEK}, ${PATH_TO_VNOK_IMG}, screen_name=${AREA_VYSVĚTLIVKY_NOK_PDF}","*Check Vysvetlivky","*Compare Images","*<p>Compare two images. If there are differences, saves the image with the errors highlighted in the folder: save_folder_path\x3c/p>","*${PATH_TO_VOK_AREA}, ${PATH_TO_VNOK_AREA}","*Cannot capture screenshot because no browser is open.","*<img src=../Outputs/Img1623771527.2030628.png>","*Check words:","*<p>PyMuPDF\x3c/p>","*${CONTROLL_TEXT}, @{TEXT_COO}","*Return Text From Area","*<p>Return text from area. It does not use tesseract, so it can be used on for standart PDF reading or without installed tesseract.\x3c/p>","*${NOK_PDF}, @{COO}","*${Text_from_pdf}","*${Text_from_pdf} = P Ř I Z N Á N Í ","*Should Be True","*BuiltIn","*<p>Fails if the given condition is not true.\x3c/p>","*'''${Text_from_pdf}''' == '''${WHAT_WE_SEARCH} '''","*Read text from image","*<p>Tesseract\x3c/p>","*Image Area On Text","*<p>Read text from image. Note: This keyword requires tesseract-ocr to be installed.\x3c/p>","*${PATH_TO_NOK_IMG}, @{TEXT_COO_FOR_TESS}, language=ces","*${Text_from_area}","*${Text_from_area} = PŘIZNÁNÍ","*'''${Text_from_area}''' == '''${CONTROLL_TEXT_FOR_TESS}'''","*Find diff in PDF","*${PATH_TO_OK_IMG}, ${PATH_TO_NOK_IMG}","*<img src=../Outputs/Img1623771529.228432.png>"]);
+window.output["strings"] = window.output["strings"].concat(["*","*Test","*C:\\Projects\\Python\\WatchUI\\tests\\test.robot","*test.robot","*<p>Suite description\x3c/p>","*Test title","*DEBUG","*Check Image","*Compare Image","*WatchUI","*../Tesena/img.jpg, ../Tesena/img.jpg"]);
 </script>
 <script type="text/javascript">
-window.output["stats"] = [[{"elapsed":"00:00:07","fail":1,"label":"All Tests","pass":0,"skip":0}],[{"elapsed":"00:00:07","fail":1,"label":"demo","pass":0,"skip":0},{"elapsed":"00:00:07","fail":1,"label":"tc06","pass":0,"skip":0},{"elapsed":"00:00:07","fail":1,"label":"TT","pass":0,"skip":0}],[{"elapsed":"00:00:10","fail":1,"id":"s1","label":"Unit Test","name":"Unit Test","pass":0,"skip":0}]];
+window.output["stats"] = [[{"elapsed":"00:00:01","fail":0,"label":"All Tests","pass":1,"skip":0}],[{"elapsed":"00:00:01","fail":0,"label":"DEBUG","pass":1,"skip":0}],[{"elapsed":"00:00:01","fail":0,"id":"s1","label":"Test","name":"Test","pass":1,"skip":0}]];
 </script>
 <script type="text/javascript">
 window.output["errors"] = [];
 </script>
 <script type="text/javascript">
-window.output["baseMillis"] = 1623771518829;
+window.output["baseMillis"] = 1631787254452;
 </script>
 <script type="text/javascript">
-window.output["generated"] = 10498;
+window.output["generated"] = 1496;
 </script>
 <script type="text/javascript">
 window.output["expand_keywords"] = null;
 </script>
 <script type="text/javascript">
-window.settings = {"defaultLevel":"INFO","minLevel":"INFO","reportURL":"report.html","rpa":false,"splitLogBase":"log","title":""};
+window.settings = {"defaultLevel":"INFO","minLevel":"NONE","reportURL":"report.html","rpa":false,"splitLogBase":"log","title":""};
 </script>
 <title></title>
 </head>

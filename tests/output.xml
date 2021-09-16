@@ -1,144 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 4.0.3 (Python 3.8.5 on win32)" generated="20210615 17:38:38.826" rpa="false" schemaversion="2">
-<suite id="s1" name="Unit Test" source="C:\development\scripty\WatchUI\tests\unit_test.robot">
-<test id="s1-t1" name="TC06 - PDF and Tesseract">
-<kw name="Create IMG" library="Text_testing">
-<kw name="Convert OK PDF to IMG" library="Text_testing">
-<kw name="Pdf To Image" library="WatchUI">
-<arg>${OK_PDF}</arg>
-<arg>name=${NAME_OK_PDF}</arg>
-<doc>Convert PDF to image.</doc>
-<status status="PASS" starttime="20210615 17:38:42.467" endtime="20210615 17:38:44.464"/>
+<robot generator="Robot 4.1.1 (Python 3.9.7 on win32)" generated="20210916 12:14:14.450" rpa="false" schemaversion="2">
+<suite id="s1" name="Test" source="C:\Projects\Python\WatchUI\tests\test.robot">
+<test id="s1-t1" name="Test title">
+<kw name="Check Image">
+<kw name="Compare Image" library="WatchUI">
+<arg>../Tesena/img.jpg</arg>
+<arg>../Tesena/img.jpg</arg>
+<status status="PASS" starttime="20210916 12:14:15.171" endtime="20210916 12:14:15.935"/>
 </kw>
-<status status="PASS" starttime="20210615 17:38:42.466" endtime="20210615 17:38:44.465"/>
+<status status="PASS" starttime="20210916 12:14:15.171" endtime="20210916 12:14:15.935"/>
 </kw>
-<kw name="Convert NOK PDF to IMG" library="Text_testing">
-<kw name="Pdf To Image" library="WatchUI">
-<arg>${NOK_PDF}</arg>
-<arg>name=${NAME_NOK_PDF}</arg>
-<doc>Convert PDF to image.</doc>
-<status status="PASS" starttime="20210615 17:38:44.465" endtime="20210615 17:38:46.247"/>
-</kw>
-<status status="PASS" starttime="20210615 17:38:44.465" endtime="20210615 17:38:46.248"/>
-</kw>
-<status status="PASS" starttime="20210615 17:38:42.465" endtime="20210615 17:38:46.248"/>
-</kw>
-<kw name="Create and compare vysvetlivky" library="Text_testing">
-<kw name="Create Area from Vysvetlivky" library="Text_testing">
-<kw name="Pdf To Image" library="WatchUI">
-<arg>${OK_PDF}</arg>
-<arg>name=${NAME_VYSVĚTLIVKY_OK_PDF}</arg>
-<arg>number_page=7</arg>
-<doc>Convert PDF to image.</doc>
-<status status="PASS" starttime="20210615 17:38:46.250" endtime="20210615 17:38:46.496"/>
-</kw>
-<kw name="Create Area From Image" library="WatchUI">
-<arg>@{COO_VYSVĚTLIVEK}</arg>
-<arg>${PATH_TO_VOK_IMG}</arg>
-<arg>screen_name=${AREA_VYSVĚTLIVKY_OK_PDF}</arg>
-<doc>Creates a cut-out from the image.
-Creates a cut-out from the screen that is on screen and saves it in the folder: ../Outputs</doc>
-<status status="PASS" starttime="20210615 17:38:46.496" endtime="20210615 17:38:46.591"/>
-</kw>
-<kw name="Pdf To Image" library="WatchUI">
-<arg>${NOK_PDF}</arg>
-<arg>name=${NAME_VYSVĚTLIVKY_NOK_PDF}</arg>
-<arg>number_page=7</arg>
-<doc>Convert PDF to image.</doc>
-<status status="PASS" starttime="20210615 17:38:46.591" endtime="20210615 17:38:46.829"/>
-</kw>
-<kw name="Create Area From Image" library="WatchUI">
-<arg>@{COO_VYSVĚTLIVEK}</arg>
-<arg>${PATH_TO_VNOK_IMG}</arg>
-<arg>screen_name=${AREA_VYSVĚTLIVKY_NOK_PDF}</arg>
-<doc>Creates a cut-out from the image.
-Creates a cut-out from the screen that is on screen and saves it in the folder: ../Outputs</doc>
-<status status="PASS" starttime="20210615 17:38:46.829" endtime="20210615 17:38:46.910"/>
-</kw>
-<status status="PASS" starttime="20210615 17:38:46.249" endtime="20210615 17:38:46.910"/>
-</kw>
-<kw name="Check Vysvetlivky" library="Text_testing">
-<kw name="Compare Images" library="WatchUI">
-<arg>${PATH_TO_VOK_AREA}</arg>
-<arg>${PATH_TO_VNOK_AREA}</arg>
-<doc>Compare two images. If there are differences, saves the image with the errors highlighted in the folder: save_folder_path</doc>
-<msg timestamp="20210615 17:38:47.203" level="INFO">Cannot capture screenshot because no browser is open.</msg>
-<msg timestamp="20210615 17:38:47.266" level="INFO" html="true">&lt;img src=../Outputs/Img1623771527.2030628.png&gt;</msg>
-<status status="PASS" starttime="20210615 17:38:46.910" endtime="20210615 17:38:47.266"/>
-</kw>
-<status status="PASS" starttime="20210615 17:38:46.910" endtime="20210615 17:38:47.267"/>
-</kw>
-<status status="PASS" starttime="20210615 17:38:46.249" endtime="20210615 17:38:47.267"/>
-</kw>
-<kw name="Check words:" library="Text_testing">
-<arg>${CONTROLL_TEXT}</arg>
-<arg>@{TEXT_COO}</arg>
-<doc>PyMuPDF</doc>
-<kw name="Return Text From Area" library="WatchUI">
-<var>${Text_from_pdf}</var>
-<arg>${NOK_PDF}</arg>
-<arg>@{COO}</arg>
-<doc>Return text from area. 
-It does not use tesseract, so it can be used on for standart PDF reading or without installed tesseract.</doc>
-<msg timestamp="20210615 17:38:47.287" level="INFO">${Text_from_pdf} = P Ř I Z N Á N Í </msg>
-<status status="PASS" starttime="20210615 17:38:47.268" endtime="20210615 17:38:47.287"/>
-</kw>
-<kw name="Should Be True" library="BuiltIn">
-<arg>'''${Text_from_pdf}''' == '''${WHAT_WE_SEARCH} '''</arg>
-<doc>Fails if the given condition is not true.</doc>
-<status status="PASS" starttime="20210615 17:38:47.287" endtime="20210615 17:38:47.288"/>
-</kw>
-<status status="PASS" starttime="20210615 17:38:47.267" endtime="20210615 17:38:47.288"/>
-</kw>
-<kw name="Read text from image" library="Text_testing">
-<doc>Tesseract</doc>
-<kw name="Image Area On Text" library="WatchUI">
-<var>${Text_from_area}</var>
-<arg>${PATH_TO_NOK_IMG}</arg>
-<arg>@{TEXT_COO_FOR_TESS}</arg>
-<arg>language=ces</arg>
-<doc>Read text from image. 
-Note: This keyword requires tesseract-ocr to be installed.</doc>
-<msg timestamp="20210615 17:38:47.732" level="INFO">${Text_from_area} = PŘIZNÁNÍ</msg>
-<status status="PASS" starttime="20210615 17:38:47.289" endtime="20210615 17:38:47.732"/>
-</kw>
-<kw name="Should Be True" library="BuiltIn">
-<arg>'''${Text_from_area}''' == '''${CONTROLL_TEXT_FOR_TESS}'''</arg>
-<doc>Fails if the given condition is not true.</doc>
-<status status="PASS" starttime="20210615 17:38:47.732" endtime="20210615 17:38:47.733"/>
-</kw>
-<status status="PASS" starttime="20210615 17:38:47.289" endtime="20210615 17:38:47.733"/>
-</kw>
-<kw name="Find diff in PDF" library="Text_testing">
-<kw name="Compare Images" library="WatchUI">
-<arg>${PATH_TO_OK_IMG}</arg>
-<arg>${PATH_TO_NOK_IMG}</arg>
-<doc>Compare two images. If there are differences, saves the image with the errors highlighted in the folder: save_folder_path</doc>
-<msg timestamp="20210615 17:38:49.304" level="INFO" html="true">&lt;img src=../Outputs/Img1623771529.228432.png&gt;</msg>
-<msg timestamp="20210615 17:38:49.308" level="FAIL">*INFO* Save file with difference1</msg>
-<status status="FAIL" starttime="20210615 17:38:47.734" endtime="20210615 17:38:49.308"/>
-</kw>
-<status status="FAIL" starttime="20210615 17:38:47.734" endtime="20210615 17:38:49.309"/>
-</kw>
-<tag>demo</tag>
-<tag>tc06</tag>
-<tag>TT</tag>
-<status status="FAIL" starttime="20210615 17:38:42.463" endtime="20210615 17:38:49.309">*INFO* Save file with difference1</status>
+<tag>DEBUG</tag>
+<status status="PASS" starttime="20210916 12:14:15.169" endtime="20210916 12:14:15.937"/>
 </test>
 <doc>Suite description</doc>
-<status status="FAIL" starttime="20210615 17:38:38.829" endtime="20210615 17:38:49.311"/>
+<status status="PASS" starttime="20210916 12:14:14.452" endtime="20210916 12:14:15.938"/>
 </suite>
 <statistics>
 <total>
-<stat pass="0" fail="1" skip="0">All Tests</stat>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="0" fail="1" skip="0">demo</stat>
-<stat pass="0" fail="1" skip="0">tc06</stat>
-<stat pass="0" fail="1" skip="0">TT</stat>
+<stat pass="1" fail="0" skip="0">DEBUG</stat>
 </tag>
 <suite>
-<stat pass="0" fail="1" skip="0" id="s1" name="Unit Test">Unit Test</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="Test">Test</stat>
 </suite>
 </statistics>
 <errors>
