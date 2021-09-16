@@ -5,7 +5,7 @@ import os
 
 
 class Tesseract(Basics):
-    def image_to_string(self, path, oem, psm, language, path_to_tesseract):
+    def create_image_to_string(self, path, oem, psm, language, path_to_tesseract):
         self.check_image_exists(path)
 
         old_img = cv.imread(path)
@@ -14,7 +14,7 @@ class Tesseract(Basics):
         text = pytesseract.image_to_string(old_img, config=custom_oem_psm_config, lang=language)
         return text
 
-    def image_area_on_text(self, path, *coordinates, oem, psm, language, path_to_tesseract):
+    def create_image_area_on_text(self, path, *coordinates, oem, psm, language, path_to_tesseract):
         string_list = []
         old_img = cv.imread(path)
         len_coordinates = len(coordinates)

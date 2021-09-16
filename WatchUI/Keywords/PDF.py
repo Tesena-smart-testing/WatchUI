@@ -3,7 +3,7 @@ import fitz
 import imutils
 
 class Pdf(Basics):
-    def pdf_to_image(self, path, save_folder, name, number_page):
+    def create_pdf_to_image(self, path, save_folder, name, number_page):
         save_folder = self.check_dir(save_folder)
         self.check_image_exists(path)
 
@@ -21,7 +21,7 @@ class Pdf(Basics):
             output = save_folder + "/" + name + ".png"
             pix.writePNG(output)
 
-    def return_text_from_area(self, path, page_number: int, x1, y1, x2, y2):
+    def create_return_text_from_area(self, path, page_number: int, x1, y1, x2, y2):
         self.check_image_exists(path)
         doc = fitz.open(path)
         page = doc[page_number]
@@ -40,7 +40,7 @@ class Pdf(Basics):
 
         return text
 
-    def should_exist_this_text(self, path, page_number: int, text):
+    def create_should_exist_this_text(self, path, page_number: int, text):
         self.check_image_exists(path)
         doc = fitz.open(path)
         page = doc[page_number]

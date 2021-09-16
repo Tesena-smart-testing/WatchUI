@@ -1,7 +1,9 @@
 from WatchUI.Keywords.Image import Image
+from WatchUI.Keywords.PDF import Pdf
+from WatchUI.Keywords.Tesseract import Tesseract
 
 
-class WatchUI(Image):
+class WatchUI(Image, Pdf, Tesseract):
     save_folder_path = "../Outputs"
     starts_ssim = 1.0
     starts_format_image = "png"
@@ -29,3 +31,18 @@ class WatchUI(Image):
                      image_format=starts_format_image):
         self.create_crop_image(self, path, screen_name, save_folder, rotate, image_format)
 
+    def pdf_to_image(self, path, save_folder=save_folder_path, screen_name="pdf_screen", number_page="-1"):
+        self.create_pdf_to_image(self, path, save_folder, screen_name, number_page)
+
+    def return_text_from_area(self, path, page_number: int, x1, y1, x2, y2):
+        self.create_return_text_from_area(path, page_number, x1, y1, x2, y2)
+
+    def should_exist_this_text(self, path, page_number: int, text):
+        self.create_should_exist_this_text(self, path, page_number, text)
+
+    def image_to_string(self, path, oem="3", psm="3", language="eng", path_to_tesseract=path_to_tesseract_folder):
+        self.create_image_to_string(self, path, oem, psm, language, path_to_tesseract)
+
+    def image_area_on_text(self, path, *coordinates, oem='3', psm='3', language='eng',
+                           path_to_tesseract=path_to_tesseract_folder):
+        self.create_image_area_on_text(self, path, *coordinates, oem, psm, language, path_to_tesseract)
