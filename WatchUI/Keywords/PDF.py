@@ -1,5 +1,3 @@
-from robot.libraries.BuiltIn import BuiltIn
-
 from WatchUI.IBasics.Basics import Basics
 import fitz
 
@@ -17,11 +15,13 @@ class Pdf(Basics):
                 pix = page.getPixmap()
                 output = save_folder + "/" + name + "_" + str(x) + ".png"
                 pix.writePNG(output)
+                self.set_log_message(work_object="Image", path_to_image=output)
         else:
             page = doc.loadPage(int(number_page))  # number of page
             pix = page.getPixmap()
             output = save_folder + "/" + name + ".png"
             pix.writePNG(output)
+            self.set_log_message(work_object="Image", path_to_image=output)
 
     def create_return_text_from_area(self, path, page_number: int, x1, y1, x2, y2):
         self.check_image_exists(path)

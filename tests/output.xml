@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 4.1.1 (Python 3.9.7 on win32)" generated="20210916 15:46:29.407" rpa="false" schemaversion="2">
+<robot generator="Robot 4.1.1 (Python 3.9.7 on win32)" generated="20210916 17:26:52.461" rpa="false" schemaversion="2">
 <suite id="s1" name="Test" source="C:\Projects\Python\WatchUI\tests\test.robot">
 <test id="s1-t1" name="Test title">
 <kw name="Get Image area on text">
@@ -10,27 +10,27 @@
 <arg>0</arg>
 <arg>380</arg>
 <arg>380</arg>
-<msg timestamp="20210916 15:46:30.359" level="INFO">${var} =  
+<msg timestamp="20210916 17:26:53.432" level="INFO">${var} =  
 Intranet Delivery \y Product De
 CT
 iy) Intranet
 LJ
 2 Search this site +
 INTRANET HOME</msg>
-<status status="PASS" starttime="20210916 15:46:30.067" endtime="20210916 15:46:30.359"/>
+<status status="PASS" starttime="20210916 17:26:53.131" endtime="20210916 17:26:53.432"/>
 </kw>
 <kw name="Log To Console" library="BuiltIn">
 <arg>${var}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20210916 15:46:30.359" endtime="20210916 15:46:30.360"/>
+<status status="PASS" starttime="20210916 17:26:53.433" endtime="20210916 17:26:53.433"/>
 </kw>
-<status status="PASS" starttime="20210916 15:46:30.066" endtime="20210916 15:46:30.360"/>
+<status status="PASS" starttime="20210916 17:26:53.131" endtime="20210916 17:26:53.433"/>
 </kw>
 <tag>DEBUG</tag>
-<status status="PASS" starttime="20210916 15:46:30.066" endtime="20210916 15:46:30.360"/>
+<status status="PASS" starttime="20210916 17:26:53.131" endtime="20210916 17:26:53.434"/>
 </test>
 <doc>Suite description</doc>
-<status status="PASS" starttime="20210916 15:46:29.409" endtime="20210916 15:46:30.362"/>
+<status status="PASS" starttime="20210916 17:26:52.463" endtime="20210916 17:26:53.435"/>
 </suite>
 <statistics>
 <total>

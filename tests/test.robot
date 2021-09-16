@@ -13,7 +13,7 @@ Test title
     # Get text from some area
     # Check if text exists
     # Get text from image
-    # Get Image area on text
+    Get Image area on text
 
 *** Keywords ***
 Check Image

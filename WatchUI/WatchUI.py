@@ -1,5 +1,3 @@
-from robot.libraries.BuiltIn import BuiltIn
-
 from WatchUI.Keywords.Image import Image
 from WatchUI.Keywords.PDF import Pdf
 from WatchUI.Keywords.Tesseract import Tesseract
@@ -19,7 +17,7 @@ class WatchUI(Image, Pdf, Tesseract):
         self.tesseract_path = str(tesseract_path)
 
     def compare_image(self, path1, path2, save_folder=save_folder_path, ssim=starts_ssim, image_format=starts_format_image):
-        self.create_compare_images(path1, path2, save_folder, ssim, image_format)
+        self.create_compare_images(path1, path2, save_folder=save_folder, ssim=ssim, image_format=image_format)
 
     def compare_screen_without_areas(self, path1, path2, *args, save_folder=save_folder_path, ssim=starts_ssim, image_format=starts_format_image):
         self.create_compare_screen_without_areas(path1, path2, *args, save_folder=save_folder, ssim=ssim, image_format=image_format)
@@ -43,7 +41,7 @@ class WatchUI(Image, Pdf, Tesseract):
         self.create_should_exist_this_text(path, page_number, text)
 
     def image_to_string(self, path, oem="3", psm="3", language="eng", path_to_tesseract=path_to_tesseract_folder):
-        return self.create_image_to_string(path, oem, psm, language, path_to_tesseract)
+        return self.create_image_to_string(path, oem=oem, psm=psm, language=language, path_to_tesseract=path_to_tesseract)
 
     def image_area_on_text(self, path, *coordinates, oem='3', psm='3', language='eng',
                            path_to_tesseract=path_to_tesseract_folder):
