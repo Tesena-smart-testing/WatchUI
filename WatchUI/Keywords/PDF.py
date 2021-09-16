@@ -1,3 +1,5 @@
+from robot.libraries.BuiltIn import BuiltIn
+
 from WatchUI.IBasics.Basics import Basics
 import fitz
 
@@ -37,7 +39,6 @@ class Pdf(Basics):
                 else:
                     text += xy[4] + " "
             xy_numbers += 1
-
         return text
 
     def create_should_exist_this_text(self, path, page_number: int, text):

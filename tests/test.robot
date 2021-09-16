@@ -32,13 +32,16 @@ PDF convert to Image
     pdf to image                            ../Tesena/ok.pdf
 
 Get text from some area
-    return text from area                   ../Tesena/ok.pdf  0     0  0  380  380
+    ${Text_from_area}                       return text from area   ../Tesena/ok.pdf  0     50  60  190  90
+    log to console                          ${Text_from_area}
 
 Check if text exists
     should exist this text                  ../Tesena/ok.pdf  0     Důvody
 
 Get text from image
-    image to string                         ../Tesena/img.jpg
+    ${var}=             image to string                         ../Tesena/img.jpg
+    log to console      ${var}
 
 Get Image area on text
-    Image area on text                       ../Tesena/img.jpg     0  0  380  380
+    ${var}=             Image area on text                       ../Tesena/img.jpg     0  0  380  380
+    log to console      ${var}

@@ -36,15 +36,15 @@ class WatchUI(Image, Pdf, Tesseract):
     def pdf_to_image(self, path, save_folder=save_folder_path, screen_name="pdf_screen", number_page="-1"):
         self.create_pdf_to_image(path, save_folder=save_folder, name=screen_name, number_page=number_page)
 
-    def return_text_from_area(self, path, page_number: int, x1, y1, x2, y2):
-        self.create_return_text_from_area(path, page_number, x1, y1, x2, y2)
+    def return_text_from_area(self, path, page_number: int, x1: int, y1: int, x2: int, y2: int):
+        return self.create_return_text_from_area(path, page_number, x1, y1, x2, y2)
 
     def should_exist_this_text(self, path, page_number: int, text):
         self.create_should_exist_this_text(path, page_number, text)
 
     def image_to_string(self, path, oem="3", psm="3", language="eng", path_to_tesseract=path_to_tesseract_folder):
-        self.create_image_to_string(path, oem, psm, language, path_to_tesseract)
+        return self.create_image_to_string(path, oem, psm, language, path_to_tesseract)
 
     def image_area_on_text(self, path, *coordinates, oem='3', psm='3', language='eng',
                            path_to_tesseract=path_to_tesseract_folder):
-        self.create_image_area_on_text(path, *coordinates, oem, psm, language, path_to_tesseract)
+        return self.create_image_area_on_text(path, *coordinates, oem=oem, psm=psm, language=language, path_to_tesseract=path_to_tesseract)
