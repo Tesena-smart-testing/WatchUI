@@ -5,7 +5,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WatchUI/IBasics/Basics.py" beforeDir="false" afterPath="$PROJECT_DIR$/WatchUI/IBasics/Basics.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WatchUI/Keywords/Image.py" beforeDir="false" afterPath="$PROJECT_DIR$/WatchUI/Keywords/Image.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WatchUI/Keywords/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/WatchUI/Keywords/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WatchUI/Keywords/PDF.py" beforeDir="false" afterPath="$PROJECT_DIR$/WatchUI/Keywords/PDF.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WatchUI/Keywords/Tesseract.py" beforeDir="false" afterPath="$PROJECT_DIR$/WatchUI/Keywords/Tesseract.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WatchUI/WatchUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/WatchUI/WatchUI.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,7 +38,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/WatchUI/Keywords/Image.py" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">

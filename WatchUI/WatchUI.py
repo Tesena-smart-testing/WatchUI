@@ -17,8 +17,15 @@ class WatchUI(Image):
     def compare_image(self, path1, path2, save_folder=save_folder_path, ssim=starts_ssim, image_format=starts_format_image):
         self.compare_images(self, path1, path2, save_folder, ssim, image_format)
 
+    def compare_screen_without_areas(self, path1, path2, *args, save_folder=save_folder_path, ssim=starts_ssim, image_format=starts_format_image):
+        self.create_compare_screen_without_areas(self, path1, path2, *args, save_folder, ssim, image_format)
 
+    def crop_image(self, path, x1, x2, y1, y2, save_folder=save_folder_path, image_format=starts_format_image):
+        self.create_crop_image(path, x1, x2, y1, y2, save_folder, image_format)
 
+    def rotate_image(self, path, screen_name="rotate_screen",
+                     save_folder=save_folder_path,
+                     rotate=0,
+                     image_format=starts_format_image):
+        self.create_crop_image(self, path, screen_name, save_folder, rotate, image_format)
 
-watch = WatchUI()
-watch.compare_images("C:\Projects\Python\WatchUI\Img\img.png", "C:\Projects\Python\WatchUI\Img\img.png")

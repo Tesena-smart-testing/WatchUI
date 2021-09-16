@@ -28,9 +28,9 @@ class Basics:
             self.format = '.' + format
         return self.format
 
-
     def check_tess_path(self, path_to_tess):
         if path_to_tess == r'C:\Program Files\Tesseract-OCR\tesseract.exe':
-            self.tess_way = self.path_to_tesseract_folder
+            tess_way = self.path_to_tesseract_folder
         else:
-            self.tess_way = path_to_tess
+            tess_way = path_to_tess
+        return tess_way
