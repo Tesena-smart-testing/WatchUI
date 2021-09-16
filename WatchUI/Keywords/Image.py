@@ -47,7 +47,7 @@ class Image(Basics):
             cv.imwrite(url, img_diff)
             self.set_log_message(work_object="Image", type_of_messages="Info", path_to_image=url)
 
-    def create_compare_screen_without_areas(self, path1, path2, *args, save_folder: str, ssim: float, image_format: str) -> None:
+    def create_compare_screen_without_areas(self, path1: str, path2:str, *args, save_folder: str, ssim: float, image_format: str) -> None:
         save_folder = self.check_dir(save_folder)
         mySsim = self.check_ssim(ssim)
         img_format = self.check_image_format(image_format)
@@ -109,7 +109,7 @@ class Image(Basics):
                 cv.imwrite(url, img_diff)
                 self.set_log_message(work_object="Image", type_of_messages="Info", path_to_image=url)
 
-    def create_crop_image(self, path, x1, y1, x2, y2, save_folder: str, image_format: str):
+    def create_crop_image(self, path: str, x1: int, y1: int, x2: int, y2: int, save_folder: str, image_format: str):
         self.check_image_exists(path)
         save_folder = self.check_dir(save_folder)
         img_save_format = self.check_image_format(image_format)
@@ -122,7 +122,7 @@ class Image(Basics):
         cv.imwrite(url, crop_img)
         self.set_log_message(work_object="Image", type_of_messages="Info", path_to_image=url)
 
-    def create_rotate_image(self, path, screen_name: str, save_folder: str, rotate: int, image_format: str) -> None:
+    def create_rotate_image(self, path: str, screen_name: str, save_folder: str, rotate: int, image_format: str) -> None:
         save_folder = self.check_dir(save_folder)
         img_format = self.check_image_format(image_format)
         self.check_image_exists(path)

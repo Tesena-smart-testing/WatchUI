@@ -23,7 +23,7 @@ class Pdf(Basics):
             pix.writePNG(output)
             self.set_log_message(work_object="Image", path_to_image=output)
 
-    def create_return_text_from_area(self, path, page_number: int, x1, y1, x2, y2):
+    def create_return_text_from_area(self, path, page_number: int, x1: int, y1: int, x2: int, y2: int):
         self.check_image_exists(path)
         doc = fitz.open(path)
         page = doc[page_number]
