@@ -5,15 +5,15 @@ Library             ../WatchUI/
 *** Test Cases ***
 Test title
     [Tags]    DEBUG
-     # Check Image
-    # Check compare screen without areas
+    # Check Image
+    Check compare screen without areas
     # Create Crop Image
     # Rotate Image for fun
     # PDF convert to Image
     # Get text from some area
     # Check if text exists
     # Get text from image
-    Get Image area on text
+    # Get Image area on text
 
 *** Keywords ***
 Check Image

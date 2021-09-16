@@ -47,7 +47,7 @@ class Image(Basics):
             cv.imwrite(url, img_diff)
             self.set_log_message(work_object="Image", type_of_messages="Info", path_to_image=url)
 
-    def create_compare_screen_without_areas(self, path1: str, path2:str, *args, save_folder: str, ssim: float, image_format: str) -> None:
+    def create_compare_screen_without_areas(self, path1: str, path2: str, *args, save_folder: str, ssim: float, image_format: str) -> None:
         save_folder = self.check_dir(save_folder)
         mySsim = self.check_ssim(ssim)
         img_format = self.check_image_format(image_format)
@@ -56,7 +56,7 @@ class Image(Basics):
         img1 = cv.imread(path1, 1)
         img2 = cv.imread(path2, 1)
 
-        self.check_if_args_has_ok_numbers(args)
+        self.check_if_args_has_ok_numbers(args, need_numbers=4)
 
         x = lt / 4
         i = 0

@@ -47,6 +47,7 @@ class Basics:
                 logger.info("Image was saved to your output folder </p><img src='" + path_to_image + "'/>", html=True)
             elif type_of_messages == "Error":
                 logger.error("Images arent same</p><img src='" + path_to_image + "'/>", html=True)
+                raise AssertionError("Images arent same")
         elif work_object == "PDF":
             pass
         elif work_object == "Tesseract":
@@ -56,7 +57,9 @@ class Basics:
 
     def check_if_args_has_ok_numbers(self, *args, need_numbers=4):
         nArg = len(args)
+        logger.info(args)
         if nArg % need_numbers == 0:
             True
         else:
             logger.error("You try to set bad numbers of arguments. You need %s arguments" % need_numbers, html=False)
+            raise AssertionError("You try to set bad numbers of arguments. You need %s arguments" % need_numbers)

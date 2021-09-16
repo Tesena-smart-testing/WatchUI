@@ -20,7 +20,7 @@ class WatchUI(Image, Pdf, Tesseract):
         self.create_compare_images(path1=path1, path2=path2, save_folder=save_folder, ssim=ssim, image_format=image_format)
 
     def compare_screen_without_areas(self, path1, path2, *args, save_folder=save_folder_path, ssim=starts_ssim, image_format=starts_format_image) -> None:
-        self.create_compare_screen_without_areas(path1=path1, path2=path2, *args, save_folder=save_folder, ssim=ssim, image_format=image_format)
+        self.create_compare_screen_without_areas(path1, path2, *args, save_folder=save_folder, ssim=ssim, image_format=image_format)
 
     def crop_image(self, path, x1: int, y1: int, x2: int, y2: int, save_folder=save_folder_path, image_format=starts_format_image) -> None:
         self.create_crop_image(path=path, x1=x1, y1=y1, x2=x2, y2=y2, save_folder=save_folder, image_format=image_format)
@@ -45,4 +45,4 @@ class WatchUI(Image, Pdf, Tesseract):
 
     def image_area_on_text(self, path, *coordinates, oem='3', psm='3', language='eng',
                            path_to_tesseract=path_to_tesseract_folder) -> str:
-        return self.create_image_area_on_text(path=path, *coordinates, oem=oem, psm=psm, language=language, path_to_tesseract=path_to_tesseract)
+        return self.create_image_area_on_text(path, *coordinates, oem=oem, psm=psm, language=language, path_to_tesseract=path_to_tesseract)
