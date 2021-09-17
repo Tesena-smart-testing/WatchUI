@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 # setup for development purposes
 # run with python setup.py develop
-setup(name="WatchUI", packages=find_packages())
+setup(name="WatchUI", version="2.0.1", packages=find_packages())
 # from sys import platform
 
 # with open("README.md", "r") as f:
