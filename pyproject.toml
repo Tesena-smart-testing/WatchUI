@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "WatchUI"
-version = "2.0.0"
+version = "2.0.1"
 description = "RobotFramework library package for automated visual testing."
 authors = ["Your Name <you@example.com>"]
 license = "MIT"
