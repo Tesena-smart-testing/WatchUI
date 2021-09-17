@@ -56,7 +56,7 @@ class Image(Basics):
         img1 = cv.imread(path1, 1)
         img2 = cv.imread(path2, 1)
 
-        self.check_if_args_has_ok_numbers(args, need_numbers=4)
+        self.check_if_args_has_ok_numbers(*args, need_numbers=4)
 
         x = lt / 4
         i = 0
