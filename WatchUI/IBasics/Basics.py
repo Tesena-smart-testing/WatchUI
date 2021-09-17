@@ -17,6 +17,7 @@ class Basics:
                 os.mkdir(self.save_folder_path)
         return self.save_folder_path
 
+    @staticmethod
     def check_image_exists(self, path: str) -> None:
         if not os.path.exists(path):
             raise AssertionError("The path: %s, to the image does not exist." % path)
@@ -41,6 +42,7 @@ class Basics:
             tess_way = path_to_tess
         return tess_way
 
+    @staticmethod
     def set_log_message(self, work_object="Image", type_of_messages="Info", path_to_image=""):
         if work_object == "Image":
             if type_of_messages == "Info":
@@ -55,10 +57,11 @@ class Basics:
         else:
             logger.warn("!!! Bad work object !!! Please contact library owner...", html=True)
 
-    def check_if_args_has_ok_numbers(self, *args, need_numbers=4):
-        nArg = len(args)
+    @staticmethod
+    def check_if_args_has_ok_numbers(*args, need_numbers=4):
+        n_arg = len(args)
         logger.info(args)
-        if nArg % need_numbers == 0:
+        if n_arg % need_numbers == 0:
             True
         else:
             logger.error("You try to set bad numbers of arguments. You need %s arguments" % need_numbers, html=False)

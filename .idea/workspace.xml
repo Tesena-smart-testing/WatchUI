@@ -2,34 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb6e76a2-7fd2-4eec-8d61-4936ffd97504" name="Default Changelist" comment="Merge branch 'watchUI-v2' of https://github.com/Tesena-smart-testing/WatchUI into Tesena-smart-testing-watchUI-v2&#10;&#10;# Conflicts:&#10;#&#9;WatchUI/WatchUI.py&#10;#&#9;WatchUI/__init__.py&#10;#&#9;WatchUI/_deprecated/WatchUI.py&#10;#&#9;WatchUI/keywords/_visual.py&#10;#&#9;tests/test.robot">
-      <change afterPath="$PROJECT_DIR$/Outputs/Img1631806838.020015.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Outputs/Img1631806928.6775029.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Outputs/Img1631806945.2059016.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Outputs/Img1631806945.3936298.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Outputs/Img1631807102.420124.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Outputs/Img1631807124.8019245.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Outputs/Img1631807227.2530077.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Outputs/Img1631807243.225162.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Outputs/Img1631807374.3530476.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Outputs/Img1631807420.3231428.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Outputs/Img1631807570.5007298.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Outputs/img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Outputs/pdf_screen_0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Outputs/pdf_screen_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Outputs/pdf_screen_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Outputs/pdf_screen_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Outputs/pdf_screen_4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Outputs/pdf_screen_5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Outputs/pdf_screen_6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Outputs/pdf_screen_7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/log.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/output.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/report.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WatchUI/IBasics/Basics.py" beforeDir="false" afterPath="$PROJECT_DIR$/WatchUI/IBasics/Basics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WatchUI/Keywords/Image.py" beforeDir="false" afterPath="$PROJECT_DIR$/WatchUI/Keywords/Image.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WatchUI/WatchUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/WatchUI/WatchUI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test.robot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WatchUI/_deprecated/WatchUI.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
