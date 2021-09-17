@@ -18,7 +18,7 @@ class Basics:
         return self.save_folder_path
 
     @staticmethod
-    def check_image_exists(self, path: str) -> None:
+    def check_image_exists(path: str) -> None:
         if not os.path.exists(path):
             raise AssertionError("The path: %s, to the image does not exist." % path)
 
@@ -43,7 +43,7 @@ class Basics:
         return tess_way
 
     @staticmethod
-    def set_log_message(self, work_object="Image", type_of_messages="Info", path_to_image=""):
+    def set_log_message(work_object="Image", type_of_messages="Info", path_to_image=""):
         if work_object == "Image":
             if type_of_messages == "Info":
                 logger.info("Image was saved to your output folder </p><img src='" + path_to_image + "'/>", html=True)
