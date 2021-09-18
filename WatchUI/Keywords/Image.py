@@ -1,3 +1,4 @@
+# pylint: disable=no-member
 from WatchUI.IBasics.Basics import Basics
 import time
 import cv2 as cv
