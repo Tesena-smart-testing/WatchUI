@@ -24,6 +24,11 @@ def ssim(request):
     return request.param
 
 
+@pytest.fixture(params=[4, 3, 5])
+def no_of_args(request):
+    return request.param
+
+
 class TestBasics:
     def test_check_dir(self, output_path):
         dir_status = os.path.isdir(
@@ -44,3 +49,18 @@ class TestBasics:
             assert_that(file_extension, is_(".png"))
         if image_format == ".jpg":
             assert_that(file_extension, is_(".jpg"))
+
+    def test_no_of_args_check(self, no_of_args):
+        if no_of_args == 4:
+            assert_that(
+                Basics.check_if_args_has_ok_numbers(0, 1, 2, 3),
+                is_(True),
+            )
+
+        if no_of_args == 3:
+            with pytest.raises(ValueError):
+                Basics.check_if_args_has_ok_numbers(0, 1, 2)
+
+        if no_of_args == 4:
+            with pytest.raises(ValueError):
+                Basics.check_if_args_has_ok_numbers(0, 1, 2, 3, 4)
