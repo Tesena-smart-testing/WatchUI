@@ -8,13 +8,21 @@
 
 - if possible, use [poetry](https://python-poetry.org/) to install dependecies. it will also install all dev dependencies used for linting, type checking and formatting.
 - if you are using VSCode, all dev tooling should work out of the box, once you open your virtual environment created by poetry. Settings are in the `.vscode/settings.json` file.
+
+## Important notice for users
+
+WatchUI 2.0 brings breaking changes. Dev team decided to streamline the library and focus it solely on the image and text comparison. This allows us to remove the implicit dependency on browser automation libraries - namely SeleniumLibrary, which was implicit part of the library via RF `BuiltIn()` import of the SeleniumLibrary instance.
+
+This is no longer the case - user of the WatchUI therefore **can and have to choose, what browser automation library will use** and provide screenshots to the WatchUI keywords to be compared.
+
+Version 1.x.x is no longer supported, but it is still available on [Pypi](pip install WatchUI==1.0.11).
 ### Basic Info
 
 
 Custom library for comparing images with use in Robot Framework.
 
 
-### Folder structure
+### Folder structure [TO BE UPDATED]
 
 ```
 Testing-api
@@ -35,8 +43,10 @@ You can find detail in [Documentation](https://procesor2017.github.io/WatchUI/) 
 pip install WatchUI
 ```
 
+or some python dependencies management tools, like [pipenv](https://pipenv.pypa.io/en/latest/) or [poetry](https://python-poetry.org/) and their respective methods of libraries installation.
 
-### Sample results
+
+### Sample results [TO BE UPDATED]
 
 _Image where the differences are stored + You can see two black box in left corner. These black box are ignored during comparison._
 
