@@ -29,12 +29,18 @@ class Basics:
         else:
             return float(ssim)
 
-    def check_image_format(self, format: str) -> str:
-        if str(format) == "png":
-            self.format = "." + self.starts_format_image
-        else:
-            self.format = "." + format
-        return self.format
+    def check_image_format(self, image_format: str) -> str:
+        """Checks image format. If "png", returns default, else returns `image_format`.
+
+        Args:
+            image_format (str): format of the image, e.g. "png", "jpg", etc.
+
+        Returns:
+            str: image format file extension, e.g ".png", ".jpg"
+        """
+        if str(image_format) == "png":
+            return f".{self.starts_format_image}"
+        return f".{image_format}"
 
     def check_tess_path(self, path_to_tess: str) -> str:
         if path_to_tess == r"C:\Program Files\Tesseract-OCR\tesseract.exe":
