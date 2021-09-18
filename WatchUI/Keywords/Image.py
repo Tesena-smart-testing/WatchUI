@@ -1,36 +1,60 @@
+# pylint: disable=invalid-name
+
+'''Image class module.
+'''
 # pylint: disable=no-member
-from WatchUI.IBasics.Basics import Basics
 import time
+from typing import Any, Union
+
 import cv2 as cv
-from skimage.metrics import structural_similarity
 import imutils
+from numpy import ndarray
+from skimage.metrics import structural_similarity
+from WatchUI.IBasics.Basics import Basics
 
 
 class Image(Basics):
     def create_compare_images(
-        self, path1: str, path2: str, save_folder: str, ssim: float, image_format: str
+        self,
+        base_image_path: str,
+        compared_image_path: str,
+        save_folder: str,
+        ssim: float,
+        image_format: str,
     ) -> None:
         save_folder = self.check_dir(save_folder)
         ssim = self.check_ssim(ssim)
         img_format = self.check_image_format(image_format)
-        self.check_image_exists(path1)
-        self.check_image_exists(path2)
+        self.check_image_exists(base_image_path)
+        self.check_image_exists(compared_image_path)
 
         # Compare image
-        img1 = cv.imread(path1, 1)
-        img2 = cv.imread(path2, 1)
+        img1: Any = cv.imread(base_image_path, 1)
+        img2: Any = cv.imread(compared_image_path, 1)
 
         # convert to grey
-        gray_img1 = cv.cvtColor(img1, cv.COLOR_BGR2GRAY)
-        gray_img2 = cv.cvtColor(img2, cv.COLOR_BGR2GRAY)
+        gray_img1: Any = cv.cvtColor(img1, cv.COLOR_BGR2GRAY)
+        gray_img2: Any = cv.cvtColor(img2, cv.COLOR_BGR2GRAY)
 
         # SSIM diff Img
+        score: float
+        diff: Union[ndarray, Any]
         (score, diff) = structural_similarity(gray_img1, gray_img2, full=True)
         diff = (diff * 255).astype("uint8")
+        score = float(score)
+
+        if not isinstance(score, float):
+            raise TypeError(
+                f"Returned score must be of <float> type. Received {type(score)}"
+            )
 
         # Threshold diff Img
-        thresh = cv.threshold(diff, 0, 255, cv.THRESH_BINARY_INV | cv.THRESH_OTSU)[1]
-        cnts = cv.findContours(thresh.copy(), cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
+        thresh: Any = cv.threshold(diff, 0, 255, cv.THRESH_BINARY_INV | cv.THRESH_OTSU)[
+            1
+        ]
+        cnts: Any = cv.findContours(
+            thresh.copy(), cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE
+        )
         cnts = imutils.grab_contours(cnts)
 
         # Create frame in diff area
@@ -39,16 +63,16 @@ class Image(Basics):
             cv.rectangle(img1, (x, y), (x + w, y + h), (0, 0, 255), 2)
             cv.rectangle(img2, (x, y), (x + w, y + h), (0, 0, 255), 2)
 
-        time_ = str(time.time())
-        url = save_folder + "/Img" + time_ + img_format
+        time_: str = str(time.time())
+        url: str = f"{save_folder}/Img{time_}{img_format}"
         # Show image
-        if float(score) < ssim:
+        if score < ssim:
             cv.imwrite(url, img2)
             self.set_log_message(
                 work_object="Image", type_of_messages="Error", path_to_image=url
             )
         else:
-            img_diff = cv.hconcat([img1, img2])
+            img_diff: Any = cv.hconcat([img1, img2])
             cv.imwrite(url, img_diff)
             self.set_log_message(
                 work_object="Image", type_of_messages="Info", path_to_image=url
@@ -61,7 +85,7 @@ class Image(Basics):
         *args,
         save_folder: str,
         ssim: float,
-        image_format: str
+        image_format: str,
     ) -> None:
         save_folder = self.check_dir(save_folder)
         mySsim = self.check_ssim(ssim)
