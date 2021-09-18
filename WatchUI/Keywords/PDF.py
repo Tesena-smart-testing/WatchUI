@@ -3,7 +3,9 @@ import fitz
 
 
 class Pdf(Basics):
-    def create_pdf_to_image(self, path: str, save_folder: str, name: str, number_page: str):
+    def create_pdf_to_image(
+        self, path: str, save_folder: str, name: str, number_page: str
+    ):
         save_folder = self.check_dir(save_folder)
         self.check_image_exists(path)
 
@@ -23,7 +25,9 @@ class Pdf(Basics):
             pix.writePNG(output)
             self.set_log_message(work_object="Image", path_to_image=output)
 
-    def create_return_text_from_area(self, path, page_number: int, x1: int, y1: int, x2: int, y2: int):
+    def create_return_text_from_area(
+        self, path, page_number: int, x1: int, y1: int, x2: int, y2: int
+    ):
         self.check_image_exists(path)
         doc = fitz.open(path)
         page = doc[page_number]
@@ -32,8 +36,12 @@ class Pdf(Basics):
         xy_numbers = 1
 
         for xy in words_list:
-            if float(xy[0]) > float(x1) and float(xy[1]) > float(y1) and float(xy[2]) < float(x2) and \
-                    float(xy[3]) < float(y2):
+            if (
+                float(xy[0]) > float(x1)
+                and float(xy[1]) > float(y1)
+                and float(xy[2]) < float(x2)
+                and float(xy[3]) < float(y2)
+            ):
                 if xy_numbers == len(words_list):
                     text += xy[4]
                 else:
@@ -50,4 +58,3 @@ class Pdf(Basics):
             return True
         else:
             return False
-
