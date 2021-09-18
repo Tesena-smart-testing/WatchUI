@@ -1,10 +1,10 @@
 # pylint: disable=missing-module-docstring, missing-function-docstring, missing-class-docstring
 # pylint: disable=redefined-outer-name
-import shutil
 import os
-import pytest
-from hamcrest import assert_that, is_, instance_of
+import shutil
 
+import pytest
+from hamcrest import assert_that, instance_of, is_
 from WatchUI.IBasics.Basics import Basics
 
 

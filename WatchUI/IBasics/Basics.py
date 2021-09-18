@@ -1,5 +1,5 @@
 import os
-from typing import Type
+from typing import Literal
 
 from robot.api import logger
 
@@ -59,7 +59,11 @@ class Basics:
         return tess_way
 
     @staticmethod
-    def set_log_message(work_object="Image", type_of_messages="Info", path_to_image=""):
+    def set_log_message(
+        work_object: Literal["Image", "PDF", "Tesseract"] = "Image",
+        type_of_messages: Literal["Info", "Error"] = "Info",
+        path_to_image: str = "",
+    ):
         if work_object == "Image":
             if type_of_messages == "Info":
                 logger.info(
@@ -72,7 +76,7 @@ class Basics:
                 logger.error(
                     "Images arent same</p><img src='" + path_to_image + "'/>", html=True
                 )
-                raise AssertionError("Images arent same")
+                raise AssertionError("Images are not the same")
         elif work_object == "PDF":
             pass
         elif work_object == "Tesseract":
