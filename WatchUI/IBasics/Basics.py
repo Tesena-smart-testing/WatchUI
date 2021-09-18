@@ -22,7 +22,7 @@ class Basics:
     @staticmethod
     def check_image_exists(path: str) -> None:
         if not os.path.exists(path):
-            raise AssertionError("The path: %s, to the image does not exist." % path)
+            raise FileExistsError(f"The path: {path}, to the image does not exist.")
 
     def check_ssim(self, ssim: float) -> float:
         if not isinstance(ssim, float):
