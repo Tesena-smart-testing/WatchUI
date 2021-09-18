@@ -21,12 +21,14 @@ def output_path(request):
 
 class TestBasics:
     def test_check_dir(self, output_path):
-        dir_status = os.path.isdir(os.path.abspath(Basics.check_dir(output_path)))
+        dir_status = os.path.isdir(
+            os.path.abspath(Basics.check_dir(Basics, output_path))
+        )
         assert_that(dir_status, is_(True))
         assert_that(Basics.save_folder_path == output_path)
 
     def test_check_image_format(self, image_format):
-        file_extension = Basics.check_image_format(image_format)
+        file_extension = Basics.check_image_format(Basics, image_format)
 
         if image_format == "png":
             assert_that(file_extension, is_(".png"))

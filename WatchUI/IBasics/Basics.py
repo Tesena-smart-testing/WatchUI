@@ -9,15 +9,14 @@ class Basics:
     starts_format_image = "png"
     path_to_tesseract_folder = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
-    @classmethod
-    def check_dir(cls, save_folder: str) -> str:
-        if save_folder != cls.save_folder_path:
-            cls.save_folder_path = save_folder
+    def check_dir(self, save_folder: str) -> str:
+        if save_folder != self.save_folder_path:
+            self.save_folder_path = save_folder
 
-        if not os.path.exists(cls.save_folder_path):
-            os.mkdir(cls.save_folder_path)
+        if not os.path.exists(self.save_folder_path):
+            os.mkdir(self.save_folder_path)
 
-        return cls.save_folder_path
+        return self.save_folder_path
 
     @staticmethod
     def check_image_exists(path: str) -> None:
@@ -27,11 +26,9 @@ class Basics:
     def check_ssim(self, ssim: float) -> float:
         if ssim == 1.0:
             return float(self.ssim_basic)
-        else:
-            return float(ssim)
+        return float(ssim)
 
-    @classmethod
-    def check_image_format(cls, image_format: str) -> str:
+    def check_image_format(self, image_format: str) -> str:
         """Checks image format. If "png", returns default, else returns `image_format`.
 
         Args:
@@ -41,7 +38,7 @@ class Basics:
             str: image format file extension, e.g ".png", ".jpg"
         """
         if str(image_format) == "png":
-            return f".{cls.starts_format_image}"
+            return f".{self.starts_format_image}"
         return f".{image_format}"
 
     def check_tess_path(self, path_to_tess: str) -> str:
