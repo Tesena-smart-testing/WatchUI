@@ -47,7 +47,7 @@ class TestBasics:
 
         if image_format == "png":
             assert_that(file_extension, is_(".png"))
-        if image_format == ".jpg":
+        elif image_format == "jpg":
             assert_that(file_extension, is_(".jpg"))
 
     def test_no_of_args_check(self, no_of_args):
@@ -57,10 +57,10 @@ class TestBasics:
                 is_(True),
             )
 
-        if no_of_args == 3:
+        elif no_of_args == 3:
             with pytest.raises(ValueError):
                 Basics.check_if_args_has_ok_numbers(0, 1, 2)
 
-        if no_of_args == 4:
+        elif no_of_args == 5:
             with pytest.raises(ValueError):
                 Basics.check_if_args_has_ok_numbers(0, 1, 2, 3, 4)
