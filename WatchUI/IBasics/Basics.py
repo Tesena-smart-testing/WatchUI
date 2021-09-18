@@ -1,4 +1,5 @@
 import os
+from typing import Type
 
 from robot.api import logger
 
@@ -24,9 +25,18 @@ class Basics:
             raise AssertionError("The path: %s, to the image does not exist." % path)
 
     def check_ssim(self, ssim: float) -> float:
+        if not isinstance(ssim, float):
+            raise TypeError(
+                f"'ssim' argument must of type <float>. Provided value is of type {type(ssim)}"
+            )
+        if (ssim < 0.0) or (ssim > 1.0):
+            raise ValueError(
+                f"'ssim' value must be in <0.0 , 1.0> inclusive range. You have provided {ssim}"
+            )
+
         if ssim == self.ssim_basic:
             return self.ssim_basic
-        return float(ssim)
+        return ssim
 
     def check_image_format(self, image_format: str) -> str:
         """Checks image format. If "png", returns default, else returns `image_format`.

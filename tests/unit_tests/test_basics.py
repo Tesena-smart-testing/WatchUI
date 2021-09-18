@@ -19,7 +19,7 @@ def output_path(request):
     shutil.rmtree(request.param)
 
 
-@pytest.fixture(params=[1.0, "1.0", 0.5])
+@pytest.fixture(params=[1.0, 0.0, 0.5])
 def ssim(request):
     return request.param
 
