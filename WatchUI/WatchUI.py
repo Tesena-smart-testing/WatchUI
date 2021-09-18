@@ -88,8 +88,8 @@ class WatchUI(Image, Pdf, Tesseract):
         Example: Compare two image ../image1.png ../Image2.png
         """
         self.create_compare_images(
-            path1=path1,
-            path2=path2,
+            base_image_path=path1,
+            compared_image_path=path2,
             save_folder=save_folder,
             ssim=ssim,
             image_format=image_format,
