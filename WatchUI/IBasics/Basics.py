@@ -5,7 +5,7 @@ from robot.api import logger
 
 class Basics:
     save_folder_path = "../Outputs"
-    ssim_basic = 1.5
+    ssim_basic = float(1.0)
     starts_format_image = "png"
     path_to_tesseract_folder = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
@@ -24,8 +24,8 @@ class Basics:
             raise AssertionError("The path: %s, to the image does not exist." % path)
 
     def check_ssim(self, ssim: float) -> float:
-        if ssim == 1.0:
-            return float(self.ssim_basic)
+        if ssim == self.ssim_basic:
+            return self.ssim_basic
         return float(ssim)
 
     def check_image_format(self, image_format: str) -> str:
