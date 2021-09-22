@@ -71,8 +71,8 @@ class WatchUI(Image, Pdf, Tesseract):
 
     def compare_image(
         self,
-        path1,
-        path2,
+        base_image_path,
+        compared_image_path,
         save_folder=save_folder_path,
         ssim=starts_ssim,
         image_format=starts_format_image,
@@ -88,8 +88,8 @@ class WatchUI(Image, Pdf, Tesseract):
         Example: Compare two image ../image1.png ../Image2.png
         """
         self.create_compare_images(
-            base_image_path=path1,
-            compared_image_path=path2,
+            base_image_path,
+            compared_image_path,
             save_folder=save_folder,
             ssim=ssim,
             image_format=image_format,
@@ -97,8 +97,8 @@ class WatchUI(Image, Pdf, Tesseract):
 
     def compare_screen_without_areas(
         self,
-        path1,
-        path2,
+        base_image_path,
+        compared_image_path,
         *args,
         save_folder=save_folder_path,
         ssim=starts_ssim,
@@ -115,8 +115,8 @@ class WatchUI(Image, Pdf, Tesseract):
         Creates 2 ignored parts at 0,0, 30,40 and 50, 50, 100, 100
         """
         self.create_compare_screen_without_areas(
-            path1,
-            path2,
+            base_image_path,
+            compared_image_path,
             *args,
             save_folder=save_folder,
             ssim=ssim,
@@ -221,7 +221,6 @@ class WatchUI(Image, Pdf, Tesseract):
         oem="3",
         psm="3",
         language="eng",
-        path_to_tesseract=path_to_tesseract_folder,
     ) -> str:
         """
         Keyword for reading text from image. For proper functionality you must install tesseract-ocr.
@@ -230,14 +229,13 @@ class WatchUI(Image, Pdf, Tesseract):
         oem = Engine Mode (Settings from tesseract)
         PSM = Page Segmentation Mode (Settings from tesseract)
         language = The Language we wanna read file
-        path_to_tesseract = Path to root folder with tesseract.exe
         """
         return self.create_image_to_string(
             path=path,
             oem=oem,
             psm=psm,
             language=language,
-            path_to_tesseract=path_to_tesseract,
+            path_to_tesseract=self.tesseract_path,
         )
 
     def image_area_on_text(

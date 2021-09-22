@@ -1,7 +1,7 @@
 # pylint: disable=invalid-name
 
-'''Image class module.
-'''
+"""Image class module.
+"""
 # pylint: disable=no-member
 import time
 from typing import Any, Union
@@ -101,32 +101,41 @@ class Image(Basics):
 
     def create_compare_screen_without_areas(
         self,
-        path1: str,
-        path2: str,
+        base_image_path: str,
+        compared_image_path: str,
         *args,
         save_folder: str,
         ssim: float,
         image_format: str,
     ) -> None:
-        save_folder = self.check_dir(save_folder)
-        mySsim = self.check_ssim(ssim)
-        img_format = self.check_image_format(image_format)
+        """Compares two images without selected areas of the image.
 
-        lt = len(args)
-        img1 = cv.imread(path1, 1)
-        img2 = cv.imread(path2, 1)
+        Args:
+            base_image_path (str): path to the base image
+            compared_image_path (str): path to the compared image
+            save_folder (str): path to the save folder
+            ssim (float): SSIM threshold value
+            image_format (str): format of the image, e.g. "png", "jpg"
+        """
+        checked_save_folder: str = self.check_dir(save_folder)
+        my_ssim: float = self.check_ssim(ssim)
+        img_format: str = self.check_image_format(image_format)
+
+        lt: int = len(args)
+        img1: Any = cv.imread(base_image_path, 1)
+        img2: Any = cv.imread(compared_image_path, 1)
 
         self.check_if_args_has_ok_numbers(*args, need_numbers=4)
 
-        x = lt / 4
-        i = 0
-        a = 0
+        x: float = lt / 4
+        i: int = 0
+        a: int = 0
         while i < x:
-            color = (0, 0, 0)
-            x1 = int(args[0 + a])
-            y1 = int(args[1 + a])
-            x2 = int(args[2 + a])
-            y2 = int(args[3 + a])
+            color: tuple[int, int, int] = (0, 0, 0)
+            x1: int = int(args[0 + a])
+            y1: int = int(args[1 + a])
+            x2: int = int(args[2 + a])
+            y2: int = int(args[3 + a])
 
             cv.rectangle(img1, (x1, y1), (x2, y2), color, -1)
             cv.rectangle(img2, (x1, y1), (x2, y2), color, -1)
@@ -134,18 +143,21 @@ class Image(Basics):
             i += 1
 
             # convert to grey
-            gray_img1 = cv.cvtColor(img1, cv.COLOR_BGR2GRAY)
-            gray_img2 = cv.cvtColor(img2, cv.COLOR_BGR2GRAY)
+            gray_img1: Any = cv.cvtColor(img1, cv.COLOR_BGR2GRAY)
+            gray_img2: Any = cv.cvtColor(img2, cv.COLOR_BGR2GRAY)
 
             # SSIM diff Img
+            score: float
+            diff: Union[Any, ndarray]
             (score, diff) = structural_similarity(gray_img1, gray_img2, full=True)
             diff = (diff * 255).astype("uint8")
+            score = float(score)
 
             # Threshold diff Img
-            thresh = cv.threshold(diff, 0, 255, cv.THRESH_BINARY_INV | cv.THRESH_OTSU)[
-                1
-            ]
-            cnts = cv.findContours(
+            thresh: Any = cv.threshold(
+                diff, 0, 255, cv.THRESH_BINARY_INV | cv.THRESH_OTSU
+            )[1]
+            cnts: Any = cv.findContours(
                 thresh.copy(), cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE
             )
             cnts = imutils.grab_contours(cnts)
@@ -157,9 +169,9 @@ class Image(Basics):
                 cv.rectangle(img2, (x, y), (x + w, y + h), (0, 0, 255), 2)
 
             # Show image
-            time_ = str(time.time())
-            url = save_folder + "/Img" + time_ + img_format
-            if float(score) < mySsim:
+            time_: str = str(time.time())
+            url: str = f"{checked_save_folder}/Img{time_}{img_format}"
+            if score < my_ssim:
                 cv.imwrite(url, img2)
                 self.set_log_message(
                     work_object="Image", type_of_messages="Error", path_to_image=url

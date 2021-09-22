@@ -1,7 +1,7 @@
 # pylint: disable=invalid-name
 
-'''Interfaces module.
-'''
+"""Interfaces module.
+"""
 import os
 from typing import Literal
 
