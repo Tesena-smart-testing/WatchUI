@@ -14,6 +14,15 @@ from WatchUI.IBasics.Basics import Basics
 
 
 class Image(Basics):
+    """Class representing the Image and methods for RF keywords regarding
+    comparing the images.
+
+    This class is not instantiated itself.
+
+    Args:
+        Basics (object): interface class
+    """
+
     def create_compare_images(
         self,
         base_image_path: str,
@@ -22,6 +31,18 @@ class Image(Basics):
         ssim: float,
         image_format: str,
     ) -> None:
+        """Compares image on `compared_image_path` against base image on `base_image_path`.
+
+        Args:
+            base_image_path (str): path to base image
+            compared_image_path (str): path to compared image
+            save_folder (str): path to the save folder
+            ssim (float): SSIM threshold value
+            image_format (str): image format, e.g. "png", "jpg"
+
+        Raises:
+            TypeError:
+        """
         save_folder = self.check_dir(save_folder)
         ssim = self.check_ssim(ssim)
         img_format = self.check_image_format(image_format)
