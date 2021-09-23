@@ -1,4 +1,4 @@
-# pylint: disable=invalid-name, no-member
+# pylint: disable=invalid-name, no-member, too-many-arguments, too-many-locals
 """Module representing Tesseract class.
 """
 

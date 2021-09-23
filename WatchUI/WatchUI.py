@@ -1,5 +1,8 @@
+# pylint: disable=invalid-name, line-too-long, too-many-arguments
+
 """Library module.
 """
+from typing import Union
 from WatchUI.Keywords.Image import Image
 from WatchUI.Keywords.PDF import Pdf
 from WatchUI.Keywords.Tesseract import Tesseract
@@ -24,7 +27,8 @@ class WatchUI(Image, Pdf, Tesseract):
 
     However, you can also install it via command *pip install WatchUI* and then import it.
 
-    *IMPORTANT*: When using keywords of this library, please remember, that screenshots have to have same resolution!
+    *IMPORTANT*: When using keywords of this library, please remember,
+    that screenshots have to have same resolution!
 
     = Examples =
     Import library
@@ -47,16 +51,20 @@ class WatchUI(Image, Pdf, Tesseract):
         format_image=starts_format_image,
         tesseract_path=path_to_tesseract_folder,
     ):
-        """Library can be imported either with default output folder and set lowest limit of difference between images (ssim), or
+        """Library can be imported either with default output folder and set
+        lowest limit of difference between images (ssim), or
         you can provide your own values.
 
         Keyword Arguments:
 
-            outputs_folder {str} -- path, where you want to save images with highlighted differences (default: "../Outputs")
+            outputs_folder {str} -- path, where you want to save images with highlighted
+            differences (default: "../Outputs")
 
-            ssim_basic {float} -- threshold value in the interval (0, 1>. Tests are passed, if ssim value returned by keyword test functions is bigger than this (default: 1.0)
+            ssim_basic {float} -- threshold value in the interval (0, 1>. Tests are passed,
+            if ssim value returned by keyword test functions is bigger than this (default: 1.0)
 
-            format_image {str} -- Format for saving picture/screenshot (png, jpg etc.) Example: format_image=jpg (default: png)
+            format_image {str} -- Format for saving picture/screenshot (png, jpg etc.)
+            Example: format_image=jpg (default: png)
 
         Examples:
 
@@ -223,7 +231,7 @@ class WatchUI(Image, Pdf, Tesseract):
         oem="3",
         psm="3",
         language="eng",
-    ) -> str:
+    ) -> Union[bytes, str]:
         """
         Keyword for reading text from image. For proper functionality you must
         install tesseract-ocr.
@@ -248,7 +256,7 @@ class WatchUI(Image, Pdf, Tesseract):
         oem="3",
         psm="3",
         language="eng",
-    ) -> str:
+    ) -> Union[list[str], str]:
         """
         Keyword for reading text from image. For proper functionality you must
         install tesseract-ocr.

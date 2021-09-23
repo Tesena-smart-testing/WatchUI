@@ -1,4 +1,4 @@
-# pylint: disable=invalid-name, expression-not-assigned, unbalanced-tuple-unpacking
+# pylint: disable=invalid-name, expression-not-assigned, unbalanced-tuple-unpacking, too-many-arguments, too-many-locals
 
 """Image class module.
 """
