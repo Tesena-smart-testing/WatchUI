@@ -43,7 +43,7 @@ class Image(Basics):
         Raises:
             TypeError:
         """
-        save_folder = self.check_dir(save_folder)
+        checked_save_folder: str = self.check_dir(save_folder)
         ssim = self.check_ssim(ssim)
         img_format = self.check_image_format(image_format)
         self.check_image_exists(base_image_path)
@@ -85,7 +85,7 @@ class Image(Basics):
             cv.rectangle(img2, (x, y), (x + w, y + h), (0, 0, 255), 2)
 
         time_: str = str(time.time())
-        url: str = f"{save_folder}/Img{time_}{img_format}"
+        url: str = f"{checked_save_folder}/Img{time_}{img_format}"
         # Show image
         if score < ssim:
             cv.imwrite(url, img2)
@@ -120,6 +120,8 @@ class Image(Basics):
         checked_save_folder: str = self.check_dir(save_folder)
         my_ssim: float = self.check_ssim(ssim)
         img_format: str = self.check_image_format(image_format)
+        self.check_image_exists(base_image_path)
+        self.check_image_exists(compared_image_path)
 
         lt: int = len(args)
         img1: Any = cv.imread(base_image_path, 1)
