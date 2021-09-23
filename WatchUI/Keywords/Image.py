@@ -4,7 +4,7 @@
 """
 # pylint: disable=no-member
 import time
-from typing import Any, Union
+from typing import Any, Literal, Union
 
 import cv2 as cv
 import imutils
@@ -192,18 +192,29 @@ class Image(Basics):
         y2: int,
         save_folder: str,
         image_format: str,
-    ):
-        self.check_image_exists(path)
-        save_folder = self.check_dir(save_folder)
-        img_save_format = self.check_image_format(image_format)
+    ) -> None:
+        """Creates cropped image and saves it.
 
-        img = cv.imread(path, 1)
-        crop_img = img[
+        Args:
+            path (str): path to the image
+            x1 (int): x1 coords
+            y1 (int): y1 coords
+            x2 (int): x2 coords
+            y2 (int): y2 coords
+            save_folder (str): path to save folder
+            image_format (str): format of the saved image, e.g. "png", "jpg"
+        """
+        self.check_image_exists(path)
+        checked_save_folder: str = self.check_dir(save_folder)
+        img_save_format: str = self.check_image_format(image_format)
+
+        img: Any = cv.imread(path, 1)
+        crop_img: Any = img[
             int(x1) : int(x2), int(y1) : int(y2)
         ]  # Crop from {x, y, w, h } => {0, 0, 300, 400}
 
         # Save image
-        url = save_folder + "/Img" + str(time.time()) + img_save_format
+        url: str = f"{checked_save_folder}/Img{str(time.time())}{img_save_format}"
         cv.imwrite(url, crop_img)
         self.set_log_message(
             work_object="Image", type_of_messages="Info", path_to_image=url
@@ -214,26 +225,42 @@ class Image(Basics):
         path: str,
         screen_name: str,
         save_folder: str,
-        rotate: int,
+        rotate: Literal[0, 1, 2],
         image_format: str,
-    ) -> None:
-        save_folder = self.check_dir(save_folder)
-        img_format = self.check_image_format(image_format)
+    ) -> Any:
+        """Creates rotated version of the source image and saves it.
+
+        Args:
+            path (str): path to the source image
+            screen_name (str): name of the screen
+            save_folder (str): path to the save folder
+            rotate (int): [description]
+            image_format (str): [description]
+
+        Raises:
+            AssertionError: [description]
+        """
+        if rotate not in [0, 1, 2]:
+            raise ValueError(
+                "Value of 'rotate' argument can only be of type <Literal[0, 1, 2]>"
+            )
+
+        checked_save_folder: str = self.check_dir(save_folder)
+        img_format: str = self.check_image_format(image_format)
         self.check_image_exists(path)
 
-        img = cv.imread(path)
-        if int(rotate) == 0:
+        img: Any = cv.imread(path)
+        save_path: str = f"{checked_save_folder}/{screen_name}{img_format}"
+        rotate_image: Any
+
+        if rotate == 0:
             rotate_image = cv.rotate(img, cv.ROTATE_90_CLOCKWISE)
-            cv.imwrite(save_folder + "/" + screen_name + img_format, rotate_image)
-        elif int(rotate) == 1:
+            return cv.imwrite(save_path, rotate_image)
+        if rotate == 1:
             rotate_image = cv.rotate(img, cv.ROTATE_90_COUNTERCLOCKWISE)
-            cv.imwrite(save_folder + "/" + screen_name + img_format, rotate_image)
-        elif int(rotate) == 2:
+            return cv.imwrite(save_path, rotate_image)
+        if rotate == 2:
             rotate_image = cv.rotate(img, cv.ROTATE_180)
-            cv.imwrite(save_folder + "/" + screen_name + img_format, rotate_image)
-        else:
-            raise AssertionError(
-                "You try to setup volume:"
-                + str(rotate)
-                + " which never exists. Please read documentations and try 0,1 or 2."
-            )
+            return cv.imwrite(save_path, rotate_image)
+
+        return None

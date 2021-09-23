@@ -1,5 +1,5 @@
-'''Library module.
-'''
+"""Library module.
+"""
 from WatchUI.Keywords.Image import Image
 from WatchUI.Keywords.PDF import Pdf
 from WatchUI.Keywords.Tesseract import Tesseract
