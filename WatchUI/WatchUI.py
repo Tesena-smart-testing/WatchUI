@@ -1,3 +1,5 @@
+'''Library module.
+'''
 from WatchUI.Keywords.Image import Image
 from WatchUI.Keywords.PDF import Pdf
 from WatchUI.Keywords.Tesseract import Tesseract
@@ -102,7 +104,7 @@ class WatchUI(Image, Pdf, Tesseract):
         *args,
         save_folder=save_folder_path,
         ssim=starts_ssim,
-        image_format=starts_format_image
+        image_format=starts_format_image,
     ) -> None:
         """
         Compares two pictures, which have parts to be ignored
@@ -120,7 +122,7 @@ class WatchUI(Image, Pdf, Tesseract):
             *args,
             save_folder=save_folder,
             ssim=ssim,
-            image_format=image_format
+            image_format=image_format,
         )
 
     def crop_image(
@@ -193,8 +195,8 @@ class WatchUI(Image, Pdf, Tesseract):
         self, path, page_number: int, x1: int, y1: int, x2: int, y2: int
     ) -> str:
         """
-        Return text from area. It doesnt use tesseract, so its can be used on normally pdf or without installed
-        tesseract
+        Return text from area. It doesnt use tesseract, so its can be used
+        on normally pdf or without installed tesseract
         path = Path to pdf
         page_number = PDF page number where we wanna search for text
         x1, y1, x2, y2 = coordinates where text is
@@ -223,7 +225,8 @@ class WatchUI(Image, Pdf, Tesseract):
         language="eng",
     ) -> str:
         """
-        Keyword for reading text from image. For proper functionality you must install tesseract-ocr.
+        Keyword for reading text from image. For proper functionality you must
+        install tesseract-ocr.
 
         path = path to the image, which we wanna read
         oem = Engine Mode (Settings from tesseract)
@@ -245,18 +248,16 @@ class WatchUI(Image, Pdf, Tesseract):
         oem="3",
         psm="3",
         language="eng",
-        path_to_tesseract=path_to_tesseract_folder
     ) -> str:
         """
-        Keyword for reading text from image. For proper functionality you must install tesseract-ocr.
+        Keyword for reading text from image. For proper functionality you must
+        install tesseract-ocr.
 
         path = path to the image, which we wanna read
         *coordinates = coordinates where text is located. Must be 4 (x1, y1, x2, y2)
         oem = Engine Mode (Settings from tesseract)
         PSM = Page Segmentation Mode (Settings from tesseract)
         language = The Language we wanna read file
-        path_to_tesseract = Path to root folder with tesseract.exe
-
         """
         return self.create_image_area_on_text(
             path,
@@ -264,5 +265,5 @@ class WatchUI(Image, Pdf, Tesseract):
             oem=oem,
             psm=psm,
             language=language,
-            path_to_tesseract=path_to_tesseract
+            path_to_tesseract=self.tesseract_path,
         )

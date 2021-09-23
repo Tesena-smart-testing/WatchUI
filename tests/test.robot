@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation       Suite description
-Library             ../WatchUI/
+Library             ../WatchUI/   tesseract_path=/usr/bin/tesseract
 
 *** Test Cases ***
 Test title
