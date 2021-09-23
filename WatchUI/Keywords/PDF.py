@@ -1,7 +1,7 @@
 # pylint: disable=no-member, invalid-name, too-many-arguments
 
-'''PDF class module.
-'''
+"""PDF class module.
+"""
 from typing import Any
 import fitz
 from WatchUI.IBasics.Basics import Basics

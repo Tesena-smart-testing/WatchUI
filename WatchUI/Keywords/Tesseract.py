@@ -1,6 +1,6 @@
 # pylint: disable=invalid-name, no-member
-'''Module representing Tesseract class.
-'''
+"""Module representing Tesseract class.
+"""
 
 import os
 from typing import Any, Union

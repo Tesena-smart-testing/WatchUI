@@ -56,6 +56,70 @@ class Image(Basics):
 
         return tuple(output)
 
+    @staticmethod
+    def _get_images(base_image_path: str, compared_image_path: str) -> tuple[Any, ...]:
+        img1: Any = cv.imread(base_image_path, 1)
+        img2: Any = cv.imread(compared_image_path, 1)
+
+        return tuple([img1, img2])
+
+    @staticmethod
+    def _convert_to_grey(base_image: Any, target_image: Any) -> tuple[Any, ...]:
+        gray_img1: Any = cv.cvtColor(base_image, cv.COLOR_BGR2GRAY)
+        gray_img2: Any = cv.cvtColor(target_image, cv.COLOR_BGR2GRAY)
+
+        return tuple([gray_img1, gray_img2])
+
+    @staticmethod
+    def _compute_score(
+        gray_base_img: Any, gray_targed_img: Any
+    ) -> tuple[float, Union[ndarray, Any]]:
+        score: float
+        diff: Union[ndarray, Any]
+        (score, diff) = structural_similarity(gray_base_img, gray_targed_img, full=True)
+        diff = (diff * 255).astype("uint8")
+
+        if not isinstance(score, float):
+            raise TypeError(
+                f"Returned score must be of <float> type. Received {type(score)}"
+            )
+
+        return score, diff
+
+    def _write_and_log(
+        self,
+        score: float,
+        ssim: float,
+        checked_save_folder: str,
+        img_format: str,
+        base_image: Any,
+        target_image: Any,
+    ) -> Any:
+        time_: str = str(time.time())
+        url: str = f"{checked_save_folder}/Img{time_}{img_format}"
+        # Show image
+        if score < ssim:
+            cv.imwrite(url, target_image)
+            self.set_log_message(
+                work_object="Image", type_of_messages="Error", path_to_image=url
+            )
+        else:
+            img_diff: Any = cv.hconcat([base_image, target_image])
+            cv.imwrite(url, img_diff)
+            self.set_log_message(
+                work_object="Image", type_of_messages="Info", path_to_image=url
+            )
+
+    @staticmethod
+    def _get_contours(diff: Union[ndarray, Any]) -> Any:
+        thresh: Any = cv.threshold(diff, 0, 255, cv.THRESH_BINARY_INV | cv.THRESH_OTSU)[
+            1
+        ]
+        cnts: Any = cv.findContours(
+            thresh.copy(), cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE
+        )
+        return imutils.grab_contours(cnts)
+
     def create_compare_images(
         self,
         base_image_path: str,
@@ -86,33 +150,16 @@ class Image(Basics):
         )
 
         # Compare image
-        img1: Any = cv.imread(base_image_path, 1)
-        img2: Any = cv.imread(compared_image_path, 1)
+        img1, img2 = self._get_images(base_image_path, compared_image_path)
 
         # convert to grey
-        gray_img1: Any = cv.cvtColor(img1, cv.COLOR_BGR2GRAY)
-        gray_img2: Any = cv.cvtColor(img2, cv.COLOR_BGR2GRAY)
+        gray_img1, gray_img2 = self._convert_to_grey(img1, img2)
 
         # SSIM diff Img
-        score: float
-        diff: Union[ndarray, Any]
-        (score, diff) = structural_similarity(gray_img1, gray_img2, full=True)
-        diff = (diff * 255).astype("uint8")
-        score = float(score)
-
-        if not isinstance(score, float):
-            raise TypeError(
-                f"Returned score must be of <float> type. Received {type(score)}"
-            )
+        score, diff = self._compute_score(gray_img1, gray_img2)
 
         # Threshold diff Img
-        thresh: Any = cv.threshold(diff, 0, 255, cv.THRESH_BINARY_INV | cv.THRESH_OTSU)[
-            1
-        ]
-        cnts: Any = cv.findContours(
-            thresh.copy(), cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE
-        )
-        cnts = imutils.grab_contours(cnts)
+        cnts: Any = self._get_contours(diff)
 
         # Create frame in diff area
         for c in cnts:
@@ -120,20 +167,7 @@ class Image(Basics):
             cv.rectangle(img1, (x, y), (x + w, y + h), (0, 0, 255), 2)
             cv.rectangle(img2, (x, y), (x + w, y + h), (0, 0, 255), 2)
 
-        time_: str = str(time.time())
-        url: str = f"{checked_save_folder}/Img{time_}{img_format}"
-        # Show image
-        if score < ssim:
-            cv.imwrite(url, img2)
-            self.set_log_message(
-                work_object="Image", type_of_messages="Error", path_to_image=url
-            )
-        else:
-            img_diff: Any = cv.hconcat([img1, img2])
-            cv.imwrite(url, img_diff)
-            self.set_log_message(
-                work_object="Image", type_of_messages="Info", path_to_image=url
-            )
+        self._write_and_log(score, ssim, checked_save_folder, img_format, img1, img2)
 
     def create_compare_screen_without_areas(
         self,
@@ -163,8 +197,7 @@ class Image(Basics):
         )
 
         lt: int = len(args)
-        img1: Any = cv.imread(base_image_path, 1)
-        img2: Any = cv.imread(compared_image_path, 1)
+        img1, img2 = self._get_images(base_image_path, compared_image_path)
 
         self.check_if_args_has_ok_numbers(*args, need_numbers=4)
 
@@ -184,24 +217,13 @@ class Image(Basics):
             i += 1
 
             # convert to grey
-            gray_img1: Any = cv.cvtColor(img1, cv.COLOR_BGR2GRAY)
-            gray_img2: Any = cv.cvtColor(img2, cv.COLOR_BGR2GRAY)
+            gray_img1, gray_img2 = self._convert_to_grey(img1, img2)
 
             # SSIM diff Img
-            score: float
-            diff: Union[Any, ndarray]
-            (score, diff) = structural_similarity(gray_img1, gray_img2, full=True)
-            diff = (diff * 255).astype("uint8")
-            score = float(score)
+            score, diff = self._compute_score(gray_img1, gray_img2)
 
             # Threshold diff Img
-            thresh: Any = cv.threshold(
-                diff, 0, 255, cv.THRESH_BINARY_INV | cv.THRESH_OTSU
-            )[1]
-            cnts: Any = cv.findContours(
-                thresh.copy(), cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE
-            )
-            cnts = imutils.grab_contours(cnts)
+            cnts: Any = self._get_contours(diff)
 
             # Create frame in diff area
             for c in cnts:
@@ -210,19 +232,9 @@ class Image(Basics):
                 cv.rectangle(img2, (x, y), (x + w, y + h), (0, 0, 255), 2)
 
             # Show image
-            time_: str = str(time.time())
-            url: str = f"{checked_save_folder}/Img{time_}{img_format}"
-            if score < my_ssim:
-                cv.imwrite(url, img2)
-                self.set_log_message(
-                    work_object="Image", type_of_messages="Error", path_to_image=url
-                )
-            else:
-                img_diff = cv.hconcat([img1, img2])
-                cv.imwrite(url, img_diff)
-                self.set_log_message(
-                    work_object="Image", type_of_messages="Info", path_to_image=url
-                )
+            self._write_and_log(
+                score, my_ssim, checked_save_folder, img_format, img1, img2
+            )
 
     def create_crop_image(
         self,
