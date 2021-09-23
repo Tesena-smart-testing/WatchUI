@@ -1,10 +1,10 @@
-# pylint: disable=invalid-name
+# pylint: disable=invalid-name, expression-not-assigned, unbalanced-tuple-unpacking
 
 """Image class module.
 """
 # pylint: disable=no-member
 import time
-from typing import Any, Literal, Union
+from typing import Any, Literal, Optional, Union
 
 import cv2 as cv
 import imutils
@@ -22,6 +22,39 @@ class Image(Basics):
     Args:
         Basics (object): interface class
     """
+
+    def _do_checks(self, expected_returned_items: int, **kwargs) -> tuple[Any, ...]:
+        keys: list[Any] = list(kwargs.keys())
+
+        checked_save_folder: Optional[str] = (
+            self.check_dir(kwargs["save_folder"]) if "save_folder" in keys else None
+        )
+        ssim: Optional[float] = (
+            self.check_ssim(kwargs["ssim"]) if "ssim" in keys else None
+        )
+        img_format: Optional[str] = (
+            self.check_image_format(kwargs["image_format"])
+            if "image_format" in keys
+            else None
+        )
+        self.check_image_exists(
+            kwargs["base_image_path"]
+        ) if "base_image_path" in keys else None
+        self.check_image_exists(
+            kwargs["compared_image_path"]
+        ) if "compared_image_path" in keys else None
+
+        output: list[Union[str, float]] = []
+        checked_save_folder is not None and output.append(checked_save_folder)  # type: ignore
+        ssim is not None and output.append(ssim)  # type: ignore
+        img_format is not None and output.append(img_format)  # type: ignore
+
+        if len(output) != expected_returned_items:
+            raise IndexError(
+                "Expected items to be returned by the method differs from actual."
+            )
+
+        return tuple(output)
 
     def create_compare_images(
         self,
@@ -43,11 +76,14 @@ class Image(Basics):
         Raises:
             TypeError:
         """
-        checked_save_folder: str = self.check_dir(save_folder)
-        ssim = self.check_ssim(ssim)
-        img_format = self.check_image_format(image_format)
-        self.check_image_exists(base_image_path)
-        self.check_image_exists(compared_image_path)
+        checked_save_folder, ssim, img_format = self._do_checks(
+            3,
+            save_folder=save_folder,
+            base_image_path=base_image_path,
+            compared_image_path=compared_image_path,
+            ssim=ssim,
+            image_format=image_format,
+        )
 
         # Compare image
         img1: Any = cv.imread(base_image_path, 1)
@@ -117,11 +153,14 @@ class Image(Basics):
             ssim (float): SSIM threshold value
             image_format (str): format of the image, e.g. "png", "jpg"
         """
-        checked_save_folder: str = self.check_dir(save_folder)
-        my_ssim: float = self.check_ssim(ssim)
-        img_format: str = self.check_image_format(image_format)
-        self.check_image_exists(base_image_path)
-        self.check_image_exists(compared_image_path)
+        checked_save_folder, my_ssim, img_format = self._do_checks(
+            3,
+            save_folder=save_folder,
+            base_image_path=base_image_path,
+            compared_image_path=compared_image_path,
+            ssim=ssim,
+            image_format=image_format,
+        )
 
         lt: int = len(args)
         img1: Any = cv.imread(base_image_path, 1)
@@ -206,9 +245,9 @@ class Image(Basics):
             save_folder (str): path to save folder
             image_format (str): format of the saved image, e.g. "png", "jpg"
         """
-        self.check_image_exists(path)
-        checked_save_folder: str = self.check_dir(save_folder)
-        img_save_format: str = self.check_image_format(image_format)
+        checked_save_folder, img_save_format = self._do_checks(
+            2, save_folder=save_folder, image_format=image_format, base_image_path=path
+        )
 
         img: Any = cv.imread(path, 1)
         crop_img: Any = img[
@@ -246,10 +285,9 @@ class Image(Basics):
             raise ValueError(
                 "Value of 'rotate' argument can only be of type <Literal[0, 1, 2]>"
             )
-
-        checked_save_folder: str = self.check_dir(save_folder)
-        img_format: str = self.check_image_format(image_format)
-        self.check_image_exists(path)
+        checked_save_folder, img_format = self._do_checks(
+            2, save_folder=save_folder, image_format=image_format, base_image_path=path
+        )
 
         img: Any = cv.imread(path)
         save_path: str = f"{checked_save_folder}/{screen_name}{img_format}"
