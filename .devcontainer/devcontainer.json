@@ -1,0 +1,11 @@
+{
+    "build": {"dockerfile": "Dockerfile"},
+    "forwardPorts": [5000],
+    "extensions": [
+        "ms-python.python",
+        "mrmlnc.vscode-duplicate",
+        "tomiturtiainen.rf-intellisense",
+        "VisualStudioExptTeam.vscodeintellicode",
+        "njpwerner.autodocstring"
+    ]
+}
