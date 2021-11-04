@@ -1,25 +1,5 @@
 FROM mcr.microsoft.com/vscode/devcontainers/python:3.9-buster
 
-RUN python -m pip install --upgrade pip \
-    && pip install opencv-python \
-        pandas \
-        Pillow \
-        numpy \
-        scikit-image \
-        scikit-learn \
-        imutils \
-        robotframework \
-        robotframework-seleniumlibrary \
-        PyMuPDF \
-        pytesseract \
-        black \
-        mypy \
-        pylint \
-        isort \
-        pytest \
-        PyHamcrest \
-        lizard
-
 RUN apt-get update \
     && apt-get install -y tesseract-ocr \
         tesseract-ocr-all
@@ -36,3 +16,7 @@ RUN VERSION=95.0.4638.17 \
     && chmod +x /usr/bin/chromedriver \
     && rm -rf ./chromedriver_linux64.zip \
     && echo 'export PATH:$PATH:/usr/bin/chromedriver' >> ~/.profile
+
+RUN python -m pip install --upgrade pip \
+    && pip install pipx \
+    && pipx install poetry
