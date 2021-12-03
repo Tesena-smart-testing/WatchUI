@@ -183,6 +183,7 @@ class WatchUI(Image, Pdf, Tesseract):
         save_folder=save_folder_path,
         screen_name="pdf_screen",
         number_page="-1",
+        zoom="2",
     ) -> None:
         """
         Change PDF to Image.
@@ -197,6 +198,7 @@ class WatchUI(Image, Pdf, Tesseract):
             save_folder=save_folder,
             name=screen_name,
             number_page=number_page,
+            zoom=zoom,
         )
 
     def return_text_from_area(
