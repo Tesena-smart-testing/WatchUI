@@ -16,7 +16,7 @@ class Pdf(Basics):
     """
 
     def create_pdf_to_image(
-        self, path: str, save_folder: str, name: str, number_page: str
+        self, path: str, save_folder: str, name: str, number_page: str, zoom: str,
     ) -> None:
         """Converts pdf to image - .png format.
 
@@ -33,17 +33,18 @@ class Pdf(Basics):
         doc: Any = fitz.open(path)
         page: Any
         pix: Any
+        mat = fitz.Matrix(zoom, zoom)
         if number_page == "-1":
             page_count: int = doc.pageCount
             for x in range(0, page_count):
                 page = doc.loadPage(x)  # load all pages one by one
-                pix = page.getPixmap()
+                pix = page.getPixmap(matrix=mat)
                 output: str = f"{checked_save_folder}/{name}_{str(x)}.png"
                 pix.writePNG(output)
                 self.set_log_message(work_object="Image", path_to_image=output)
         else:
             page = doc.loadPage(int(number_page))  # number of page
-            pix = page.getPixmap()
+            pix = page.getPixmap(matrix=mat)
             output = f"{checked_save_folder}/{name}.png"
             pix.writePNG(output)
             self.set_log_message(work_object="Image", path_to_image=output)
