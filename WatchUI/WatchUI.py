@@ -3,11 +3,15 @@
 """Library module.
 """
 from typing import Union
+
+from robot.api.deco import keyword, library
+
 from WatchUI.Keywords.Image import Image
 from WatchUI.Keywords.PDF import Pdf
 from WatchUI.Keywords.Tesseract import Tesseract
 
 
+@library
 class WatchUI(Image, Pdf, Tesseract):
     """WatchUI - Custom library for comparing images.
 
@@ -78,6 +82,7 @@ class WatchUI(Image, Pdf, Tesseract):
         self.image_format = str(format_image)
         self.tesseract_path = str(tesseract_path)
 
+    @keyword
     def compare_image(
         self,
         base_image_path,
@@ -102,6 +107,7 @@ class WatchUI(Image, Pdf, Tesseract):
             image_format=image_format,
         )
 
+    @keyword
     def compare_screen_without_areas(
         self,
         base_image_path,
@@ -130,6 +136,7 @@ class WatchUI(Image, Pdf, Tesseract):
             image_format=image_format,
         )
 
+    @keyword
     def crop_image(
         self,
         path,
@@ -150,6 +157,7 @@ class WatchUI(Image, Pdf, Tesseract):
             image_format=image_format,
         )
 
+    @keyword
     def rotate_image(
         self,
         path,
@@ -172,6 +180,7 @@ class WatchUI(Image, Pdf, Tesseract):
             image_format=image_format,
         )
 
+    @keyword
     def pdf_to_image(
         self,
         path,
@@ -196,6 +205,7 @@ class WatchUI(Image, Pdf, Tesseract):
             zoom=zoom,
         )
 
+    @keyword
     def return_text_from_area(
         self, path, page_number: int, x1: int, y1: int, x2: int, y2: int
     ) -> str:
@@ -211,6 +221,7 @@ class WatchUI(Image, Pdf, Tesseract):
             path=path, page_number=page_number, x1=x1, y1=y1, x2=x2, y2=y2
         )
 
+    @keyword
     def should_exist_this_text(self, path, page_number: int, text: str) -> bool:
         """
         Returns True if <text> is found on page
@@ -223,6 +234,7 @@ class WatchUI(Image, Pdf, Tesseract):
             path=path, page_number=page_number, text=text
         )
 
+    @keyword
     def image_to_string(
         self,
         path,
@@ -247,6 +259,7 @@ class WatchUI(Image, Pdf, Tesseract):
             path_to_tesseract=self.tesseract_path,
         )
 
+    @keyword
     def image_area_on_text(
         self,
         path,
