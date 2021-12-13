@@ -32,11 +32,11 @@ Check If Text Exists
     Should Exist This Text    ${PDF_FILE}    0    Důvody
 
 Get Text From Image
-    Tags              [tesseract]
+    [tags]            tesseract
     ${var}=           Image To String    ${BASELINE_IMAGE}
     Log To Console    ${var}
 
 Get Image Area On Text
-    Tags              [tesseract]
+    [tags]            tesseract
     ${var}=           Image Area On Text    ${BASELINE_IMAGE}    0    0    380    380
     Log To Console    ${var}
