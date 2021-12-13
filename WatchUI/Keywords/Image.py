@@ -278,7 +278,7 @@ class Image(Basics):
         path: str,
         screen_name: str,
         save_folder: str,
-        rotate: Literal[0, 1, 2],
+        angle: Literal[0, 1, 2],
         image_format: str,
     ) -> Any:
         """Creates rotated version of the source image and saves it.
@@ -293,7 +293,7 @@ class Image(Basics):
         Raises:
             AssertionError: [description]
         """
-        if rotate not in [0, 1, 2]:
+        if angle not in [0, 1, 2]:
             raise ValueError(
                 "Value of 'rotate' argument can only be of type <Literal[0, 1, 2]>"
             )
@@ -305,13 +305,13 @@ class Image(Basics):
         save_path: str = f"{checked_save_folder}/{screen_name}{img_format}"
         rotate_image: Any
 
-        if rotate == 0:
+        if angle == 0:
             rotate_image = cv.rotate(img, cv.ROTATE_90_CLOCKWISE)
             return cv.imwrite(save_path, rotate_image)
-        if rotate == 1:
+        if angle == 1:
             rotate_image = cv.rotate(img, cv.ROTATE_90_COUNTERCLOCKWISE)
             return cv.imwrite(save_path, rotate_image)
-        if rotate == 2:
+        if angle == 2:
             rotate_image = cv.rotate(img, cv.ROTATE_180)
             return cv.imwrite(save_path, rotate_image)
 
