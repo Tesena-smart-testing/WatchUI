@@ -1,47 +1,42 @@
+*** Variables ***
+${TESERACT_PATH}     /usr/bin/tesseract
+${BASELINE_IMAGE}    assets/img.jpg
+${PDF_FILE}          assets/ok.pdf
+
+
 *** Settings ***
-Documentation       Suite description
-Library             ../WatchUI/   tesseract_path=/usr/bin/tesseract
+Documentation    Suite description
+Library          ../WatchUI/          tesseract_path=${TESERACT_PATH}
 
 *** Test Cases ***
-Test title
-    [Tags]    DEBUG
-#    Check Image
-#     Check compare screen without areas
-#    Create Crop Image
-#    Rotate Image for fun
-    PDF convert to Image
-#    Get text from some area
-#    Check if text exists
-#    Get text from image
-#    Get Image area on text
+Compare Same Images
+    Compare image    ${BASELINE_IMAGE}    ${BASELINE_IMAGE}
 
-*** Keywords ***
-Check Image
-    Compare image                           ../Tesena/img.jpg   ../Tesena/img.jpg
-
-Check compare screen without areas
-    Compare screen without areas            ../Tesena/img.jpg   ../Tesena/img.jpg    0  0  100  100  125  125  250  250
+Check Compare Screen Without Areas
+    Compare screen without areas    ${BASELINE_IMAGE}    ${BASELINE_IMAGE}    0    0    100    100    125    125    250    250
 
 Create Crop Image
-    Crop Image                              ../Tesena/img.jpg   10  10  20  20
+    Crop Image    ${BASELINE_IMAGE}    10    10    20    20
 
-Rotate Image for fun
-    Rotate Image                            ../Tesena/img.jpg   rotate=1
+Rotate Image For Fun
+    Rotate Image    ${BASELINE_IMAGE}    rotate=1
 
-PDF convert to Image
-    pdf to image                            ../Tesena/ok.pdf    zoom=5
+PDF Convert To Image
+    Pdf To Image    ${BASELINE_IMAGE}    zoom=5
 
-Get text from some area
-    ${Text_from_area}                       return text from area   ../Tesena/ok.pdf  0     50  60  190  90
-    log to console                          ${Text_from_area}
+Get Text From Some Area
+    ${text_from_area}    Return Text From Area    ${PDF_FILE}    0    50    60    190    90
+    Log To Console       ${text_from_area}
 
-Check if text exists
-    should exist this text                  ../Tesena/ok.pdf  0     Důvody
+Check If Text Exists
+    Should Exist This Text    ${PDF_FILE}    0    Důvody
 
-Get text from image
-    ${var}=             image to string                         ../Tesena/img.jpg
-    log to console      ${var}
+Get Text From Image
+    Tags              [tesseract]
+    ${var}=           Image To String    ${BASELINE_IMAGE}
+    Log To Console    ${var}
 
-Get Image area on text
-    ${var}=             Image area on text                       ../Tesena/img.jpg     0  0  380  380
-    log to console      ${var}
+Get Image Area On Text
+    Tags              [tesseract]
+    ${var}=           Image Area On Text    ${BASELINE_IMAGE}    0    0    380    380
+    Log To Console    ${var}

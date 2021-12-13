@@ -16,18 +16,17 @@ WatchUI 2.0 brings breaking changes. Dev team decided to streamline the library 
 This is no longer the case - user of the WatchUI therefore **can and have to choose, what browser automation library will use** and provide screenshots to the WatchUI keywords to be compared.
 
 Version 1.x.x is no longer supported, but it is still available on [Pypi](pip install WatchUI==1.0.11).
+
 ### Basic Info
 
-
 Custom library for comparing images with use in Robot Framework.
-
 
 ### Folder structure [TO BE UPDATED]
 
 ```
 Testing-api
 └── .github/workflows           # Folder with CI for github actions
-└── Img                         # Folder with test data
+└── assets                      # Folder with test data
 └── test                        # Folder with example how to write rf test.
 │    └── keywords               # Keywords and variables
 │    └── unit_test.robot        # File with TC
@@ -38,20 +37,21 @@ Testing-api
 ```
 
 ### Install
+
 You can find detail in [Documentation](https://procesor2017.github.io/WatchUI/) but basically use pip:
+
 ```
 pip install WatchUI
 ```
 
 or some python dependencies management tools, like [pipenv](https://pipenv.pypa.io/en/latest/) or [poetry](https://python-poetry.org/) and their respective methods of libraries installation.
 
-
 ### Sample results [TO BE UPDATED]
 
 _Image where the differences are stored + You can see two black box in left corner. These black box are ignored during comparison._
 
-<img src="/Img/logscreen.png" width="850" height="300">
+<img src="/assets/example-ignore-areas.png" width="850" height="300">
 
 _The red rectangles outlining missing elements on compared screens_
 
-<img src="/Img/img_inlog.png" width="850" height="300">
+<img src="/assets/example-difference.png" width="850" height="300">
