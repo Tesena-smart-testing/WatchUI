@@ -50,8 +50,8 @@ or some python dependencies management tools, like [pipenv](https://pipenv.pypa.
 
 _Image where the differences are stored + You can see two black box in left corner. These black box are ignored during comparison._
 
-<img src="/assets/example-ignore-areas.png" width="850" height="300">
+<img src="assets/example-ignore-areas.png">
 
 _The red rectangles outlining missing elements on compared screens_
 
-<img src="/assets/example-difference.png" width="850" height="300">
+<img src="assets/example-difference.jpg">
