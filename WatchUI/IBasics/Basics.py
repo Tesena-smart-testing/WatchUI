@@ -19,7 +19,7 @@ class Basics:
         ValueError:
     """
 
-    save_folder_path = "../outputs"
+    save_folder_path = "./outputs"
     ssim_basic = float(1.0)
     starts_format_image = "png"
     path_to_tesseract_folder = r"C:\Program Files\Tesseract-OCR\tesseract.exe"

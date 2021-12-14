@@ -169,7 +169,7 @@ class Image(Basics):
 
         self._write_and_log(score, ssim, checked_save_folder, img_format, img1, img2)
 
-    def create_compare_screen_without_areas(
+    def create_compare_image_without_areas(
         self,
         base_image_path: str,
         compared_image_path: str,
