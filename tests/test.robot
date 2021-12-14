@@ -26,17 +26,17 @@ PDF Convert To Image
 
 Get Text From Some Area
     ${text_from_area}    Return Text From Area    ${PDF_FILE}    0    50    60    190    90
-    Log To Console       ${text_from_area}
+    Should Contain    ${text_from_area}             Územnímu pracovišti v, ve, pro 
 
 Check If Text Exists
     Should Exist This Text    ${PDF_FILE}    0    Důvody
 
 Get Text From Image
     [tags]            tesseract
-    ${var}=           Image To String    ${BASELINE_IMAGE}
-    Log To Console    ${var}
+    ${var}=           Image To String    ${BASELINE_IMAGE}  language=ces
+    Should Contain    ${var}             Základní údaje o Teseně
 
 Get Image Area On Text
     [tags]            tesseract
     ${var}=           Image Area On Text    ${BASELINE_IMAGE}    0    0    380    380
-    Log To Console    ${var}
+    Should Contain    ${var}                Intranet Delivery

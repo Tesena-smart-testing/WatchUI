@@ -37,14 +37,14 @@ class Pdf(Basics):
         if page_number == "-1":
             page_count: int = doc.pageCount
             for x in range(0, page_count):
-                page = doc.loadPage(x)  # load all pages one by one
-                pix = page.getPixmap(matrix=mat)
+                page = doc.load_page(x)  # load all pages one by one
+                pix = page.get_pixmap(matrix=mat)
                 output: str = f"{checked_save_folder}/{name}_{str(x)}.png"
-                pix.writePNG(output)
+                pix.save(output)
                 self.set_log_message(work_object="Image", path_to_image=output)
         else:
-            page = doc.loadPage(int(page_number))  # number of page
-            pix = page.getPixmap(matrix=mat)
+            page = doc.load_page(int(page_number))  # number of page
+            pix = page.get_pixmap(matrix=mat)
             output = f"{checked_save_folder}/{name}.png"
             pix.writePNG(output)
             self.set_log_message(work_object="Image", path_to_image=output)
@@ -68,7 +68,7 @@ class Pdf(Basics):
         self.check_image_exists(path)
         doc: Any = fitz.open(path)
         page: Any = doc[page_number]
-        words_list: list[Any] = page.getTextWords()
+        words_list: list[Any] = page.get_text_words()
         text: str = ""
         xy_numbers: int = 1
 
@@ -102,7 +102,7 @@ class Pdf(Basics):
         self.check_image_exists(path)
         doc: Any = fitz.open(path)
         page: Any = doc[page_number]
-        text_instances: list[Any] = page.searchFor(text)
+        text_instances: list[Any] = page.search_for(text)
         if len(text_instances) > 0:
             return True
 
