@@ -1,24 +1,19 @@
 *** Settings ***
 Documentation       Suite description
-Library             WatchUI/WatchUI.py
-Library             SeleniumLibrary
+Library             ../WatchUI/   tesseract_path=/usr/bin/tesseract
 
-#robot -d Results tests/test.robot
 *** Test Cases ***
-test
-    open browser  https://www.seznam.cz  chrome
-
-#Test title
-#    [Tags]    DEBUG
-#    Check Image
-#    Check compare screen without areas
-#    Create Crop Image
-#    Rotate Image for fun
-#    PDF convert to Image
-#    Get text from some area
-#    Check if text exists
-#    Get text from image
-#    Get Image area on text
+Test title
+    [Tags]    DEBUG
+    Check Image
+    Check compare screen without areas
+    Create Crop Image
+    Rotate Image for fun
+    PDF convert to Image
+    Get text from some area
+    Check if text exists
+    Get text from image
+    Get Image area on text
 
 *** Keywords ***
 Check Image
