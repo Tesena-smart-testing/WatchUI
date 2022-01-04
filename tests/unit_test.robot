@@ -1,5 +1,4 @@
 *** Settings ***
-Documentation                   Suite description
 Library                         SeleniumLibrary
 Library                         Screenshot
 Library                         OperatingSystem
@@ -14,6 +13,7 @@ Resource                        keywords/Text_testing.robot
 Resource                        keywords/Variable.robot
 Test Setup                      Start web-browser
 Test Teardown                   Close web-browser
+
 
 *** Test Cases ***
 TC01 - Compare two saved images
@@ -59,6 +59,27 @@ TC06 - PDF and Tesseract
     Read text from image
     Find diff in PDF
     [Teardown]
+
+TC07 - Check text existence in PDF
+    [Tags]  tc07
+    [Setup]
+    ${Text_from_pdf}    Should exist this text  ${TT_path_to_pdf}   0   Dummy
+    Should be true      ${Text_from_pdf} == True
+    [Teardown]
+    
+TC08 - Check text existence in PDF
+    [Tags]  tc08
+    [Setup]
+    ${Text_from_pdf}    Return text from area   ${TT_path_to_pdf}   0   50  60  190  90
+    Should be true      '''${Text_from_pdf}''' == '''${TT_Should_be_text}'''
+    [Teardown]
+
+TC09 - Convert PDF to IMG
+    [Tags]  tc09
+    [Setup]
+    Pdf to image            ${OK_PDF}               name=${NAME_OK_PDF}
+    [Teardown]
+
 
 *** Keywords ***
 Start web-browser
