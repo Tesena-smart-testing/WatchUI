@@ -1,3 +1,12 @@
+*** Settings ***
+Documentation                   Suite description
+Library                         Screenshot
+Library                         WatchUI
+Library                         String
+Library                         OperatingSystem
+
+Resource                        ../resources/keywords.robot
+
 *** Variables ***
 ${IMAGE_1}   ${vzor_path}/forpres.png
 ${IMAGE_2}   ${vzor_path}/forpres1.png
