@@ -10,7 +10,7 @@ import fitz
 import imutils
 
 
-__version__ = "1.0.11"
+__version__ = "1.0.12"
 
 
 class WatchUI:
@@ -804,15 +804,15 @@ class WatchUI:
             if number_page == "-1":
                 page_count = doc.pageCount
                 for x in range(0, page_count):
-                    page = doc.loadPage(x)  # load all pages one by one
-                    pix = page.getPixmap(matrix=mat)
+                    page = doc.load_page(x)  # load all pages one by one
+                    pix = page.get_pixmap(matrix=mat)
                     output = save_folder + "/" + name + "_" + str(x) + ".png"
-                    pix.writePNG(output)
+                    pix.save(output)
             else:
-                page = doc.loadPage(int(number_page))  # number of page
-                pix = page.getPixmap(matrix=mat)
+                page = doc.load_page(int(number_page))  # number of page
+                pix = page.get_pixmap(matrix=mat)
                 output = save_folder + "/" + name + ".png"
-                pix.writePNG(output)
+                pix.save(output)
         else:
             raise AssertionError("Path " + path1 + " doesn't exists")
 
@@ -869,7 +869,7 @@ class WatchUI:
         if os.path.exists(path):
             doc = fitz.open(path)
             page = doc[page_number]
-            words_list = page.getTextWords()
+            words_list = page.get_text_words()
             text = ""
             xy_numbers = 1
             for xy in words_list:
@@ -900,7 +900,7 @@ class WatchUI:
         if os.path.exists(path):
             doc = fitz.open(path)
             page = doc[page_number]
-            text_instances = page.searchFor(text)
+            text_instances = page.search_for(text)
             if len(text_instances) > 0:
                 return True
             else:
