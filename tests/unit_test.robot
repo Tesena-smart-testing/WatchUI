@@ -56,7 +56,7 @@ TC06 - PDF and Tesseract
     Create IMG
     Create and compare vysvetlivky
     Check words                     ${CONTROLL_TEXT}     @{TEXT_COO}
-    Read text from image
+    Read text from image            # Require: Tesseract
     Find diff in PDF
     [Teardown]
 
@@ -77,7 +77,7 @@ TC08 - Check text existence in PDF
 TC09 - Convert PDF to IMG
     [Tags]  tc09  pdf_to_img
     [Setup]
-    Pdf to image            ${OK_PDF}               name=${NAME_OK_PDF}
+    Pdf to image            ${OK_PDF}  name=${NAME_OK_PDF}  save_folder=${PATH_TO_PDF_BASELINE_IMG}
     [Teardown]
 
 
