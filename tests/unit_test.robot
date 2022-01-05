@@ -24,7 +24,7 @@ TC01 - Compare two saved images
     Compare images SSIM 0.5: JPG Format
     [Teardown]
 
-TC02 - Creating screens in differen resolutions
+TC02 - Creating screens in different resolutions
     [Tags]  tc02  resolution  VT
     Create screens in 800 x 600 reso
     Create screens in 3 resolutions
