@@ -5,7 +5,7 @@
 ### Basic Info
 
 Robot Framework visual testing library for visual difference testing as well as image content testing (including PDF documents).
-Runs on Selenium or Playwright to generate screenshots, PyMuPDF to process PDFs and Tesseract OCR to recognize text.
+Runs on Selenium or Playwright to generate screenshots, PyMuPDF (supported version `1.19+`) to process PDFs and Tesseract OCR to recognize text.
 
 ### Project structure
 
