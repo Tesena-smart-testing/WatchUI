@@ -9,7 +9,7 @@ Create screen from actual webpage
 
 Compare image with created screen
     Create screen from actual webpage
-    compare screen                      ${screen800x600}
+    compare screen                      ${screen800x600}      save_folder=${CS_SFOUTPUTS}
 
 Compare image full set up
     Create screen from actual webpage
