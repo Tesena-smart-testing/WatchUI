@@ -24,7 +24,7 @@ Custom library for comparing images with use in Robot Framework.
 ### Folder structure
 
 ```
-Testing-api
+WatchUI
 └── .github/workflows           # Folder with CI for github actions
 └── assets                      # Folder with images used for documantation as well as test data
 └── test                        # Folder with example how to write rf test.

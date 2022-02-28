@@ -5,7 +5,7 @@ import shutil
 
 import pytest
 from hamcrest import assert_that, instance_of, is_
-from WatchUI.IBasics.Basics import Basics
+from WatchUI.Ibasic.IBasic import IBasic
 
 
 @pytest.fixture(params=["png", "jpg"])
@@ -32,18 +32,18 @@ def no_of_args(request):
 class TestBasics:
     def test_check_dir(self, output_path):
         dir_status = os.path.isdir(
-            os.path.abspath(Basics.check_dir(Basics, output_path))
+            os.path.abspath(IBasic.check_dir(IBasic, output_path))
         )
         assert_that(dir_status, is_(True))
-        assert_that(Basics.save_folder_path == output_path)
+        assert_that(IBasic.save_folder_path == output_path)
 
     def test_check_ssim(self, ssim):
-        ssim_check = Basics.check_ssim(Basics, ssim)
+        ssim_check = IBasic.check_ssim(IBasic, ssim)
         assert_that(ssim_check, instance_of(float))
         assert_that(ssim_check, is_(float(ssim)))
 
     def test_check_image_format(self, image_format):
-        file_extension = Basics.check_image_format(Basics, image_format)
+        file_extension = IBasic.check_image_format(IBasic, image_format)
 
         if image_format == "png":
             assert_that(file_extension, is_(".png"))
@@ -53,14 +53,14 @@ class TestBasics:
     def test_no_of_args_check(self, no_of_args):
         if no_of_args == 4:
             assert_that(
-                Basics.check_if_args_has_ok_numbers(0, 1, 2, 3),
+                IBasic.check_if_args_has_ok_numbers(0, 1, 2, 3),
                 is_(True),
             )
 
         elif no_of_args == 3:
             with pytest.raises(ValueError):
-                Basics.check_if_args_has_ok_numbers(0, 1, 2)
+                IBasic.check_if_args_has_ok_numbers(0, 1, 2)
 
         elif no_of_args == 5:
             with pytest.raises(ValueError):
-                Basics.check_if_args_has_ok_numbers(0, 1, 2, 3, 4)
+                IBasic.check_if_args_has_ok_numbers(0, 1, 2, 3, 4)

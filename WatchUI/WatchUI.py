@@ -1,4 +1,8 @@
-# pylint: disable=bad-super-call
+# pylint: disable=invalid-name, line-too-long, too-many-arguments, bad-super-call
+"""
+Library module
+"""
+
 from .keywords import Image, Pdf, Tesseract
 
 class WatchUI(

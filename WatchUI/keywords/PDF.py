@@ -1,7 +1,10 @@
+# pylint: disable=no-member, invalid-name, too-many-arguments
+"""
+PDF class module
+"""
 from typing import Any
 import fitz
 from ..Ibasic.IBasic import IBasic
-
 
 
 class Pdf(IBasic):
@@ -13,7 +16,11 @@ class Pdf(IBasic):
     save_folder= ""
 
     def pdf_to_image(
-        self, path: str, name: str="img", page_number: int= -1, zoom: int= 3, save_folder=save_folder,
+        self, path: str,
+        name: str="img",
+        page_number: int= -1,
+        zoom: int= 3,
+        save_folder=save_folder,
     ) -> None:
         """Converts pdf to image - .png format.
         Args:

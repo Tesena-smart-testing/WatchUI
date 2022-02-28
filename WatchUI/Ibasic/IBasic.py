@@ -1,7 +1,9 @@
 # pylint: disable=invalid-name
+"""
+Basics class
+"""
 import os
 from typing import Literal
-
 from robot.api import logger
 
 class IBasic():
@@ -14,8 +16,8 @@ class IBasic():
         AssertionError:
         ValueError:
     """
-    def __init__(self, my_folder, ssim, format_image, tesseract_path) -> None:
-        self.save_folder_path = my_folder
+    def __init__(self, save_folder_path, ssim, format_image, tesseract_path) -> None:
+        self.save_folder_path = save_folder_path
         self.ssim_basic = ssim
         self.starts_format_image = format_image
         self.path_to_tesseract_folder = tesseract_path

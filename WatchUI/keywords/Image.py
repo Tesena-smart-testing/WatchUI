@@ -1,6 +1,4 @@
-# pylint: disable=no-member
-# pylint: disable=too-many-arguments
-# pylint: disable=expression-not-assigned
+# pylint: disable=invalid-name, expression-not-assigned, unbalanced-tuple-unpacking, too-many-arguments, too-many-locals
 import time
 from typing import Any, Optional, Union
 
@@ -163,7 +161,7 @@ class Image(IBasic):
 
         self._write_and_log(score, ssim, checked_save_folder, img_format, img1, img2)
 
-    def compare_image_without_areas(
+    def compare_screen_without_areas(
         self,
         base_image_path: str,
         compared_image_path: str,
