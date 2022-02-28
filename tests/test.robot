@@ -22,7 +22,7 @@ Rotate Image For Fun
     Rotate Image    ${BASELINE_IMAGE}    rotate=1
 
 PDF Convert To Image
-    Pdf To Image    ${BASELINE_IMAGE}    zoom=5
+    Pdf To Image    ${PDF_FILE}    zoom=5
 
 Get Text From Some Area
     ${text_from_area}    Return Text From Area    ${PDF_FILE}    0    50    60    190    90

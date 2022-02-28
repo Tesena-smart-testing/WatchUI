@@ -49,7 +49,7 @@ class Pdf(IBasic):
             page = doc.load_page(int(page_number))  # number of page
             pix = page.get_pixmap(matrix=mat)
             output = f"{checked_save_folder}/{name}.png"
-            pix.writePNG(output)
+            pix.save(output)
             self.set_log_message(work_object="Image", path_to_image=output)
 
     def return_text_from_area(
