@@ -4,11 +4,6 @@
 
 ## [Documentation](https://tesena-smart-testing.github.io/WatchUI/) | [Tesena](https://www.tesena.com/) | [Pypi](https://pypi.org/project/WatchUI/)
 
-## V2 DEV NOTES:
-
-- if possible, use [poetry](https://python-poetry.org/) to install dependecies. it will also install all dev dependencies used for linting, type checking and formatting.
-- if you are using VSCode, all dev tooling should work out of the box, once you open your virtual environment created by poetry. Settings are in the `.vscode/settings.json` file.
-
 ## Important notice for users
 
 WatchUI 2.0 brings breaking changes. Dev team decided to streamline the library and focus it solely on the image and text comparison. This allows us to remove the implicit dependency on browser automation libraries - namely SeleniumLibrary, which was implicit part of the library via RF `BuiltIn()` import of the SeleniumLibrary instance.
@@ -19,12 +14,12 @@ Version 1.x.x is no longer supported, but it is still available on [Pypi](pip in
 
 ### Basic Info
 
-Custom library for comparing images with use in Robot Framework.
+Custom library for works with image, pdf and tesseract with RF.
 
 ### Folder structure
 
 ```
-Testing-api
+WatchUI
 └── .github/workflows           # Folder with CI for github actions
 └── assets                      # Folder with images used for documantation as well as test data
 └── test                        # Folder with example how to write rf test.
