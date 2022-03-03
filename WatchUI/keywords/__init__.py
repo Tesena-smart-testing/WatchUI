@@ -1,5 +1,5 @@
 """
-__init__ import methodst to WatchUI.py
+__init__ import methods to WatchUI.py
 """
 from .Image import Image
 from .PDF import Pdf
