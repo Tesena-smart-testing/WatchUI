@@ -1,4 +1,4 @@
-# pylint: disable=invalid-name, line-too-long, too-many-arguments, bad-super-call
+# pylint: disable=invalid-name, line-too-long, too-many-arguments
 """
 Library module
 """
@@ -55,9 +55,8 @@ class WatchUI(
             | Library   | WatchUI | outputs_folder=<path_to_folder> | | # changes folder to different one |
             | Library   | WatchUI | outputs_folder=<path_to_folder> | ssim_basic=<float> | # changes output folder and ssim threshold |
             """
-        super(Image, self).__init__(
+        super().__init__(
             outputs_folder,
             ssim_basic,
             format_image,
             tesseract_path)
-      
