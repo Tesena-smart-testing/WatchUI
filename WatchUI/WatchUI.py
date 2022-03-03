@@ -1,4 +1,4 @@
-# pylint: disable=invalid-name, line-too-long, too-many-arguments, bad-super-call
+# pylint: disable=invalid-name, line-too-long, too-many-arguments
 """
 Library module
 """
@@ -36,22 +36,24 @@ class WatchUI(Image, Pdf, Tesseract):
         tesseract_path=r"C:\Program Files\Tesseract-OCR\tesseract.exe",
     ):
         """Library can be imported either with default output folder and set
-        lowest limit of difference between images (ssim), or
-        you can provide your own values.
-        Keyword Arguments:
-            outputs_folder {str} -- path, where you want to save images with highlighted
-            differences (default: "../Outputs")
-            ssim_basic {float} -- threshold value in the interval (0, 1>. Tests are passed,
-            if ssim value returned by keyword test functions is bigger than this (default: 1.0)
-            format_image {str} -- Format for saving picture/screenshot (png, jpg etc.)
-            tesseract_path {str} -- path for tesseract
-            Example: format_image=jpg (default: png)
-        Examples:
-        | =Setting= | =Value= | =Value= | =Value= | =Comment= |
-        | Library   | WatchUI |      |  | # Uses default values of keyword arguments |
-        | Library   | WatchUI | outputs_folder=<path_to_folder> | | # changes folder to different one |
-        | Library   | WatchUI | outputs_folder=<path_to_folder> | ssim_basic=<float> | # changes output folder and ssim threshold |
-        """
-        super(Image, self).__init__(
-            outputs_folder, ssim_basic, format_image, tesseract_path
-        )
+            lowest limit of difference between images (ssim), or
+            you can provide your own values.
+            Keyword Arguments:
+                outputs_folder {str} -- path, where you want to save images with highlighted
+                differences (default: "../Outputs")
+                ssim_basic {float} -- threshold value in the interval (0, 1>. Tests are passed,
+                if ssim value returned by keyword test functions is bigger than this (default: 1.0)
+                format_image {str} -- Format for saving picture/screenshot (png, jpg etc.)
+                tesseract_path {str} -- path for tesseract
+                Example: format_image=jpg (default: png)
+            Examples:
+            | =Setting= | =Value= | =Value= | =Value= | =Comment= |
+            | Library   | WatchUI |      |  | # Uses default values of keyword arguments |
+            | Library   | WatchUI | outputs_folder=<path_to_folder> | | # changes folder to different one |
+            | Library   | WatchUI | outputs_folder=<path_to_folder> | ssim_basic=<float> | # changes output folder and ssim threshold |
+            """
+        super().__init__(
+            outputs_folder,
+            ssim_basic,
+            format_image,
+            tesseract_path)
