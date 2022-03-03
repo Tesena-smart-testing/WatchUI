@@ -13,13 +13,15 @@ class Pdf(IBasic):
     Args:
         Basics (object): interface class
     """
-    save_folder= ""
+
+    save_folder = ""
 
     def pdf_to_image(
-        self, path: str,
-        name: str="img",
-        page_number: int= -1,
-        zoom: int= 3,
+        self,
+        path: str,
+        name: str = "img",
+        page_number: int = -1,
+        zoom: int = 3,
         save_folder=save_folder,
     ) -> None:
         """Converts pdf to image - .png format.
@@ -87,9 +89,7 @@ class Pdf(IBasic):
             xy_numbers += 1
         return text
 
-    def should_exist_this_text(
-        self, path: str, page_number: int, text: str
-    ) -> bool:
+    def should_exist_this_text(self, path: str, page_number: int, text: str) -> bool:
         """Verifies, whether given text is present in the document and given page.
         Args:
             path (str): path to pdf document

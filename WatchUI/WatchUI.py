@@ -5,38 +5,35 @@ Library module
 
 from .keywords import Image, Pdf, Tesseract
 
-class WatchUI(
-    Image,
-    Pdf,
-    Tesseract
-):
+
+class WatchUI(Image, Pdf, Tesseract):
     """WatchUI - Custom library for comparing images with use in Robot Framework.
-        = Table of Contents =
-        - `Usage`
-        - `Importing`
-        - `Examples`
-        - `Keywords`
-        = Usage =
-        This library allows for automated visual testing of web frontends.
-        Currently, this library is not officialy supported, so best way is to
-        clone the repository and copy the WatchUI.py library file into your project and then
-        import it - see Importing section.
-        However, you can also install it via command *pip install WatchUI* and then import it.
-        *IMPORTANT*: When using keywords of this library, please remember,
-        that screenshots have to have same resolution!
-        = Examples =
-        Import library
-        | `Library` | <path_to_library file> | outputs_folder= | ssim_basic= | format_image= | tesseract_path=
-        Compare Images
-        | Compare Images | path1 | path2 | save_folder= | ssim= | format_image= |
-        """
+    = Table of Contents =
+    - `Usage`
+    - `Importing`
+    - `Examples`
+    - `Keywords`
+    = Usage =
+    This library allows for automated visual testing of web frontends.
+    Currently, this library is not officialy supported, so best way is to
+    clone the repository and copy the WatchUI.py library file into your project and then
+    import it - see Importing section.
+    However, you can also install it via command *pip install WatchUI* and then import it.
+    *IMPORTANT*: When using keywords of this library, please remember,
+    that screenshots have to have same resolution!
+    = Examples =
+    Import library
+    | `Library` | <path_to_library file> | outputs_folder= | ssim_basic= | format_image= | tesseract_path=
+    Compare Images
+    | Compare Images | path1 | path2 | save_folder= | ssim= | format_image= |
+    """
+
     def __init__(
         self,
-        outputs_folder = "./outputs",
-        ssim_basic = 1.0,
-        format_image = "png",
-        tesseract_path = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
-
+        outputs_folder="./outputs",
+        ssim_basic=1.0,
+        format_image="png",
+        tesseract_path=r"C:\Program Files\Tesseract-OCR\tesseract.exe",
     ):
         """Library can be imported either with default output folder and set
             lowest limit of difference between images (ssim), or

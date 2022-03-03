@@ -7,6 +7,7 @@ from robot import run
 
 ROOT_DIR = Path(os.path.dirname(__file__))
 
+
 def docs():
     """Generate library keyword documentation.
     Args:

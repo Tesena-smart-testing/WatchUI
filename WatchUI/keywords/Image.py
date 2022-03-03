@@ -8,6 +8,7 @@ from numpy import ndarray
 from skimage.metrics import structural_similarity
 from ..Ibasic.IBasic import IBasic
 
+
 class Image(IBasic):
     """Class representing the Image and methods for RF keywords regarding
     comparing the images.
@@ -16,10 +17,9 @@ class Image(IBasic):
         Basics (object): interface class
     """
 
-    save_folder= ""
-    ssim= 1.0
-    image_format= "png"
-
+    save_folder = ""
+    ssim = 1.0
+    image_format = "png"
 
     def _do_checks(self, expected_returned_items: int, **kwargs) -> tuple[Any, ...]:
         keys: list[Any] = list(kwargs.keys())
@@ -35,8 +35,12 @@ class Image(IBasic):
             if "image_format" in keys
             else None
         )
-        self.check_image_exists(kwargs["base_image_path"]) if "base_image_path" in keys else None
-        self.check_image_exists(kwargs["compared_image_path"]) if "compared_image_path" in keys else None
+        self.check_image_exists(
+            kwargs["base_image_path"]
+        ) if "base_image_path" in keys else None
+        self.check_image_exists(
+            kwargs["compared_image_path"]
+        ) if "compared_image_path" in keys else None
 
         output: list[Union[str, float]] = []
         checked_save_folder is not None and output.append(checked_save_folder)  # type: ignore
@@ -118,9 +122,9 @@ class Image(IBasic):
         self,
         base_image_path: str,
         compared_image_path: str,
-        save_folder= save_folder,
-        ssim = ssim,
-        image_format= image_format,
+        save_folder=save_folder,
+        ssim=ssim,
+        image_format=image_format,
     ) -> None:
         """Compares image on `compared_image_path` against base image on `base_image_path`.
         Args:
@@ -304,4 +308,3 @@ class Image(IBasic):
             return cv.imwrite(save_path, rotate_image)
 
         return None
- 
