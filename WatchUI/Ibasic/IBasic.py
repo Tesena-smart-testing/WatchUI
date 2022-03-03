@@ -115,14 +115,12 @@ class IBasic():
         if work_object == "Image":
             if type_of_messages == "Info":
                 logger.info(
-                    "Image was saved to your output folder </p><img src='"
-                    + path_to_image
-                    + "'/>",
+                    f"Image was saved to your output folder </p><img src={path_to_image}/>",
                     html=True,
                 )
             elif type_of_messages == "Error":
                 logger.error(
-                    "Images arent same</p><img src='" + path_to_image + "'/>", html=True
+                    f"Images arent same</p><img src={path_to_image}/>", html=True
                 )
                 raise AssertionError("Images are not the same")
         elif work_object == "PDF":

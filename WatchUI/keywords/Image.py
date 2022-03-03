@@ -304,5 +304,4 @@ class Image(IBasic):
             return cv.imwrite(save_path, rotate_image)
 
         return None
-        
-            
+ 
