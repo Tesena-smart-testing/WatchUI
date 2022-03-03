@@ -6,7 +6,8 @@ import os
 from typing import Literal
 from robot.api import logger
 
-class IBasic():
+
+class IBasic:
     """
     Interface to be inherited by Classes implementing keyword methods.
     Raises:
@@ -16,6 +17,7 @@ class IBasic():
         AssertionError:
         ValueError:
     """
+
     def __init__(self, save_folder_path, ssim, format_image, tesseract_path) -> None:
         self.save_folder_path = save_folder_path
         self.ssim_basic = ssim

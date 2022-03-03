@@ -13,13 +13,18 @@ class Tesseract(IBasic):
     """
 
     def image_to_string(
-        self, path: str, oem: str="3", psm: str="3", language: str="eng", path_to_tesseract= ""
+        self,
+        path: str,
+        oem: str = "3",
+        psm: str = "3",
+        language: str = "eng",
+        path_to_tesseract="",
     ) -> Union[bytes, str]:
         """Converts provided image to string and returns.
         Args:
             path (str): path to the image
             oem (str): Engine mode. Tesseract has several engine modes with different performance and speed.
-            psm (str): Page Segmentation Mode (--psm). That affects how Tesseract splits image in lines of text and words. Pick the one which works best for you. 
+            psm (str): Page Segmentation Mode (--psm). That affects how Tesseract splits image in lines of text and words. Pick the one which works best for you.
             language (str): [description]
             path_to_tesseract (str): path to installed tesseract binary
         Returns:
@@ -49,7 +54,7 @@ class Tesseract(IBasic):
         Args:
             path (str): path to the image
             oem (str): Engine mode. Tesseract has several engine modes with different performance and speed.
-            psm (str): Page Segmentation Mode (--psm). That affects how Tesseract splits image in lines of text and words. Pick the one which works best for you. 
+            psm (str): Page Segmentation Mode (--psm). That affects how Tesseract splits image in lines of text and words. Pick the one which works best for you.
             language (str): [description]
             path_to_tesseract (str): path to the installed tesseract library
         Returns:
