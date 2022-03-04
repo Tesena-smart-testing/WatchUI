@@ -33,7 +33,7 @@ jobs:
             && chromedriver --version
       - name: Install Tesseract
         run: |
-          apt-get update && apt-get install -y \
+          sudo apt-get update && sudo apt-get install -y \
           tesseract-ocr \
           tesseract-ocr-eng \
           tesseract-ocr-ces
