@@ -6,7 +6,7 @@ ${PDF_FILE}          assets/ok.pdf
 
 *** Settings ***
 Documentation    Suite description
-Library          ../WatchUI/          outputs_folder="ahoj"  tesseract_path=${TESERACT_PATH}
+Library          ../WatchUI/          outputs_folder=tests/outputs  tesseract_path=${TESERACT_PATH}
 
 *** Test Cases ***
 Compare Same Images
