@@ -15,10 +15,6 @@ class WatchUI(Image, Pdf, Tesseract):
     - `Keywords`
     = Usage =
     This library allows for automated visual testing of web frontends.
-    Currently, this library is not officialy supported, so best way is to
-    clone the repository and copy the WatchUI.py library file into your project and then
-    import it - see Importing section.
-    However, you can also install it via command *pip install WatchUI* and then import it.
     *IMPORTANT*: When using keywords of this library, please remember,
     that screenshots have to have same resolution!
     = Examples =
