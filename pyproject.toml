@@ -2,6 +2,9 @@
 name = "WatchUI"
 version = "2.0.1"
 description = "RobotFramework library package for automated visual testing."
+readme = "README.md"
+repository = "https://github.com/Tesena-smart-testing/WatchUI"
+documentation = "https://tesena-smart-testing.github.io/WatchUI/"
 authors = ["Jan Egermaier <jan.egermaier@tesena.com>", "Radek Bednarik <radek.bednarik@tesena.com>", "Michal Jirka <michal.jirka@tesena.com>", "Marcel Veselka <marcel.veselka@tesena.com>"]
 license = "MIT"
 classifiers = [
