@@ -8,6 +8,19 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  sonarcloud:
+    name: SonarCloud
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
   robot_test:
     runs-on: ubuntu-latest
     strategy:
@@ -31,7 +44,12 @@ jobs:
             && sudo mv chromedriver /usr/local/bin/chromedriver \
             && sudo chmod +x /usr/local/bin/chromedriver \
             && chromedriver --version
-      - name: display
+      - name: Install Tesseract
+        run: |
+          sudo apt install tesseract-ocr-ces
+          tesseract --version
+          tesseract --list-langs
+      - name: Set display
         run: DISPLAY=:0
       - name: Robot Framework
         run: |
@@ -50,4 +68,3 @@ jobs:
         uses: GabrielBB/xvfb-action@v1.0
         with:
           run: python3 -m robot tests/unit_test.robot
-

@@ -1,57 +1,59 @@
 # WatchUI
 
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-
 ## [Documentation](https://tesena-smart-testing.github.io/WatchUI/) | [Tesena](https://www.tesena.com/) | [Pypi](https://pypi.org/project/WatchUI/)
 
-## V2 DEV NOTES:
-
-- if possible, use [poetry](https://python-poetry.org/) to install dependecies. it will also install all dev dependencies used for linting, type checking and formatting.
-- if you are using VSCode, all dev tooling should work out of the box, once you open your virtual environment created by poetry. Settings are in the `.vscode/settings.json` file.
-
-## Important notice for users
-
-WatchUI 2.0 brings breaking changes. Dev team decided to streamline the library and focus it solely on the image and text comparison. This allows us to remove the implicit dependency on browser automation libraries - namely SeleniumLibrary, which was implicit part of the library via RF `BuiltIn()` import of the SeleniumLibrary instance.
-
-This is no longer the case - user of the WatchUI therefore **can and have to choose, what browser automation library will use** and provide screenshots to the WatchUI keywords to be compared.
-
-Version 1.x.x is no longer supported, but it is still available on [Pypi](pip install WatchUI==1.0.11).
 ### Basic Info
 
+Robot Framework visual testing library for visual difference testing as well as image content testing (including PDF documents).
+Runs on Selenium or Playwright to generate screenshots, PyMuPDF to process PDFs and Tesseract OCR to recognize text.
 
-Custom library for comparing images with use in Robot Framework.
-
-
-### Folder structure [TO BE UPDATED]
+### Project structure
 
 ```
-Testing-api
-└── .github/workflows           # Folder with CI for github actions
-└── Img                         # Folder with test data
-└── test                        # Folder with example how to write rf test.
-│    └── keywords               # Keywords and variables
-│    └── unit_test.robot        # File with TC
-└── WatchUI                     # Folder with WatchUI library
-│    └── WatchUI.py             # File with custom library
+WatchUI
+└── .github/workflows           # All github actions definitions for CI
+└── Img                         # Test and demo data
+└── WatchUI                     # WatchUI library implementation
+│    └── WatchUI.py             # Implementation file
+└── tests                       # Tests and examples in Robot Framework
+│    └── keywords               # More tests for keywords and definitions of variables
+│    └── unit_test.robot        # Basic unit tests
 └── README.MD                   # Here you are :-)
 └── setup.py                    # File for easy setup use with pip install .
 ```
 
 ### Install
-You can find detail in [Documentation](https://procesor2017.github.io/WatchUI/) but basically use pip:
+
+For quick start use:
+
 ```
 pip install WatchUI
 ```
 
-or some python dependencies management tools, like [pipenv](https://pipenv.pypa.io/en/latest/) or [poetry](https://python-poetry.org/) and their respective methods of libraries installation.
+For more details see our [Documentation](https://tesena-smart-testing.github.io/WatchUI/).
 
+### Sample results
 
-### Sample results [TO BE UPDATED]
+_Comparison of two screens where the differences are showed by red rectangles. In this example we ignored the dynamic boxes during comparison. These boxes were overlaid by black rectangles (the right on the pictures) ._
 
-_Image where the differences are stored + You can see two black box in left corner. These black box are ignored during comparison._
+<img src="https://raw.githubusercontent.com/Tesena-smart-testing/WatchUI/master/Img/logscreen.png" width="850" height="300">
 
-<img src="/Img/logscreen.png" width="850" height="300">
+_The red rectangles outlining missing elements on compared screens. In this case pictures are completely different due to bot protection feature during retesting._
 
-_The red rectangles outlining missing elements on compared screens_
+<img src="https://raw.githubusercontent.com/Tesena-smart-testing/WatchUI/master/Img/img_inlog.png" width="850" height="300">
 
-<img src="/Img/img_inlog.png" width="850" height="300">
+### Development
+
+1. Clone this repository
+2. Create `.venv` `python -m venv .venv`
+3. Activate `.venv`
+   - [VS Code](https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment): _Ctrl+Shift+P_, select option _Python: Select Interpreter_
+   - [PyCharm](https://www.jetbrains.com/help/pycharm/configuring-python-interpreter.html#interpreter): _Ctrl+Alt+S_, select _Project <project name>_ | _Python Interpreter_.
+4. Install all required packages `pip install -r requirements.txt`
+5. Download [chromedriver](https://sites.google.com/a/chromium.org/chromedriver/home)
+6. Install [tesseract] (https://tesena-smart-testing.github.io/WatchUI/start.html#install-tesseract)
+   _Note: In order to get test case within `unit_test.robot` working you have install also Czech language otherwise last test will be failing._
+   _Note2: Windows developer need to set up PATH in order to get all test passing OR set importing variabl `default_tesseract_path` with path where tesseract is installed._
+7. Run tests `python -m robot tests/unit_test.robot` or just `robot tests/unit_test.robot`
+
+_Note: If tesseract is not installed you can still use many features of WatchUI. Currently WatchUI need tesseract only if you need to use keywords: `Image to string`, `Image area on text` and `Return text from area`._
