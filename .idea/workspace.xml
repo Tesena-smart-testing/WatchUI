@@ -1,128 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bb6e76a2-7fd2-4eec-8d61-4936ffd97504" name="Default Changelist" comment="michal testy update">
-      <change afterPath="$PROJECT_DIR$/Results/files/rotation/img_rotated_0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Results/files/rotation/jpg/img_rotated_0.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/unit_tests/__init__.robot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="4dc0f687-9abd-45df-8bcc-98f00567fa60" name="Default Changelist" comment="michal testy update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed/Img1639732385.125038.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639734135.4200943.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639735000.4734333.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639735000.6514218.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639735060.4987226.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639735060.660257.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639735060.7582557.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639735061.3982532.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639735117.2948625.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639735117.4728673.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639735117.5788648.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639735149.6882143.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639735149.861216.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639735149.961222.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639737467.3683016.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639737467.9942994.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639737468.1473024.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639737468.2503016.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639738505.8802454.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639738506.5112405.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639738506.6822422.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639738506.7947745.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639753513.2549767.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639753513.8959777.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639753514.0679862.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639753514.1609802.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639753611.5371878.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639753612.1361814.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639753612.3051834.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639753612.3951888.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639753753.8311126.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639753754.4161386.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639753754.572107.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639753754.6571069.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/compare_image/Img1639754572.2539694.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/compare_image/Img1639754572.9589806.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/compare_image/Img1639754573.1779814.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/compare_image/Img1639754573.3149908.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/compare_image/Img1639754645.1480973.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/compare_image/Img1639754645.876103.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/compare_image/Img1639754646.0821273.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/compare_image/Img1639754646.2041013.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/compare_image/jpg/Img1639754575.6979735.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/compare_image/jpg/Img1639754646.9290977.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/croped/Img1639738398.1013005.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/croped/Img1639738462.611752.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/croped/Img1639738462.6187377.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/croped/Img1639738508.6512291.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/croped/Img1639738508.6702816.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/croped/Img1639751732.0905077.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/croped/Img1639751841.4487765.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/croped/Img1639751841.4837725.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/croped/Img1639751921.6620486.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/croped/Img1639752010.9984434.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/croped/Img1639752096.0921805.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/croped/Img1639752276.7036412.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/croped/Img1639752303.4961667.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/croped/Img1639752354.6839292.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/croped/Img1639754575.940972.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/croped/Img1639754647.079102.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/croped/jpg/Img1639751921.696047.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/croped/jpg/Img1639752276.7396858.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/croped/jpg/Img1639752303.5335226.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/croped/jpg/Img1639752303.548573.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/croped/jpg/Img1639752354.721917.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/croped/jpg/Img1639752354.7318692.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/croped/jpg/Img1639754575.9989686.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/croped/jpg/Img1639754576.0189755.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/croped/jpg/Img1639754647.127098.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/croped/jpg/Img1639754647.1411126.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/croped/jpg/croped_image_jpg_vzor.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/jpg/Img1639735150.703214.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/jpg/Img1639736814.4731393.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/jpg/Img1639736849.1783.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/jpg/Img1639737098.083771.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/jpg/Img1639737223.5051906.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/jpg/Img1639737468.994304.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/jpg/Img1639737789.3328652.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/jpg/Img1639738507.4838336.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/jpg/Img1639739934.1887941.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/jpg/Img1639753613.0077267.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/jpg/Img1639753755.2411048.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/rotation/Img1639753241.5071013.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/rotation/Img1639753295.7922623.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/rotation/Img1639753518.2059798.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/rotation/Img1639753616.7472918.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/rotation/Img1639753758.96155.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/rotation/Img1639753759.7445474.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/rotation/Img1639754003.6016443.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/rotation/Img1639754005.8623743.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/rotation/Img1639754580.2339694.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/rotation/Img1639754581.1909823.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/rotation/Img1639754651.7981.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/rotation/Img1639754652.7701044.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/rotation/img_rotated_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/rotation/jpg/img_rotated_0.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/rotation/jpg/img_rotated_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/rotation/jpg/img_rotated_0_jpg_vzor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/changed_variablesjpg/Img1639735118.2488618.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/img_rotated_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/img_rotated_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results/files/img_rotated_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/resources_tests_v2.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/resources_tests_v2.robot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test.robot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/tests_v2.robot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit_tests/Image_to_string.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit_tests/Tests/Image_to_string.robot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit_tests/_init_.robot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit_tests/compare_image.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit_tests/Tests/compare_image.robot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit_tests/crop_image.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit_tests/Tests/crop_image.robot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit_tests/image_area_on_text.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit_tests/Tests/image_area_on_text.robot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit_tests/pdf_to_image.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit_tests/Tests/pdf_to_image.robot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit_tests/resources/keywords.robot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit_tests/return_text_from_area.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit_tests/Tests/return_text_from_area.robot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit_tests/rotate_image.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit_tests/Tests/rotate_image.robot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit_tests/settings/resources.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/resources.robot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit_tests/should_exist_this_text.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit_tests/Tests/should_exist_this_text.robot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit_tests/__init__.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit_tests/__init__.robot" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,6 +20,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
     <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="ProjectId" id="1xIrPRZR4bVVTPET7MsLqVaRnMu" />
@@ -158,16 +40,16 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\automaty\robot\WatchUI\WatchUI\tests\unit_tests\Tests" />
-      <recent name="C:\Projects\Python\WatchUI\Tesena" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\automaty\robot\WatchUI\WatchUI\tests\unit_tests" />
       <recent name="C:\automaty\robot\WatchUI\WatchUI\tests\unit_tests\Tests" />
       <recent name="C:\automaty\robot\WatchUI\WatchUI\tests" />
       <recent name="C:\automaty\robot\WatchUI\WatchUI\tests\unit_tests\settings" />
       <recent name="C:\automaty\robot\WatchUI\WatchUI\tests\unit_tests\resources" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\automaty\robot\WatchUI\WatchUI\tests\unit_tests\Tests" />
+      <recent name="C:\Projects\Python\WatchUI\Tesena" />
     </key>
   </component>
   <component name="RunManager" selected="Python.Image">
@@ -237,7 +119,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="bb6e76a2-7fd2-4eec-8d61-4936ffd97504" name="Default Changelist" comment="" />
+      <changelist id="4dc0f687-9abd-45df-8bcc-98f00567fa60" name="Default Changelist" comment="michal testy update" />
       <created>1630053425582</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -263,6 +145,31 @@
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
+        <entry key="1">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>
@@ -272,6 +179,11 @@
         </entry>
       </map>
     </option>
+    <option name="OPEN_TABS">
+      <set>
+        <option value="1" />
+      </set>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -280,21 +192,45 @@
     <option name="LAST_COMMIT_MESSAGE" value="michal testy update" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2326" y="44" key="CommitChangelistDialog2" timestamp="1646833273918">
+    <state x="2326" y="44" key="CommitChangelistDialog2" timestamp="1641309430875">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2326" y="44" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1646833273918" />
-    <state x="2592" y="235" key="MultipleFileMergeDialog" timestamp="1639754855766">
+    <state x="2326" y="44" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1641309430875" />
+    <state x="2012" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1646834886258">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2592" y="235" key="MultipleFileMergeDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1639754855766" />
+    <state x="2012" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1646834886258" />
+    <state x="2104" y="85" key="MergeDialog" timestamp="1646835379053">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2104" y="85" key="MergeDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1646835379053" />
+    <state x="2592" y="235" key="MultipleFileMergeDialog" timestamp="1646835383357">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2592" y="235" key="MultipleFileMergeDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1646835383357" />
+    <state x="2698" y="241" key="RollbackChangesDialog" timestamp="1646834718162">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2698" y="241" key="RollbackChangesDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1646834718162" />
     <state x="2381" y="162" key="SettingsEditor" timestamp="1640162909819">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2381" y="162" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1640162909819" />
-    <state x="2689" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1646833214195">
+    <state x="2012" y="92" width="1736" height="856" key="ShowDiffWithBranchDialog" timestamp="1646834886258">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2689" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1646833214195" />
+    <state x="2012" y="92" width="1736" height="856" key="ShowDiffWithBranchDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1646834886258" />
+    <state x="2472" y="252" key="Vcs.Push.Dialog.v2" timestamp="1646834870100">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2472" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1646834870100" />
+    <state x="2012" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1646834886258">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2012" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1646834886258" />
+    <state x="2689" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1646834925256">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2689" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1646834925256" />
   </component>
 </project>
