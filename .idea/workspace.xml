@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4dc0f687-9abd-45df-8bcc-98f00567fa60" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/resources.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/resources.robot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/resources_tests_v2.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/resources_keywords_v2.robot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit_tests/Tests/return_text_from_area.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit_tests/Tests/return_text_from_area.robot" afterDir="false" />
-    </list>
+    <list default="true" id="4dc0f687-9abd-45df-8bcc-98f00567fa60" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -155,7 +150,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646835473619</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="michal testy update, all tests are running">
+      <created>1646836361744</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1646836361744</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -205,13 +207,14 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Merge branch 'watchUI-v2' of https://github.com/Tesena-smart-testing/WatchUI into Tesena-smart-testing-watchUI-v2&#10;&#10;# Conflicts:&#10;#&#9;WatchUI/WatchUI.py&#10;#&#9;WatchUI/__init__.py&#10;#&#9;WatchUI/_deprecated/WatchUI.py&#10;#&#9;WatchUI/keywords/_visual.py&#10;#&#9;tests/test.robot" />
     <MESSAGE value="michal testy update" />
-    <option name="LAST_COMMIT_MESSAGE" value="michal testy update" />
+    <MESSAGE value="michal testy update, all tests are running" />
+    <option name="LAST_COMMIT_MESSAGE" value="michal testy update, all tests are running" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2326" y="44" key="CommitChangelistDialog2" timestamp="1646835471426">
+    <state x="2326" y="44" key="CommitChangelistDialog2" timestamp="1646836357803">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2326" y="44" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1646835471426" />
+    <state x="2326" y="44" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1646836357803" />
     <state x="2012" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1646834886258">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -236,10 +239,10 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2012" y="92" width="1736" height="856" key="ShowDiffWithBranchDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1646834886258" />
-    <state x="2472" y="252" key="Vcs.Push.Dialog.v2" timestamp="1646835491480">
+    <state x="2472" y="252" key="Vcs.Push.Dialog.v2" timestamp="1646836382863">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2472" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1646835491480" />
+    <state x="2472" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1646836382863" />
     <state x="2012" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1646834886258">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
