@@ -23,3 +23,7 @@ def docs():
 def test():
     """Run tests."""
     run("tests/test.robot")
+
+
+if __name__ == "__main__":
+    docs()

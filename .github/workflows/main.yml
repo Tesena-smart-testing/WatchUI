@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.9, 3.10]
+        python-version: [3.9]
     name: Run Robot Framework Tests
     steps:
       - uses: actions/checkout@v2
@@ -31,6 +31,12 @@ jobs:
             && sudo mv chromedriver /usr/local/bin/chromedriver \
             && sudo chmod +x /usr/local/bin/chromedriver \
             && chromedriver --version
+      - name: Install Tesseract
+        run: |
+          sudo apt-get update && sudo apt-get install -y \
+          tesseract-ocr \
+          tesseract-ocr-eng \
+          tesseract-ocr-ces
       - name: display
         run: DISPLAY=:0
       - name: Robot Framework
@@ -49,5 +55,5 @@ jobs:
       - name: Run headless test
         uses: GabrielBB/xvfb-action@v1.0
         with:
-          run: python3 -m robot tests/unit_test.robot
+          run: python3 -m robot tests/test.robot
 

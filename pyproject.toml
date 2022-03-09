@@ -2,6 +2,9 @@
 name = "WatchUI"
 version = "2.0.1"
 description = "RobotFramework library package for automated visual testing."
+readme = "README.md"
+repository = "https://github.com/Tesena-smart-testing/WatchUI"
+documentation = "https://tesena-smart-testing.github.io/WatchUI/"
 authors = ["Jan Egermaier <jan.egermaier@tesena.com>", "Radek Bednarik <radek.bednarik@tesena.com>", "Michal Jirka <michal.jirka@tesena.com>", "Marcel Veselka <marcel.veselka@tesena.com>"]
 license = "MIT"
 classifiers = [
@@ -14,7 +17,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.9"
+python = ">=3.9, <4.0"
 opencv-python = "*"
 pandas = "*"
 Pillow = "*"
@@ -34,6 +37,7 @@ isort = "^5.9.3"
 pytest = "^6.2.5"
 PyHamcrest = "^2.0.2"
 lizard = "^1.17.9"
+pre-commit = "^2.17.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
