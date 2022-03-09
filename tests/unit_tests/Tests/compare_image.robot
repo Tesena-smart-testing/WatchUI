@@ -38,7 +38,6 @@ compare image ssim 30 fail
     ...     ELSE
     ...     no operation
 
-
 compare image save as different format
     compare image  ${IMAGE_1}  ${IMAGE_2}   save_folder=${result_files}/compare_image/jpg  ssim=0.9  image_format=${saved_changed_format}
     saved image format check  ${result_files}/compare_image/jpg

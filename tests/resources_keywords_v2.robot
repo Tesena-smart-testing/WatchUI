@@ -1,6 +1,4 @@
 *** Settings ***
-Resource  tests_v2.robot
-
 *** Keywords ***
 Suite Setup
     Remove directory  ${result_files}  recursive=True
@@ -89,8 +87,7 @@ rotate image save as different format
     ${files}  List Files In Directory  ${result_files_changed}/rotation/jpg
     compare image  ${rotated_0_jpg_vzor}  ${result_files_changed}/rotation/jpg/${files}[0]  save_folder=${result_files_changed}/rotation
 
-    #img_rotated_0_jpg_vzor
-pdf to image check  #DOPLNIT DATA
+pdf to image check
     [Arguments]  ${number_page}
     ${number_page-1}  evaluate  ${number_page} - 1
     pdf to image  ${PATH_TO_PDF}  save_folder=${result_files}  screen_name=pdf_screen_${number_page}  number_page=${number_page-1}
@@ -105,7 +102,7 @@ return text from area check
 should exist this text check
     [Arguments]  ${number_page}  ${true/false}  ${checked_text}
     ${number_page_evaluated}  evaluate  ${number_page} - 1
-    ${text_status}  should exist this text  ${PATH_TO_PDF}  ${number_page_evaluated}  ${checked_text}  #muze byt nejaky vzor z return text from area check
+    ${text_status}  should exist this text  ${PATH_TO_PDF}  ${number_page_evaluated}  ${checked_text}
     should be true  "${text_status}" == "${true/false}"
 
 image to string check
