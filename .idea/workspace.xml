@@ -1,33 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bb6e76a2-7fd2-4eec-8d61-4936ffd97504" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Results/files/compare_image/Img1640162867.5147526.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Results/files/compare_image/Img1640162868.2827547.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Results/files/compare_image/Img1640162868.47975.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Results/files/compare_image/Img1640162868.5937533.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Results/files/compare_image/jpg/Img1640162869.4177542.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Results/files/croped/Img1640162869.5777514.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Results/files/croped/jpg/Img1640162869.6297503.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Results/files/croped/jpg/Img1640162869.654755.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Results/files/pdf/Img1640162869.9827583.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Results/files/pdf/Img1640162870.2897522.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Results/files/rotation/Img1640162877.2007616.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Results/files/rotation/Img1640162878.5337512.png" afterDir="false" />
+    <list default="true" id="bb6e76a2-7fd2-4eec-8d61-4936ffd97504" name="Default Changelist" comment="michal testy update">
       <change afterPath="$PROJECT_DIR$/Results/files/rotation/img_rotated_0.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Results/files/rotation/jpg/img_rotated_0.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/unit_tests/Image_to_string.robot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/unit_tests/_init_.robot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/unit_tests/compare_image.robot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/unit_tests/crop_image.robot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/unit_tests/image_area_on_text.robot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/unit_tests/pdf_to_image.robot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/unit_tests/resources/keywords.robot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/unit_tests/return_text_from_area.robot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/unit_tests/rotate_image.robot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/unit_tests/should_exist_this_text.robot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/WatchUI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/WatchUI.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/unit_tests/__init__.robot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Results/files/changed/Img1639732385.125038.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/Img1639734135.4200943.png" beforeDir="false" />
@@ -128,8 +106,23 @@
       <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/rotation/jpg/img_rotated_0.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Results/files/changed_variables/rotation/jpg/img_rotated_0_jpg_vzor.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Results/files/changed_variablesjpg/Img1639735118.2488618.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/tests_v2.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/tests_v2.robot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/variables.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit_tests/settings/resources.robot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Results/files/img_rotated_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Results/files/img_rotated_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Results/files/img_rotated_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/resources_tests_v2.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/resources_tests_v2.robot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test.robot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/tests_v2.robot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit_tests/Image_to_string.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit_tests/Tests/Image_to_string.robot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit_tests/_init_.robot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit_tests/compare_image.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit_tests/Tests/compare_image.robot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit_tests/crop_image.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit_tests/Tests/crop_image.robot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit_tests/image_area_on_text.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit_tests/Tests/image_area_on_text.robot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit_tests/pdf_to_image.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit_tests/Tests/pdf_to_image.robot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit_tests/resources/keywords.robot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit_tests/return_text_from_area.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit_tests/Tests/return_text_from_area.robot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit_tests/rotate_image.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit_tests/Tests/rotate_image.robot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit_tests/settings/resources.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/resources.robot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit_tests/should_exist_this_text.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit_tests/Tests/should_exist_this_text.robot" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,6 +139,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="ProjectId" id="1xIrPRZR4bVVTPET7MsLqVaRnMu" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -160,19 +154,20 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/unit_tests/Tests" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\automaty\robot\WatchUI\WatchUI\tests\unit_tests\Tests" />
+      <recent name="C:\Projects\Python\WatchUI\Tesena" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\automaty\robot\WatchUI\WatchUI\tests\unit_tests" />
+      <recent name="C:\automaty\robot\WatchUI\WatchUI\tests\unit_tests\Tests" />
+      <recent name="C:\automaty\robot\WatchUI\WatchUI\tests" />
       <recent name="C:\automaty\robot\WatchUI\WatchUI\tests\unit_tests\settings" />
       <recent name="C:\automaty\robot\WatchUI\WatchUI\tests\unit_tests\resources" />
-      <recent name="C:\automaty\robot\WatchUI\WatchUI\tests" />
-      <recent name="C:\Projects\Python\WatchUI\WatchUI" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Projects\Python\WatchUI\Tesena" />
     </key>
   </component>
   <component name="RunManager" selected="Python.Image">
@@ -255,7 +250,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639755063684</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="michal testy update">
+      <created>1641309433187</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1641309433187</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -278,10 +280,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="michal testy update" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2326" y="44" key="CommitChangelistDialog2" timestamp="1639755061295">
+    <state x="2326" y="44" key="CommitChangelistDialog2" timestamp="1646833273918">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2326" y="44" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1639755061295" />
+    <state x="2326" y="44" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1646833273918" />
     <state x="2592" y="235" key="MultipleFileMergeDialog" timestamp="1639754855766">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -290,5 +292,9 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2381" y="162" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1640162909819" />
+    <state x="2689" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1646833214195">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2689" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1646833214195" />
   </component>
 </project>
