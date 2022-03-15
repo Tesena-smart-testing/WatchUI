@@ -1,5 +1,15 @@
-# Help us and contribute!
+# WatchUI with RF Browser library example
 
-## We are searching for people who are passionate about visual testing automation and want to help us build a better WatchUI.
+## Install
 
-In order to contribute with examples, please send us pull request or contact us via email.
+- have node.js lts installed - nvm manager is recommended
+- have Python 3.9.x installed
+- cd into the `examples/browser` folder
+- create virtual environment, ideally using `poetry`
+- run `poetry install`
+- or pip install all of packages from `pyproject.toml` file, section `[tool.poetry.dependencies]`
+- run `rfbrowser init`
+
+## Run tests
+
+- run `robot tests/**` 
