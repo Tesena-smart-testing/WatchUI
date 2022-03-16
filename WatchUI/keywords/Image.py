@@ -1,7 +1,8 @@
-# pylint: disable=invalid-name, expression-not-assigned, unbalanced-tuple-unpacking, too-many-arguments, too-many-locals
+# pylint: disable=invalid-name, expression-not-assigned, unbalanced-tuple-unpacking, too-many-arguments, too-many-locals, no-member
 import time
 from typing import Any, Optional, Union
 
+from robot.api.deco import keyword
 import cv2 as cv
 import imutils
 from numpy import ndarray
@@ -118,6 +119,7 @@ class Image(IBasic):
         )
         return imutils.grab_contours(cnts)
 
+    @keyword
     def compare_images(
         self,
         base_image_path: str,
@@ -165,6 +167,7 @@ class Image(IBasic):
 
         self._write_and_log(score, ssim, checked_save_folder, img_format, img1, img2)
 
+    @keyword
     def compare_screen_without_areas(
         self,
         base_image_path: str,
@@ -231,6 +234,7 @@ class Image(IBasic):
                 score, my_ssim, checked_save_folder, img_format, img1, img2
             )
 
+    @keyword
     def crop_image(
         self,
         path: str,
@@ -267,6 +271,7 @@ class Image(IBasic):
             work_object="Image", type_of_messages="Info", path_to_image=url
         )
 
+    @keyword
     def rotate_image(
         self,
         path: str,

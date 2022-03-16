@@ -5,6 +5,7 @@ Basics class
 import os
 from typing import Literal
 from robot.api import logger
+from robot.api.deco import not_keyword
 
 
 class IBasic:
@@ -24,6 +25,7 @@ class IBasic:
         self.starts_format_image = format_image
         self.path_to_tesseract_folder = tesseract_path
 
+    @not_keyword
     def check_dir(self, save_folder: str) -> str:
         """Checks given value for `save_folder`, verifies against default and if it
         does not exists, creates it.
@@ -40,6 +42,7 @@ class IBasic:
 
         return self.save_folder_path
 
+    @not_keyword
     @staticmethod
     def check_image_exists(path: str) -> None:
         """Checks, that image file on given `path` exists.
@@ -51,6 +54,7 @@ class IBasic:
         if not os.path.exists(path):
             raise FileExistsError(f"The path: {path}, to the image does not exist.")
 
+    @not_keyword
     def check_ssim(self, ssim: float) -> float:
         """Checks, if `ssim` is of `<float>` type and if it is within <0.0 , 1.0> range.
         Args:
@@ -74,6 +78,7 @@ class IBasic:
             self.ssim_basic = ssim
         return self.ssim_basic
 
+    @not_keyword
     def check_image_format(self, image_format: str) -> str:
         """Checks image format. If "png", returns default, else returns `image_format`.
         Args:
@@ -85,6 +90,7 @@ class IBasic:
             return f".{self.starts_format_image}"
         return f".{image_format}"
 
+    @not_keyword
     def check_tess_path(self, path_to_tess: str) -> str:
         """Checks, whether `path_to tess` is equal to expected default. If so,
         returns default value.
@@ -99,6 +105,7 @@ class IBasic:
             self.path_to_tesseract_folder = path_to_tess
         return self.path_to_tesseract_folder
 
+    @not_keyword
     @staticmethod
     def set_log_message(
         work_object: Literal["Image", "PDF", "Tesseract"] = "Image",
@@ -117,12 +124,13 @@ class IBasic:
         if work_object == "Image":
             if type_of_messages == "Info":
                 logger.info(
-                    f"Image was saved to your output folder </p><img src={path_to_image}/>",
+                    f"<p>Image was saved to your output folder </p><img src={path_to_image}></img>",
                     html=True,
                 )
             elif type_of_messages == "Error":
                 logger.error(
-                    f"Images arent same</p><img src={path_to_image}/>", html=True
+                    f"<p>Images arent same</p><img src={path_to_image}></img>",
+                    html=True,
                 )
                 raise AssertionError("Images are not the same")
         elif work_object == "PDF":
@@ -134,6 +142,7 @@ class IBasic:
                 "!!! Bad work object !!! Please contact library owner...", html=True
             )
 
+    @not_keyword
     @staticmethod
     def check_if_args_has_ok_numbers(*args, need_numbers: int = 4) -> bool:
         """Verifies, whether correct number of arguments was provided.

@@ -1,7 +1,10 @@
+# pylint: disable=no-member
+
 import os
 from typing import Any, Union
 import cv2 as cv
 import pytesseract
+from robot.api.deco import keyword
 from ..Ibasic.IBasic import IBasic
 
 
@@ -12,6 +15,7 @@ class Tesseract(IBasic):
         Basics (object): interface class
     """
 
+    @keyword
     def image_to_string(
         self,
         path: str,
@@ -41,6 +45,7 @@ class Tesseract(IBasic):
         )
         return text
 
+    @keyword
     def image_area_on_text(
         self,
         path: str,
