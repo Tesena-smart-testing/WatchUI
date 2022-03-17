@@ -4,6 +4,7 @@ PDF class module
 """
 from typing import Any
 import fitz
+from robot.api.deco import keyword
 from ..Ibasic.IBasic import IBasic
 
 
@@ -16,6 +17,7 @@ class Pdf(IBasic):
 
     save_folder = ""
 
+    @keyword
     def pdf_to_image(
         self,
         path: str,
@@ -54,6 +56,7 @@ class Pdf(IBasic):
             pix.save(output)
             self.set_log_message(work_object="Image", path_to_image=output)
 
+    @keyword
     def return_text_from_area(
         self, path: str, page_number: int, x1: int, y1: int, x2: int, y2: int
     ) -> str:
@@ -89,6 +92,7 @@ class Pdf(IBasic):
             xy_numbers += 1
         return text
 
+    @keyword
     def should_exist_this_text(self, path: str, page_number: int, text: str) -> bool:
         """Verifies, whether given text is present in the document and given page.
         Args:
