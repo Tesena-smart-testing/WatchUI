@@ -214,25 +214,25 @@ class Image(IBasic):
             a += 4
             i += 1
 
-            # convert to grey
-            gray_img1, gray_img2 = self._convert_to_grey(img1, img2)
+        # convert to grey
+        gray_img1, gray_img2 = self._convert_to_grey(img1, img2)
 
-            # SSIM diff Img
-            score, diff = self._compute_score(gray_img1, gray_img2)
+        # SSIM diff Img
+        score, diff = self._compute_score(gray_img1, gray_img2)
 
-            # Threshold diff Img
-            cnts: Any = self._get_contours(diff)
+        # Threshold diff Img
+        cnts: Any = self._get_contours(diff)
 
-            # Create frame in diff area
-            for c in cnts:
-                (x, y, w, h) = cv.boundingRect(c)
-                cv.rectangle(img1, (x, y), (x + w, y + h), (0, 0, 255), 2)
-                cv.rectangle(img2, (x, y), (x + w, y + h), (0, 0, 255), 2)
+        # Create frame in diff area
+        for c in cnts:
+            (x, y, w, h) = cv.boundingRect(c)
+            cv.rectangle(img1, (x, y), (x + w, y + h), (0, 0, 255), 2)
+            cv.rectangle(img2, (x, y), (x + w, y + h), (0, 0, 255), 2)
 
-            # Show image
-            self._write_and_log(
-                score, my_ssim, checked_save_folder, img_format, img1, img2
-            )
+        # Show image
+        self._write_and_log(
+            score, my_ssim, checked_save_folder, img_format, img1, img2
+        )
 
     @keyword
     def crop_image(
