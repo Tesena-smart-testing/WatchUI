@@ -230,9 +230,7 @@ class Image(IBasic):
             cv.rectangle(img2, (x, y), (x + w, y + h), (0, 0, 255), 2)
 
         # Show image
-        self._write_and_log(
-            score, my_ssim, checked_save_folder, img_format, img1, img2
-        )
+        self._write_and_log(score, my_ssim, checked_save_folder, img_format, img1, img2)
 
     @keyword
     def crop_image(
