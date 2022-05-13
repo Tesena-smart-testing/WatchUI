@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "browser-example"
+version = "0.1.0"
+description = "example of using WatchUI with browser library"
+authors = ["Radek Bednarik <radek.bednarik@tesena.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+robotframework-browser = "^12.2.0"
+watchui = "^2.0.3"
+
+[tool.poetry.dev-dependencies]
+black = "^22.1.0"
+mypy = "^0.941"
+pylint = "^2.12.2"
+isort = "^5.10.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
