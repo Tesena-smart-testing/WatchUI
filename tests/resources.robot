@@ -25,7 +25,9 @@ ${CHECKED_TEXT_PDF}  numer komisji
 
 ${IMG_TO_STRING_CESTA}
 ${IMAGE_AREA_TO_TEXT_VZOR}
--------------------
+
+#-------------------
+
 ${vzor_path}  resource/data
 ${result_files}  Results/files
 ${result_files_changed}  Results/files/changed_variables

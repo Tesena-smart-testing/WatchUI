@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4dc0f687-9abd-45df-8bcc-98f00567fa60" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit_tests/Tests/compare_image.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit_tests/Tests/compare_image.robot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/resources.robot" beforeDir="false" afterPath="$PROJECT_DIR$/tests/resources.robot" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +167,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646836613151</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="michal testy update">
+      <created>1646837404382</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1646837404382</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -216,20 +223,24 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Merge branch 'watchUI-v2' of https://github.com/Tesena-smart-testing/WatchUI into Tesena-smart-testing-watchUI-v2&#10;&#10;# Conflicts:&#10;#&#9;WatchUI/WatchUI.py&#10;#&#9;WatchUI/__init__.py&#10;#&#9;WatchUI/_deprecated/WatchUI.py&#10;#&#9;WatchUI/keywords/_visual.py&#10;#&#9;tests/test.robot" />
-    <MESSAGE value="michal testy update" />
     <MESSAGE value="michal testy update, all tests are running" />
     <MESSAGE value="Results deleted" />
-    <option name="LAST_COMMIT_MESSAGE" value="Results deleted" />
+    <MESSAGE value="michal testy update" />
+    <option name="LAST_COMMIT_MESSAGE" value="michal testy update" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2326" y="44" key="CommitChangelistDialog2" timestamp="1646836611818">
+    <state x="2326" y="44" key="CommitChangelistDialog2" timestamp="1646837397091">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2326" y="44" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1646836611818" />
-    <state x="2012" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1646834886258">
+    <state x="2326" y="44" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1646837397091" />
+    <state x="2012" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1652430315160">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2012" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1646834886258" />
+    <state x="2012" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1652430315160" />
+    <state x="2660" y="274" key="FileChooserDialogImpl" timestamp="1646837420033">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2660" y="274" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1646837420033" />
     <state x="2104" y="85" key="MergeDialog" timestamp="1646835379053">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -242,18 +253,14 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2698" y="241" key="RollbackChangesDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1646834718162" />
-    <state x="2381" y="162" key="SettingsEditor" timestamp="1640162909819">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="2381" y="162" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1640162909819" />
     <state x="2012" y="92" width="1736" height="856" key="ShowDiffWithBranchDialog" timestamp="1646834886258">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2012" y="92" width="1736" height="856" key="ShowDiffWithBranchDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1646834886258" />
-    <state x="2472" y="252" key="Vcs.Push.Dialog.v2" timestamp="1646836633175">
+    <state x="2472" y="252" key="Vcs.Push.Dialog.v2" timestamp="1652430320891">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2472" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1646836633175" />
+    <state x="2472" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1652430320891" />
     <state x="2012" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1646834886258">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
