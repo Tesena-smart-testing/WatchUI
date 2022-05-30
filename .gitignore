@@ -234,4 +234,4 @@ output.xml
 report.html
 .devcontainer/
 tests/outputs/
-/Results/
+Results/
