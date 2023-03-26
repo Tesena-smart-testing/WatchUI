@@ -98,7 +98,8 @@ class Image(IBasic):
         url: str = f"{checked_save_folder}/Img{time_}{img_format}"
         # Show image
         if score < ssim:
-            cv.imwrite(url, target_image)
+            img_diff: Any = cv.hconcat([base_image, target_image])
+            cv.imwrite(url, img_diff)
             self.set_log_message(
                 work_object="Image", type_of_messages="Error", path_to_image=url
             )
@@ -133,7 +134,7 @@ class Image(IBasic):
             base_image_path (str): path to base image
             compared_image_path (str): path to compared image
             save_folder (str): path to the save folder
-            ssim (float): SSIM threshold value
+            ssim (float): SSIM threshold value 0 to 1 e.g. "0.5"
             image_format (str): image format, e.g. "png", "jpg"
         Raises:
             TypeError:
@@ -182,7 +183,7 @@ class Image(IBasic):
             base_image_path (str): path to the base image
             compared_image_path (str): path to the compared image
             save_folder (str): path to the save folder
-            ssim (float): SSIM threshold value
+            ssim (float): SSIM threshold value 0 to 1 e.g. "0.5"
             image_format (str): format of the image, e.g. "png", "jpg"
         """
         checked_save_folder, my_ssim, img_format = self._do_checks(

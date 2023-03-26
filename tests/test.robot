@@ -1,6 +1,8 @@
 *** Variables ***
 ${TESERACT_PATH}     /usr/bin/tesseract
 ${BASELINE_IMAGE}    assets/img.jpg
+${IMAGE_1}           resource/data/forpres.png
+${IMAGE_2}           resource/data/forpres1.png
 ${PDF_FILE}          assets/ok.pdf
 
 
@@ -10,7 +12,11 @@ Library          ../WatchUI/          outputs_folder=tests/outputs  tesseract_pa
 
 *** Test Cases ***
 Compare Same Images
-    Compare images    ${BASELINE_IMAGE}    ${BASELINE_IMAGE}
+    Compare images    ${BASELINE_IMAGE}    ${BASELINE_IMAGE}    
+
+Compare different Images
+    [Tags]              1
+    Compare images    ${IMAGE_1}    ${IMAGE_2}      ssim=0.5
 
 Check Compare Screen Without Areas
     Compare screen without areas    ${BASELINE_IMAGE}    ${BASELINE_IMAGE}    0    0    100    100    125    125    250    250
