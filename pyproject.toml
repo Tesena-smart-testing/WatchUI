@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "WatchUI"
-version = "2.0.12"
+version = "2.0.13"
 description = "RobotFramework library package for automated visual testing."
 readme = "README.md"
 repository = "https://github.com/Tesena-smart-testing/WatchUI"
