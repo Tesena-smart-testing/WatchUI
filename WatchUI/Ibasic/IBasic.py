@@ -133,6 +133,12 @@ class IBasic:
                     html=True,
                 )
                 raise AssertionError("Images are not the same")
+            elif type_of_messages == "Fail":
+                logger.info(
+                    f"<details><summary>Actual image is different from baseline image (click to view images)\n\n</summary><img src={path_to_image}></img></details>",
+                    html=True,
+                )
+                raise AssertionError("Images are not the same")
         elif work_object == "PDF":
             pass
         elif work_object == "Tesseract":

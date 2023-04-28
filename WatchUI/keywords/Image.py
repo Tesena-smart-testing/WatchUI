@@ -101,7 +101,7 @@ class Image(IBasic):
             img_diff: Any = cv.hconcat([base_image, target_image])
             cv.imwrite(url, img_diff)
             self.set_log_message(
-                work_object="Image", type_of_messages="Error", path_to_image=url
+                work_object="Image", type_of_messages="Fail", path_to_image=url
             )
         else:
             img_diff: Any = cv.hconcat([base_image, target_image])
